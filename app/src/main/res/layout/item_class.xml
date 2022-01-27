@@ -12,6 +12,7 @@
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:src="@drawable/img_temp"
+        app:tint="#C4C4C4"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/student_info"
         app:layout_constraintTop_toTopOf="parent"
@@ -22,11 +23,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
-        android:textSize="14sp"
-        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/student_profile"
         app:layout_constraintLeft_toRightOf="@+id/student_profile"
         app:layout_constraintRight_toRightOf="parent"
-        tools:text="백지성/고3/영어"
-        android:textColor="@color/black"/>
+        app:layout_constraintTop_toTopOf="@+id/student_profile"
+        tools:text="백지성/고3/영어" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
