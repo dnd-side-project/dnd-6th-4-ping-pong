@@ -12,7 +12,7 @@
         android:theme="@style/Theme.LMSService">
 
         <activity
-            android:name=".presentation.main.MainActivity"
+            android:name=".presentation.home.HomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
