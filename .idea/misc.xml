@@ -4,6 +4,21 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/android_project/LMSService/app/src/main/res/layout/activity_main.xml" value="0.22291666666666668" />
+        <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/drawable/bg_am_pm.xml" value="0.2796296296296296" />
+        <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/drawable/bg_am_pm_radio_group.xml" value="0.2796296296296296" />
+        <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/drawable/bg_divider.xml" value="0.2814814814814815" />
+        <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/drawable/bg_make_class_date.xml" value="0.2814814814814815" />
+        <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/drawable/bg_make_class_edit_text.xml" value="0.2814814814814815" />
+        <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/drawable/bg_round_button.xml" value="0.2796296296296296" />
+        <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/drawable/bg_week_schedule.xml" value="0.2814814814814815" />
+        <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/drawable/btn_salary_count.xml" value="0.2814814814814815" />
+        <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/drawable/selector_make_class_day.xml" value="0.2796296296296296" />
+        <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/drawable/selector_salary_radio_text.xml" value="0.2814814814814815" />
+        <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/font/fonts.xml" value="0.3194444444444444" />
+        <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/activity_home.xml" value="0.25" />
+        <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/activity_main.xml" value="0.2898550724637681" />
+        <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/activity_make_class.xml" value="0.67" />
+        <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/item_class.xml" value="0.5" />
       </map>
     </option>
   </component>
