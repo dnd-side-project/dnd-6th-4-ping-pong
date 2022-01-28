@@ -117,7 +117,6 @@
                         android:layout_weight="1"
                         android:background="@drawable/selector_salary_radio_btn"
                         android:button="@null"
-                        android:foreground="?attr/selectableItemBackground"
                         android:gravity="center"
                         android:text="4회"
                         android:textColor="#707070" />
@@ -131,7 +130,6 @@
                         android:background="@drawable/selector_salary_radio_btn"
                         android:button="@null"
                         android:checked="true"
-                        android:foreground="?attr/selectableItemBackground"
                         android:gravity="center"
                         android:text="8회"
                         android:textColor="#707070" />
@@ -143,7 +141,6 @@
                         android:layout_weight="1"
                         android:background="@drawable/selector_salary_radio_btn"
                         android:button="@null"
-                        android:foreground="?attr/selectableItemBackground"
                         android:gravity="center"
                         android:text="10회"
                         android:textColor="#707070" />
@@ -361,6 +358,7 @@
                     android:background="@drawable/bg_make_class_edit_text"
                     android:paddingHorizontal="16dp"
                     android:textColor="@color/black"
+                    android:inputType="phone"
                     android:textSize="14sp"
                     app:layout_constraintTop_toBottomOf="@+id/student_contact_subtitle" />
 
@@ -379,6 +377,7 @@
                     android:layout_marginTop="16dp"
                     android:background="@drawable/bg_make_class_edit_text"
                     android:paddingHorizontal="16dp"
+                    android:inputType="phone"
                     android:textColor="@color/black"
                     android:textSize="14sp"
                     app:layout_constraintTop_toBottomOf="@+id/parent_contact_subtitle" />
