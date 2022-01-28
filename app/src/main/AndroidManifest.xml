@@ -10,11 +10,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LMSService">
+
         <activity
             android:name=".presentation.login.LoginActivity"
             android:exported="true" />
+
         <activity
-            android:name=".presentation.home.HomeActivity"
+            android:name=".presentation.main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,6 +24,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".presentation.main.home.making.MakeClassActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>

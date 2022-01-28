@@ -1,11 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="homeSubTextView" parent="Widget.AppCompat.TextView">
+    <!-- 홈 화면의 서브 타이틀 텍스트뷰 스타일 -->
+    <style name="homeSubTitleTextView" parent="Widget.AppCompat.TextView">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:fontFamily">@font/roboto_regular</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">16sp</item>
-
     </style>
+
+    <!-- 홈 화면의 서브 타이틀 텍스트뷰 스타일 -->
+    <style name="makeClassSubTitleTextView" parent="Widget.AppCompat.TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/roboto_regular</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_marginTop">16dp</item>
+    </style>
+
+    <!-- 툴바 스타일 -->
+    <style name="ToolbarStyle" parent="Widget.AppCompat.Toolbar">
+        <item name="titleTextAppearance">@style/ToolbarTitleStyle.Black</item>
+    </style>
+
+    <!-- Toolbar의 타이틀 텍스트 스타일-->
+    <style name="ToolbarTitleStyle.Black" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textColor">@color/black</item> <!-- Toolbar의 타이틀 텍스트 색상-->
+        <item name="android:textSize">16sp</item> <!-- Toolbar의 타이틀 텍스트 사이즈-->
+    </style>
+
+    <style name="SalaryDateRadioButtonStyle" parent="Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="android:button">@null</item>
+        <item name="android:background">@drawable/selector_salary_radio_btn</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">#707070</item>
+    </style>
+
 </resources>
