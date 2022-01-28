@@ -115,7 +115,7 @@
                         android:layout_width="0dp"
                         android:layout_height="36dp"
                         android:layout_weight="1"
-                        android:background="@drawable/selector_salary_radio_btn"
+                        android:background="@drawable/btn_salary_radio"
                         android:button="@null"
                         android:gravity="center"
                         android:text="4회"
@@ -127,7 +127,7 @@
                         android:layout_height="36dp"
                         android:layout_marginHorizontal="16dp"
                         android:layout_weight="1"
-                        android:background="@drawable/selector_salary_radio_btn"
+                        android:background="@drawable/btn_salary_radio"
                         android:button="@null"
                         android:checked="true"
                         android:gravity="center"
@@ -139,7 +139,7 @@
                         android:layout_width="0dp"
                         android:layout_height="36dp"
                         android:layout_weight="1"
-                        android:background="@drawable/selector_salary_radio_btn"
+                        android:background="@drawable/btn_salary_radio"
                         android:button="@null"
                         android:gravity="center"
                         android:text="10회"
@@ -283,7 +283,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginRight="8dp"
                         android:layout_weight="1"
-                        android:background="@drawable/selector_make_class_day"
+                        android:background="@drawable/btn_make_class_day"
                         android:button="@null" />
 
                     <CheckBox
@@ -292,7 +292,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginRight="8dp"
                         android:layout_weight="1"
-                        android:background="@drawable/selector_make_class_day"
+                        android:background="@drawable/btn_make_class_day"
                         android:button="@null" />
 
                     <CheckBox
@@ -301,7 +301,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginRight="8dp"
                         android:layout_weight="1"
-                        android:background="@drawable/selector_make_class_day"
+                        android:background="@drawable/btn_make_class_day"
                         android:button="@null" />
 
                     <CheckBox
@@ -310,7 +310,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginRight="8dp"
                         android:layout_weight="1"
-                        android:background="@drawable/selector_make_class_day"
+                        android:background="@drawable/btn_make_class_day"
                         android:button="@null" />
 
                     <CheckBox
@@ -319,7 +319,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginRight="8dp"
                         android:layout_weight="1"
-                        android:background="@drawable/selector_make_class_day"
+                        android:background="@drawable/btn_make_class_day"
                         android:button="@null" />
 
                     <CheckBox
@@ -328,7 +328,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginRight="8dp"
                         android:layout_weight="1"
-                        android:background="@drawable/selector_make_class_day"
+                        android:background="@drawable/btn_make_class_day"
                         android:button="@null"
                         android:checked="true" />
 
@@ -337,7 +337,7 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:background="@drawable/selector_make_class_day"
+                        android:background="@drawable/btn_make_class_day"
                         android:button="@null" />
 
                 </LinearLayout>
