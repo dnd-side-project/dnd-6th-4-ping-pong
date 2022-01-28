@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">LMSService</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="calendar_progress_switch_tooltip">숙제 진행률을\n체크해보세요!</string>
+    <string name="calendar_class_switch_tooltip">수업마다 색이 다르게\n표시되어 보여져요.</string>
 </resources>

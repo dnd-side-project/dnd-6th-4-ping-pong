@@ -94,7 +94,7 @@
                         android:id="@+id/copy_btn"
                         android:layout_width="89dp"
                         android:layout_height="match_parent"
-                        android:background="@drawable/selector_copy_btn"
+                        android:background="@drawable/btn_copy"
                         android:clickable="true"
                         android:elevation="0dp"
                         android:gravity="center"

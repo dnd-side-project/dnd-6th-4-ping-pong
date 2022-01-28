@@ -4,113 +4,118 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.dnd.sixth.lmsservice.presentation.main.home.HomeViewModel" />
     </data>
 
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingHorizontal="16dp"
-            tools:context=".presentation.main.home.HomeFragment">
+            android:fillViewport="true">
 
-            <TextView
-                android:id="@+id/title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="58dp"
-                android:fontFamily="@font/roboto_regular"
-                android:text="수업을 등록하고\n일정을 관리해보세요"
-                android:textColor="@color/black"
-                android:textSize="22sp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/option_btn"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginTop="52dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:src="@drawable/img_temp"
-                android:clickable="true"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/my_class_title"
-                style="@style/homeSubTitleTextView"
-                android:layout_marginTop="58dp"
-                android:text="나의 모든 수업"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/title" />
-
-            <HorizontalScrollView
-                android:id="@+id/class_scroll_view"
-                android:layout_width="wrap_content"
-                android:layout_height="156dp"
-                android:layout_marginTop="24dp"
-                android:fillViewport="true"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/my_class_title" />
-
-            <TextView
-                android:id="@+id/week_class_title"
-                style="@style/homeSubTitleTextView"
-                android:layout_marginTop="16dp"
-                android:text="이번 주 일정"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/class_scroll_view" />
-
-            <LinearLayout
-                android:id="@+id/no_schedule_view"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/bg_week_schedule"
-                android:gravity="center"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/week_class_title"
-                app:layout_constraintVertical_bias="0.562">
+                android:layout_height="match_parent"
+                android:paddingHorizontal="16dp"
+                tools:context=".presentation.main.home.HomeFragment">
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="30dp"
+                    android:layout_marginTop="58dp"
                     android:fontFamily="@font/roboto_regular"
+                    android:text="수업을 등록하고\n일정을 관리해보세요"
+                    android:textColor="@color/black"
+                    android:textSize="22sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/option_btn"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="52dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:src="@drawable/img_temp"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/my_class_title"
+                    style="@style/homeSubTitleTextView"
+                    android:layout_marginTop="58dp"
+                    android:text="나의 모든 수업"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/title" />
+
+                <HorizontalScrollView
+                    android:id="@+id/class_scroll_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="156dp"
+                    android:layout_marginTop="24dp"
+                    android:fillViewport="true"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/my_class_title" />
+
+                <TextView
+                    android:id="@+id/week_class_title"
+                    style="@style/homeSubTitleTextView"
+                    android:layout_marginTop="16dp"
+                    android:text="이번 주 일정"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/class_scroll_view" />
+
+                <LinearLayout
+                    android:id="@+id/no_schedule_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/bg_week_schedule"
                     android:gravity="center"
-                    android:text="캘린더에 등록된 이번 주 일정을 확인할 수 있어요"
-                    android:textColor="#7A7A7A"
-                    android:textSize="12sp" />
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/week_class_title">
 
-            </LinearLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="30dp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:gravity="center"
+                        android:text="캘린더에 등록된 이번 주 일정을 확인할 수 있어요"
+                        android:textColor="#7A7A7A"
+                        android:textSize="12sp" />
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/class_add_fab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|right|end"
-                app:fabSize="normal"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                app:srcCompat="@drawable/ic_add"
-                app:elevation="6dp"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintBottom_toBottomOf="@+id/no_schedule_view"
-                android:layout_marginBottom="12dp"
-                android:layout_marginRight="12dp"
-                app:tint="@color/white"
-                app:backgroundTint="@color/colorPrimary"/>
+                </LinearLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </ScrollView>
+        </ScrollView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/class_add_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right|end"
+            android:layout_marginRight="12dp"
+            android:layout_marginBottom="12dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            app:backgroundTint="@color/colorPrimary"
+            app:elevation="6dp"
+            app:fabSize="normal"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:srcCompat="@drawable/ic_add"
+            app:tint="@color/white" />
+    </RelativeLayout>
 </layout>

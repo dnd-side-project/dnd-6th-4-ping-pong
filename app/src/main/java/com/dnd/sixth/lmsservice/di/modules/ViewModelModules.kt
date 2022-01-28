@@ -1,27 +1,28 @@
 package com.dnd.sixth.lmsservice.di.modules
 
 
+import com.dnd.sixth.lmsservice.presentation.login.LoginViewModel
 import com.dnd.sixth.lmsservice.presentation.main.MainViewModel
 import com.dnd.sixth.lmsservice.presentation.main.home.HomeViewModel
 import com.dnd.sixth.lmsservice.presentation.main.home.making.MakeClassViewModel
+import com.dnd.sixth.lmsservice.presentation.main.schedule.CalendarViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
-val homeViewModelModule = module {
+val viewModelModules = module {
     viewModel {
-        HomeViewModel()
         LoginViewModel()
     }
-}
-
-val makeClassModelModule = module {
+    viewModel {
+        MainViewModel()
+    }
+    viewModel {
+        HomeViewModel()
+    }
     viewModel {
         MakeClassViewModel()
     }
-}
-
-val mainViewModelModule = module {
     viewModel {
-        MainViewModel()
+        CalendarViewModel()
     }
 }
