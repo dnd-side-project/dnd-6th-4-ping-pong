@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.dnd.sixth.lmsservice.presentation.main.making.MakeClassViewModel" />
+            type="com.dnd.sixth.lmsservice.presentation.main.home.making.MakeClassViewModel" />
     </data>
 
 
@@ -19,7 +19,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:context=".presentation.main.making.MakeClassActivity">
+            tools:context=".presentation.main.home.making.MakeClassActivity">
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar"

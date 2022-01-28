@@ -1,4 +1,4 @@
-package com.dnd.sixth.lmsservice.presentation.main.making
+package com.dnd.sixth.lmsservice.presentation.main.home.making
 
 import android.view.MenuItem
 import com.dnd.sixth.lmsservice.R
