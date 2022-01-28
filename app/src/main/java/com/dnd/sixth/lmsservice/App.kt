@@ -3,6 +3,7 @@ package com.dnd.sixth.lmsservice
 import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
+import com.dnd.sixth.lmsservice.di.modules.homeViewModelModule
 import com.dnd.sixth.lmsservice.di.modules.mainViewModelModule
 import com.dnd.sixth.lmsservice.di.modules.makeClassModelModule
 import org.koin.android.ext.koin.androidContext
@@ -23,8 +24,9 @@ class App : Application() {
             androidContext(this@App)
             modules(
                 listOf(
-                    mainViewModelModule,
-                    makeClassModelModule
+                    homeViewModelModule,
+                    makeClassModelModule,
+                    mainViewModelModule
                 )
             )
 

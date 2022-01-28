@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingHorizontal="16dp"
-            tools:context=".presentation.main.home.HomeActivity">
+            tools:context=".presentation.main.home.HomeFragment">
 
             <TextView
                 android:id="@+id/title"
