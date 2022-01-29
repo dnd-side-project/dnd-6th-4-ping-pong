@@ -9,7 +9,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:fitsSystemWindows="true"
         android:theme="@style/Theme.LMSService">
+        <activity
+            android:name=".presentation.main.schedule.add.ScheduleAddActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"
+            />
         <activity
             android:name=".presentation.login.LoginActivity"
             android:exported="true" />
