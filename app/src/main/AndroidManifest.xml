@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LMSService">
         <activity
+            android:name=".presentation.login.signup.SignUpActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.login.LoginActivity"
             android:exported="true" />
         <activity
