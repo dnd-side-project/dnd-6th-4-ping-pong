@@ -26,7 +26,7 @@ class ClassProgressFragment : BaseFragment<FragmentClassProgressBinding, ClassPr
 
         }
 
-        //어답터 추가.
+        //어답터 추가
         with(binding){
             recyclerviewForTimeLine.adapter = TimeLineAdapter()
             recyclerviewForTimeLine.layoutManager = LinearLayoutManager(requireContext())
