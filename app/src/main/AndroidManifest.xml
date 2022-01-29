@@ -15,7 +15,11 @@
             android:name=".presentation.main.schedule.add.ScheduleAddActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustPan"
-            />
+
+        <activity
+            android:name=".presentation.login.signup.SignUpActivity"
+            android:exported="false" />
+
         <activity
             android:name=".presentation.login.LoginActivity"
             android:exported="true" />
