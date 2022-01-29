@@ -108,4 +108,7 @@ dependencies {
 
     // Material Calendar
     implementation 'com.prolificinteractive:material-calendarview:1.4.3'
+
+    //TimeLineView
+    implementation 'com.github.vipulasri:timelineview:1.1.5'
 }

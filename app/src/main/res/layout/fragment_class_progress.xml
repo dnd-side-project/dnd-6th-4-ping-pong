@@ -193,6 +193,8 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/progress_portion_text" />
 
+
+
                     <FrameLayout
                         android:id="@+id/timeline_container"
                         android:layout_width="0dp"
@@ -202,6 +204,14 @@
                         app:layout_constraintEnd_toEndOf="parent"
 
                         >
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerviewForTimeLine"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+
+
                         <TextView
 
                             android:layout_width="wrap_content"
