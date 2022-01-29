@@ -163,7 +163,7 @@
                         android:id="@+id/progress_portion_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_m2arginLeft="32.63dp"
+                        android:layout_marginLeft="32.63dp"
                         android:layout_marginTop="17dp"
                         android:text="@string/progress_class"
                         android:textColor="@color/black"
