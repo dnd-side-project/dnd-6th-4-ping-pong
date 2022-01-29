@@ -14,7 +14,7 @@
         <activity
             android:name=".presentation.main.schedule.add.ScheduleAddActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan"
+            android:windowSoftInputMode="adjustPan" />
 
         <activity
             android:name=".presentation.login.signup.SignUpActivity"
