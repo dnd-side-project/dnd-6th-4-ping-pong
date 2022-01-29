@@ -1,6 +1,7 @@
 package com.dnd.sixth.lmsservice.di.modules
 
 
+import com.dnd.sixth.lmsservice.presentation.lesson.progress.ClassProgressViewModel
 import com.dnd.sixth.lmsservice.presentation.login.LoginViewModel
 import com.dnd.sixth.lmsservice.presentation.main.MainViewModel
 import com.dnd.sixth.lmsservice.presentation.main.home.HomeViewModel
@@ -24,5 +25,9 @@ val viewModelModules = module {
     }
     viewModel {
         CalendarViewModel()
+    }
+
+    viewModel {
+        ClassProgressViewModel()
     }
 }
