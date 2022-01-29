@@ -1,9 +1,11 @@
 package com.dnd.sixth.lmsservice.presentation.main.schedule
 
+import android.content.Intent
 import android.view.View
 import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.databinding.ActivityCalendarBinding
 import com.dnd.sixth.lmsservice.presentation.base.BaseFragment
+import com.dnd.sixth.lmsservice.presentation.main.schedule.add.ScheduleAddActivity
 import com.dnd.sixth.lmsservice.presentation.utility.ToolTipManager
 import com.tomergoldst.tooltips.ToolTip
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -28,7 +30,7 @@ class CalendarFragment : BaseFragment<ActivityCalendarBinding, CalendarViewModel
 
     private fun initView() {
         with(binding) {
-
+            scheduleAddFab.setOnClickListener(this@CalendarFragment)
         }
     }
 
@@ -49,7 +51,7 @@ class CalendarFragment : BaseFragment<ActivityCalendarBinding, CalendarViewModel
         toolTipManger.dismissAll() // 뷰 클릭시 툴팁 해제
 
         when(v?.id) {
-
+            R.id.schedule_add_fab -> startActivity(Intent(requireContext(), ScheduleAddActivity::class.java))
         }
     }
 

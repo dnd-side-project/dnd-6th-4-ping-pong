@@ -59,7 +59,7 @@
             android:layout_marginTop="14dp"/>
 
         <ImageView
-            android:id="@+id/class_count_image_view"
+            android:id="@+id/class_round_image_view"
             android:layout_width="20dp"
             android:layout_height="20dp"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -69,15 +69,15 @@
             app:tint="#C4C4C4"/>
 
         <TextView
-            android:id="@+id/class_count_text_view"
+            android:id="@+id/class_round_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="7dp"
             android:layout_marginTop="16dp"
             android:textColor="@color/black"
             android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="@+id/class_count_image_view"
-            app:layout_constraintLeft_toRightOf="@+id/class_count_image_view"
+            app:layout_constraintBottom_toBottomOf="@+id/class_round_image_view"
+            app:layout_constraintLeft_toRightOf="@+id/class_round_image_view"
             app:layout_constraintTop_toBottomOf="@+id/student_text_view"
             tools:text="수업 회차 : 7회차" />
 
@@ -88,7 +88,7 @@
             android:layout_height="20dp"
             android:layout_marginTop="8dp"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/class_count_image_view"
+            app:layout_constraintTop_toBottomOf="@+id/class_round_image_view"
             android:src="@drawable/img_temp"
             app:tint="#C4C4C4"/>
 
@@ -102,7 +102,7 @@
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="@+id/class_progress_image_view"
             app:layout_constraintLeft_toRightOf="@+id/class_progress_image_view"
-            app:layout_constraintTop_toBottomOf="@+id/class_count_text_view"
+            app:layout_constraintTop_toBottomOf="@+id/class_round_text_view"
             tools:text="수업 진도 : [교육 과정에 따른 챕터 입력]" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

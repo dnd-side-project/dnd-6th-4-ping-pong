@@ -2,8 +2,14 @@
     <string name="app_name">LMSService</string>
     <string name="calendar_progress_switch_tooltip">숙제 진행률을\n체크해보세요!</string>
     <string name="calendar_class_switch_tooltip">수업마다 색이 다르게\n표시되어 보여져요.</string>
+
+    <string name="class_round_format">%d회차</string>
+    <string name="class_date_format">%4d년 %d월 %d일 (%s)</string>
+    <string name="class_time_format">%2s %02d : %02d</string>
+
     <string name="invite_btn">초대하기</string>
     <string name="class_edit">수업 편집</string>
     <string name="peaese_add_class_feedback">수업을 추가하고 피드백을 남겨주세요.</string>
     <string name="progress_class">수업 진행도</string>
+
 </resources>
