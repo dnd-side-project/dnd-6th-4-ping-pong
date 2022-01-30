@@ -7,6 +7,9 @@
     <string name="class_date_format">%4d년&#160;%d월&#160;%d일&#160;(%s)</string>
     <string name="class_time_format">%2s&#160;%02d&#160;:&#160;%02d</string>
     <string name="class_date_time_format">%4d년&#160;%d월&#160;%d일&#160;(%s)&#160;&#160;%2s&#160;%02d&#160;:&#160;%02d</string>
+    <string name="clasS_noti_format">%d일 전</string>
+
+    <string name="error_dialog_dismiss">예기치 않은 오류로 다이얼로그가 종료되었습니다.</string>
 
     <string name="invite_btn">초대하기</string>
     <string name="class_edit">수업 편집</string>

@@ -19,6 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="38dp"
+            android:paddingBottom="16dp"
             android:paddingHorizontal="16dp"
             tools:context=".presentation.main.schedule.add.ScheduleAddActivity">
 
@@ -95,7 +96,6 @@
                 android:id="@+id/class_round_title_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
-                android:background="@null"
                 android:gravity="center|left"
                 android:text="수업 회차"
                 android:textColor="@color/black"
@@ -107,7 +107,6 @@
                 android:id="@+id/class_round_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
-                android:background="@null"
                 android:gravity="center|left"
                 android:textColor="@color/black"
                 android:textSize="14dp"
@@ -129,7 +128,6 @@
                 android:id="@+id/class_progress_title_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
-                android:background="@null"
                 android:gravity="center|left"
                 android:text="수업 진도"
                 android:textColor="@color/black"
@@ -141,7 +139,6 @@
                 android:id="@+id/class_progress_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
-                android:background="@null"
                 android:gravity="center|left"
                 android:textColor="@color/black"
                 android:textSize="14dp"
@@ -163,7 +160,6 @@
                 android:id="@+id/class_place_title_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
-                android:background="@null"
                 android:gravity="center|left"
                 android:text="장소"
                 android:textColor="@color/black"
@@ -175,7 +171,6 @@
                 android:id="@+id/class_place_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
-                android:background="@null"
                 android:gravity="center|left"
                 android:textColor="@color/black"
                 android:textSize="14dp"
@@ -197,7 +192,6 @@
                 android:id="@+id/class_category_title_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
-                android:background="@null"
                 android:gravity="center|left"
                 android:text="카테고리"
                 android:textColor="@color/black"
@@ -210,7 +204,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
                 android:layout_marginRight="8dp"
-                android:background="@null"
                 android:gravity="center|left"
                 android:textColor="@color/black"
                 android:textSize="14dp"
@@ -233,7 +226,6 @@
                 android:id="@+id/class_noti_title_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
-                android:background="@null"
                 android:gravity="center|left"
                 android:text="알림"
                 android:textColor="@color/black"
@@ -246,12 +238,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
                 android:layout_marginRight="8dp"
-                android:background="@null"
                 android:gravity="center|left"
                 android:textColor="#707070"
                 android:textSize="14dp"
                 app:layout_constraintBottom_toBottomOf="@+id/class_noti_title_text_view"
-                app:layout_constraintRight_toLeftOf="@+id/category_down_arrow_btn"
+                app:layout_constraintRight_toLeftOf="@+id/noti_down_arrow_btn"
                 app:layout_constraintTop_toTopOf="@+id/class_noti_title_text_view"
                 tools:text="1일 전" />
 
@@ -265,6 +256,13 @@
                 app:layout_constraintTop_toTopOf="@+id/class_noti_text_view"
                 app:tint="#707070" />
 
+            <View
+                android:id="@+id/divider6"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@drawable/bg_divider"
+                app:layout_constraintTop_toBottomOf="@+id/class_noti_title_text_view"
+                app:tint="#EEEEEE" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

@@ -45,4 +45,13 @@
         <item name="lineHeight">17dp</item>
     </style>
 
+    <!-- Round BottomSheetDialog -->
+    <style name="RoundBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/RoundModalStyle</item>
+    </style>
+
+    <style name="RoundModalStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/bg_round_bottom_sheet_dialog</item>
+    </style>
+
 </resources>
