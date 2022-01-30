@@ -5,9 +5,8 @@ import android.view.View
 import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.databinding.ActivityCalendarBinding
 import com.dnd.sixth.lmsservice.presentation.base.BaseFragment
-import com.dnd.sixth.lmsservice.presentation.main.home.making.InviteDialogFragment
+import com.dnd.sixth.lmsservice.presentation.main.schedule.notipicker.PushTimePickerDialogFragment
 import com.dnd.sixth.lmsservice.presentation.main.schedule.add.ScheduleAddActivity
-import com.dnd.sixth.lmsservice.presentation.main.schedule.edit.ScheduleEditDialogFragment
 import com.dnd.sixth.lmsservice.presentation.utility.ToolTipManager
 import com.tomergoldst.tooltips.ToolTip
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -23,6 +22,7 @@ class CalendarFragment : BaseFragment<ActivityCalendarBinding, CalendarViewModel
     override fun initActivity() {
         setBindingData()
         initView()
+        PushTimePickerDialogFragment().show(parentFragmentManager, "")
     }
 
     private fun setBindingData() {

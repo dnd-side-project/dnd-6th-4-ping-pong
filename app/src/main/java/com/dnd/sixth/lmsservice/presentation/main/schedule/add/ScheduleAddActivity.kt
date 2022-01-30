@@ -15,6 +15,7 @@ import android.view.inputmethod.InputMethodManager
 import androidx.core.text.isDigitsOnly
 import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.databinding.ActivityScheduleAddBinding
+import com.dnd.sixth.lmsservice.databinding.DialogPushTimePickerBinding
 import com.dnd.sixth.lmsservice.presentation.base.BaseActivity
 import com.dnd.sixth.lmsservice.presentation.utility.DateConverter
 import com.dnd.sixth.lmsservice.presentation.utility.TimeConverter
@@ -95,6 +96,8 @@ class ScheduleAddActivity : BaseActivity<ActivityScheduleAddBinding, ScheduleAdd
                 // 로직 수행 후에 TextWatcher 다시 추가
                 classRoundEditText.addTextChangedListener(classRoundTextWatcher)
             }
+
+            DialogPushTimePickerBinding.inflate(layoutInflater)
         }
     }
 
