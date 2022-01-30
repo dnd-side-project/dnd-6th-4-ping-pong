@@ -7,12 +7,13 @@
 
         <variable
             name="viewModel"
-            type="com.dnd.sixth.lmsservice.presentation.main.schedule.add.ScheduleAddViewModel" />
+            type="com.dnd.sixth.lmsservice.presentation.main.schedule.edit.ScheduleEditViewModel" />
     </data>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/bg_round_dialog"
         android:fillViewport="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -37,6 +38,18 @@
                     android:text="일정 추가"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/cancel_btn"
+                    android:layout_width="23dp"
+                    android:layout_height="23dp"
+                    android:layout_gravity="left"
+                    android:gravity="center"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:text="취소"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/done_btn"
@@ -85,7 +98,8 @@
                         android:paddingHorizontal="12dp"
                         android:textColor="@color/color_category_check_box"
                         android:textSize="12sp"
-                        tools:text="개인 일정" />
+                        android:visibility="invisible"
+                        tools:text="백지성/영어" />
 
                     <CheckBox
                         android:id="@+id/second_check_box"
@@ -98,8 +112,9 @@
                         android:paddingHorizontal="12dp"
                         android:textColor="@color/color_category_check_box"
                         android:textSize="12sp"
+                        android:visibility="invisible"
                         tools:checked="true"
-                        tools:text="백지성/영어" />
+                        tools:text="김철수/영어" />
                 </LinearLayout>
             </HorizontalScrollView>
 
@@ -112,14 +127,13 @@
                 app:layout_constraintTop_toBottomOf="@+id/category_scroll_view"
                 app:tint="#EEEEEE" />
 
-            <EditText
+            <TextView
                 android:id="@+id/title_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:background="@null"
-                android:hint="제목"
+                android:gravity="center|left"
+                android:text="백지성/영어"
                 android:textColor="@color/black"
-                android:textColorHint="#C4C4C4"
                 android:textSize="16dp"
                 app:layout_constraintTop_toBottomOf="@+id/divider1" />
 
@@ -194,12 +208,15 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:paddingVertical="8dp"
-                app:layout_constraintTop_toBottomOf="@+id/date_container">
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@+id/date_container"
+                tools:visibility="visible">
 
                 <datepicker.defaults.view.DateTimePickerView
                     android:id="@+id/date_time_picker"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="true"
                     android:orientation="horizontal"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -375,7 +392,8 @@
                     android:hint="교육 과정에 따른 챕터를 입력해 주세요"
                     android:textColorHint="#C4C4C4"
                     android:textSize="14sp"
-                    app:layout_constraintLeft_toRightOf="@+id/guide_line_3" />
+                    app:layout_constraintLeft_toRightOf="@+id/guide_line_3"
+                    tools:text="교육 과정에 따라 작성된 챕터" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -422,8 +440,10 @@
                     android:hint="수업 장소를 입력해 주세요"
                     android:textColorHint="#C4C4C4"
                     android:textSize="14sp"
-                    app:layout_constraintLeft_toRightOf="@+id/guide_line_4" />
-
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@+id/guide_line_4"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="강남역 스타벅스" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <View
@@ -432,6 +452,55 @@
                 android:layout_height="1dp"
                 android:background="@drawable/bg_divider"
                 app:layout_constraintTop_toBottomOf="@+id/class_place_container"
+                app:tint="#EEEEEE" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/class_writer_container"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@id/divider6">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="작성인"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guide_line_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintGuide_begin="87dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/class_writer_text_text"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="본인"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:gravity="center"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@+id/guide_line_5"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/divider7"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@drawable/bg_divider"
+                app:layout_constraintTop_toBottomOf="@+id/class_writer_container"
                 app:tint="#EEEEEE" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
