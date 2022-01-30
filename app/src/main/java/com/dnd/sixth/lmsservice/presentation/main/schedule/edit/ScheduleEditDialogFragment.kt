@@ -62,14 +62,13 @@ class ScheduleEditDialogFragment : BottomSheetDialogFragment(),
                 isHideable = true // 아래로 드래그시 뷰를 숨김
                 skipCollapsed = true // 아래로 드래그시 반접힘 상태 스킵
                 isFitToContents = false // 뷰 크기에 맞추지 않음
-                expandedOffset =
-                    UnitConverter.convertDPtoPX(requireContext(), 24) // Top Offset 24dp 설정
+                expandedOffset = UnitConverter.convertDPtoPX(requireContext(), 24) // Top Offset 24dp 설정
             }
 
+            // 다이얼로그의 크기를 화면의 크기로 설정
             val params = bottomSheet?.layoutParams
             params?.height = getBottomSheetDialogDefaultHeight()
             bottomSheet?.layoutParams = params
-
 
         }
     }
