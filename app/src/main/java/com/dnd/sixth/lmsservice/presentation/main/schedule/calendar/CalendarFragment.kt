@@ -1,4 +1,4 @@
-package com.dnd.sixth.lmsservice.presentation.main.schedule
+package com.dnd.sixth.lmsservice.presentation.main.schedule.calendar
 
 import android.content.Intent
 import android.view.View

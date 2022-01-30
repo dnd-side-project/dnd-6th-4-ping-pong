@@ -42,7 +42,7 @@ class ScheduleAddActivity : BaseActivity<ActivityScheduleAddBinding, ScheduleAdd
         with(binding) {
             setSupportActionBar(toolbar)
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
-            supportActionBar?.setDisplayShowTitleEnabled(false);
+            supportActionBar?.setDisplayShowTitleEnabled(false)
 
             setDateTimePicker(this) // DateTime Picker 설정
             setListener(this) // 리스너 설정
