@@ -87,6 +87,10 @@ public class PickerView extends View {
         String getText();
     }
 
+    public PickerView(Context context, AttributeSet attrs) {
+        this(context, attrs, EDGED_PICKER);
+    }
+
     public PickerView(Context context, int type) {
         this(context, null, type);
     }

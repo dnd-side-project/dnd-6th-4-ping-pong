@@ -42,9 +42,12 @@
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/activity_make_class.xml" value="0.25" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/activity_schedule_add.xml" value="0.33" />
-        <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/activity_schedule_detail.xml" value="0.33" />
+        <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/activity_schedule_detail.xml" value="0.2" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/activity_schedule_edit.xml" value="0.2677083333333333" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/activity_sign_up.xml" value="0.2677083333333333" />
+        <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/dialog_noti_bottom_sheet.xml" value="0.25" />
+        <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/dialog_push_setting.xml" value="0.25" />
+        <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/dialog_push_time_picker.xml" value="0.228125" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/fragment_class_progress.xml" value="0.36770833333333336" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/fragment_fluctuated_schedule_dialog.xml" value="0.36770833333333336" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/fragment_invite_dialog.xml" value="0.22" />
