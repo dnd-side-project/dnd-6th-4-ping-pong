@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.dnd.sixth.lmsservice.presentation.main.MainActivity
 import com.dnd.sixth.lmsservice.presentation.main.home.HomeFragment
-import com.dnd.sixth.lmsservice.presentation.main.schedule.CalendarFragment
+import com.dnd.sixth.lmsservice.presentation.main.schedule.calendar.CalendarFragment
 
 class MainViewPagerAdapter(activity: MainActivity) : FragmentStateAdapter(activity) {
 

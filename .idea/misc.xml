@@ -41,6 +41,8 @@
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/activity_make_class.xml" value="0.25" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/activity_schedule_add.xml" value="0.33" />
+        <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/activity_schedule_detail.xml" value="0.33" />
+        <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/activity_sign_up.xml" value="0.2677083333333333" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/fragment_invite_dialog.xml" value="0.22" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/item_calendar.xml" value="0.25" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/item_class.xml" value="0.5" />
@@ -50,6 +52,7 @@
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/layout_expandable_parent_class_count.xml" value="0.22" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/single_day_and_time_picker.xml" value="0.20572916666666666" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/top_defaults_view_pickerview_dialog.xml" value="0.2677083333333333" />
+        <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/viewholder_timeline_item.xml" value="0.36770833333333336" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/datepicker/src/main/res/layout/ios_clone.xml" value="0.36770833333333336" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/datepicker/src/main/res/layout/native_picker.xml" value="0.36770833333333336" />
       </map>
