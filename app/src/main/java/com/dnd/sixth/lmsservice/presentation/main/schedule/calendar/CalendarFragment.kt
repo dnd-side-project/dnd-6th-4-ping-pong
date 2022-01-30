@@ -5,6 +5,7 @@ import android.view.View
 import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.databinding.ActivityCalendarBinding
 import com.dnd.sixth.lmsservice.presentation.base.BaseFragment
+import com.dnd.sixth.lmsservice.presentation.main.home.making.InviteDialogFragment
 import com.dnd.sixth.lmsservice.presentation.main.schedule.add.ScheduleAddActivity
 import com.dnd.sixth.lmsservice.presentation.main.schedule.edit.ScheduleEditDialogFragment
 import com.dnd.sixth.lmsservice.presentation.utility.ToolTipManager
@@ -22,7 +23,6 @@ class CalendarFragment : BaseFragment<ActivityCalendarBinding, CalendarViewModel
     override fun initActivity() {
         setBindingData()
         initView()
-        ScheduleEditDialogFragment().show(parentFragmentManager, "")
     }
 
     private fun setBindingData() {
