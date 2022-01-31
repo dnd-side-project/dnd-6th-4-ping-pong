@@ -5,20 +5,34 @@
     <application
         android:name=".App"
         android:allowBackup="true"
+        android:fitsSystemWindows="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LMSService">
         <activity
+            android:name=".presentation.communication.noticeAndProposal.notice.write.NoticeAnswerAcitivty"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.communication.noticeAndProposal.notice.write.NoticeWriteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.communication.CommunicationMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.main.schedule.detail.ScheduleDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.main.schedule.add.ScheduleAddActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
             android:name=".presentation.login.signup.SignUpActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.login.LoginActivity"
-            android:exported="true" >
-
-
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".presentation.main.MainActivity"
             android:exported="true">
