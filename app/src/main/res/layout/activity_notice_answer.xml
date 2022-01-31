@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.dnd.sixth.lmsservice.presentation.communication.noticeAndProposal.notice.write.NoticeAnswerViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.communication.noticeAndProposal.notice.write.NoticeAnswerAcitivty">
+
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:layout_marginTop="24dp"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/toolbar_btn"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="left"
+                android:background="?android:selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:src="@drawable/img_temp"
+                app:tint="#C4C4C4" />
+
+
+            <TextView
+                android:id="@+id/toolbar_complete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="16dp"
+                android:text="완료"
+                android:textSize="12sp" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/backgroundGray"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="24dp"
+                android:background="@drawable/bg_round_white_btn">
+
+                <ImageView
+                    android:id="@+id/notice_answer_profile_img"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="18.44dp"
+                    android:background="@color/backgroundGray"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/notice_title_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10.41dp"
+                    android:layout_marginTop="18.44dp"
+                    android:text="1월 29일 수업 일정 변경 공지"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toEndOf="@+id/notice_answer_profile_img"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/notice_date_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="2022년 1월 22일 토요일｜10시 30분"
+                    android:textSize="10sp"
+                    app:layout_constraintStart_toStartOf="@id/notice_title_text"
+                    app:layout_constraintTop_toBottomOf="@id/notice_title_text" />
+
+                <TextView
+                    android:id="@+id/notice_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="개인적인 사정으로 인하여 부득이하게 1월 29일 수업 \n 시간을 변경해야 할 것 같습니다. 오후 3시 가능하실까요?"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="@id/notice_answer_profile_img"
+                    app:layout_constraintTop_toBottomOf="@id/notice_date_time" />
+
+                <View
+                    android:id="@+id/notice_answer_line"
+                    android:layout_width="0dp"
+                    android:layout_height="0.5dp"
+                    app:layout_constraintTop_toBottomOf="@id/notice_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="22.45dp"
+                    />
+
+                <EditText
+                    android:id="@+id/notice_answer_edittext"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/notice_answer_line"
+                    android:background="@null"
+                    android:hint="댓글 추가"
+                    android:textSize="14sp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    />
+
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

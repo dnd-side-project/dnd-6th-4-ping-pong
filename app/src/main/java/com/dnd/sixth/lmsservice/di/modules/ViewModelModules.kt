@@ -1,6 +1,11 @@
 package com.dnd.sixth.lmsservice.di.modules
 
 
+import com.dnd.sixth.lmsservice.presentation.communication.CommunicationMainViewModel
+import com.dnd.sixth.lmsservice.presentation.communication.home.CommunicationHomeViewModel
+import com.dnd.sixth.lmsservice.presentation.communication.noticeAndProposal.CommunicationViewMoel
+import com.dnd.sixth.lmsservice.presentation.communication.noticeAndProposal.notice.write.NoticeAnswerViewModel
+import com.dnd.sixth.lmsservice.presentation.communication.noticeAndProposal.notice.write.NoticeWriteViewModel
 import com.dnd.sixth.lmsservice.presentation.lesson.progress.ClassProgressViewModel
 import com.dnd.sixth.lmsservice.presentation.login.LoginViewModel
 import com.dnd.sixth.lmsservice.presentation.main.MainViewModel
@@ -32,5 +37,21 @@ val viewModelModules = module {
     }
     viewModel {
         ClassProgressViewModel()
+    }
+    viewModel {
+        CommunicationMainViewModel()
+    }
+
+    viewModel {
+        CommunicationViewMoel()
+    }
+    viewModel {
+        CommunicationHomeViewModel()
+    }
+    viewModel {
+        NoticeAnswerViewModel()
+    }
+    viewModel {
+        NoticeWriteViewModel()
     }
 }
