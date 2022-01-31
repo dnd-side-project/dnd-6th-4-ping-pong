@@ -32,7 +32,7 @@
             android:exported="false" />
         <activity
             android:name=".presentation.login.LoginActivity"
-            android:exported="true" />
+            android:exported="true"></activity>
         <activity
             android:name=".presentation.main.MainActivity"
             android:exported="true">
