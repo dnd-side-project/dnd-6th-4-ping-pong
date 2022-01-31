@@ -11,15 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LMSService">
-        <activity
-            android:name=".presentation.communication.noticeAndProposal.notice.write.NoticeAnswerAcitivty"
-            android:exported="false" />
-        <activity
-            android:name=".presentation.communication.noticeAndProposal.notice.write.NoticeWriteActivity"
-            android:exported="false" />
-        <activity
-            android:name=".presentation.communication.CommunicationMainActivity"
-            android:exported="false" />
+
         <activity
             android:name=".presentation.main.schedule.detail.ScheduleDetailActivity"
             android:exported="false" />
