@@ -10,14 +10,13 @@ import android.view.Window
 import androidx.fragment.app.DialogFragment
 import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.databinding.FragmentFluctuatedDialogBinding
-import com.dnd.sixth.lmsservice.databinding.FragmentInviteDialogBinding
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 
 class FluctuatedDialogFragment : DialogFragment(), View.OnClickListener {
 
     private lateinit var binding: FragmentFluctuatedDialogBinding
-    val viewModel: CalendarViewModel by sharedViewModel()
+    val viewModel: ClassManageViewModel by sharedViewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

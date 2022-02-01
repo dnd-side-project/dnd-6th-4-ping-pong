@@ -4,128 +4,53 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
-            type="com.dnd.sixth.lmsservice.presentation.main.schedule.calendar.CalendarViewModel" />
+            type="com.dnd.sixth.lmsservice.presentation.main.schedule.calendar.ClassManageViewModel" />
     </data>
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".presentation.main.schedule.calendar.ClassManageActivity">
 
-        <ScrollView
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/view_pager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true">
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/main_tab_layout"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/main_container"
-                android:layout_width="match_parent"
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/main_tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="#707070"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:tabIndicatorHeight="0dp"
+            app:tabSelectedTextColor="#EEEEEE"
+            app:tabTextColor="@color/black">
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="38dp"
-                tools:context=".presentation.main.schedule.calendar.CalendarFragment">
+                android:text="수업관리" />
 
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="?actionBarSize"
-                    android:layout_marginHorizontal="15dp"
-                    app:layout_constraintTop_toTopOf="parent">
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="학생관리" />
 
-                    <ImageView
-                        android:id="@+id/toolbar_btn"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_gravity="left"
-                        android:layout_marginEnd="16dp"
-                        android:background="?android:selectableItemBackground"
-                        android:clickable="true"
-                        android:src="@drawable/img_temp"
-                        app:tint="#C4C4C4"
-                        android:focusable="true" />
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="마이페이지" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="left"
-                        android:text="캘린더"
-                        android:textColor="@color/black"
-                        android:textSize="20sp" />
+        </com.google.android.material.tabs.TabLayout>
 
-                    <Switch
-                        android:id="@+id/calendar_switch"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right"
-                        android:thumb="@drawable/bg_switch_thumb"
-                        android:track="@drawable/bg_switch_track" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                </androidx.appcompat.widget.Toolbar>
-
-                <com.prolificinteractive.materialcalendarview.MaterialCalendarView xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:id="@+id/calendar_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@+id/toolbar"
-                    app:mcv_selectionColor="#a9dbf0cb"
-                    app:mcv_showOtherDates="defaults" />
-
-                <LinearLayout
-                    android:id="@+id/no_schedule_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="180dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:background="@drawable/bg_week_schedule"
-                    android:gravity="center"
-                    tools:visibility="gone"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/calendar_view">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="180dp"
-                        android:background="#EEEEEE"
-                        android:gravity="center"
-                        android:layout_marginBottom="20dp"
-                        android:text="해당 날짜에 등록된 수업 일정이 없습니다!"
-                        android:textColor="#707070"
-                        android:textSize="12sp"
-                        android:visibility="visible"
-                        app:layout_constraintTop_toBottomOf="@+id/calendar_view" />
-
-                </LinearLayout>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#EEEEEE"
-                    android:paddingBottom="16dp"
-                    android:visibility="gone"
-                    tools:visibility="visible"
-                    app:layout_constraintTop_toBottomOf="@+id/calendar_view"
-                    tools:listitem="@layout/item_calendar" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </ScrollView>
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/schedule_add_fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_gravity="bottom|right|end"
-            android:layout_marginRight="12dp"
-            android:layout_marginBottom="12dp"
-            app:backgroundTint="@color/colorPrimary"
-            app:elevation="6dp"
-            app:fabSize="normal"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            app:srcCompat="@drawable/ic_add"
-            app:tint="@color/white" />
-
-    </RelativeLayout>
 </layout>

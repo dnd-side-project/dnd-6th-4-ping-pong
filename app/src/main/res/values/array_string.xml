@@ -1,10 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string-array name="class_manage_tab_list">
+        <item>수업관리</item>
+        <item>학생관리</item>
+        <item>마이페이지</item>
+    </string-array>
+
     <string-array name="push_time_list">
         <item>정시</item>
         <item>10분 전</item>
         <item>30분 전</item>
         <item>1시간 전</item>
         <item>1일 전</item>
+    </string-array>
+
+    <string-array name="month_list">
+        <item>1월</item>
+        <item>2월</item>
+        <item>3월</item>
+        <item>4월</item>
+        <item>5월</item>
+        <item>6월</item>
+        <item>7월</item>
+        <item>8월</item>
+        <item>9월</item>
+        <item>10월</item>
+        <item>11월</item>
+        <item>12월</item>
     </string-array>
 </resources>
