@@ -39,7 +39,7 @@
             android:exported="false" />
 
         <activity
-            android:name=".presentation.main.schedule.calendar.ClassManageActivity"
+            android:name=".presentation.main.schedule.calendar.HomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -3,19 +3,19 @@ package com.dnd.sixth.lmsservice.presentation.main.schedule.calendar
 import android.content.Intent
 import android.view.View
 import com.dnd.sixth.lmsservice.R
-import com.dnd.sixth.lmsservice.databinding.ActivityCalendarBinding
-import com.dnd.sixth.lmsservice.presentation.adapter.viewpager.ClassManageViewPagerAdapter
+import com.dnd.sixth.lmsservice.databinding.ActivityHomeBinding
+import com.dnd.sixth.lmsservice.presentation.adapter.viewpager.HomeViewPagerAdapter
 import com.dnd.sixth.lmsservice.presentation.base.BaseActivity
 import com.dnd.sixth.lmsservice.presentation.main.schedule.add.ScheduleAddActivity
 import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class ClassManageActivity : BaseActivity<ActivityCalendarBinding, ClassManageViewModel>(),
+class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(),
     View.OnClickListener {
     override val layoutResId: Int
-        get() = R.layout.activity_calendar
-    override val viewModel: ClassManageViewModel by viewModel()
-    private lateinit var viewPagerAdapter: ClassManageViewPagerAdapter
+        get() = R.layout.activity_home
+    override val viewModel: HomeViewModel by viewModel()
+    private lateinit var viewPagerAdapter: HomeViewPagerAdapter
 
     // 액티비티 초기화 메서드
     override fun initActivity() {
@@ -31,7 +31,7 @@ class ClassManageActivity : BaseActivity<ActivityCalendarBinding, ClassManageVie
     private fun initView() {
         with(binding) {
             // FragmentStateAdapter 생성
-            viewPagerAdapter = ClassManageViewPagerAdapter(this@ClassManageActivity)
+            viewPagerAdapter = HomeViewPagerAdapter(this@HomeActivity)
 
             // 생성한 adapter를 ViewPager와 연결
             viewPager.adapter = viewPagerAdapter

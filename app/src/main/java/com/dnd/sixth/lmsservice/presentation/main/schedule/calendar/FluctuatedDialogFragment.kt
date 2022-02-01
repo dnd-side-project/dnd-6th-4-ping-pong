@@ -16,7 +16,7 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 class FluctuatedDialogFragment : DialogFragment(), View.OnClickListener {
 
     private lateinit var binding: FragmentFluctuatedDialogBinding
-    val viewModel: ClassManageViewModel by sharedViewModel()
+    val viewModel: HomeViewModel by sharedViewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
