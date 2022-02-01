@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LMSService">
         <activity
+            android:name=".presentation.feedback.WriteFeedBackActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.feedback.StartFeedBackActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.main.schedule.detail.ScheduleDetailActivity"
             android:exported="false" />
         <activity
@@ -23,7 +29,7 @@
             android:exported="false" />
         <activity
             android:name=".presentation.login.LoginActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".presentation.main.MainActivity"
             android:exported="true">
