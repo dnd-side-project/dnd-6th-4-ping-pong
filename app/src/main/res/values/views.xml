@@ -49,9 +49,14 @@
     <style name="RoundBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
         <item name="bottomSheetStyle">@style/RoundModalStyle</item>
     </style>
-
     <style name="RoundModalStyle" parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@drawable/bg_round_bottom_sheet_dialog</item>
+    </style>
+
+    <!-- Calendar Activity의 TabItem -->
+    <style name="tabTextStyle" parent="Widget.MaterialComponents.TabLayout">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
 </resources>

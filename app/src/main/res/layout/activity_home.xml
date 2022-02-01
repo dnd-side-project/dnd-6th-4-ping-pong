@@ -7,116 +7,50 @@
 
         <variable
             name="viewModel"
-            type="com.dnd.sixth.lmsservice.presentation.main.home.HomeViewModel" />
+            type="com.dnd.sixth.lmsservice.presentation.main.schedule.calendar.HomeViewModel" />
     </data>
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white">
+        tools:context=".presentation.main.schedule.calendar.HomeActivity">
 
-        <ScrollView
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/view_pager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true">
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/main_tab_layout"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingHorizontal="16dp"
-                tools:context=".presentation.main.home.HomeFragment">
 
-                <TextView
-                    android:id="@+id/title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="58dp"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="수업을 등록하고\n일정을 관리해보세요"
-                    android:textColor="@color/black"
-                    android:textSize="22sp"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/main_tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="#707070"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:tabIndicatorHeight="0dp"
+            app:tabSelectedTextColor="#EEEEEE"
+            app:tabTextColor="@color/black">
 
-                <ImageView
-                    android:id="@+id/option_btn"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginTop="52dp"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:clickable="true"
-                    android:src="@drawable/img_temp"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="수업관리" />
 
-                <TextView
-                    android:id="@+id/my_class_title"
-                    style="@style/homeSubTitleTextView"
-                    android:layout_marginTop="58dp"
-                    android:text="나의 모든 수업"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/title" />
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="학생관리" />
 
-                <HorizontalScrollView
-                    android:id="@+id/class_scroll_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="156dp"
-                    android:layout_marginTop="24dp"
-                    android:fillViewport="true"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/my_class_title" />
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="마이페이지" />
 
-                <TextView
-                    android:id="@+id/week_class_title"
-                    style="@style/homeSubTitleTextView"
-                    android:layout_marginTop="16dp"
-                    android:text="이번 주 일정"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/class_scroll_view" />
+        </com.google.android.material.tabs.TabLayout>
 
-                <LinearLayout
-                    android:id="@+id/no_schedule_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="250dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:background="@drawable/bg_week_schedule"
-                    android:gravity="center"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/week_class_title">
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="30dp"
-                        android:fontFamily="@font/roboto_regular"
-                        android:gravity="center"
-                        android:text="캘린더에 등록된 이번 주 일정을 확인할 수 있어요"
-                        android:textColor="#7A7A7A"
-                        android:textSize="12sp" />
-
-                </LinearLayout>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </ScrollView>
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/class_add_fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right|end"
-            android:layout_marginRight="12dp"
-            android:layout_marginBottom="12dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            app:backgroundTint="@color/colorPrimary"
-            app:elevation="6dp"
-            app:fabSize="normal"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            app:srcCompat="@drawable/ic_add"
-            app:tint="@color/white" />
-    </RelativeLayout>
 </layout>

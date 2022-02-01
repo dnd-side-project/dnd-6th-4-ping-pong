@@ -14,8 +14,8 @@
         <!-- Customize your theme here. -->
 
         <!-- 앱 디폴트 폰트 -->
-        <item name="android:fontFamily">@font/roboto_regular</item>
-        <item name="fontFamily">@font/roboto_regular</item>
+        <item name="android:fontFamily">@font/spoqa_regular</item>
+        <item name="fontFamily">@font/spoqa_regular</item>
 
         <!-- 둥근 BottomSheetDialog -->
         <item name="bottomSheetDialogTheme">@style/RoundBottomSheetDialogTheme</item>

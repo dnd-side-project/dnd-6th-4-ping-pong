@@ -5,4 +5,25 @@
         android:fontWeight="400"
         android:font="@font/roboto_regular" />
 
+    <font android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/spoqa_bold"/>
+
+    <font android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/spoqa_light"/>
+
+    <font android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/spoqa_medium"/>
+
+    <font android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/spoqa_thin"/>
+
+    <font android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/spoqa_regular"/>
+
+
 </font-family>
