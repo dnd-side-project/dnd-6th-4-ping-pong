@@ -1,6 +1,5 @@
-package com.dnd.sixth.lmsservice.presentation.main.schedule.notipicker
+package com.dnd.sixth.lmsservice.presentation.home.classes.calendar.notipicker
 
-import android.content.res.Resources
 import com.dnd.sixth.lmsservice.App
 import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.presentation.base.BaseViewModel

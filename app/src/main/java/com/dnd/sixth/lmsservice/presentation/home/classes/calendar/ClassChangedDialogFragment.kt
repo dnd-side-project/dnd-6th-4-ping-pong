@@ -1,4 +1,4 @@
-package com.dnd.sixth.lmsservice.presentation.main.home.making
+package com.dnd.sixth.lmsservice.presentation.home.classes.calendar
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -9,20 +9,21 @@ import android.view.ViewGroup
 import android.view.Window
 import androidx.fragment.app.DialogFragment
 import com.dnd.sixth.lmsservice.R
-import com.dnd.sixth.lmsservice.databinding.FragmentInviteDialogBinding
+import com.dnd.sixth.lmsservice.databinding.FragmentClassChangedDialogBinding
+import com.dnd.sixth.lmsservice.presentation.home.HomeViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 
-class InviteDialogFragment : DialogFragment(), View.OnClickListener {
+class ClassChangedDialogFragment : DialogFragment(), View.OnClickListener {
 
-    private lateinit var binding: FragmentInviteDialogBinding
-    val viewModel: MakeClassViewModel by sharedViewModel()
+    private lateinit var binding: FragmentClassChangedDialogBinding
+    val viewModel: HomeViewModel by sharedViewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentInviteDialogBinding.inflate(inflater, container, false) // 데이터 바인딩 객체 생성
+        binding = FragmentClassChangedDialogBinding.inflate(inflater, container, false) // 데이터 바인딩 객체 생성
         binding.viewModel = viewModel // 뷰모델 바인드
 
         // dialog 모서리를 둥글게 함
@@ -38,17 +39,14 @@ class InviteDialogFragment : DialogFragment(), View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         with(binding) {
-            closeBtn.setOnClickListener(this@InviteDialogFragment)
+            goHomeBtn.setOnClickListener(this@ClassChangedDialogFragment)
         }
     }
 
     override fun onClick(v: View?) {
         when(v?.id) {
-            R.id.close_btn -> dismiss()
-            R.id.invite_btn -> {
-
-            }
-            R.id.copy_btn -> {
+            R.id.go_home_btn -> dismiss()
+            R.id.share_btn -> {
 
             }
         }

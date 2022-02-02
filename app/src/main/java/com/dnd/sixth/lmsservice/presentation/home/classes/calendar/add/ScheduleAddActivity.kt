@@ -1,14 +1,11 @@
-package com.dnd.sixth.lmsservice.presentation.main.schedule.add
+package com.dnd.sixth.lmsservice.presentation.home.classes.calendar.add
 
 import android.content.Context
 import android.graphics.Color
-import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.MenuItem
 import android.view.View
-import android.view.Window
-import android.view.WindowManager
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.view.inputmethod.InputMethodManager

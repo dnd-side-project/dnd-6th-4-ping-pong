@@ -5,7 +5,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.dnd.sixth.lmsservice.presentation.home.classes.ClassManageFragment
 
-class MainViewPagerAdapter(activity: FragmentActivity) : FragmentStateAdapter(activity) {
+class HomeViewPagerAdapter(activity: FragmentActivity) : FragmentStateAdapter(activity) {
 
     // ViewPager2에 연결할 Fragment 생성
     private val fragmentList = listOf<Fragment>(ClassManageFragment(), ClassManageFragment(), ClassManageFragment())

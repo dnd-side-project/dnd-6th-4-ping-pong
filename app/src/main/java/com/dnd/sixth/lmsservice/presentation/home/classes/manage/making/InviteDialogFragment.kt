@@ -1,4 +1,4 @@
-package com.dnd.sixth.lmsservice.presentation.main.schedule.calendar
+package com.dnd.sixth.lmsservice.presentation.home.classes.manage.making
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -9,20 +9,20 @@ import android.view.ViewGroup
 import android.view.Window
 import androidx.fragment.app.DialogFragment
 import com.dnd.sixth.lmsservice.R
-import com.dnd.sixth.lmsservice.databinding.FragmentFluctuatedDialogBinding
+import com.dnd.sixth.lmsservice.databinding.FragmentInviteDialogBinding
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 
-class FluctuatedDialogFragment : DialogFragment(), View.OnClickListener {
+class InviteDialogFragment : DialogFragment(), View.OnClickListener {
 
-    private lateinit var binding: FragmentFluctuatedDialogBinding
-    val viewModel: HomeViewModel by sharedViewModel()
+    private lateinit var binding: FragmentInviteDialogBinding
+    val viewModel: MakeClassViewModel by sharedViewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentFluctuatedDialogBinding.inflate(inflater, container, false) // 데이터 바인딩 객체 생성
+        binding = FragmentInviteDialogBinding.inflate(inflater, container, false) // 데이터 바인딩 객체 생성
         binding.viewModel = viewModel // 뷰모델 바인드
 
         // dialog 모서리를 둥글게 함
@@ -38,14 +38,17 @@ class FluctuatedDialogFragment : DialogFragment(), View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         with(binding) {
-            goHomeBtn.setOnClickListener(this@FluctuatedDialogFragment)
+            closeBtn.setOnClickListener(this@InviteDialogFragment)
         }
     }
 
     override fun onClick(v: View?) {
         when(v?.id) {
-            R.id.go_home_btn -> dismiss()
-            R.id.share_btn -> {
+            R.id.close_btn -> dismiss()
+            R.id.invite_btn -> {
+
+            }
+            R.id.copy_btn -> {
 
             }
         }

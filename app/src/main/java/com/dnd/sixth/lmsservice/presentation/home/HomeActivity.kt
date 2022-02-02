@@ -1,4 +1,4 @@
-package com.dnd.sixth.lmsservice.presentation.main.schedule.calendar
+package com.dnd.sixth.lmsservice.presentation.home
 
 import android.content.Intent
 import android.view.View
@@ -6,7 +6,7 @@ import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.databinding.ActivityHomeBinding
 import com.dnd.sixth.lmsservice.presentation.adapter.viewpager.HomeViewPagerAdapter
 import com.dnd.sixth.lmsservice.presentation.base.BaseActivity
-import com.dnd.sixth.lmsservice.presentation.main.schedule.add.ScheduleAddActivity
+import com.dnd.sixth.lmsservice.presentation.home.classes.calendar.add.ScheduleAddActivity
 import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

@@ -1,6 +1,5 @@
-package com.dnd.sixth.lmsservice.presentation.main.schedule.calendar
+package com.dnd.sixth.lmsservice.presentation.home.classes.manage
 
-import android.content.Intent
 import android.view.View
 import com.dnd.sixth.lmsservice.presentation.base.BaseFragment
 import com.dnd.sixth.lmsservice.R

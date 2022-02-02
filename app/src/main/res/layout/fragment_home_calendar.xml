@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.dnd.sixth.lmsservice.presentation.main.schedule.calendar.HomeCalendarViewModel" />
+            type="com.dnd.sixth.lmsservice.presentation.home.classes.calendar.HomeCalendarViewModel" />
     </data>
 
     <RelativeLayout
