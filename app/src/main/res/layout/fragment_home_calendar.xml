@@ -25,90 +25,97 @@
                 android:id="@+id/month_spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="14sp"
+                android:dropDownWidth="120dp"
                 android:entries="@array/month_list"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/student_container"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:dropDownWidth="150dp"
-                android:dropDownHeight="100dp">
-            </Spinner>
+                app:layout_constraintTop_toTopOf="@id/student_container" />
 
-            <ImageView
-                android:id="@+id/menu_btn"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:clickable="true"
-                android:src="@drawable/ic_menu"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="@id/month_spinner"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@id/month_spinner"
-                tools:visibility="visible" />
-
-            <HorizontalScrollView
-                android:id="@+id/student_scroll_view"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/student_container"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="8dp"
-                android:clipToPadding="false"
-                android:src="@drawable/ic_menu"
-                android:visibility="visible"
-                app:layout_constraintBottom_toBottomOf="@id/month_spinner"
                 app:layout_constraintLeft_toRightOf="@+id/month_spinner"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@id/month_spinner"
-                tools:visibility="gone">
+                app:layout_constraintTop_toTopOf="parent">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/all_student_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right|center"
+                <ImageView
+                    android:id="@+id/menu_btn"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
-                    android:clickable="true">
+                    android:clickable="true"
+                    android:src="@drawable/ic_menu"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:visibility="gone" />
 
-                    <ImageView
-                        android:id="@+id/all_icon"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_all_student"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                <HorizontalScrollView
+                    android:id="@+id/student_scroll_view"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    android:src="@drawable/ic_menu"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:visibility="visible">
 
-                    <TextView
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/all_student_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="A"
-                        android:textColor="@color/black"
-                        android:textSize="10sp"
-                        app:layout_constraintBottom_toBottomOf="@id/all_icon"
-                        app:layout_constraintLeft_toLeftOf="@id/all_icon"
-                        app:layout_constraintRight_toRightOf="@id/all_icon"
-                        app:layout_constraintTop_toTopOf="@id/all_icon" />
+                        android:layout_gravity="right|center"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:clickable="true">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:text="모아보기"
-                        android:textColor="#707070"
-                        android:textSize="10sp"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/all_icon" />
+                        <ImageView
+                            android:id="@+id/all_icon"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_all_student"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="A"
+                            android:textColor="@color/black"
+                            android:textSize="10sp"
+                            app:layout_constraintBottom_toBottomOf="@id/all_icon"
+                            app:layout_constraintLeft_toLeftOf="@id/all_icon"
+                            app:layout_constraintRight_toRightOf="@id/all_icon"
+                            app:layout_constraintTop_toTopOf="@id/all_icon" />
 
-            </HorizontalScrollView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:text="모아보기"
+                            android:textColor="#707070"
+                            android:textSize="10sp"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/all_icon" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </HorizontalScrollView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <com.prolificinteractive.materialcalendarview.MaterialCalendarView
                 android:id="@+id/calendar_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/month_spinner"
+                app:layout_constraintTop_toBottomOf="@+id/student_container"
                 app:mcv_calendarMode="month"
                 app:mcv_selectionColor="#707070"
                 app:mcv_showOtherDates="defaults" />
@@ -119,7 +126,7 @@
                 android:layout_height="140dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
-                android:background="@drawable/bg_week_schedule"
+                android:background="@drawable/bg_round_gray_rectangle"
                 android:gravity="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -143,6 +150,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
+                android:overScrollMode="never"
                 android:paddingBottom="16dp"
                 android:visibility="gone"
                 app:layout_constraintTop_toBottomOf="@+id/calendar_view"

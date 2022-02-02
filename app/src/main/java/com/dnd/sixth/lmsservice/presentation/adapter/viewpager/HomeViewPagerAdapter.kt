@@ -3,12 +3,12 @@ package com.dnd.sixth.lmsservice.presentation.adapter.viewpager
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.dnd.sixth.lmsservice.presentation.home.classes.ClassManageFragment
+import com.dnd.sixth.lmsservice.presentation.home.classes.ClassFragment
 
 class HomeViewPagerAdapter(activity: FragmentActivity) : FragmentStateAdapter(activity) {
 
     // ViewPager2에 연결할 Fragment 생성
-    private val fragmentList = listOf<Fragment>(ClassManageFragment(), ClassManageFragment(), ClassManageFragment())
+    private val fragmentList = listOf<Fragment>(ClassFragment(), ClassFragment(), ClassFragment())
 
     // ViesPager2에서 노출시킬 Fragment 개수 설정
     override fun getItemCount(): Int {

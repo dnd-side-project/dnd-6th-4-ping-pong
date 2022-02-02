@@ -30,7 +30,7 @@
             android:name="com.dnd.sixth.lmsservice.presentation.home.classes.calendar.detail.ScheduleDetailActivity"
             android:exported="false" />
         <activity
-            android:name="com.dnd.sixth.lmsservice.presentation.home.classes.calendar.add.ScheduleAddActivity"
+            android:name="com.dnd.sixth.lmsservice.presentation.home.classes.calendar.add.ClassAddActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
         <activity

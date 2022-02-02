@@ -58,10 +58,11 @@ class ScheduleEditDialogFragment : BottomSheetDialogFragment(),
             val bottomSheet = sheetDialog.findViewById<FrameLayout>(R.id.design_bottom_sheet)
 
             with(sheetDialog.behavior) {
-                state = BottomSheetBehavior.STATE_EXPANDED // 최초 실행시 반만 펼쳐지게 설정
-                isHideable = true // 아래로 드래그시 뷰를 숨김
+                state = BottomSheetBehavior.STATE_EXPANDED // 최초 실행시 전체 화면이 펼쳐지게 설정
+                //isHideable = true // 아래로 드래그시 뷰를 숨김
                 skipCollapsed = true // 아래로 드래그시 반접힘 상태 스킵
                 isFitToContents = false // 뷰 크기에 맞추지 않음
+                isDraggable = false // 드래그로 뷰를 닫지 않음
                 expandedOffset = UnitConverter.convertDPtoPX(requireContext(), 24) // Top Offset 24dp 설정
             }
 
