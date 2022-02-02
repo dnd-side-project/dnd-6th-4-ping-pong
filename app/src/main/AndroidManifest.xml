@@ -31,10 +31,6 @@
             android:name=".presentation.login.LoginActivity"
             android:exported="true" />
         <activity
-            android:name=".presentation.main.MainActivity"
-            android:exported="true">
-        </activity>
-        <activity
             android:name="com.dnd.sixth.lmsservice.presentation.home.classes.manage.making.MakeClassActivity"
             android:exported="false" />
 
