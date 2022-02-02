@@ -1,4 +1,4 @@
-package com.dnd.sixth.lmsservice.presentation.main.schedule.detail
+package com.dnd.sixth.lmsservice.presentation.home.classes.calendar.detail
 
 import android.view.MenuItem
 import com.dnd.sixth.lmsservice.R

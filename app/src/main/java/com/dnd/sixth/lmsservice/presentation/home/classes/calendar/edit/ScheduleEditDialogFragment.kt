@@ -1,4 +1,4 @@
-package com.dnd.sixth.lmsservice.presentation.main.schedule.edit
+package com.dnd.sixth.lmsservice.presentation.home.classes.calendar.edit
 
 import android.graphics.Color
 import android.os.Bundle

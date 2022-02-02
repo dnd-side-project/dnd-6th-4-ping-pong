@@ -1,4 +1,4 @@
-package com.dnd.sixth.lmsservice.presentation.main.schedule.calendar
+package com.dnd.sixth.lmsservice.presentation.home.classes.calendar
 
 import android.widget.*
 import com.dnd.sixth.lmsservice.R

@@ -1,4 +1,4 @@
-package com.dnd.sixth.lmsservice.presentation.main.schedule.detail
+package com.dnd.sixth.lmsservice.presentation.home.classes.calendar.detail
 
 import com.dnd.sixth.lmsservice.presentation.base.BaseViewModel
 

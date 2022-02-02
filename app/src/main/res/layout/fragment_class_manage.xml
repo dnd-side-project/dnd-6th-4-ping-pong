@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.dnd.sixth.lmsservice.presentation.main.home.ClassManageViewModel" />
+            type="com.dnd.sixth.lmsservice.presentation.home.classes.ClassManageViewModel" />
     </data>
 
 

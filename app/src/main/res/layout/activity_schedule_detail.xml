@@ -7,14 +7,14 @@
 
         <variable
             name="viewModel"
-            type="com.dnd.sixth.lmsservice.presentation.main.schedule.detail.ScheduleDetailViewModel" />
+            type="com.dnd.sixth.lmsservice.presentation.home.classes.calendar.detail.ScheduleDetailViewModel" />
     </data>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
-        tools:context=".presentation.main.schedule.add.ScheduleAddActivity">
+        tools:context=".presentation.home.classes.calendar.add.ScheduleAddActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

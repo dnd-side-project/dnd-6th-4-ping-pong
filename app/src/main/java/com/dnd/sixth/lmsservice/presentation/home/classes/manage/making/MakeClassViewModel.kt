@@ -1,4 +1,4 @@
-package com.dnd.sixth.lmsservice.presentation.main.home.making
+package com.dnd.sixth.lmsservice.presentation.home.classes.manage.making
 
 import com.dnd.sixth.lmsservice.presentation.base.BaseViewModel
 

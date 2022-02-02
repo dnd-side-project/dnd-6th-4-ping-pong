@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.dnd.sixth.lmsservice.presentation.main.schedule.calendar.HomeClassViewModel" />
+            type="com.dnd.sixth.lmsservice.presentation.home.classes.manage.HomeClassViewModel" />
     </data>
 
 
@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingHorizontal="16dp"
-        tools:context=".presentation.main.home.ClassManageFragment">
+        tools:context=".presentation.home.classes.ClassManageFragment">
 
 
 

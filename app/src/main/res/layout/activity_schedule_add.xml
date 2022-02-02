@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.dnd.sixth.lmsservice.presentation.main.schedule.add.ScheduleAddViewModel" />
+            type="com.dnd.sixth.lmsservice.presentation.home.classes.calendar.add.ScheduleAddViewModel" />
     </data>
 
     <ScrollView
@@ -21,7 +21,7 @@
             android:layout_marginTop="38dp"
             android:paddingBottom="16dp"
             android:paddingHorizontal="16dp"
-            tools:context=".presentation.main.schedule.add.ScheduleAddActivity">
+            tools:context=".presentation.home.classes.calendar.add.ScheduleAddActivity">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"

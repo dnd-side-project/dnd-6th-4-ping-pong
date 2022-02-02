@@ -1,10 +1,10 @@
-package com.dnd.sixth.lmsservice.presentation.main.schedule.add
+package com.dnd.sixth.lmsservice.presentation.home.classes.calendar.edit
 
 import androidx.lifecycle.MutableLiveData
 import com.dnd.sixth.lmsservice.presentation.base.BaseViewModel
 import java.util.*
 
-class ScheduleAddViewModel: BaseViewModel() {
+class ScheduleEditViewModel: BaseViewModel() {
 
     // 일정 : DateTimePicker로 선택한 날짜의 Calendar 데이터
     var pickedDate: Calendar? = null

@@ -18,10 +18,10 @@
             android:name=".presentation.feedback.StartFeedBackActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.main.schedule.detail.ScheduleDetailActivity"
+            android:name="com.dnd.sixth.lmsservice.presentation.home.classes.calendar.detail.ScheduleDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.main.schedule.add.ScheduleAddActivity"
+            android:name="com.dnd.sixth.lmsservice.presentation.home.classes.calendar.add.ScheduleAddActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
         <activity
@@ -35,11 +35,11 @@
             android:exported="true">
         </activity>
         <activity
-            android:name=".presentation.main.home.making.MakeClassActivity"
+            android:name="com.dnd.sixth.lmsservice.presentation.home.classes.manage.making.MakeClassActivity"
             android:exported="false" />
 
         <activity
-            android:name=".presentation.main.schedule.calendar.HomeActivity"
+            android:name="com.dnd.sixth.lmsservice.presentation.home.HomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

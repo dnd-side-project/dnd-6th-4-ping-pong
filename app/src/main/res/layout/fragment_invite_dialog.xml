@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.dnd.sixth.lmsservice.presentation.main.home.making.MakeClassViewModel" />
+            type="com.dnd.sixth.lmsservice.presentation.home.classes.manage.making.MakeClassViewModel" />
     </data>
 
     <FrameLayout
@@ -29,7 +29,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:context=".presentation.main.home.making.InviteDialogFragment">
+                tools:context=".presentation.home.classes.manage.making.InviteDialogFragment">
 
                 <ImageView
                     android:id="@+id/invite_icon_image_view"

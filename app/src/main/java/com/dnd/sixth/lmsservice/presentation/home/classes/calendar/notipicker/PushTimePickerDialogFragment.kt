@@ -1,10 +1,9 @@
-package com.dnd.sixth.lmsservice.presentation.main.schedule.notipicker
+package com.dnd.sixth.lmsservice.presentation.home.classes.calendar.notipicker
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import androidx.lifecycle.ViewModelProvider
 import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.databinding.DialogPushTimePickerBinding
@@ -66,7 +65,6 @@ class PushTimePickerDialogFragment : BottomSheetDialogFragment(),
     }
 
 
-
     private fun initView() {
         with(binding) {
             setListener(this) // 리스너 설정
@@ -92,7 +90,7 @@ class PushTimePickerDialogFragment : BottomSheetDialogFragment(),
 
     private fun setNotiTimePicker(binding: DialogPushTimePickerBinding) {
         // 알림 시간대 설정을 위한 Picker 어댑터 설정
-        with(binding.pushTimePicker){
+        with(binding.pushTimePicker) {
             setAdapter(PushTimePickerAdapter(viewModel.pushTimeList))
             setOnSelectedItemChangedListener { _, _, selectedItemPosition ->
                 // Picker 아이템 변경시 pickedNotificationTime 값 업데이트

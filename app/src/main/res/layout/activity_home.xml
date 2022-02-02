@@ -7,14 +7,14 @@
 
         <variable
             name="viewModel"
-            type="com.dnd.sixth.lmsservice.presentation.main.schedule.calendar.HomeViewModel" />
+            type="com.dnd.sixth.lmsservice.presentation.home.HomeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.main.schedule.calendar.HomeActivity">
+        tools:context=".presentation.home.HomeActivity">
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/view_pager"
