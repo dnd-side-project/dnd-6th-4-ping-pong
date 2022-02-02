@@ -22,70 +22,29 @@
             android:background="@color/backgroundGray"
             android:id="@+id/progress_container"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:context=".presentation.lesson.progress.ClassProgressFragment">
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?actionBarSize"
-                android:layout_marginHorizontal="15dp"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:id="@+id/toolbar_btn"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_gravity="left"
-                    android:layout_marginEnd="16dp"
-                    android:background="?android:selectableItemBackground"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:src="@drawable/img_temp"
-                    app:tint="#C4C4C4" />
+            android:layout_height="240dp"
+            tools:context=".presentation.lesson.progress.ClassProgressActivity">
 
 
 
-                <Switch
-                    android:id="@+id/calendar_switch"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:thumb="@drawable/bg_switch_thumb"
-                    android:track="@drawable/bg_switch_track" />
 
-            </androidx.appcompat.widget.Toolbar>
-
-            <TextView
-                android:id="@+id/progress_title_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="진행하기"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/toolbar"
-                android:textColor="@color/black"
-                android:layout_marginLeft="16dp"
-
-
-                />
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/progress_profile_container"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/progress_title_text"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_width="0dp"
-                android:layout_height="129dp"
+                android:layout_height="240dp"
                 >
 
                 <ImageView
                     android:id="@+id/prgress_profile_img"
                     android:layout_width="64dp"
                     android:layout_height="64dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="38dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/progress_class_name"
+                    android:layout_marginTop="35.75dp"
                     android:background="@drawable/bg_switch_thumb"
                     />
 
@@ -93,8 +52,10 @@
                     android:id="@+id/progress_class_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="21dp"
-                    app:layout_constraintStart_toEndOf="@+id/prgress_profile_img"
+                    android:layout_marginTop="37dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textStyle="bold"
                     android:text="백지성/고3/영어"
                     android:textColor="@color/black"
                     android:layout_marginLeft="18.46dp"
@@ -102,15 +63,6 @@
                     app:layout_constraintTop_toTopOf="parent"
                     />
 
-                <ImageView
-                    android:id="@+id/participant_profile"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginTop="6dp"
-                    app:layout_constraintStart_toStartOf="@+id/progress_class_name"
-                    app:layout_constraintTop_toBottomOf="@+id/progress_class_name"
-                    android:background="@drawable/bg_switch_thumb"
-                    />
 
                 <TextView
                     android:id="@+id/progress_invite_btn"
@@ -120,10 +72,12 @@
                     android:text="@string/invite_btn"
                     android:textColor="@color/toolTipColor"
                     android:textSize="12sp"
-                    app:layout_constraintTop_toBottomOf="@id/participant_profile"
-                    app:layout_constraintStart_toStartOf="@id/progress_class_name"
+                    app:layout_constraintTop_toBottomOf="@id/prgress_profile_img"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/progress_class_edit_btn"
                     android:background="@drawable/bg_round_white_btn"
                     android:layout_marginTop="13dp"
+                    android:layout_marginLeft="101dp"
 
                     />
                 <TextView
@@ -136,7 +90,8 @@
                     android:textSize="12sp"
                     app:layout_constraintTop_toTopOf="@id/progress_invite_btn"
                     app:layout_constraintStart_toEndOf="@id/progress_invite_btn"
-                    android:layout_marginLeft="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginRight="101dp"
                     android:background="@drawable/bg_round_white_btn"
                     />
 
@@ -180,7 +135,7 @@
                         android:textSize="12sp"
                         app:layout_constraintStart_toEndOf="@id/progress_portion_text"
                         app:layout_constraintTop_toTopOf="@id/progress_portion_text"
-                        tools:text="6/8회차 수업까지 완료한 상태에요" />
+                        tools:text="완료된 수업 회차를 확인해보세요." />
 
                     <View
                         android:id="@+id/progress_line"
@@ -209,15 +164,18 @@
                             android:id="@+id/recyclerviewForTimeLine"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:visibility="gone"
                             />
 
 
                         <TextView
-
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginVertical="127dp"
-                            android:text="@string/peaese_add_class_feedback"
+                            android:id="@+id/progress_start_feedback_btn"
+                            android:layout_width="188dp"
+                            android:layout_height="48dp"
+                            android:gravity="center"
+                            android:layout_marginTop="133dp"
+                            android:background="@drawable/bg_round_white_line_btn"
+                            android:text="피드백 시작하기"
                             android:layout_marginHorizontal="81.5dp"/>
 
 

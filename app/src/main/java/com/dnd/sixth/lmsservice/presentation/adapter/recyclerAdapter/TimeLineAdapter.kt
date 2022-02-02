@@ -3,19 +3,22 @@ package com.dnd.sixth.lmsservice.presentation.adapter.recyclerAdapter
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.data.entity.testEntity.TestClassEntity
 import com.dnd.sixth.lmsservice.databinding.ViewholderTimelineItemBinding
+import com.dnd.sixth.lmsservice.presentation.feedback.WriteFeedBackActivity
 import com.github.vipulasri.timelineview.TimelineView
 
 //리사이클러뷰 뷰홀더 안에 타임라인 컴포넌트를 추가할 예정
-class TimeLineAdapter : RecyclerView.Adapter<TimeLineAdapter.TimeLineViewHolder>(){
+class TimeLineAdapter(var onItemClicked : (TextView) -> Unit?) : RecyclerView.Adapter<TimeLineAdapter.TimeLineViewHolder>(){
 
     private var timeLineList : List<TestClassEntity> = listOf(
         TestClassEntity(1,"야스오","수학","2월2일(토)","6시 30분","소환사의 협곡", 5),
@@ -45,6 +48,11 @@ class TimeLineAdapter : RecyclerView.Adapter<TimeLineAdapter.TimeLineViewHolder>
             timelineClassTime.text = data.classTime
             timelineAddress.text = data.address
             mTimelineView
+
+            //피드백 남기기 버튼 리스너
+            openFeedbackBtn.setOnClickListener {
+                onItemClicked(openFeedbackBtn)
+            }
         }
     }
 

@@ -330,6 +330,7 @@
         />
 
     <Button
+        android:id="@+id/feedback_start_btn"
         android:layout_width="327dp"
         android:layout_height="56dp"
         android:text="피드백 시작하기"

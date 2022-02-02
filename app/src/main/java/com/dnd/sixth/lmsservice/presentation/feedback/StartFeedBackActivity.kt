@@ -1,5 +1,6 @@
 package com.dnd.sixth.lmsservice.presentation.feedback
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil.setContentView
@@ -17,6 +18,12 @@ class StartFeedBackActivity : BaseActivity<ActivityStartFeedBackBinding,StartFee
     override fun initActivity() {
         with(binding){
             viewModel = this@StartFeedBackActivity.viewModel
+            feedbackStartBtn.setOnClickListener {
+                var intentFeedBackSet = Intent()
+                setResult(RESULT_OK,intentFeedBackSet)
+                finish()
+            }
+
         }
     }
 }

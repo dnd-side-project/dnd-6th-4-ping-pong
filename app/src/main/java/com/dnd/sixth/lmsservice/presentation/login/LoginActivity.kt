@@ -3,7 +3,6 @@ package com.dnd.sixth.lmsservice.presentation.login
 import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.databinding.ActivityLoginBinding
 import com.dnd.sixth.lmsservice.presentation.base.BaseActivity
-import com.dnd.sixth.lmsservice.presentation.lesson.progress.ClassProgressFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
