@@ -842,5 +842,15 @@ public class DateTimePickerView extends PickerViewGroup {
         }
     }
 
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        if (ev.getActionMasked() == MotionEvent.ACTION_DOWN)
+        {
+            ViewParent p = getParent();
+            if (p != null)
+                p.requestDisallowInterceptTouchEvent(true);
+        }
 
+        return false;
+    }
 }
