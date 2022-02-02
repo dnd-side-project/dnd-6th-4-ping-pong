@@ -7,21 +7,26 @@
 
         <variable
             name="viewModel"
-            type="com.dnd.sixth.lmsservice.presentation.main.schedule.detail.ScheduleDetailViewModel" />
+            type="com.dnd.sixth.lmsservice.presentation.home.classes.calendar.detail.ScheduleDetailViewModel" />
     </data>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fillViewport="true">
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        tools:context=".presentation.home.classes.calendar.add.ScheduleAddActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="38dp"
-            android:paddingBottom="16dp"
-            android:paddingHorizontal="16dp"
-            tools:context=".presentation.main.schedule.add.ScheduleAddActivity">
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="38dp"
+                android:paddingBottom="16dp"
+                android:paddingHorizontal="16dp">
+
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -35,8 +40,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="일정 세부사항"
+                    android:fontFamily="@font/spoqa_medium"
                     android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/edit_btn"
@@ -57,6 +63,8 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:textSize="16sp"
+                android:fontFamily="@font/spoqa_medium"
+                android:layout_marginTop="16dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/toolbar"
                 tools:text="백지성/영어" />
@@ -93,132 +101,117 @@
                 app:tint="#EEEEEE" />
 
             <TextView
-                android:id="@+id/class_round_title_text_view"
+                android:id="@+id/class_category_title_text_view"
                 android:layout_width="wrap_content"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 android:gravity="center|left"
-                android:text="수업 회차"
+                android:text="카테고리"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="8dp"
                 android:textColor="@color/black"
-                android:textSize="14dp"
+                android:textSize="12dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/divider1" />
 
             <TextView
-                android:id="@+id/class_round_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="60dp"
-                android:gravity="center|left"
-                android:textColor="@color/black"
-                android:textSize="14dp"
-                app:layout_constraintBottom_toBottomOf="@+id/class_round_title_text_view"
-                app:layout_constraintLeft_toRightOf="@+id/main_guide_line"
-                app:layout_constraintTop_toTopOf="@+id/class_round_title_text_view"
-                tools:text="7회차" />
-
-            <View
-                android:id="@+id/divider2"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@drawable/bg_divider"
-                app:layout_constraintTop_toBottomOf="@+id/class_round_title_text_view"
-                app:tint="#EEEEEE" />
-
-
-            <TextView
-                android:id="@+id/class_progress_title_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="60dp"
-                android:gravity="center|left"
-                android:text="수업 진도"
-                android:textColor="@color/black"
-                android:textSize="14dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider2" />
-
-            <TextView
-                android:id="@+id/class_progress_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="60dp"
-                android:gravity="center|left"
-                android:textColor="@color/black"
-                android:textSize="14dp"
-                app:layout_constraintBottom_toBottomOf="@+id/class_progress_title_text_view"
-                app:layout_constraintLeft_toRightOf="@+id/main_guide_line"
-                app:layout_constraintTop_toTopOf="@+id/class_progress_title_text_view"
-                tools:text="교육 과정에 따라 작성된 챕터" />
-
-            <View
-                android:id="@+id/divider3"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@drawable/bg_divider"
-                app:layout_constraintTop_toBottomOf="@+id/class_progress_title_text_view"
-                app:tint="#EEEEEE" />
-
-
-            <TextView
-                android:id="@+id/class_place_title_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="60dp"
-                android:gravity="center|left"
-                android:text="장소"
-                android:textColor="@color/black"
-                android:textSize="14dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider3" />
-
-            <TextView
-                android:id="@+id/class_place_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="60dp"
-                android:gravity="center|left"
-                android:textColor="@color/black"
-                android:textSize="14dp"
-                app:layout_constraintBottom_toBottomOf="@+id/class_place_title_text_view"
-                app:layout_constraintLeft_toRightOf="@+id/main_guide_line"
-                app:layout_constraintTop_toTopOf="@+id/class_place_title_text_view"
-                tools:text="강남역 투썸플레이스" />
-
-            <View
-                android:id="@+id/divider4"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@drawable/bg_divider"
-                app:layout_constraintTop_toBottomOf="@+id/class_place_title_text_view"
-                app:tint="#EEEEEE" />
-
-
-            <TextView
-                android:id="@+id/class_category_title_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="60dp"
-                android:gravity="center|left"
-                android:text="카테고리"
-                android:textColor="@color/black"
-                android:textSize="14dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider4" />
-
-            <TextView
                 android:id="@+id/class_category_text_view"
                 android:layout_width="wrap_content"
-                android:layout_height="60dp"
-                android:layout_marginRight="8dp"
+                android:layout_height="wrap_content"
                 android:gravity="center|left"
                 android:textColor="@color/black"
-                android:textSize="14dp"
+                android:textSize="12dp"
                 app:layout_constraintBottom_toBottomOf="@+id/class_category_title_text_view"
                 app:layout_constraintLeft_toRightOf="@+id/main_guide_line"
                 app:layout_constraintTop_toTopOf="@+id/class_category_title_text_view"
                 tools:text="백지성/영어" />
 
 
+            <TextView
+                android:id="@+id/class_round_title_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center|left"
+                android:text="수업 회차"
+                android:textColor="@color/black"
+                android:layout_marginLeft="8dp"
+                android:textSize="12dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/class_category_title_text_view" />
+
+            <TextView
+                android:id="@+id/class_round_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center|left"
+                android:textColor="@color/black"
+                android:textSize="12dp"
+                app:layout_constraintBottom_toBottomOf="@+id/class_round_title_text_view"
+                app:layout_constraintLeft_toRightOf="@+id/main_guide_line"
+                app:layout_constraintTop_toTopOf="@+id/class_round_title_text_view"
+                tools:text="7회차" />
+
+
+            <TextView
+                android:id="@+id/class_progress_title_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center|left"
+                android:text="수업 진도"
+                android:textColor="@color/black"
+                android:textSize="12dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/class_round_title_text_view" />
+
+            <TextView
+                android:id="@+id/class_progress_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center|left"
+                android:textColor="@color/black"
+                android:textSize="12dp"
+                app:layout_constraintBottom_toBottomOf="@+id/class_progress_title_text_view"
+                app:layout_constraintLeft_toRightOf="@+id/main_guide_line"
+                app:layout_constraintTop_toTopOf="@+id/class_progress_title_text_view"
+                tools:text="교육 과정에 따라 작성된 챕터" />
+
+
+            <TextView
+                android:id="@+id/class_place_title_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center|left"
+                android:text="장소"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/black"
+                android:layout_marginLeft="8dp"
+                android:textSize="12dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/class_progress_title_text_view" />
+
+
+            <TextView
+                android:id="@+id/class_place_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center|left"
+                android:textColor="@color/black"
+                android:textSize="12dp"
+                app:layout_constraintBottom_toBottomOf="@+id/class_place_title_text_view"
+                app:layout_constraintLeft_toRightOf="@+id/main_guide_line"
+                app:layout_constraintTop_toTopOf="@+id/class_place_title_text_view"
+                app:layout_constraintVertical_bias="1.0"
+                tools:text="강남역 투썸플레이스" />
+
             <View
                 android:id="@+id/divider5"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/bg_divider"
-                app:layout_constraintTop_toBottomOf="@+id/class_category_title_text_view"
+                app:layout_constraintTop_toBottomOf="@+id/class_place_title_text_view"
                 app:tint="#EEEEEE" />
 
 
@@ -242,28 +235,26 @@
                 android:textColor="#707070"
                 android:textSize="14dp"
                 app:layout_constraintBottom_toBottomOf="@+id/class_noti_title_text_view"
-                app:layout_constraintRight_toLeftOf="@+id/noti_down_arrow_btn"
+                app:layout_constraintLeft_toRightOf="@+id/main_guide_line"
                 app:layout_constraintTop_toTopOf="@+id/class_noti_title_text_view"
                 tools:text="1일 전" />
 
-            <ImageView
-                android:id="@+id/noti_down_arrow_btn"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_down_arrow"
-                app:layout_constraintBottom_toBottomOf="@+id/class_noti_text_view"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/class_noti_text_view"
-                app:tint="#707070" />
 
-            <View
-                android:id="@+id/divider6"
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/delete_btn"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@drawable/bg_divider"
-                app:layout_constraintTop_toBottomOf="@+id/class_noti_title_text_view"
-                app:tint="#EEEEEE" />
-
+                android:layout_height="56dp"
+                android:text="일정 삭제"
+                android:gravity="center"
+                android:background="#C4C4C4"
+                android:textColor="#FF0000"
+                android:clickable="true"
+                android:textSize="16sp"
+                android:foreground="?attr/selectableItemBackground"
+                app:layout_constraintBottom_toBottomOf="parent"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>

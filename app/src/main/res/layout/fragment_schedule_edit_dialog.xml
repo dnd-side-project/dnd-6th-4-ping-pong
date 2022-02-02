@@ -7,22 +7,21 @@
 
         <variable
             name="viewModel"
-            type="com.dnd.sixth.lmsservice.presentation.main.schedule.edit.ScheduleEditViewModel" />
+            type="com.dnd.sixth.lmsservice.presentation.home.classes.calendar.edit.ScheduleEditViewModel" />
     </data>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@drawable/bg_round_dialog"
         android:fillViewport="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="38dp"
-            android:paddingBottom="16dp"
             android:paddingHorizontal="16dp"
-            tools:context=".presentation.main.schedule.add.ScheduleAddActivity">
+            android:paddingBottom="16dp"
+            tools:context=".presentation.home.classes.calendar.add.ScheduleAddActivity">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -44,9 +43,9 @@
                     android:layout_width="23dp"
                     android:layout_height="23dp"
                     android:layout_gravity="left"
-                    android:gravity="center"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:clickable="true"
+                    android:gravity="center"
                     android:text="취소"
                     android:textColor="@color/black"
                     android:textSize="12sp" />
@@ -56,9 +55,9 @@
                     android:layout_width="23dp"
                     android:layout_height="23dp"
                     android:layout_gravity="right"
-                    android:gravity="center"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:clickable="true"
+                    android:gravity="center"
                     android:text="완료"
                     android:textColor="#707070"
                     android:textSize="12sp" />
@@ -485,10 +484,10 @@
                     android:id="@+id/class_writer_text_text"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:gravity="center"
                     android:text="본인"
                     android:textColor="@color/black"
                     android:textSize="14sp"
-                    android:gravity="center"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toRightOf="@+id/guide_line_5"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -502,6 +501,41 @@
                 android:background="@drawable/bg_divider"
                 app:layout_constraintTop_toBottomOf="@+id/class_writer_container"
                 app:tint="#EEEEEE" />
+
+            <TextView
+                android:id="@+id/class_noti_title_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:gravity="center|left"
+                android:text="알림"
+                android:textColor="@color/black"
+                android:textSize="14dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider7" />
+
+            <TextView
+                android:id="@+id/class_noti_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_marginRight="8dp"
+                android:gravity="center|left"
+                android:textColor="#707070"
+                android:textSize="14dp"
+                app:layout_constraintBottom_toBottomOf="@+id/class_noti_title_text_view"
+                app:layout_constraintRight_toLeftOf="@+id/noti_down_arrow_btn"
+                app:layout_constraintTop_toTopOf="@+id/class_noti_title_text_view"
+                android:text="없음"
+                tools:text="1일 전"/>
+
+            <ImageView
+                android:id="@+id/noti_down_arrow_btn"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_right_arrow"
+                app:layout_constraintBottom_toBottomOf="@+id/class_noti_text_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/class_noti_text_view"
+                app:tint="#707070" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

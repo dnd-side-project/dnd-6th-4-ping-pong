@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.dnd.sixth.lmsservice.presentation.main.schedule.notipicker.PushTimePickerViewModel" />
+            type="com.dnd.sixth.lmsservice.presentation.home.classes.calendar.notipicker.PushTimePickerViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,7 +23,7 @@
             android:clickable="true"
             android:gravity="center"
             android:text="취소"
-            android:textColor="#0029FF"
+            android:textColor="#707070"
             android:textSize="12sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -36,7 +36,7 @@
             android:clickable="true"
             android:gravity="center"
             android:text="확인"
-            android:textColor="#0029FF"
+            android:textColor="#707070"
             android:textSize="12sp"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

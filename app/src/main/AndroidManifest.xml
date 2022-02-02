@@ -27,10 +27,10 @@
             android:name=".presentation.feedback.StartFeedBackActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.main.schedule.detail.ScheduleDetailActivity"
+            android:name="com.dnd.sixth.lmsservice.presentation.home.classes.calendar.detail.ScheduleDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.main.schedule.add.ScheduleAddActivity"
+            android:name="com.dnd.sixth.lmsservice.presentation.home.classes.calendar.add.ScheduleAddActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
         <activity
@@ -38,15 +38,16 @@
             android:exported="false" />
         <activity
             android:name=".presentation.login.LoginActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
-            android:name=".presentation.main.MainActivity"
-            android:exported="true">
+            android:name="com.dnd.sixth.lmsservice.presentation.home.classes.manage.making.MakeClassActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.dnd.sixth.lmsservice.presentation.home.HomeActivity"
+            android:exported="false">
 
         </activity>
-        <activity
-            android:name=".presentation.main.home.making.MakeClassActivity"
-            android:exported="false" />
     </application>
 
 </manifest>
