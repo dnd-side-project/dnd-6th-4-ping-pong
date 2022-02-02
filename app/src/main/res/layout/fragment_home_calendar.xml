@@ -75,10 +75,11 @@
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:clickable="true">
 
-                        <ImageView
+                        <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/all_icon"
                             android:layout_width="24dp"
                             android:layout_height="24dp"
+                            app:civ_border_color="@color/black"
                             android:src="@drawable/ic_all_student"
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintRight_toRightOf="parent"
