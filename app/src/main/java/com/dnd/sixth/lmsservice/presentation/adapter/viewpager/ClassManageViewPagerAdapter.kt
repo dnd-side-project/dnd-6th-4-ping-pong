@@ -4,12 +4,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.dnd.sixth.lmsservice.presentation.home.classes.calendar.HomeCalendarFragment
-import com.dnd.sixth.lmsservice.presentation.home.classes.manage.HomeClassFragment
+import com.dnd.sixth.lmsservice.presentation.home.classes.manage.ClassManageFragment
 
 class ClassManageViewPagerAdapter(activity: FragmentActivity) : FragmentStateAdapter(activity) {
 
     // ViewPager2에 연결할 Fragment 생성
-    private val fragmentList = listOf<Fragment>(HomeClassFragment(), HomeCalendarFragment())
+    private val fragmentList = listOf<Fragment>(ClassManageFragment(), HomeCalendarFragment())
 
     // ViesPager2에서 노출시킬 Fragment 개수 설정
     override fun getItemCount(): Int {

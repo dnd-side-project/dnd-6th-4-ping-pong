@@ -6,7 +6,7 @@ import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.databinding.ActivityHomeBinding
 import com.dnd.sixth.lmsservice.presentation.adapter.viewpager.HomeViewPagerAdapter
 import com.dnd.sixth.lmsservice.presentation.base.BaseActivity
-import com.dnd.sixth.lmsservice.presentation.home.classes.calendar.add.ScheduleAddActivity
+import com.dnd.sixth.lmsservice.presentation.home.classes.calendar.add.ClassAddActivity
 import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -50,7 +50,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(),
     override fun onClick(v: View?) {
 
         when (v?.id) {
-            R.id.schedule_add_fab -> startActivity(Intent(this, ScheduleAddActivity::class.java))
+            R.id.schedule_add_fab -> startActivity(Intent(this, ClassAddActivity::class.java))
         }
     }
 

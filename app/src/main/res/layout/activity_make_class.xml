@@ -82,7 +82,7 @@
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:layout_marginRight="12dp"
-                        android:src="@drawable/img_temp"
+                        android:src="@drawable/ic_calendar"
                         app:tint="#C4C4C4" />
 
                     <TextView
@@ -283,6 +283,8 @@
                         android:layout_height="match_parent"
                         android:layout_marginRight="8dp"
                         android:layout_weight="1"
+                        android:text="일"
+                        android:gravity="center"
                         android:background="@drawable/btn_make_class_day"
                         android:button="@null" />
 
@@ -292,6 +294,8 @@
                         android:layout_height="match_parent"
                         android:layout_marginRight="8dp"
                         android:layout_weight="1"
+                        android:text="월"
+                        android:gravity="center"
                         android:background="@drawable/btn_make_class_day"
                         android:button="@null" />
 
@@ -301,6 +305,8 @@
                         android:layout_height="match_parent"
                         android:layout_marginRight="8dp"
                         android:layout_weight="1"
+                        android:text="화"
+                        android:gravity="center"
                         android:background="@drawable/btn_make_class_day"
                         android:button="@null" />
 
@@ -310,6 +316,8 @@
                         android:layout_height="match_parent"
                         android:layout_marginRight="8dp"
                         android:layout_weight="1"
+                        android:text="수"
+                        android:gravity="center"
                         android:background="@drawable/btn_make_class_day"
                         android:button="@null" />
 
@@ -319,6 +327,8 @@
                         android:layout_height="match_parent"
                         android:layout_marginRight="8dp"
                         android:layout_weight="1"
+                        android:text="목"
+                        android:gravity="center"
                         android:background="@drawable/btn_make_class_day"
                         android:button="@null" />
 
@@ -328,15 +338,19 @@
                         android:layout_height="match_parent"
                         android:layout_marginRight="8dp"
                         android:layout_weight="1"
+                        android:text="금"
+                        android:gravity="center"
                         android:background="@drawable/btn_make_class_day"
                         android:button="@null"
-                        android:checked="true" />
+                        tools:checked="true" />
 
                     <CheckBox
                         android:id="@+id/sun_check_box"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:text="토"
+                        android:gravity="center"
                         android:background="@drawable/btn_make_class_day"
                         android:button="@null" />
 

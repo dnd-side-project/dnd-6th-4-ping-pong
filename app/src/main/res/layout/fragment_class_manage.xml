@@ -7,118 +7,81 @@
 
         <variable
             name="viewModel"
-            type="com.dnd.sixth.lmsservice.presentation.home.classes.ClassManageViewModel" />
+            type="com.dnd.sixth.lmsservice.presentation.home.classes.manage.ClassManageViewModel" />
     </data>
 
-
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:layout_height="wrap_content"
+        tools:context=".presentation.home.classes.ClassFragment">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <TextView
+            android:id="@+id/class_count_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#707070"
+            android:textSize="12sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="전체 0  |  오늘 0" />
+
+
+        <TextView
+            android:id="@+id/sort_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:text="다가오는 요일순"
+            android:textColor="#707070"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="@id/class_count_text_view"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/class_count_text_view" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/bg_divider"
+            app:layout_constraintTop_toBottomOf="@+id/class_count_text_view" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/class_list_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clipToPadding="false"
-            android:paddingHorizontal="16dp"
-            android:paddingTop="24dp"
-            android:paddingBottom="12dp">
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?actionBarSize"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <ImageView
-                        android:layout_width="8dp"
-                        android:layout_height="8dp"
-                        android:src="@drawable/ic_exist_notification"
-                        android:visibility="gone"
-                        app:layout_constraintBottom_toTopOf="@+id/calendar_noti_btn"
-                        app:layout_constraintRight_toRightOf="parent"
-                        tools:visibility="visible" />
-
-                    <ImageView
-                        android:id="@+id/calendar_noti_btn"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:clickable="true"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:src="@drawable/ic_notifications"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </androidx.appcompat.widget.Toolbar>
+        <LinearLayout
+            android:id="@+id/class_add_btn"
+            android:layout_width="match_parent"
+            android:layout_height="88dp"
+            android:layout_marginTop="8dp"
+            android:clickable="true"
+            android:foreground="?android:selectableItemBackground"
+            app:layout_constraintTop_toBottomOf="@+id/class_list_recycler_view"
+            android:gravity="center"
+            android:background="@drawable/bg_round_gray_rectangle">
+            
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_big_plus"/>
 
             <TextView
-                android:id="@+id/class_title_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/spoqa_medium"
-                android:text="@string/no_class_title"
-                android:textColor="@color/black"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/toolbar" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/calendar_type_container"
-                android:layout_width="wrap_content"
-                android:layout_height="33dp"
-                android:layout_marginTop="24dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/class_title_text_view">
-
-                <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/tab_layout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/bg_tab_underline"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:tabIndicatorColor="@color/black"
-                    app:tabIndicatorHeight="2dp"
-                    app:tabMaxWidth="0dp"
-                    app:tabMode="auto"
-                    app:tabSelectedTextColor="@color/black"
-                    app:tabTextAppearance="@style/tabTextStyle"
-                    app:tabTextColor="#C4C4C4">
-
-                    <com.google.android.material.tabs.TabItem
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="나의 모든 수업"
-                        android:textSize="16sp" />
-
-                    <com.google.android.material.tabs.TabItem
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="캘린더"
-                        android:textSize="16sp" />
+                android:text="새로운 수업 목록을 추가해보세요."
+                android:textColor="#A6A6A6"
+                android:textSize="12sp"
+                android:layout_marginLeft="8dp"/>
 
 
-                </com.google.android.material.tabs.TabLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
 
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/home_view_pager"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginTop="28dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/calendar_type_container" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

@@ -1,12 +1,17 @@
 package com.dnd.sixth.lmsservice.presentation.home.classes.calendar
 
+import android.content.Intent
+import android.view.View
 import android.widget.*
 import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.databinding.FragmentHomeCalendarBinding
 import com.dnd.sixth.lmsservice.presentation.base.BaseFragment
+import com.dnd.sixth.lmsservice.presentation.home.classes.calendar.add.ClassAddActivity
+import com.dnd.sixth.lmsservice.presentation.home.classes.calendar.edit.ScheduleEditDialogFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class HomeCalendarFragment : BaseFragment<FragmentHomeCalendarBinding, HomeCalendarViewModel>() {
+class HomeCalendarFragment : BaseFragment<FragmentHomeCalendarBinding, HomeCalendarViewModel>(),
+    View.OnClickListener {
     override val layoutResId: Int
         get() = R.layout.fragment_home_calendar
 
@@ -20,7 +25,8 @@ class HomeCalendarFragment : BaseFragment<FragmentHomeCalendarBinding, HomeCalen
             viewModel = this@HomeCalendarFragment.viewModel
 
             calendarView.topbarVisible = false // 캘린더 헤더 가리기
-            setSpinner(monthSpinner) // 스피너 서렂ㅇ
+            setSpinner(monthSpinner) // 스피너 설정
+            setClickListener(this)
         }
     }
 
@@ -34,19 +40,24 @@ class HomeCalendarFragment : BaseFragment<FragmentHomeCalendarBinding, HomeCalen
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             spinner.adapter = adapter
         }
-        setSpinnerHeight(spinner)
     }
 
-    private fun setSpinnerHeight(spinner: Spinner) {
-        try {
-            val popup = Spinner::class.java.getDeclaredField("mPopup")
-            popup.isAccessible = true
-
-            val window: ListPopupWindow = popup.get(spinner) as ListPopupWindow
-            window.height = 100
-        }catch (e: Exception) {
-            e.printStackTrace()
+    private fun setClickListener(binding: FragmentHomeCalendarBinding) {
+        with(binding) {
+            scheduleAddFab.setOnClickListener(this@HomeCalendarFragment)
         }
     }
+
+    override fun onClick(v: View?) {
+        when (v?.id) {
+            R.id.schedule_add_fab -> startActivity(
+                Intent(
+                    requireContext(),
+                    ClassAddActivity::class.java
+                )
+            )
+        }
+    }
+
 
 }

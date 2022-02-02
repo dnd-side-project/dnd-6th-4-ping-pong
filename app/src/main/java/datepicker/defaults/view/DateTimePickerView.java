@@ -3,6 +3,8 @@ package datepicker.defaults.view;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
+import android.view.ViewParent;
 
 import java.lang.ref.WeakReference;
 import java.util.Calendar;
@@ -839,4 +841,6 @@ public class DateTimePickerView extends PickerViewGroup {
             if (elseRunnable != null) elseRunnable.run();
         }
     }
+
+
 }

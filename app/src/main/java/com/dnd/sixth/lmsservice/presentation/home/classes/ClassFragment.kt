@@ -2,17 +2,17 @@ package com.dnd.sixth.lmsservice.presentation.home.classes
 
 import android.view.View
 import com.dnd.sixth.lmsservice.R
-import com.dnd.sixth.lmsservice.databinding.FragmentClassManageBinding
+import com.dnd.sixth.lmsservice.databinding.FragmentClassBinding
 import com.dnd.sixth.lmsservice.presentation.adapter.viewpager.ClassManageViewPagerAdapter
 import com.dnd.sixth.lmsservice.presentation.base.BaseFragment
 import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class ClassManageFragment : BaseFragment<FragmentClassManageBinding, ClassManageViewModel>(),
+class ClassFragment : BaseFragment<FragmentClassBinding, ClassViewModel>(),
     View.OnClickListener {
     override val layoutResId: Int
-        get() = R.layout.fragment_class_manage
-    override val viewModel: ClassManageViewModel by viewModel()
+        get() = R.layout.fragment_class
+    override val viewModel: ClassViewModel by viewModel()
 
     var viewPagerFragmentAdapter: ClassManageViewPagerAdapter? = null
 

@@ -4,12 +4,11 @@ import com.dnd.sixth.lmsservice.presentation.feedback.StartFeedBackViewModel
 import com.dnd.sixth.lmsservice.presentation.feedback.WriteFeedBackViewModel
 import com.dnd.sixth.lmsservice.presentation.lesson.progress.ClassProgressViewModel
 import com.dnd.sixth.lmsservice.presentation.login.LoginViewModel
-import com.dnd.sixth.lmsservice.presentation.main.MainViewModel
-import com.dnd.sixth.lmsservice.presentation.home.classes.ClassManageViewModel
+import com.dnd.sixth.lmsservice.presentation.home.classes.ClassViewModel
 import com.dnd.sixth.lmsservice.presentation.home.classes.manage.making.MakeClassViewModel
-import com.dnd.sixth.lmsservice.presentation.home.classes.calendar.add.ScheduleAddViewModel
+import com.dnd.sixth.lmsservice.presentation.home.classes.calendar.add.ClassAddViewModel
 import com.dnd.sixth.lmsservice.presentation.home.classes.calendar.HomeCalendarViewModel
-import com.dnd.sixth.lmsservice.presentation.home.classes.manage.HomeClassViewModel
+import com.dnd.sixth.lmsservice.presentation.home.classes.manage.ClassManageViewModel
 import com.dnd.sixth.lmsservice.presentation.home.HomeViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -19,10 +18,7 @@ val viewModelModules = module {
         LoginViewModel()
     }
     viewModel {
-        MainViewModel()
-    }
-    viewModel {
-        ClassManageViewModel()
+        ClassViewModel()
     }
     viewModel {
         MakeClassViewModel()
@@ -31,7 +27,7 @@ val viewModelModules = module {
         HomeCalendarViewModel()
     }
     viewModel {
-        ScheduleAddViewModel()
+        ClassAddViewModel()
     }
     viewModel {
         ClassProgressViewModel()
@@ -46,7 +42,7 @@ val viewModelModules = module {
         HomeViewModel()
     }
     viewModel {
-        HomeClassViewModel()
+        ClassManageViewModel()
     }
 
 }

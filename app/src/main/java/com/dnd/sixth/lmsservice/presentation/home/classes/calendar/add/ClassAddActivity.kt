@@ -11,7 +11,7 @@ import android.view.animation.AnimationUtils
 import android.view.inputmethod.InputMethodManager
 import androidx.core.text.isDigitsOnly
 import com.dnd.sixth.lmsservice.R
-import com.dnd.sixth.lmsservice.databinding.ActivityScheduleAddBinding
+import com.dnd.sixth.lmsservice.databinding.ActivityClassAddBinding
 import com.dnd.sixth.lmsservice.databinding.DialogPushTimePickerBinding
 import com.dnd.sixth.lmsservice.presentation.base.BaseActivity
 import com.dnd.sixth.lmsservice.presentation.utility.DateConverter
@@ -20,11 +20,11 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 
 
-class ScheduleAddActivity : BaseActivity<ActivityScheduleAddBinding, ScheduleAddViewModel>(),
+class ClassAddActivity : BaseActivity<ActivityClassAddBinding, ClassAddViewModel>(),
     View.OnClickListener {
     override val layoutResId: Int
-        get() = R.layout.activity_schedule_add
-    override val viewModel: ScheduleAddViewModel by viewModel()
+        get() = R.layout.activity_class_add
+    override val viewModel: ClassAddViewModel by viewModel()
 
     // 액티비티 초기화 메서드
     override fun initActivity() {
@@ -82,7 +82,7 @@ class ScheduleAddActivity : BaseActivity<ActivityScheduleAddBinding, ScheduleAdd
 
 
             // 수업 회차 입력값이 변경됨을 감지
-            viewModel!!.classRound.observe(this@ScheduleAddActivity) {
+            viewModel!!.classRound.observe(this@ClassAddActivity) {
                 // 무한 루프를 방지하기 위해 TextWatcher 일시적으로 제거
                 classRoundEditText.removeTextChangedListener(classRoundTextWatcher)
 
@@ -107,7 +107,7 @@ class ScheduleAddActivity : BaseActivity<ActivityScheduleAddBinding, ScheduleAdd
                     if (scrollDateContainer.visibility == View.GONE) {
                         val dropDownAnimation =
                             AnimationUtils.loadAnimation(
-                                this@ScheduleAddActivity,
+                                this@ClassAddActivity,
                                 R.anim.anim_drop_down
                             )
                         scrollDateContainer.visibility = View.VISIBLE
@@ -119,7 +119,7 @@ class ScheduleAddActivity : BaseActivity<ActivityScheduleAddBinding, ScheduleAdd
                     else {
                         val dropUpAnimation =
                             AnimationUtils.loadAnimation(
-                                this@ScheduleAddActivity,
+                                this@ClassAddActivity,
                                 R.anim.anim_drop_up
                             ).apply {
                                 setAnimationListener(object : Animation.AnimationListener {
@@ -178,17 +178,17 @@ class ScheduleAddActivity : BaseActivity<ActivityScheduleAddBinding, ScheduleAdd
         }
     }
 
-    private fun setListener(binding: ActivityScheduleAddBinding) {
+    private fun setListener(binding: ActivityClassAddBinding) {
         with(binding) {
-            dateContainer.setOnClickListener(this@ScheduleAddActivity)
-            classRoundCountView.setOnClickListener(this@ScheduleAddActivity)
-            classRoundContainer.setOnClickListener(this@ScheduleAddActivity)
-            countMinusBtn.setOnClickListener(this@ScheduleAddActivity)
-            countPlusBtn.setOnClickListener(this@ScheduleAddActivity)
+            dateContainer.setOnClickListener(this@ClassAddActivity)
+            classRoundCountView.setOnClickListener(this@ClassAddActivity)
+            classRoundContainer.setOnClickListener(this@ClassAddActivity)
+            countMinusBtn.setOnClickListener(this@ClassAddActivity)
+            countPlusBtn.setOnClickListener(this@ClassAddActivity)
         }
     }
 
-    private fun setDateTimePicker(binding: ActivityScheduleAddBinding) {
+    private fun setDateTimePicker(binding: ActivityClassAddBinding) {
         binding.dateTimePicker.setOnSelectedDateChangedListener { date ->
             // 화면 회전시 초기화되는 것을 방지하기 위해
             // ViewModel에 데이터 저장
