@@ -94,7 +94,7 @@
             android:layout_marginTop="16dp"
             android:background="@drawable/bg_round_btn"
             android:gravity="center"
-            android:text="피드백 보기"
+            android:text="피드백 남기기"
             android:textColor="@color/black"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="@id/timeline_title_address"

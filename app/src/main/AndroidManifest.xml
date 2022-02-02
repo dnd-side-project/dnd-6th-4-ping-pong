@@ -11,6 +11,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LMSService">
+
+        <activity android:name=".presentation.lesson.progress.ClassProgressActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".presentation.feedback.WriteFeedBackActivity"
             android:exported="false" />
@@ -29,19 +38,14 @@
             android:exported="false" />
         <activity
             android:name=".presentation.login.LoginActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name="com.dnd.sixth.lmsservice.presentation.home.classes.manage.making.MakeClassActivity"
             android:exported="false" />
 
         <activity
             android:name="com.dnd.sixth.lmsservice.presentation.home.HomeActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:exported="false">
 
         </activity>
     </application>
