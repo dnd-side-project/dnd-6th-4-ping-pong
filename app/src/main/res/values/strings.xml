@@ -14,6 +14,9 @@
 
     <string name="error_dialog_dismiss">예기치 않은 오류로 다이얼로그가 종료되었습니다.</string>
 
+    <string name="request_edit_class">일정 변경 요청하기</string>
+    <string name="remove_class">일정 삭제</string>
+
     <string name="invite_btn">초대하기</string>
     <string name="class_edit">수업 편집</string>
     <string name="peaese_add_class_feedback">수업을 추가하고 피드백을 남겨주세요.</string>

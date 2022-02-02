@@ -239,20 +239,34 @@
                 app:layout_constraintTop_toTopOf="@+id/class_noti_title_text_view"
                 tools:text="1일 전" />
 
-
-
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/request_edit_btn"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@drawable/bg_round_btn"
+                android:layout_marginHorizontal="16dp"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:layout_marginBottom="20dp"
+                android:visibility="gone"
+                android:text="@string/request_edit_class"
+                android:gravity="center"
+                tools:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
             <TextView
                 android:id="@+id/delete_btn"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
-                android:text="일정 삭제"
+                android:text="@string/remove_class"
                 android:gravity="center"
                 android:background="#C4C4C4"
                 android:textColor="#FF0000"
                 android:clickable="true"
                 android:textSize="16sp"
+                android:visibility="gone"
                 android:foreground="?attr/selectableItemBackground"
                 app:layout_constraintBottom_toBottomOf="parent"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
