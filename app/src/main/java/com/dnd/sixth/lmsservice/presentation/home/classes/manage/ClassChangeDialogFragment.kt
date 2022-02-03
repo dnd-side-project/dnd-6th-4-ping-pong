@@ -49,7 +49,6 @@ class ClassChangeDialogFragment : DialogFragment(), View.OnClickListener {
             R.id.close_btn -> dismiss()
             R.id.show_calendar_btn -> {
                 dismiss()
-                Log.d("ddd", requireParentFragment().tag.toString())
                 (requireParentFragment() as ClassFragment).switchFragment()
             }
         }
