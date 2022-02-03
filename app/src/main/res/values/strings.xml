@@ -11,6 +11,7 @@
     <string name="no_class_title">오늘은 수업 일정이\n없는 날이네요!</string>
     <string name="class_title_format">오늘은 %s %d회차\%s 수업이 있는 날이에요</string>
     <string name="class_count_format">전체 %d  |  오늘 %d</string>
+    <string name="require_edit_title_format">%02d.%02d.%02d(%s) %02d : %02d %s\n수업 일정 변경이 필요해요.</string>
 
     <string name="error_dialog_dismiss">예기치 않은 오류로 다이얼로그가 종료되었습니다.</string>
 
