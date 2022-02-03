@@ -18,19 +18,48 @@
         tools:context=".presentation.login.signup.SignUpActivity">
 
         <com.google.android.material.appbar.MaterialToolbar
+            android:layout_marginTop="24dp"
             android:id="@+id/toolbar"
-            style="@style/ToolbarStyle"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
-            android:layout_marginTop="24dp"
-            android:background="@color/white"
-            android:textSize="16sp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:title="회원가입"
-            app:titleCentered="true" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:visibility="visible"
+                android:id="@+id/toolbar_quit_btn"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="left"
+                android:layout_marginEnd="16dp"
+                android:clickable="true"
+                android:backgroundTint="@color/black"
+                android:src="@drawable/ic_baseline_close_24" />
+
+            <ImageView
+                android:visibility="gone"
+                android:id="@+id/toolbar_back_btn"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="left"
+                android:layout_marginEnd="16dp"
+                android:clickable="true"
+                android:backgroundTint="@color/black"
+                android:src="@drawable/ic_arrow_back_btn" />
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="회원가입"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:layout_gravity="center"/>
+
+
+        </com.google.android.material.appbar.MaterialToolbar>
 
 
         <LinearLayout
+            tools:visibility="visible"
             android:id="@+id/signup_checkbox_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -65,7 +94,9 @@
                     android:id="@+id/signup_teacher_checkbox"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginLeft="19.35dp" />
+                    android:layout_marginLeft="19.35dp"
+                    android:button="@null"
+                    android:background="@drawable/selector_checkbox_signup"/>
 
                 <TextView
                     android:id="@+id/signup_teacher_text"
@@ -93,7 +124,10 @@
                     android:id="@+id/signup_student_checkbox"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginLeft="19.35dp" />
+                    android:layout_marginLeft="19.35dp"
+                    android:button="@null"
+
+                    android:background="@drawable/selector_checkbox_signup"/>
 
                 <TextView
                     android:id="@+id/signup_student_text"
@@ -207,7 +241,18 @@
                     android:layout_marginRight="14.3dp"
                     />
 
+
             </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/description_wrong_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="10sp"
+                android:text="8~16자 영문 대소문자, 숫자, 특수문자를 사용하세요."
+                android:textColor="#FF0000"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:visibility="invisible"/>
         </LinearLayout>
 
 
@@ -264,6 +309,7 @@
 
         </LinearLayout>
         <TextView
+            android:id="@+id/signup_next_button"
             android:layout_width="0dp"
             android:layout_height="56dp"
             app:layout_constraintStart_toStartOf="parent"

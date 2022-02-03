@@ -12,12 +12,16 @@ import com.dnd.sixth.lmsservice.presentation.home.classes.manage.ClassManageView
 import com.dnd.sixth.lmsservice.presentation.home.classes.manage.making.MakeClassViewModel
 import com.dnd.sixth.lmsservice.presentation.lesson.progress.ClassProgressViewModel
 import com.dnd.sixth.lmsservice.presentation.login.LoginViewModel
+import com.dnd.sixth.lmsservice.presentation.login.signup.SignUpViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val viewModelModules = module {
     viewModel {
         LoginViewModel()
+    }
+    viewModel{
+        SignUpViewModel()
     }
     viewModel {
         ClassViewModel()

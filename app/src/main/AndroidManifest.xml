@@ -23,7 +23,12 @@
             android:exported="false" />
         <activity
             android:name="com.dnd.sixth.lmsservice.presentation.home.classes.calendar.detail.ScheduleDetailActivity"
+<<<<<<< Updated upstream
             android:exported="true">
+=======
+            android:exported="false">
+
+>>>>>>> Stashed changes
         </activity>
         <activity
             android:name="com.dnd.sixth.lmsservice.presentation.home.classes.calendar.add.ClassAddActivity"
@@ -34,7 +39,13 @@
             android:exported="false" />
         <activity
             android:name=".presentation.login.LoginActivity"
-            android:exported="false" />
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name="com.dnd.sixth.lmsservice.presentation.home.classes.manage.making.MakeClassActivity"
             android:exported="false" />
