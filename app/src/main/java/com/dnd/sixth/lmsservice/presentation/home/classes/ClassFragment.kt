@@ -5,8 +5,10 @@ import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.databinding.FragmentClassBinding
 import com.dnd.sixth.lmsservice.presentation.adapter.viewpager.ClassManageViewPagerAdapter
 import com.dnd.sixth.lmsservice.presentation.base.BaseFragment
+import com.dnd.sixth.lmsservice.presentation.home.classes.manage.ClassChangeDialogFragment
 import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import kotlin.math.abs
 
 class ClassFragment : BaseFragment<FragmentClassBinding, ClassViewModel>(),
     View.OnClickListener {
@@ -34,6 +36,11 @@ class ClassFragment : BaseFragment<FragmentClassBinding, ClassViewModel>(),
                 tab.text = resources.getStringArray(R.array.home_tab_list)[position]
             }.attach() // 탭 클릭시 Fragment 전환
         }
+    }
+
+    internal fun switchFragment() {
+        val currentPage = binding.homeViewPager.currentItem
+        binding.homeViewPager.currentItem = abs(currentPage - 1)
     }
 
     private fun setBindingData() {

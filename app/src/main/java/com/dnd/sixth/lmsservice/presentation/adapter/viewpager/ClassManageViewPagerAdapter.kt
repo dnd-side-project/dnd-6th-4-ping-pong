@@ -20,5 +20,4 @@ class ClassManageViewPagerAdapter(activity: FragmentActivity) : FragmentStateAda
     override fun createFragment(position: Int): Fragment {
         return fragmentList[position]
     }
-
 }
