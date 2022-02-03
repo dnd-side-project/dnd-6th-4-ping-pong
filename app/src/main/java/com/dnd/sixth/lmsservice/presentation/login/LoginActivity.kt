@@ -1,8 +1,11 @@
 package com.dnd.sixth.lmsservice.presentation.login
 
+import android.content.Intent
 import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.databinding.ActivityLoginBinding
 import com.dnd.sixth.lmsservice.presentation.base.BaseActivity
+import com.dnd.sixth.lmsservice.presentation.login.signup.SignUpActivity
+import kotlinx.android.synthetic.main.activity_login.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
@@ -16,6 +19,17 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
         with(binding) {
             viewModel = this@LoginActivity.viewModel
 
+            //회원가입 버튼 클릭리스너
+            loginSignupBtn.setOnClickListener {
+                var intent = Intent(this@LoginActivity, SignUpActivity::class.java)
+                startActivity(intent)
+            }
+
+            buttonInit()
+
+
+
+
 
         }
 
@@ -24,7 +38,19 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
 
     }
 
-    private fun testShowFragment(){
+    // 로그인 타입 버튼 설정
+    private fun buttonInit(){
+        with(binding){
+            loginStudentBtn.setOnClickListener {
+                loginStudentBtn.setBackgroundColor(resources.getColor(R.color.signUpBtn))
+                loginTeacherBtn.setBackgroundColor(resources.getColor(R.color.white))
+            }
+            loginTeacherBtn.setOnClickListener {
+                loginStudentBtn.setBackgroundColor(resources.getColor(R.color.white))
+                loginTeacherBtn.setBackgroundColor(resources.getColor(R.color.signUpBtn))
+
+            }
+        }
 
     }
 }
