@@ -19,6 +19,7 @@
 
     <string name="teacher">과외 선생님</string>
     <string name="student">과외 학생</string>
+    <string name="password_change"><u>변경하기</u></string>
 
     <string name="request_edit_class">일정 변경 요청하기</string>
     <string name="remove_class">일정 삭제</string>

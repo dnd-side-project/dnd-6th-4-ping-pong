@@ -49,6 +49,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name="com.dnd.sixth.lmsservice.presentation.home.mypage.profile.ProfileActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

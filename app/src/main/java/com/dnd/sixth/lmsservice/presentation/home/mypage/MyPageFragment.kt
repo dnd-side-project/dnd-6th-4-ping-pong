@@ -1,9 +1,11 @@
 package com.dnd.sixth.lmsservice.presentation.home.mypage
 
+import android.content.Intent
 import android.view.View
 import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.databinding.FragmentMyPageBinding
 import com.dnd.sixth.lmsservice.presentation.base.BaseFragment
+import com.dnd.sixth.lmsservice.presentation.home.mypage.profile.ProfileActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MyPageFragment : BaseFragment<FragmentMyPageBinding, MyPageViewModel>(),
@@ -32,12 +34,13 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding, MyPageViewModel>(),
 
     override fun onClick(view: View?) {
         when (view?.id) {
+            R.id.option_profile_account_btn -> {
+                startActivity(Intent(requireContext(), ProfileActivity::class.java))
+            }
             R.id.option_notification_btn -> {
 
             }
-            R.id.option_profile_account_btn -> {
 
-            }
         }
     }
 
