@@ -1,29 +1,29 @@
-package com.dnd.sixth.lmsservice.presentation.home.classes.calendar
+package com.dnd.sixth.lmsservice.presentation.home.classes.manage
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import androidx.fragment.app.DialogFragment
 import com.dnd.sixth.lmsservice.R
-import com.dnd.sixth.lmsservice.databinding.FragmentClassChangedDialogBinding
-import com.dnd.sixth.lmsservice.presentation.home.HomeViewModel
+import com.dnd.sixth.lmsservice.databinding.FragmentClassChangeDialogBinding
+import com.dnd.sixth.lmsservice.presentation.home.classes.ClassFragment
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
+class ClassChangeDialogFragment : DialogFragment(), View.OnClickListener {
 
-class ClassChangedDialogFragment : DialogFragment(), View.OnClickListener {
-
-    private lateinit var binding: FragmentClassChangedDialogBinding
-    val viewModel: HomeViewModel by sharedViewModel()
+    private lateinit var binding: FragmentClassChangeDialogBinding
+    val viewModel: ClassManageViewModel by sharedViewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentClassChangedDialogBinding.inflate(inflater, container, false) // 데이터 바인딩 객체 생성
+        binding = FragmentClassChangeDialogBinding.inflate(inflater, container, false) // 데이터 바인딩 객체 생성
         binding.viewModel = viewModel // 뷰모델 바인드
 
         // dialog 모서리를 둥글게 함
@@ -39,15 +39,18 @@ class ClassChangedDialogFragment : DialogFragment(), View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         with(binding) {
-            goHomeBtn.setOnClickListener(this@ClassChangedDialogFragment)
+            closeBtn.setOnClickListener(this@ClassChangeDialogFragment)
+            showCalendarBtn.setOnClickListener(this@ClassChangeDialogFragment)
         }
     }
 
     override fun onClick(v: View?) {
         when(v?.id) {
-            R.id.go_home_btn -> dismiss()
-            R.id.share_btn -> {
-
+            R.id.close_btn -> dismiss()
+            R.id.show_calendar_btn -> {
+                dismiss()
+                Log.d("ddd", requireParentFragment().tag.toString())
+                (requireParentFragment() as ClassFragment).switchFragment()
             }
         }
     }
