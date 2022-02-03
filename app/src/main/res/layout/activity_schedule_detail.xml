@@ -251,6 +251,8 @@
                 android:textSize="14sp"
                 android:layout_marginBottom="20dp"
                 android:visibility="gone"
+                android:clickable="true"
+                android:foreground="?attr/selectableItemBackground"
                 android:text="@string/request_edit_class"
                 android:gravity="center"
                 tools:visibility="visible"

@@ -14,11 +14,6 @@
 
         <activity android:name=".presentation.lesson.progress.ClassProgressActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".presentation.feedback.WriteFeedBackActivity"
@@ -28,7 +23,12 @@
             android:exported="false" />
         <activity
             android:name="com.dnd.sixth.lmsservice.presentation.home.classes.calendar.detail.ScheduleDetailActivity"
-            android:exported="false" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter></activity>
         <activity
             android:name="com.dnd.sixth.lmsservice.presentation.home.classes.calendar.add.ClassAddActivity"
             android:exported="false"
