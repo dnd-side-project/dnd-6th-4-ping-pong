@@ -79,8 +79,8 @@
                             android:id="@+id/all_icon"
                             android:layout_width="24dp"
                             android:layout_height="24dp"
-                            app:civ_border_color="@color/black"
                             android:src="@drawable/ic_all_student"
+                            app:civ_border_color="@color/black"
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintRight_toRightOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -151,6 +151,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
+                android:nestedScrollingEnabled="false"
                 android:overScrollMode="never"
                 android:paddingBottom="16dp"
                 android:visibility="gone"

@@ -10,6 +10,7 @@ import com.dnd.sixth.lmsservice.presentation.home.classes.calendar.detail.Schedu
 import com.dnd.sixth.lmsservice.presentation.home.classes.calendar.detail.request.EditRequestViewModel
 import com.dnd.sixth.lmsservice.presentation.home.classes.manage.ClassManageViewModel
 import com.dnd.sixth.lmsservice.presentation.home.classes.manage.making.MakeClassViewModel
+import com.dnd.sixth.lmsservice.presentation.home.mypage.MyPageViewModel
 import com.dnd.sixth.lmsservice.presentation.lesson.progress.ClassProgressViewModel
 import com.dnd.sixth.lmsservice.presentation.login.LoginViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -51,6 +52,9 @@ val viewModelModules = module {
     }
     viewModel {
         ScheduleDetailViewModel()
+    }
+    viewModel {
+        MyPageViewModel()
     }
 
 }
