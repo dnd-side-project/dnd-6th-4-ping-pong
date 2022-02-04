@@ -12,8 +12,6 @@
         android:id="@+id/student_profile"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        app:civ_border_width="1dp"
-        tools:civ_border_color="@color/feedbackClassStudent"
         android:src="@drawable/ic_anonymous"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

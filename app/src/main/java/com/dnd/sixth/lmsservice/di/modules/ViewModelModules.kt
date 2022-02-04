@@ -10,9 +10,11 @@ import com.dnd.sixth.lmsservice.presentation.home.classes.calendar.detail.Schedu
 import com.dnd.sixth.lmsservice.presentation.home.classes.calendar.detail.request.EditRequestViewModel
 import com.dnd.sixth.lmsservice.presentation.home.classes.manage.ClassManageViewModel
 import com.dnd.sixth.lmsservice.presentation.home.classes.manage.making.MakeClassViewModel
+import com.dnd.sixth.lmsservice.presentation.home.manage.ManageViewModel
 import com.dnd.sixth.lmsservice.presentation.inviteLink.InviteLinkViewModel
 import com.dnd.sixth.lmsservice.presentation.home.mypage.MyPageViewModel
 import com.dnd.sixth.lmsservice.presentation.home.mypage.config.ConfigViewModel
+import com.dnd.sixth.lmsservice.presentation.home.manage.student.StudentViewModel
 import com.dnd.sixth.lmsservice.presentation.home.mypage.profile.ProfileViewModel
 
 import com.dnd.sixth.lmsservice.presentation.lesson.progress.ClassProgressViewModel
@@ -70,9 +72,14 @@ val viewModelModules = module {
     viewModel {
        ConfigViewModel()
     }
-
     viewModel{
         InviteLinkViewModel()
+    }
+    viewModel {
+        StudentViewModel()
+    }
+    viewModel {
+        ManageViewModel()
     }
 
 }
