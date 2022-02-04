@@ -37,12 +37,12 @@
             <com.google.android.material.tabs.TabItem
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="수업관리" />
+                android:text="수업하기" />
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="학생관리" />
+                android:text="수업관리" />
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="0dp"
