@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LMSService">
-
+        <activity
+            android:name=".presentation.inviteLink.InviteLinkActivity"
+            android:exported="false" />
         <activity
             android:name=".presentation.lesson.progress.ClassProgressActivity"
             android:exported="true" />
@@ -25,7 +27,7 @@
             android:name="com.dnd.sixth.lmsservice.presentation.home.classes.calendar.detail.ScheduleDetailActivity"
             android:exported="false" />
         <activity
-            android:name="com.dnd.sixth.lmsservice.presentation.home.classes.calendar.add.ClassAddActivity"
+            android:name=".presentation.home.classes.calendar.add.ClassAddActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
         <activity
@@ -36,13 +38,11 @@
             android:exported="true">
         </activity>
         <activity
-            android:name="com.dnd.sixth.lmsservice.presentation.home.classes.manage.making.MakeClassActivity"
+            android:name=".presentation.home.classes.manage.making.MakeClassActivity"
             android:exported="false" />
-
         <activity
-            android:name="com.dnd.sixth.lmsservice.presentation.home.HomeActivity"
+            android:name=".presentation.home.HomeActivity"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
