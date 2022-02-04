@@ -12,6 +12,7 @@ import com.dnd.sixth.lmsservice.presentation.home.classes.manage.ClassManageView
 import com.dnd.sixth.lmsservice.presentation.home.classes.manage.making.MakeClassViewModel
 import com.dnd.sixth.lmsservice.presentation.inviteLink.InviteLinkViewModel
 import com.dnd.sixth.lmsservice.presentation.home.mypage.MyPageViewModel
+import com.dnd.sixth.lmsservice.presentation.home.mypage.config.ConfigViewModel
 import com.dnd.sixth.lmsservice.presentation.home.mypage.profile.ProfileViewModel
 
 import com.dnd.sixth.lmsservice.presentation.lesson.progress.ClassProgressViewModel
@@ -65,6 +66,9 @@ val viewModelModules = module {
     }
     viewModel {
         ProfileViewModel()
+    }
+    viewModel {
+       ConfigViewModel()
     }
 
     viewModel{
