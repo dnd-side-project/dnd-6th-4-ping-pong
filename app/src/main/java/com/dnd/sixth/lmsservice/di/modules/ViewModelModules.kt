@@ -10,6 +10,7 @@ import com.dnd.sixth.lmsservice.presentation.home.classes.calendar.detail.Schedu
 import com.dnd.sixth.lmsservice.presentation.home.classes.calendar.detail.request.EditRequestViewModel
 import com.dnd.sixth.lmsservice.presentation.home.classes.manage.ClassManageViewModel
 import com.dnd.sixth.lmsservice.presentation.home.classes.manage.making.MakeClassViewModel
+import com.dnd.sixth.lmsservice.presentation.inviteLink.InviteLinkViewModel
 import com.dnd.sixth.lmsservice.presentation.lesson.progress.ClassProgressViewModel
 import com.dnd.sixth.lmsservice.presentation.login.LoginViewModel
 import com.dnd.sixth.lmsservice.presentation.login.signup.SignUpViewModel
@@ -55,6 +56,10 @@ val viewModelModules = module {
     }
     viewModel {
         ScheduleDetailViewModel()
+    }
+
+    viewModel{
+        InviteLinkViewModel()
     }
 
 }
