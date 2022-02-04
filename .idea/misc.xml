@@ -23,8 +23,11 @@
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/drawable/bg_shadow_up_white.xml" value="0.2972222222222222" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/drawable/bg_shadow_white.xml" value="0.21927083333333333" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/drawable/bg_switch_thumb.xml" value="0.22135416666666666" />
+        <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/drawable/bg_switch_thumb_am_pm.xml" value="0.3779487179487179" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/drawable/bg_switch_track.xml" value="0.22135416666666666" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/drawable/bg_tab_underline.xml" value="0.2838541666666667" />
+        <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/drawable/bg_tab_underline_1dp.xml" value="0.33240740740740743" />
+        <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/drawable/bg_tab_underline_2dp.xml" value="0.2838541666666667" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/drawable/bg_user_type.xml" value="0.24427083333333333" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/drawable/bg_week_schedule.xml" value="0.2814814814814815" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/drawable/btn_category_check_box.xml" value="0.38385416666666666" />
@@ -45,8 +48,10 @@
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/activity_calendar.xml" value="0.2" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/activity_class_add.xml" value="0.25" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/activity_class_progress.xml" value="0.36770833333333336" />
+        <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/activity_config.xml" value="0.2652439024390244" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/activity_home.xml" value="0.25" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/activity_home2.xml" value="0.36770833333333336" />
+        <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/activity_invite_link.xml" value="0.36770833333333336" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/activity_make_class.xml" value="0.25" />
@@ -55,6 +60,7 @@
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/activity_schedule_detail.xml" value="0.33" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/activity_schedule_edit.xml" value="0.2677083333333333" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/activity_sign_up.xml" value="0.2677083333333333" />
+        <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/activity_student.xml" value="0.25" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/dialog_noti_bottom_sheet.xml" value="0.25" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/dialog_push_setting.xml" value="0.25" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/dialog_push_time_picker.xml" value="0.228125" />
@@ -63,6 +69,7 @@
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/fragment_class_calendar.xml" value="0.33" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/fragment_class_change_dialog.xml" value="0.25" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/fragment_class_changed_dialog.xml" value="0.36770833333333336" />
+        <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/fragment_class_info.xml" value="0.33" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/fragment_class_manage.xml" value="0.25" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/fragment_class_progress.xml" value="0.36770833333333336" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/fragment_edit_request_dialog.xml" value="0.36770833333333336" />
@@ -72,11 +79,14 @@
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/fragment_home_calendar.xml" value="0.25" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/fragment_home_class.xml" value="0.33" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/fragment_invite_dialog.xml" value="0.22" />
+        <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/fragment_manage.xml" value="0.33" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/fragment_my_page.xml" value="0.33" />
-        <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/fragment_schedule_edit_dialog.xml" value="0.33" />
+        <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/fragment_schedule_edit_dialog.xml" value="0.2" />
+        <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/fragment_student_info.xml" value="0.2677083333333333" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/item_calendar.xml" value="0.5" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/item_calendar_student.xml" value="1.25" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/item_class.xml" value="0.33" />
+        <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/item_feedback_student.xml" value="0.36770833333333336" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/layout_default_pickerview.xml" value="0.203125" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/layout_expandable_child_class_count.xml" value="0.36770833333333336" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/layout_expandable_class_count.xml" value="0.22" />

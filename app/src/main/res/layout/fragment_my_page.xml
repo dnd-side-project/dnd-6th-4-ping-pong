@@ -147,11 +147,40 @@
                         android:textSize="14sp" />
 
                     <View
-                        android:id="@+id/option_divider_1"
+                        android:id="@+id/option_divider1"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:background="#EEEEEE"
                         app:layout_constraintTop_toBottomOf="@+id/option_profile_account" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/option_homework_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="16dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@+id/option_profile_account_btn">
+
+                    <TextView
+                        android:id="@+id/option_homework_account"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingVertical="20dp"
+                        android:text="숙제 관리"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <View
+                        android:id="@+id/option_divider2"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#EEEEEE"
+                        app:layout_constraintTop_toBottomOf="@+id/option_homework_account" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -162,7 +191,7 @@
                     android:paddingHorizontal="16dp"
                     android:background="?attr/selectableItemBackground"
                     android:clickable="true"
-                    app:layout_constraintTop_toBottomOf="@+id/option_profile_account_btn">
+                    app:layout_constraintTop_toBottomOf="@+id/option_homework_btn">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -174,12 +203,14 @@
                         app:layout_constraintLeft_toLeftOf="parent" />
 
                     <View
-                        android:id="@+id/option_divider_2"
+                        android:id="@+id/option_divider3"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:background="#EEEEEE"
                         app:layout_constraintBottom_toBottomOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

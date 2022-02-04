@@ -5,6 +5,7 @@ import android.view.View
 import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.databinding.FragmentMyPageBinding
 import com.dnd.sixth.lmsservice.presentation.base.BaseFragment
+import com.dnd.sixth.lmsservice.presentation.home.mypage.config.ConfigActivity
 import com.dnd.sixth.lmsservice.presentation.home.mypage.profile.ProfileActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -38,7 +39,7 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding, MyPageViewModel>(),
                 startActivity(Intent(requireContext(), ProfileActivity::class.java))
             }
             R.id.option_notification_btn -> {
-
+                startActivity(Intent(requireContext(), ConfigActivity::class.java))
             }
 
         }
