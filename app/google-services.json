@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "62114526045",
+    "project_id": "pingpong-8debf",
+    "storage_bucket": "pingpong-8debf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:62114526045:android:1dcd19e9002920c8cd2eb4",
+        "android_client_info": {
+          "package_name": "com.dnd.sixth.lmsservice"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "62114526045-eav5ko84rjg2f60b7i4m8dfj6u421vm5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dnd.sixth.lmsservice",
+            "certificate_hash": "986288a88abc66920820403c4e2a52b2ec187587"
+          }
+        },
+        {
+          "client_id": "62114526045-pagik4ceeaobt42ci3fgl2cl3gs90s94.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9ZsR3tls49OpxvPkHJPodugxkUOOUIOM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "62114526045-pagik4ceeaobt42ci3fgl2cl3gs90s94.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
