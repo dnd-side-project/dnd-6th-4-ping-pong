@@ -3,11 +3,11 @@
 
     <!-- 체크박스 해제 상태 -->
     <item android:state_checked="false"
-        android:drawable="@drawable/bg_checked_box"/>
+        android:drawable="@drawable/ic_pingpong_comment_unchecked_checkbox"/>
 
     <!-- 체크박스 선택 상태 -->
     <item android:state_checked="true"
-        android:drawable="@drawable/bg_unchecked_box"/>
+        android:drawable="@drawable/ic_pingpong_comment_checked_checkbox"/>
 
 
 

@@ -12,6 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LMSService">
         <activity
+            android:name=".presentation.comment.CommentActivity"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".presentation.inviteLink.InviteLinkActivity"
             android:exported="false" />
         <activity
@@ -25,7 +34,7 @@
             android:exported="false" />
         <activity
             android:name=".presentation.home.classes.calendar.detail.ScheduleDetailActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".presentation.home.classes.calendar.add.ClassAddActivity"
             android:exported="false"
@@ -35,12 +44,8 @@
             android:exported="false" />
         <activity
             android:name=".presentation.login.LoginActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="false">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".presentation.home.classes.manage.making.MakeClassActivity"
@@ -54,9 +59,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
-            android:name="com.dnd.sixth.lmsservice.presentation.home.mypage.profile.ProfileActivity"
+            android:name=".presentation.home.mypage.profile.ProfileActivity"
             android:exported="false" />
     </application>
 
