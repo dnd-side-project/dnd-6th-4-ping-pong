@@ -13,4 +13,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="backgroundGray">#EEEEEE</color>
     <color name="signUpBtn">#C4C4C4</color>
+
+    <color name="todayClassStudent">#0029FF</color>
+    <color name="feedbackClassStudent">#FF0000</color>
 </resources>

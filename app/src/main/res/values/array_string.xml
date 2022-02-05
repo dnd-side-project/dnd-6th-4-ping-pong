@@ -33,4 +33,14 @@
         <item>나의 모든 수업</item>
         <item>캘린더</item>
     </string-array>
+
+    <string-array name="class_student_info_list">
+        <item>@string/class_info</item>
+        <item>@string/student_info</item>
+    </string-array>
+
+    <string-array name="class_teacher_info_list">
+        <item>@string/class_info</item>
+        <item>@string/teacher_info</item>
+    </string-array>
 </resources>

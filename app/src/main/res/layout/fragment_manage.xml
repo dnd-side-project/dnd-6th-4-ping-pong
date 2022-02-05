@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.dnd.sixth.lmsservice.presentation.home.classes.ClassViewModel" />
+            type="com.dnd.sixth.lmsservice.presentation.home.manage.ManageViewModel" />
     </data>
 
 
@@ -47,8 +47,8 @@
                         android:id="@+id/calendar_noti_btn"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:clickable="true"
                         android:background="?attr/selectableItemBackgroundBorderless"
+                        android:clickable="true"
                         android:src="@drawable/ic_notifications"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
@@ -59,66 +59,64 @@
             </androidx.appcompat.widget.Toolbar>
 
             <TextView
-                android:id="@+id/class_title_text_view"
+                android:id="@+id/teacher_name_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textColor="#707070"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar"
+                tools:text="최기택 선생님,"/>
+
+            <TextView
+                android:id="@+id/feedback_title_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/spoqa_medium"
-                android:text="@string/no_class_title"
+                android:lineHeight="30dp"
+                android:text="오늘 수업한 학생에게\n피드백을 남겨주셨나요?"
                 android:textColor="@color/black"
                 android:textSize="22sp"
                 android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+                app:layout_constraintTop_toBottomOf="@+id/teacher_name_text_view" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/calendar_type_container"
-                android:layout_width="wrap_content"
-                android:layout_height="33dp"
-                android:layout_marginTop="24dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/class_title_text_view">
-
-                <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/tab_layout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/bg_tab_underline_2dp"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:tabIndicatorColor="@color/black"
-                    app:tabIndicatorHeight="2dp"
-                    app:tabMaxWidth="0dp"
-                    app:tabMode="auto"
-                    app:tabSelectedTextColor="@color/black"
-                    app:tabTextAppearance="@style/tabTextStyle"
-                    app:tabTextColor="#C4C4C4">
-
-                    <com.google.android.material.tabs.TabItem
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="나의 모든 수업"
-                        android:textSize="16sp" />
-
-                    <com.google.android.material.tabs.TabItem
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="캘린더"
-                        android:textSize="16sp" />
-
-
-                </com.google.android.material.tabs.TabLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/home_view_pager"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/feedback_student_recycler_view"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginTop="28dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                tools:itemCount="1"
+                tools:listitem="@layout/item_feedback_student"
+                app:layout_constraintTop_toBottomOf="@+id/feedback_title_text_view"/>
+
+            <TextView
+                android:id="@+id/connected_student_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:layout_marginTop="24dp"
+                android:text="연결되어 있는 학생"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/spoqa_medium"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/calendar_type_container" />
+                app:layout_constraintTop_toBottomOf="@+id/feedback_student_recycler_view"/>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/connected_student_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:itemCount="1"
+                tools:listitem="@layout/item_feedback_student"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/connected_student_title"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.core.widget.NestedScrollView>
 
 </layout>
