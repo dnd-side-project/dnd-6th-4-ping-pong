@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.dnd.sixth.lmsservice.presentation.home.classes.manage.making.MakeClassViewModel" />
+            type="com.dnd.sixth.lmsservice.presentation.home.main.classes.create.CreateClassViewModel" />
     </data>
 
 
@@ -19,7 +19,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:context=".presentation.home.classes.manage.making.MakeClassActivity">
+            tools:context=".presentation.home.main.classes.create.ClassCreateActivity">
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar"
@@ -57,7 +57,7 @@
                     android:background="@drawable/bg_make_class_edit_text"
                     android:hint="Ex. 김학생, 강남고, 고3"
                     android:paddingHorizontal="16dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/richBlack"
                     android:textSize="14sp"
                     app:layout_constraintTop_toBottomOf="@+id/class_board_name_subtitle" />
 
@@ -183,7 +183,7 @@
                             android:layout_height="match_parent"
                             android:gravity="center"
                             android:text="10"
-                            android:textColor="@color/black"
+                            android:textColor="@color/richBlack"
                             android:textSize="14dp"
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintRight_toLeftOf="@+id/hour_min_colon" />
@@ -204,7 +204,7 @@
                             android:layout_height="match_parent"
                             android:gravity="center"
                             android:text="30"
-                            android:textColor="@color/black"
+                            android:textColor="@color/richBlack"
                             android:textSize="14dp"
                             app:layout_constraintLeft_toRightOf="@id/hour_min_colon"
                             app:layout_constraintRight_toRightOf="parent" />

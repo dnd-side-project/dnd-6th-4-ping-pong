@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.dnd.sixth.lmsservice.presentation.home.classes.calendar.notipicker.PushTimePickerViewModel" />
+            type="com.dnd.sixth.lmsservice.presentation.home.main.calendar.notipicker.PushTimePickerViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

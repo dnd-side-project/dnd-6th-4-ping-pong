@@ -28,11 +28,11 @@
             android:id="@+id/main_tab_layout"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:background="#707070"
+            android:background="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:tabIndicatorHeight="0dp"
-            app:tabSelectedTextColor="#EEEEEE"
-            app:tabTextColor="@color/black">
+            app:tabSelectedTextColor="@color/white"
+            app:tabTextColor="@color/white">
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="0dp"

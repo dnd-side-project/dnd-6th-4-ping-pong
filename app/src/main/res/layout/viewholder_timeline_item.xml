@@ -95,7 +95,7 @@
             android:background="@drawable/bg_round_btn"
             android:gravity="center"
             android:text="피드백 남기기"
-            android:textColor="@color/black"
+            android:textColor="@color/richBlack"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="@id/timeline_title_address"
             app:layout_constraintTop_toBottomOf="@id/timeline_title_address" />
@@ -109,7 +109,7 @@
             android:background="@drawable/bg_round_btn"
             android:gravity="center"
             android:text="코멘트 남기기"
-            android:textColor="@color/black"
+            android:textColor="@color/richBlack"
             android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@id/open_feedback_btn"
             app:layout_constraintTop_toBottomOf="@id/timeline_title_address" />

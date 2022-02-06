@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:text="수정"
-            android:textColor="@color/black"
+            android:textColor="@color/richBlack"
             android:textSize="14sp" />
     </LinearLayout>
 
@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:text="삭제"
-            android:textColor="@color/black"
+            android:textColor="@color/richBlack"
             android:textSize="14sp" />
     </LinearLayout>
 

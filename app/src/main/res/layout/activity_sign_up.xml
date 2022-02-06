@@ -32,7 +32,7 @@
                 android:layout_gravity="left"
                 android:layout_marginEnd="16dp"
                 android:clickable="true"
-                android:backgroundTint="@color/black"
+                android:backgroundTint="@color/richBlack"
                 android:src="@drawable/ic_baseline_close_24" />
 
             <ImageView
@@ -43,7 +43,7 @@
                 android:layout_gravity="left"
                 android:layout_marginEnd="16dp"
                 android:clickable="true"
-                android:backgroundTint="@color/black"
+                android:backgroundTint="@color/richBlack"
                 android:src="@drawable/ic_arrow_back_btn" />
             <TextView
 
@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:text="회원가입"
                 android:textSize="16sp"
-                android:textColor="@color/black"
+                android:textColor="@color/richBlack"
                 android:layout_gravity="center"/>
 
 
@@ -78,7 +78,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:text="가입 유형을 선택해주세요"
-                android:textColor="@color/black" />
+                android:textColor="@color/richBlack" />
 
             <LinearLayout
                 android:id="@+id/signup_teacher_container"
@@ -104,7 +104,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:text="과외 선생님으로 가입"
-                    android:textColor="@color/black"
+                    android:textColor="@color/richBlack"
                     android:textSize="14sp" />
 
             </LinearLayout>
@@ -135,7 +135,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:text="학생으로 가입"
-                    android:textColor="@color/black"
+                    android:textColor="@color/richBlack"
                     android:textSize="14sp" />
 
             </LinearLayout>
@@ -163,7 +163,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:text="이메일을 입력해주세요"
-                android:textColor="@color/black" />
+                android:textColor="@color/richBlack" />
 
             <LinearLayout
                 android:id="@+id/signup_email_text_container"
@@ -183,7 +183,7 @@
                     android:layout_marginLeft="16dp"
                     android:background="@null"
                     android:hint="id@pingpong.com"
-                    android:textColor="@color/black"
+                    android:textColor="@color/richBlack"
                     android:textSize="14sp" />
 
             </LinearLayout>
@@ -207,7 +207,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:text="비밀번호 입력해주세요"
-                android:textColor="@color/black" />
+                android:textColor="@color/richBlack" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/signup_password_text_container"
@@ -229,7 +229,7 @@
                     android:layout_marginLeft="16dp"
                     android:background="@null"
                     android:hint="영문+숫자 조합 8자리 이상 입력해주세요."
-                    android:textColor="@color/black"
+                    android:textColor="@color/richBlack"
                     android:textSize="14sp" />
                 <ImageView
                     app:layout_constraintEnd_toEndOf="parent"
@@ -276,13 +276,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:text="학생이 알아볼 수 있도록"
-                android:textColor="@color/black" />
+                android:textColor="@color/richBlack" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:text="이름을 입력해주세요"
-                android:textColor="@color/black" />
+                android:textColor="@color/richBlack" />
 
             <LinearLayout
                 android:id="@+id/signup_name_text_container"
@@ -301,7 +301,7 @@
                     android:layout_marginLeft="16dp"
                     android:background="@null"
                     android:hint="이름(실명)을 입력해주세요."
-                    android:textColor="@color/black"
+                    android:textColor="@color/richBlack"
                     android:textSize="14sp" />
 
             </LinearLayout>
@@ -318,7 +318,7 @@
             android:text="다음"
             android:gravity="center"
             android:textSize="16sp"
-            android:textColor="@color/black"
+            android:textColor="@color/richBlack"
             android:background="@color/signUpBtn"
             />
 

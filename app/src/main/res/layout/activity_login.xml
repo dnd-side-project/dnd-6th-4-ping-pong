@@ -45,7 +45,7 @@
             <View
                 android:layout_width="0.5dp"
                 android:layout_height="match_parent"
-                android:background="@color/black"
+                android:background="@color/richBlack"
                 />
             <TextView
                 android:id="@+id/login_student_btn"
@@ -145,7 +145,7 @@
             android:textSize="12sp"
             />
         <View
-            android:background="@color/black"
+            android:background="@color/richBlack"
             android:layout_width="0.5dp"
             android:layout_height="20dp"
             app:layout_constraintStart_toEndOf="@id/login_find_id_btn"
@@ -166,7 +166,7 @@
             />
 
         <View
-            android:background="@color/black"
+            android:background="@color/richBlack"
             android:layout_width="1dp"
             android:layout_height="20dp"
             app:layout_constraintStart_toEndOf="@id/login_find_pw_btn"
