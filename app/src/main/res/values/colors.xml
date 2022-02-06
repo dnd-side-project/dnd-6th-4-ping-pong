@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#9F9F9F</color>
+    <color name="colorPrimary">@color/firstMainColor</color>
     <color name="colorPrimaryVariant">#717171</color>
     <color name="colorOnPrimary">#656565</color>
     <color name="colorSecondary">#9F9F9F</color>
@@ -16,4 +16,16 @@
 
     <color name="todayClassStudent">#0029FF</color>
     <color name="feedbackClassStudent">#FF0000</color>
+
+    <color name="firstMainColor">#2A3A99</color>
+    <color name="secondMainColor">#FF785F</color>
+    <color name="richBlack">#222222</color>
+    <color name="gray85">#858585</color>
+    <color name="grayEE">#EEEEEE</color>
+    <color name="grayC4">#C4C4C4</color>
+    <color name="grayDD">#DDDDDD</color>
+    <color name="grayAA">#AAAAAA</color>
+    <color name="grayF3">#F3F3F3</color>
+    <color name="blue02">#2A3A99</color>
+
 </resources>

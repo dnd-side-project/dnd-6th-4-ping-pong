@@ -20,13 +20,10 @@ class MakeClassActivity : BaseActivity<ActivityMakeClassBinding, MakeClassViewMo
         with(binding) {
             viewModel = this@MakeClassActivity.viewModel
             setSupportActionBar(toolbar)
-            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            supportActionBar?.setDisplayHomeAsUpEnabled(true) // 뒤로가기 버튼 활성화
+            supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_black_close_btn) // 뒤로가기 버튼 변경
         }
 
-        /*
-        // 초대 다이얼로그 보여주기
-        InviteDialogFragment().show(supportFragmentManager, TAG_INVITE_DIALOG_EVENT)
-        */
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

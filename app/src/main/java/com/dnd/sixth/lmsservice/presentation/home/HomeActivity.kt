@@ -7,6 +7,7 @@ import com.dnd.sixth.lmsservice.databinding.ActivityHomeBinding
 import com.dnd.sixth.lmsservice.presentation.adapter.viewpager.HomeViewPagerAdapter
 import com.dnd.sixth.lmsservice.presentation.base.BaseActivity
 import com.dnd.sixth.lmsservice.presentation.home.classes.calendar.add.ClassAddActivity
+import com.dnd.sixth.lmsservice.presentation.home.classes.manage.making.InviteDialogFragment
 import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

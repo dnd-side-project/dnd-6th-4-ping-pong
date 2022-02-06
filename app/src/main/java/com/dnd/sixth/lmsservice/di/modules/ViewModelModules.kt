@@ -12,10 +12,11 @@ import com.dnd.sixth.lmsservice.presentation.home.classes.manage.ClassManageView
 import com.dnd.sixth.lmsservice.presentation.home.classes.manage.making.MakeClassViewModel
 import com.dnd.sixth.lmsservice.presentation.home.manage.ManageViewModel
 import com.dnd.sixth.lmsservice.presentation.inviteLink.InviteLinkViewModel
-import com.dnd.sixth.lmsservice.presentation.home.mypage.MyPageViewModel
-import com.dnd.sixth.lmsservice.presentation.home.mypage.config.ConfigViewModel
+import com.dnd.sixth.lmsservice.presentation.home.classes.config.ConfigViewModel
+import com.dnd.sixth.lmsservice.presentation.home.classes.config.push.PushViewModel
 import com.dnd.sixth.lmsservice.presentation.home.manage.student.StudentViewModel
-import com.dnd.sixth.lmsservice.presentation.home.mypage.profile.ProfileViewModel
+import com.dnd.sixth.lmsservice.presentation.home.classes.config.profile.ProfileViewModel
+import com.dnd.sixth.lmsservice.presentation.home.classes.config.profile.password.PasswordViewModel
 
 import com.dnd.sixth.lmsservice.presentation.lesson.progress.ClassProgressViewModel
 import com.dnd.sixth.lmsservice.presentation.login.LoginViewModel
@@ -64,13 +65,13 @@ val viewModelModules = module {
         ScheduleDetailViewModel()
     }
     viewModel {
-        MyPageViewModel()
+        ConfigViewModel()
     }
     viewModel {
         ProfileViewModel()
     }
     viewModel {
-       ConfigViewModel()
+       PushViewModel()
     }
     viewModel{
         InviteLinkViewModel()
@@ -81,5 +82,7 @@ val viewModelModules = module {
     viewModel {
         ManageViewModel()
     }
-
+    viewModel {
+        PasswordViewModel()
+    }
 }

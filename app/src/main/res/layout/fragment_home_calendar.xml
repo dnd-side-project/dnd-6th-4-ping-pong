@@ -10,10 +10,12 @@
             type="com.dnd.sixth.lmsservice.presentation.home.classes.calendar.HomeCalendarViewModel" />
     </data>
 
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipToPadding="false">
+        android:clipToPadding="false"
+        android:paddingHorizontal="16dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -28,98 +30,48 @@
                 android:dropDownWidth="120dp"
                 android:entries="@array/month_list"
                 android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="@id/student_container"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="@id/student_container" />
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/student_container"
-                android:layout_width="0dp"
+
+            <LinearLayout
+                android:id="@+id/show_category_btn"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="8dp"
-                app:layout_constraintLeft_toRightOf="@+id/month_spinner"
+                android:layout_gravity="right|center"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:gravity="center"
+                app:layout_constraintBottom_toBottomOf="@+id/month_spinner"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="@+id/month_spinner">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="전체보기"
+                    android:textColor="#858585"
+                    android:textSize="10sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent" />
 
                 <ImageView
-                    android:id="@+id/menu_btn"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:clickable="true"
-                    android:src="@drawable/ic_menu"
-                    android:visibility="visible"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:visibility="gone" />
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:layout_marginLeft="4dp"
+                    android:src="@drawable/ic_arrow_drop_down" />
 
-                <HorizontalScrollView
-                    android:id="@+id/student_scroll_view"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:clipToPadding="false"
-                    android:src="@drawable/ic_menu"
-                    android:visibility="gone"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:visibility="visible">
+            </LinearLayout>
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/all_student_btn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right|center"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:clickable="true">
-
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/all_icon"
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/ic_all_student"
-                            app:civ_border_color="@color/black"
-                            app:layout_constraintLeft_toLeftOf="parent"
-                            app:layout_constraintRight_toRightOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="A"
-                            android:textColor="@color/black"
-                            android:textSize="10sp"
-                            app:layout_constraintBottom_toBottomOf="@id/all_icon"
-                            app:layout_constraintLeft_toLeftOf="@id/all_icon"
-                            app:layout_constraintRight_toRightOf="@id/all_icon"
-                            app:layout_constraintTop_toTopOf="@id/all_icon" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="6dp"
-                            android:text="모아보기"
-                            android:textColor="#707070"
-                            android:textSize="10sp"
-                            app:layout_constraintLeft_toLeftOf="parent"
-                            app:layout_constraintRight_toRightOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/all_icon" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                </HorizontalScrollView>
-            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <com.prolificinteractive.materialcalendarview.MaterialCalendarView
                 android:id="@+id/calendar_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/student_container"
+                app:layout_constraintTop_toBottomOf="@+id/month_spinner"
                 app:mcv_calendarMode="month"
                 app:mcv_selectionColor="#707070"
-                app:mcv_showOtherDates="defaults" />
+                app:mcv_showOtherDates="decorated_disabled" />
 
             <LinearLayout
                 android:id="@+id/no_schedule_view"
@@ -177,5 +129,4 @@
             app:maxImageSize="24dp"
             app:tint="@color/white" />
     </RelativeLayout>
-
 </layout>

@@ -1,11 +1,12 @@
-package com.dnd.sixth.lmsservice.presentation.home.mypage.profile
+package com.dnd.sixth.lmsservice.presentation.home.classes.config.profile
 
+import android.content.Intent
 import android.view.MenuItem
 import android.view.View
 import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.databinding.ActivityProfileBinding
-import com.dnd.sixth.lmsservice.presentation.adapter.viewpager.HomeViewPagerAdapter
 import com.dnd.sixth.lmsservice.presentation.base.BaseActivity
+import com.dnd.sixth.lmsservice.presentation.home.classes.config.profile.password.ChangePWActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProfileActivity : BaseActivity<ActivityProfileBinding, ProfileViewModel>(),
@@ -30,6 +31,15 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding, ProfileViewModel>()
             setSupportActionBar(toolbar)
             supportActionBar?.setDisplayHomeAsUpEnabled(true) // 뒤로가기 버튼
             supportActionBar?.setDisplayShowTitleEnabled(false) // 타이틀 보이지 않도록 설정
+
+            setOnClickListener(this) // 클릭 리스너 설정
+        }
+    }
+    
+    private fun setOnClickListener(binding: ActivityProfileBinding) {
+        with(binding) {
+            passwordChangeBtn.setOnClickListener(this@ProfileActivity)
+            passwordTitle.setOnClickListener(this@ProfileActivity)
         }
     }
 
@@ -41,7 +51,9 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding, ProfileViewModel>()
     override fun onClick(v: View?) {
 
         when (v?.id) {
-
+            R.id.password_change_btn, R.id.password_title -> {
+                startActivity(Intent(this, ChangePWActivity::class.java))
+            }
         }
     }
 

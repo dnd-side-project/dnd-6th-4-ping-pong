@@ -10,9 +10,10 @@
     <string name="class_date_time_format">%4d년&#160;%d월&#160;%d일&#160;(%s)&#160;&#160;%2s&#160;%02d&#160;:&#160;%02d</string>
     <string name="class_date_time_dot_format">%4d. %2d. %2d. %s&#160;&#160;&#160;%s&#160;%2d&#160;:&#160;%2d</string>
     <string name="class_noti_format">%d일 전</string>
-    <string name="no_class_title">오늘은 수업 일정이\n없는 날이네요!</string>
-    <string name="class_title_format">오늘은 %s %d회차\%s 수업이 있는 날이에요</string>
-    <string name="class_count_format">전체 %d  |  오늘 %d</string>
+    <string name="no_class_title">오늘은 수업이 없어요</string>
+    <string name="class_teacher_title_format">%d일 뒤, %s 학생과\n%d회차 수업이 있어요</string>
+    <string name="class_student_title_format">%d일 뒤, %s 선생님과\n%d회차 수업이 있어요</string>
+    <string name="class_count_format">전체 %d개</string>
     <string name="require_edit_title_format">%02d.%02d.%02d(%s) %02d : %02d %s\n수업 일정 변경이 필요해요.</string>
     <string name="class_changed_format">%s 선생님이 다가오는 %s\n %02d시 %02d분 수업 일정을 변경했어요.\n캘린더를 통해 자세한 일정을 확인해주세요.</string>
     <string name="current_class_count_format">현재 수업 수  %d</string>
@@ -21,6 +22,12 @@
     <string name="my_phone_number_format">(본인) %s</string>
     <string name="parent_phone_number_format">(학부모) %s</string>
     <string name="grade_format">%s %s</string> <!-- 강남고등학교 3학년 -->
+    <string name="grade_subject_format">%s, %s</string> <!-- 학생용 -> 고2, 영어 -->
+    <string name="subject_format">%s</string> <!-- 선생님용 -> 영어 -->
+    <string name="name_school_format">%s, %s</string> <!-- 백지성, 강남고 -->
+
+    <string name="no_class">아직 클래스가 없어요\n클래스를 만들어보세요</string>
+    <string name="add_class">클래스 추가</string>
 
     <string name="error_dialog_dismiss">예기치 않은 오류로 다이얼로그가 종료되었습니다.</string>
 
@@ -39,7 +46,10 @@
     <string name="class_edit">수업 편집</string>
     <string name="peaese_add_class_feedback">수업을 추가하고 피드백을 남겨주세요.</string>
     <string name="progress_class">수업 진행도</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="teacher_comment_desc">선생님이 수업 코멘트 작성시 알림을 보냅니다</string>
+    <string name="student_comment_desc">학생이 수업 코멘트 작성시 알림을 보냅니다</string>
+
+    <string name="create_class_dialog_title">클래스가 생성되었어요 👏</string>
 
 </resources>

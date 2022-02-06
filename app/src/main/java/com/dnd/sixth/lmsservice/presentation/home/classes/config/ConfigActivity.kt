@@ -1,12 +1,13 @@
-package com.dnd.sixth.lmsservice.presentation.home.mypage.config
+package com.dnd.sixth.lmsservice.presentation.home.classes.config
 
+import android.content.Intent
 import android.view.MenuItem
 import android.view.View
 import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.databinding.ActivityConfigBinding
-import com.dnd.sixth.lmsservice.databinding.ActivityProfileBinding
-import com.dnd.sixth.lmsservice.presentation.adapter.viewpager.HomeViewPagerAdapter
 import com.dnd.sixth.lmsservice.presentation.base.BaseActivity
+import com.dnd.sixth.lmsservice.presentation.home.classes.config.profile.ProfileActivity
+import com.dnd.sixth.lmsservice.presentation.home.classes.config.push.PushActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ConfigActivity : BaseActivity<ActivityConfigBinding, ConfigViewModel>(),
@@ -15,34 +16,36 @@ class ConfigActivity : BaseActivity<ActivityConfigBinding, ConfigViewModel>(),
         get() = R.layout.activity_config
     override val viewModel: ConfigViewModel by viewModel()
 
+
     // 액티비티 초기화 메서드
     override fun initActivity() {
-        setBindingData()
-        initView()
+        setBindingData() // 필요한 데이터 바인딩
+        initView() // 뷰 초기화
     }
-
-    private fun setBindingData() {
-        binding.viewModel = viewModel // ViewModel 바인딩
-    }
-
 
     private fun initView() {
         with(binding) {
             setSupportActionBar(toolbar)
             supportActionBar?.setDisplayHomeAsUpEnabled(true) // 뒤로가기 버튼
             supportActionBar?.setDisplayShowTitleEnabled(false) // 타이틀 보이지 않도록 설정
+
+            optionAccountBtn.setOnClickListener(this@ConfigActivity)
+            optionNotificationBtn.setOnClickListener(this@ConfigActivity)
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-
+    private fun setBindingData() {
+        binding.viewModel = viewModel // ViewModel 바인딩
     }
 
-    override fun onClick(v: View?) {
-
-        when (v?.id) {
-
+    override fun onClick(view: View?) {
+        when (view?.id) {
+            R.id.option_account_btn -> {
+                startActivity(Intent(this, ProfileActivity::class.java))
+            }
+            R.id.option_notification_btn -> {
+                startActivity(Intent(this, PushActivity::class.java))
+            }
         }
     }
 
@@ -53,4 +56,6 @@ class ConfigActivity : BaseActivity<ActivityConfigBinding, ConfigViewModel>(),
 
         return true
     }
+
+
 }
