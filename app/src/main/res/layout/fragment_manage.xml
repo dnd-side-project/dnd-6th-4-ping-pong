@@ -37,7 +37,7 @@
                     <ImageView
                         android:layout_width="8dp"
                         android:layout_height="8dp"
-                        android:src="@drawable/ic_exist_notification"
+                        android:src="@drawable/ic_new"
                         android:visibility="gone"
                         app:layout_constraintBottom_toTopOf="@+id/calendar_noti_btn"
                         app:layout_constraintRight_toRightOf="parent"

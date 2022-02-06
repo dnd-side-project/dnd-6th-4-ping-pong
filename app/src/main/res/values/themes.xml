@@ -21,4 +21,9 @@
         <item name="bottomSheetDialogTheme">@style/RoundBottomSheetDialogTheme</item>
     </style>
 
+    <style name="Theme.LMSService.EdgedBottomSheetDialog" parent="Theme.LMSService">
+        <!-- 각진 BottomSheetDialog -->
+        <item name="bottomSheetDialogTheme">@style/EdgedBottomSheetDialogTheme</item>
+    </style>
+
 </resources>

@@ -3,13 +3,11 @@ package com.dnd.sixth.lmsservice.presentation.home.classes.manage.making
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.view.Window
+import android.view.*
 import androidx.fragment.app.DialogFragment
 import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.databinding.FragmentInviteDialogBinding
+import com.dnd.sixth.lmsservice.presentation.utility.WindowCompat
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 
@@ -42,12 +40,24 @@ class InviteDialogFragment : DialogFragment(), View.OnClickListener {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        // 다이얼로그의 너비를 화면 너비의 0.8만큼으로 조정
+        makeDialogWidthFull()
+    }
+
+    // 다이얼로그의 너비를 화면 너비의 0.8만큼으로 조정
+    private fun makeDialogWidthFull() {
+        val params: WindowManager.LayoutParams? = dialog?.window?.attributes
+        val deviceWidth = WindowCompat.getWindowWidth()
+        params?.width = (deviceWidth * 0.8).toInt()
+        dialog?.window?.attributes = params as WindowManager.LayoutParams
+    }
+
     override fun onClick(v: View?) {
         when(v?.id) {
             R.id.close_btn -> dismiss()
-            R.id.invite_btn -> {
 
-            }
             R.id.copy_btn -> {
 
             }

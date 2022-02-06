@@ -14,7 +14,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:fontFamily">@font/roboto_regular</item>
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/richBlack</item>
         <item name="android:textSize">14sp</item>
         <item name="android:layout_marginTop">16dp</item>
     </style>
@@ -51,6 +51,14 @@
     </style>
     <style name="RoundModalStyle" parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@drawable/bg_round_bottom_sheet_dialog</item>
+    </style>
+
+    <!-- Edged BottomSheetDialog -->
+    <style name="EdgedBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/EdgedModalStyle</item>
+    </style>
+    <style name="EdgedModalStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/bg_edged_bottom_sheet_dialog</item>
     </style>
 
     <!-- Calendar Activity의 TabItem -->

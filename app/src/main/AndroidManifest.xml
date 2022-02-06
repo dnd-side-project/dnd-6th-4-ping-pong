@@ -50,29 +50,14 @@
             android:exported="false" />
         <activity
             android:name=".presentation.login.LoginActivity"
-
-            android:exported="false"/>
-
-        </activity>
+            android:exported="true"/>
         <activity
             android:name=".presentation.home.classes.manage.making.MakeClassActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.home.HomeActivity"
-            android:exported="true">
-        </activity>
-
-        <activity
-            android:name="com.dnd.sixth.lmsservice.presentation.home.mypage.profile.ProfileActivity"
-            android:exported="false" />
-
-        <activity
-            android:name="com.dnd.sixth.lmsservice.presentation.home.mypage.config.ConfigActivity"
-            android:exported="false" />
-
-        <activity android:name=".presentation.home.manage.student.StudentActivity"
-            android:exported="true">
-
+            android:exported="true"
+            android:theme="@style/Theme.LMSService.EdgedBottomSheetDialog">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -80,6 +65,29 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name="com.dnd.sixth.lmsservice.presentation.home.classes.config.profile.ProfileActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.dnd.sixth.lmsservice.presentation.home.classes.config.push.PushActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".presentation.home.manage.student.StudentActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".presentation.home.classes.config.ConfigActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".presentation.home.classes.config.profile.password.ChangePWActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".presentation.home.classes.manage.edit.EditClassActivity"
+                  android:exported="false" />
         <activity
             android:name=".presentation.home.mypage.profile.ProfileActivity"
             android:exported="false" />

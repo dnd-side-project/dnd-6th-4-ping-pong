@@ -3,7 +3,6 @@
     <string-array name="class_manage_tab_list">
         <item>수업관리</item>
         <item>학생관리</item>
-        <item>마이페이지</item>
     </string-array>
 
     <string-array name="push_time_list">
@@ -30,7 +29,7 @@
     </string-array>
 
     <string-array name="home_tab_list">
-        <item>나의 모든 수업</item>
+        <item>클래스</item>
         <item>캘린더</item>
     </string-array>
 

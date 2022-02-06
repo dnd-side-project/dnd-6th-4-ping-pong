@@ -1,14 +1,20 @@
 package com.dnd.sixth.lmsservice.presentation.home.classes
 
+import android.content.Intent
 import android.view.View
+import android.view.ViewGroup
+import android.widget.LinearLayout
 import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.databinding.FragmentClassBinding
+import com.dnd.sixth.lmsservice.presentation.adapter.recyclerAdapter.ClassAdapter
 import com.dnd.sixth.lmsservice.presentation.adapter.viewpager.ClassManageViewPagerAdapter
 import com.dnd.sixth.lmsservice.presentation.base.BaseFragment
-import com.dnd.sixth.lmsservice.presentation.home.classes.manage.ClassChangeDialogFragment
+import com.dnd.sixth.lmsservice.presentation.home.classes.config.ConfigActivity
+import com.dnd.sixth.lmsservice.presentation.utility.UnitConverter
 import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.math.abs
+
 
 class ClassFragment : BaseFragment<FragmentClassBinding, ClassViewModel>(),
     View.OnClickListener {
@@ -35,6 +41,9 @@ class ClassFragment : BaseFragment<FragmentClassBinding, ClassViewModel>(),
             TabLayoutMediator(tabLayout, homeViewPager) { tab, position ->
                 tab.text = resources.getStringArray(R.array.home_tab_list)[position]
             }.attach() // 탭 클릭시 Fragment 전환
+
+            setMarginTabItem() // 탭 간에 margin 설정
+            setOnClickListener(binding)
         }
     }
 
@@ -47,10 +56,24 @@ class ClassFragment : BaseFragment<FragmentClassBinding, ClassViewModel>(),
         binding.viewModel = viewModel // ViewModel 바인딩
     }
 
+    private fun setOnClickListener(binding: FragmentClassBinding){
+        with(binding) {
+            configBtn.setOnClickListener(this@ClassFragment)
+        }
+    }
+
+    private fun setMarginTabItem() {
+        for (i in 0 until binding.tabLayout.tabCount) {
+            val tab = (binding.tabLayout.getChildAt(0) as ViewGroup).getChildAt(i)
+            val p = tab.layoutParams as ViewGroup.MarginLayoutParams
+            p.setMargins(0, 0, UnitConverter.convertDPtoPX(requireContext(), 8), 0)
+            tab.requestLayout()
+        }
+    }
+
     override fun onClick(view: View?) {
         when (view?.id) {
-            // Fab 버튼 클릭시 수업 생성 액티비티로 이동
-
+            R.id.config_btn -> startActivity(Intent(requireContext(), ConfigActivity::class.java))
         }
     }
 

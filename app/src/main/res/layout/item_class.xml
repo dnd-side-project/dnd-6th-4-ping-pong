@@ -1,59 +1,204 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="88dp"
-    android:background="@drawable/bg_round_gray_rectangle"
-    android:paddingHorizontal="24dp"
-    android:layout_marginTop="8dp">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/student_profile"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:src="@drawable/ic_anonymous"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tint="#C4C4C4"/>
+    <data>
+        <variable
+            name="model"
+            type="com.dnd.sixth.lmsservice.data.entity.ClassItem" />
+    </data>
 
-    <TextView
-        android:id="@+id/student_name_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/student_type_text_view"
-        app:layout_constraintLeft_toRightOf="@+id/student_profile"
-        app:layout_constraintTop_toTopOf="@+id/student_profile"
-        android:fontFamily="@font/spoqa_medium"
-        tools:text="백지성"/>
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/white"
+        app:cardCornerRadius="3dp"
+        app:cardElevation="5dp"
+        app:cardUseCompatPadding="false">
 
-    <TextView
-        android:id="@+id/student_type_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#707070"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/student_profile"
-        app:layout_constraintLeft_toLeftOf="@+id/student_name_text_view"
-        app:layout_constraintTop_toBottomOf="@+id/student_name_text_view"
-        android:fontFamily="@font/spoqa_medium"
-        tools:text="고2/영어"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/class_btn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="12dp"
+            android:clickable="true"
+            android:background="?attr/selectableItemBackground"
+            android:paddingVertical="14dp">
 
-    <TextView
-        android:id="@+id/week_of_day_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/student_profile"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/student_profile"
-        android:fontFamily="@font/spoqa_medium"
-        tools:text="월/수요일"/>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/student_profile"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_anonymous"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginLeft="8dp"
+                setProfileUrl="@{model.profileUrl}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="#C4C4C4" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/noti_image_view"
+                android:layout_width="4dp"
+                android:layout_height="4dp"
+                android:src="@drawable/ic_new"
+                notificationVisible="@{model.hasNotification}"
+                app:layout_constraintBottom_toTopOf="@+id/student_name_text_view"
+                app:layout_constraintLeft_toRightOf="@+id/student_name_text_view"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/student_name_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:fontFamily="@font/spoqa_medium"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toTopOf="@+id/student_type_text_view"
+                app:layout_constraintLeft_toRightOf="@+id/student_profile"
+                app:layout_constraintTop_toTopOf="@+id/student_profile"
+                android:text="@{model.name}"
+                tools:text="백지성" />
+
+            <ImageView
+                android:id="@+id/more_btn"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:src="@drawable/ic_more_vertical"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/student_type_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/spoqa_medium"
+                android:textColor="#707070"
+                android:textSize="12sp"
+                grade="@{model.grade}"
+                subject="@{model.subject}"
+                app:layout_constraintBottom_toBottomOf="@+id/student_profile"
+                app:layout_constraintLeft_toLeftOf="@+id/student_name_text_view"
+                app:layout_constraintTop_toBottomOf="@+id/student_name_text_view"
+                tools:text="고2, 영어" />
+
+            <TextView
+                android:id="@+id/mon_icon"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_marginRight="4dp"
+                android:background="@drawable/bg_day_of_week"
+                android:gravity="center"
+                android:text="월"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/tue_icon"
+                app:layout_constraintRight_toRightOf="parent"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/tue_icon"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_marginRight="4dp"
+                android:background="@drawable/bg_day_of_week"
+                android:gravity="center"
+                android:text="화"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/wed_icon"
+                app:layout_constraintRight_toRightOf="parent"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/wed_icon"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_marginRight="4dp"
+                android:background="@drawable/bg_day_of_week"
+                android:gravity="center"
+                android:text="수"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/thur_icon"
+                app:layout_constraintRight_toRightOf="parent"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/thur_icon"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_marginRight="4dp"
+                android:background="@drawable/bg_day_of_week"
+                android:gravity="center"
+                android:text="목"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/fri_icon"
+                app:layout_constraintRight_toRightOf="parent"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/fri_icon"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_marginRight="4dp"
+                android:background="@drawable/bg_day_of_week"
+                android:gravity="center"
+                android:text="금"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/sat_icon"
+                app:layout_constraintRight_toRightOf="parent"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/sat_icon"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_marginRight="4dp"
+                android:background="@drawable/bg_day_of_week"
+                android:gravity="center"
+                android:text="토"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/sun_icon"
+                app:layout_constraintRight_toRightOf="parent"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/sun_icon"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:background="@drawable/bg_day_of_week"
+                android:gravity="center"
+                android:text="일"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                tools:visibility="visible" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

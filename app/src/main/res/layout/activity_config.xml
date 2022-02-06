@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.dnd.sixth.lmsservice.presentation.home.mypage.config.ConfigViewModel" />
+            type="com.dnd.sixth.lmsservice.presentation.home.classes.config.ConfigViewModel" />
     </data>
 
 
@@ -20,7 +20,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clipToPadding="false"
-            android:paddingTop="24dp">
+            android:paddingTop="24dp"
+            android:paddingBottom="12dp">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -33,7 +34,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:fontFamily="@font/spoqa_medium"
-                    android:text="알림 설정"
+                    android:text="설정"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -41,313 +42,151 @@
 
             </androidx.appcompat.widget.Toolbar>
 
-            <ScrollView
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/profile_container"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:background="#EEEEEE"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_height="152dp"
+                android:background="@color/white"
+                android:paddingHorizontal="16dp"
                 app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/profile_card_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    app:cardCornerRadius="5dp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile_image_view"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_marginTop="16dp"
+                    android:src="@drawable/ic_edit_profile"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/profile_card_view" />
+
+                <TextView
+                    android:id="@+id/nickname_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/spoqa_medium"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:layout_marginTop="16dp"
+                    android:textStyle="bold"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/profile_image_view"
+                    tools:text="최기택" />
+
+                <ImageView
+                    android:layout_width="13dp"
+                    android:layout_height="13dp"
+                    android:src="@drawable/ic_edit_pencil"
+                    app:layout_constraintLeft_toRightOf="@id/nickname_text_view"
+                    app:layout_constraintTop_toTopOf="@id/nickname_text_view"
+                    app:layout_constraintBottom_toBottomOf="@id/nickname_text_view"
+                    android:layout_marginLeft="6dp"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/option_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                app:layout_constraintTop_toBottomOf="@+id/profile_container">
+
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/option_account_btn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:paddingBottom="16dp">
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:paddingHorizontal="16dp"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/class_noti_container"
+                    <TextView
+                        android:id="@+id/option_profile_account"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:cardCornerRadius="5dp"
-                        app:cardElevation="0dp"
-                        android:layout_marginTop="16dp"
-                        app:layout_constraintTop_toTopOf="parent">
+                        android:layout_height="match_parent"
+                        android:paddingVertical="20dp"
+                        android:text="계정 설정"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
 
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:paddingHorizontal="16dp"
-                            android:paddingVertical="20dp">
-
-                            <TextView
-                                android:id="@+id/class_noti_title"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/spoqa_medium"
-                                android:text="수업 알림"
-                                android:textColor="@color/black"
-                                android:textSize="16sp"
-                                app:layout_constraintLeft_toLeftOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                            <Switch
-                                android:id="@+id/class_notification_switch"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:thumb="@drawable/bg_switch_thumb"
-                                android:track="@drawable/bg_switch_track"
-                                app:layout_constraintBottom_toBottomOf="@+id/class_noti_title"
-                                app:layout_constraintRight_toRightOf="parent"
-                                app:layout_constraintTop_toTopOf="@+id/class_noti_title" />
-
-                            <View
-                                android:id="@+id/class_noti_divider"
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:layout_marginTop="18dp"
-                                android:background="@drawable/bg_divider"
-                                app:layout_constraintTop_toBottomOf="@+id/class_noti_title" />
-
-                            <TextView
-                                android:id="@+id/class_start_noti_title"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="20dp"
-                                android:fontFamily="@font/spoqa_medium"
-                                android:text="수업 시작 알림"
-                                android:textColor="@color/black"
-                                android:textSize="16sp"
-                                app:layout_constraintLeft_toLeftOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/class_noti_divider" />
-
-                            <Switch
-                                android:id="@+id/class_start_notification_switch"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:thumb="@drawable/bg_switch_thumb"
-                                android:track="@drawable/bg_switch_track"
-                                app:layout_constraintBottom_toBottomOf="@+id/class_start_noti_title"
-                                app:layout_constraintRight_toRightOf="parent"
-                                app:layout_constraintTop_toTopOf="@+id/class_start_noti_title" />
-
-
-                            <TextView
-                                android:id="@+id/class_date_change_noti_title"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="20dp"
-                                android:fontFamily="@font/spoqa_medium"
-                                android:text="수업일 변경 요청 알림"
-                                android:textColor="@color/black"
-                                android:textSize="16sp"
-                                app:layout_constraintLeft_toLeftOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/class_start_noti_title" />
-
-                            <Switch
-                                android:id="@+id/class_date_change_notification_switch"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:thumb="@drawable/bg_switch_thumb"
-                                android:track="@drawable/bg_switch_track"
-                                app:layout_constraintBottom_toBottomOf="@+id/class_date_change_noti_title"
-                                app:layout_constraintRight_toRightOf="parent"
-                                app:layout_constraintTop_toTopOf="@+id/class_date_change_noti_title" />
-
-
-                            <TextView
-                                android:id="@+id/class_register_edit_noti_title"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="20dp"
-                                android:fontFamily="@font/spoqa_medium"
-                                android:text="수업 등록 및 수정 알림"
-                                android:textColor="@color/black"
-                                android:textSize="16sp"
-                                app:layout_constraintLeft_toLeftOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/class_date_change_noti_title" />
-
-                            <Switch
-                                android:id="@+id/class_register_edit_notification_switch"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:thumb="@drawable/bg_switch_thumb"
-                                android:track="@drawable/bg_switch_track"
-                                app:layout_constraintBottom_toBottomOf="@+id/class_register_edit_noti_title"
-                                app:layout_constraintRight_toRightOf="parent"
-                                app:layout_constraintTop_toTopOf="@+id/class_register_edit_noti_title" />
-
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-                    </androidx.cardview.widget.CardView>
-
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/account_noti_container"
+                    <View
+                        android:id="@+id/option_divider1"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        app:cardCornerRadius="5dp"
-                        app:cardElevation="0dp"
-                        app:layout_constraintTop_toBottomOf="@+id/class_noti_container">
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:paddingHorizontal="16dp"
-                            android:paddingVertical="20dp">
-
-                            <TextView
-                                android:id="@+id/account_noti_title"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/spoqa_medium"
-                                android:text="수업 알림"
-                                android:textColor="@color/black"
-                                android:textSize="16sp"
-                                app:layout_constraintLeft_toLeftOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                            <Switch
-                                android:id="@+id/account_notification_switch"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:thumb="@drawable/bg_switch_thumb"
-                                android:track="@drawable/bg_switch_track"
-                                app:layout_constraintBottom_toBottomOf="@+id/account_noti_title"
-                                app:layout_constraintRight_toRightOf="parent"
-                                app:layout_constraintTop_toTopOf="@+id/account_noti_title" />
-
-                            <View
-                                android:id="@+id/account_noti_divider"
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:layout_marginTop="18dp"
-                                android:background="@drawable/bg_divider"
-                                app:layout_constraintTop_toBottomOf="@+id/account_noti_title" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="14dp"
-                                android:text="계정 연결 및 연결 해제 확인 알림"
-                                android:textColor="#707070"
-                                android:textSize="14sp"
-                                app:layout_constraintLeft_toLeftOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/account_noti_divider" />
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-                    </androidx.cardview.widget.CardView>
-
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/feedback_noti_container"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        app:cardCornerRadius="5dp"
-                        app:cardElevation="0dp"
-                        app:layout_constraintTop_toBottomOf="@+id/account_noti_container">
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:paddingHorizontal="16dp"
-                            android:paddingVertical="20dp">
-
-                            <TextView
-                                android:id="@+id/feedback_noti_title"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/spoqa_medium"
-                                android:text="피드백 알림"
-                                android:textColor="@color/black"
-                                android:textSize="16sp"
-                                app:layout_constraintLeft_toLeftOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                            <Switch
-                                android:id="@+id/feedback_notification_switch"
-                                :checked="true"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:thumb="@drawable/bg_switch_thumb"
-                                android:track="@drawable/bg_switch_track"
-                                app:layout_constraintBottom_toBottomOf="@+id/feedback_noti_title"
-                                app:layout_constraintRight_toRightOf="parent"
-                                app:layout_constraintTop_toTopOf="@+id/feedback_noti_title"
-                                tools:checked="true" />
-
-                            <View
-                                android:id="@+id/feedback_noti_divider"
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:layout_marginTop="18dp"
-                                android:background="@drawable/bg_divider"
-                                app:layout_constraintTop_toBottomOf="@+id/feedback_noti_title" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="14dp"
-                                android:text="선생님이 남긴 피드백 확인 요청 알림"
-                                android:textColor="#707070"
-                                android:textSize="14sp"
-                                app:layout_constraintLeft_toLeftOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/feedback_noti_divider" />
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-                    </androidx.cardview.widget.CardView>
-
-
-
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/comment_noti_container"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        app:cardCornerRadius="5dp"
-                        app:cardElevation="0dp"
-                        app:layout_constraintTop_toBottomOf="@+id/feedback_noti_container">
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:paddingHorizontal="16dp"
-                            android:paddingVertical="20dp">
-
-                            <TextView
-                                android:id="@+id/comment_noti_title"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/spoqa_medium"
-                                android:text="코멘트 알림"
-                                android:textColor="@color/black"
-                                android:textSize="16sp"
-                                app:layout_constraintLeft_toLeftOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                            <Switch
-                                android:id="@+id/comment_notification_switch"
-                                :checked="true"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:thumb="@drawable/bg_switch_thumb"
-                                android:track="@drawable/bg_switch_track"
-                                app:layout_constraintBottom_toBottomOf="@+id/comment_noti_title"
-                                app:layout_constraintRight_toRightOf="parent"
-                                app:layout_constraintTop_toTopOf="@+id/comment_noti_title"
-                                tools:checked="true" />
-
-                            <View
-                                android:id="@+id/comment_noti_divider"
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:layout_marginTop="18dp"
-                                android:background="@drawable/bg_divider"
-                                app:layout_constraintTop_toBottomOf="@+id/comment_notification_switch" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="14dp"
-                                android:text="완료된 수업의 코멘트 등록 요청 알림"
-                                android:textColor="#707070"
-                                android:textSize="14sp"
-                                app:layout_constraintLeft_toLeftOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/comment_noti_divider" />
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-                    </androidx.cardview.widget.CardView>
+                        android:layout_height="1dp"
+                        android:background="#EEEEEE"
+                        app:layout_constraintTop_toBottomOf="@+id/option_profile_account" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-            </ScrollView>
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/option_homework_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:paddingHorizontal="16dp"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@+id/option_account_btn">
+
+                    <TextView
+                        android:id="@+id/option_homework_account"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingVertical="20dp"
+                        android:text="숙제 관리"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <View
+                        android:id="@+id/option_divider2"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#EEEEEE"
+                        app:layout_constraintTop_toBottomOf="@+id/option_homework_account" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/option_notification_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:paddingHorizontal="16dp"
+                    app:layout_constraintTop_toBottomOf="@+id/option_homework_btn">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:paddingVertical="20dp"
+                        android:text="알림 설정"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        app:layout_constraintLeft_toLeftOf="parent" />
+
+                    <View
+                        android:id="@+id/option_divider3"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#EEEEEE"
+                        app:layout_constraintBottom_toBottomOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
