@@ -5,7 +5,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:fontFamily">@font/roboto_regular</item>
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/richBlack</item>
         <item name="android:textSize">16sp</item>
     </style>
 
@@ -26,7 +26,7 @@
 
     <!-- Toolbar의 타이틀 텍스트 스타일-->
     <style name="ToolbarTitleStyle.Black" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
-        <item name="android:textColor">@color/black</item> <!-- Toolbar의 타이틀 텍스트 색상-->
+        <item name="android:textColor">@color/richBlack</item> <!-- Toolbar의 타이틀 텍스트 색상-->
         <item name="android:textSize">16sp</item> <!-- Toolbar의 타이틀 텍스트 사이즈-->
     </style>
 
@@ -66,5 +66,20 @@
         <item name="android:textSize">16sp</item>
         <item name="android:textStyle">bold</item>
     </style>
+
+    <!-- Calendar의 날짜 텍스트 스타일 -->
+    <style name="calendarDateTextStyle" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/color_calendar_day</item>
+        <item name="fontFamily">@font/spoqa_regular</item>
+    </style>
+
+    <!-- Calendar의 헤더 텍스트 스타일 -->
+    <style name="calendarHeaderTextStyle" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/grayAA</item>
+        <item name="fontFamily">@font/spoqa_regular</item>
+    </style>
+
 
 </resources>

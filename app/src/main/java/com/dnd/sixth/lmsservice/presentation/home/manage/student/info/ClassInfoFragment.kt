@@ -1,21 +1,11 @@
 package com.dnd.sixth.lmsservice.presentation.home.manage.student.info
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import com.dnd.sixth.lmsservice.R
-import com.dnd.sixth.lmsservice.databinding.FragmentClassBinding
 import com.dnd.sixth.lmsservice.databinding.FragmentClassInfoBinding
-import com.dnd.sixth.lmsservice.presentation.adapter.viewpager.ClassManageViewPagerAdapter
 import com.dnd.sixth.lmsservice.presentation.base.BaseFragment
-import com.dnd.sixth.lmsservice.presentation.home.classes.ClassViewModel
 import com.dnd.sixth.lmsservice.presentation.home.manage.student.StudentViewModel
-import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
-import kotlin.math.abs
 
 class ClassInfoFragment : BaseFragment<FragmentClassInfoBinding, StudentViewModel>(),
     View.OnClickListener {

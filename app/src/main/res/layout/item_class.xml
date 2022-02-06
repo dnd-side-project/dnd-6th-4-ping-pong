@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:fontFamily="@font/spoqa_medium"
-                android:textColor="@color/black"
+                android:textColor="@color/richBlack"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toTopOf="@+id/student_type_text_view"
                 app:layout_constraintLeft_toRightOf="@+id/student_profile"

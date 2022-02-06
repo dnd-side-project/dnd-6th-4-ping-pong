@@ -29,7 +29,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:context=".presentation.home.classes.manage.making.InviteDialogFragment">
+                tools:context=".presentation.home.main.classes.create.InviteDialogFragment">
 
                 <ImageView
                     android:id="@+id/fluctuated_schedule_image_view"
@@ -48,7 +48,7 @@
                     android:layout_marginTop="16dp"
                     android:gravity="center"
                     android:text="수업 일정이 변경되었어요!"
-                    android:textColor="@color/black"
+                    android:textColor="@color/richBlack"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -111,7 +111,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="공유하기"
-                    android:textColor="@color/black"
+                    android:textColor="@color/richBlack"
                     android:textSize="14sp"
                     app:layout_constraintLeft_toRightOf="@+id/btn_divider"
                     app:layout_constraintRight_toRightOf="parent" />

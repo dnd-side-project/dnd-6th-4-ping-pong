@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.dnd.sixth.lmsservice.presentation.home.classes.manage.making.MakeClassViewModel" />
+            type="com.dnd.sixth.lmsservice.presentation.home.main.classes.create.CreateClassViewModel" />
     </data>
 
 
@@ -35,7 +35,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/close_btn"
             android:layout_marginTop="10dp"
-            tools:context=".presentation.home.classes.manage.making.InviteDialogFragment">
+            tools:context=".presentation.home.main.classes.create.InviteDialogFragment">
 
             <TextView
                 android:id="@+id/invite_title_text_view"
@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="44dp"
                 android:gravity="center"
-                android:textColor="@color/black"
+                android:textColor="@color/richBlack"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -97,7 +97,7 @@
                     android:scaleType="center"
                     android:src="@drawable/ic_copy"
                     android:text="복사하기"
-                    android:textColor="@color/black"
+                    android:textColor="@color/richBlack"
                     android:textSize="12dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintRight_toRightOf="parent"

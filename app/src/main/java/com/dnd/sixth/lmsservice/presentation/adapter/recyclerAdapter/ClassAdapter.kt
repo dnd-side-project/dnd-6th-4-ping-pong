@@ -16,6 +16,7 @@ class ClassAdapter(val listener: OnRecyclerItemClickListener) :
     val testList = arrayListOf<ClassItem>(
         ClassItem("1", "백지성", "1", "고3", "영어", listOf("월", "수"), true),
         ClassItem("1", "김철수", "1", "고3", "영어", listOf("토"), false),
+        ClassItem("1", "김철수", "1", "고3", "영어", listOf("토"), false),
     )
     val dayOfWeeks = listOf<String>("월", "화", "수", "목", "금", "토", "일")
 

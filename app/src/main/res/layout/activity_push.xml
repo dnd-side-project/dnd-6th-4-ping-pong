@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.dnd.sixth.lmsservice.presentation.home.classes.config.push.PushViewModel" />
+            type="com.dnd.sixth.lmsservice.presentation.home.main.config.push.PushViewModel" />
     </data>
 
 
@@ -34,7 +34,7 @@
                     android:layout_gravity="center"
                     android:fontFamily="@font/spoqa_medium"
                     android:text="알림 설정"
-                    android:textColor="@color/black"
+                    android:textColor="@color/richBlack"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -74,7 +74,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/spoqa_medium"
                                 android:text="수업 시작 알림"
-                                android:textColor="@color/black"
+                                android:textColor="@color/richBlack"
                                 android:textSize="16sp"
                                 app:layout_constraintLeft_toLeftOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
@@ -121,7 +121,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/spoqa_medium"
                                 android:text="피드백 작성"
-                                android:textColor="@color/black"
+                                android:textColor="@color/richBlack"
                                 android:textSize="16sp"
                                 app:layout_constraintLeft_toLeftOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
@@ -181,7 +181,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/spoqa_medium"
                                 android:text="새 코멘트"
-                                android:textColor="@color/black"
+                                android:textColor="@color/richBlack"
                                 android:textSize="16sp"
                                 app:layout_constraintLeft_toLeftOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />

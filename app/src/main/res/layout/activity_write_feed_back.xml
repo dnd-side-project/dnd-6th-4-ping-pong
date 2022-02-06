@@ -34,7 +34,7 @@
                 android:layout_gravity="left"
                 android:layout_marginEnd="16dp"
                 android:clickable="true"
-                android:backgroundTint="@color/black"
+                android:backgroundTint="@color/richBlack"
                 android:src="@drawable/ic_arrow_back_btn" />
             <TextView
 
@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:text="피드백 남기기"
                 android:textSize="16sp"
-                android:textColor="@color/black"
+                android:textColor="@color/richBlack"
                 android:layout_gravity="center"/>
             <TextView
 
@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:text="저장"
                 android:textSize="16sp"
-                android:textColor="@color/black"
+                android:textColor="@color/richBlack"
                 android:layout_gravity="right"/>
 
 
@@ -98,7 +98,7 @@
             app:layout_constraintTop_toBottomOf="@id/feedback_chapter_input"
             android:layout_marginTop="34.5dp"
             android:textSize="14sp"
-            android:textColor="@color/black"
+            android:textColor="@color/richBlack"
             android:layout_marginLeft="16dp"
             />
         <TextView
@@ -132,7 +132,7 @@
             app:layout_constraintTop_toBottomOf="@id/input_feedback_content"
             android:layout_marginTop="32dp"
             android:textSize="14sp"
-            android:textColor="@color/black"
+            android:textColor="@color/richBlack"
             android:layout_marginLeft="16dp"/>
 
         <EditText
@@ -157,7 +157,7 @@
             app:layout_constraintTop_toBottomOf="@id/feedback_today_comment_input"
             android:layout_marginTop="32dp"
             android:textSize="14sp"
-            android:textColor="@color/black"
+            android:textColor="@color/richBlack"
             android:layout_marginLeft="16dp"/>
 
         <CheckBox

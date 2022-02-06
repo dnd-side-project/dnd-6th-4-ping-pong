@@ -8,7 +8,8 @@
     <string name="class_date_format">%4d년&#160;%d월&#160;%d일&#160;(%s)</string>
     <string name="class_time_format">%2s&#160;%02d&#160;:&#160;%02d</string>
     <string name="class_date_time_format">%4d년&#160;%d월&#160;%d일&#160;(%s)&#160;&#160;%2s&#160;%02d&#160;:&#160;%02d</string>
-    <string name="class_date_time_dot_format">%4d. %2d. %2d. %s&#160;&#160;&#160;%s&#160;%2d&#160;:&#160;%2d</string>
+    <string name="class_date_time_dot_format">%4d. %02d. %02d. %s&#160;&#160;&#160;%s&#160;%02d&#160;:&#160;%02d</string>
+    <string name="calendar_date_format">%4d.%02d.%02d. %s</string> <!-- 2022.01.05. 수 -->
     <string name="class_noti_format">%d일 전</string>
     <string name="no_class_title">오늘은 수업이 없어요</string>
     <string name="class_teacher_title_format">%d일 뒤, %s 학생과\n%d회차 수업이 있어요</string>
@@ -51,5 +52,6 @@
     <string name="student_comment_desc">학생이 수업 코멘트 작성시 알림을 보냅니다</string>
 
     <string name="create_class_dialog_title">클래스가 생성되었어요 👏</string>
+    <string name="pick_push_time">알림 시간을 선택해주세요</string>
 
 </resources>

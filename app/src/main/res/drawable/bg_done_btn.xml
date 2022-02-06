@@ -11,4 +11,10 @@
             <solid android:color="@color/colorPrimary"/>
         </shape>
     </item>
+
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <solid android:color="#1B297E"/>
+        </shape>
+    </item>
 </selector>
