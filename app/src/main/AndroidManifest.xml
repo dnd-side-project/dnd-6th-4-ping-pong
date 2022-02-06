@@ -35,8 +35,7 @@
             android:exported="false" />
         <activity
             android:name=".presentation.login.LoginActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".presentation.home.classes.manage.making.MakeClassActivity"
             android:exported="false" />
@@ -59,15 +58,21 @@
             android:name="com.dnd.sixth.lmsservice.presentation.home.classes.config.push.PushActivity"
             android:exported="false" />
 
-        <activity android:name=".presentation.home.manage.student.StudentActivity"
-            android:exported="false"/>
+        <activity
+            android:name=".presentation.home.manage.student.StudentActivity"
+            android:exported="false" />
 
-        <activity android:name=".presentation.home.classes.config.ConfigActivity"
-            android:exported="false"/>
+        <activity
+            android:name=".presentation.home.classes.config.ConfigActivity"
+            android:exported="false" />
 
-        <activity android:name=".presentation.home.classes.config.profile.password.ChangePWActivity"
+        <activity
+            android:name=".presentation.home.classes.config.profile.password.ChangePWActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".presentation.home.classes.manage.edit.EditClassActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

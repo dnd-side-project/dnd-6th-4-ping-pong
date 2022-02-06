@@ -17,6 +17,7 @@ import com.dnd.sixth.lmsservice.presentation.home.classes.config.push.PushViewMo
 import com.dnd.sixth.lmsservice.presentation.home.manage.student.StudentViewModel
 import com.dnd.sixth.lmsservice.presentation.home.classes.config.profile.ProfileViewModel
 import com.dnd.sixth.lmsservice.presentation.home.classes.config.profile.password.PasswordViewModel
+import com.dnd.sixth.lmsservice.presentation.home.classes.manage.edit.EditClassViewModel
 
 import com.dnd.sixth.lmsservice.presentation.lesson.progress.ClassProgressViewModel
 import com.dnd.sixth.lmsservice.presentation.login.LoginViewModel
@@ -84,5 +85,8 @@ val viewModelModules = module {
     }
     viewModel {
         PasswordViewModel()
+    }
+    viewModel {
+        EditClassViewModel()
     }
 }
