@@ -1,5 +1,6 @@
 package com.dnd.sixth.lmsservice.di.modules
 
+import com.dnd.sixth.lmsservice.presentation.comment.CommentViewModel
 import com.dnd.sixth.lmsservice.presentation.feedback.StartFeedBackViewModel
 import com.dnd.sixth.lmsservice.presentation.feedback.WriteFeedBackViewModel
 import com.dnd.sixth.lmsservice.presentation.home.HomeViewModel
@@ -77,6 +78,10 @@ val viewModelModules = module {
     viewModel{
         InviteLinkViewModel()
     }
+
+    viewModel{
+        CommentViewModel()
+
     viewModel {
         StudentViewModel()
     }
