@@ -77,10 +77,9 @@ val viewModelModules = module {
     viewModel{
         InviteLinkViewModel()
     }
-
-    viewModel{
+    viewModel {
         CommentViewModel()
-
+    }
     viewModel {
         StudentViewModel()
     }

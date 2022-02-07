@@ -1,22 +1,27 @@
 package com.dnd.sixth.lmsservice.presentation.home.main.calendar
 
 import android.content.Intent
-import android.os.Build
 import android.view.View
+import android.view.ViewTreeObserver
+import android.view.ViewTreeObserver.OnGlobalLayoutListener
 import android.widget.*
 import androidx.activity.OnBackPressedCallback
+import com.dnd.sixth.lmsservice.BuildConfig
 import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.databinding.FragmentHomeCalendarBinding
 import com.dnd.sixth.lmsservice.presentation.base.BaseFragment
+import com.dnd.sixth.lmsservice.presentation.home.main.ClassHomeViewModel
 import com.dnd.sixth.lmsservice.presentation.home.main.calendar.add.ScheduleAddActivity
 import com.dnd.sixth.lmsservice.presentation.home.main.calendar.custom.decorator.MySelectorDecorator
 import com.dnd.sixth.lmsservice.presentation.home.main.calendar.custom.decorator.ScheduleDecorator
 import com.dnd.sixth.lmsservice.presentation.home.main.calendar.custom.decorator.TodayDecorator
 import com.dnd.sixth.lmsservice.presentation.utility.DateConverter
+import com.dnd.sixth.lmsservice.presentation.utility.UnitConverter
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.CalendarMode
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import timber.log.Timber
 import java.util.*
 
 class HomeCalendarFragment : BaseFragment<FragmentHomeCalendarBinding, HomeCalendarViewModel>(),
@@ -28,6 +33,9 @@ class HomeCalendarFragment : BaseFragment<FragmentHomeCalendarBinding, HomeCalen
     override val viewModel: HomeCalendarViewModel by viewModel()
     private var categoryDialog: BottomSheetDialog? = null
 
+    // 최상위 ViewTreeObserver (높이를 구하기 위한 변수)
+    var viewTreeObserver: ViewTreeObserver? = null
+
     //액티비티 초기화 메서드
     override fun initActivity() {
         with(binding) {
@@ -38,8 +46,11 @@ class HomeCalendarFragment : BaseFragment<FragmentHomeCalendarBinding, HomeCalen
             makeStudentCategoryDialog() // 학생 선택 다이얼로그 생성
             setClickListener(this)
             setCalendar() // 캘린더 관련 설정
+
         }
 
+
+        // 뒤로가기 버튼 클릭시 콜백 (HomeActivity 와 연결되어 있음)
         requireActivity().onBackPressedDispatcher.addCallback(
             viewLifecycleOwner,
             object : OnBackPressedCallback(true) {
@@ -111,6 +122,8 @@ class HomeCalendarFragment : BaseFragment<FragmentHomeCalendarBinding, HomeCalen
                 state().edit().setCalendarDisplayMode(CalendarMode.WEEKS).commit()
                 // 확장 여부 false 로 변경
                 HomeCalendarViewModel.isExpanded.value = false
+                // 날짜 클릭시 View 높이 재측정
+                setClassHomeScrollViewHeight()
             }
 
             // 캘린더의 Month가 달라지면 실행되는 리스너
@@ -154,6 +167,45 @@ class HomeCalendarFragment : BaseFragment<FragmentHomeCalendarBinding, HomeCalen
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        setClassHomeScrollViewHeight()
+    }
+
+    // 해당 Fragment의 높이를 구하여 ClassHomeFragment의 ScrollView 높이로 지정
+    private fun setClassHomeScrollViewHeight() {
+        viewTreeObserver = binding.mainContainer.viewTreeObserver
+        viewTreeObserver?.addOnGlobalLayoutListener(object : OnGlobalLayoutListener {
+            override fun onGlobalLayout() {
+
+                // ClassHomeFragment의 ViewPager ScrollView에 지정할 높이 구하기
+                val sumHeight =
+                    // Month(월) Spinner 높이
+                    binding.monthSpinner.measuredHeight +
+                            // 캘린더 뷰 높이
+                            binding.calendarView.measuredHeight +
+                            // 뷰 사이의 마진값
+                            UnitConverter.convertDPtoPX(
+                                requireContext(),
+                                28 //(28은 화면이 잘려서 넣은 추가 높이값)
+                            ) +
+                            // 스크롤뷰 높이 (후에 리사이클러뷰가 추가되면 ViewHolder 높이에 따라 개수만큼 곱해줘야할 수도 있음)
+                            binding.noScheduleScrollView.measuredHeight
+
+                ClassHomeViewModel.screenHeight.value = sumHeight
+
+                // viewTreeObserver 제거
+                try {
+                    viewTreeObserver?.removeOnGlobalLayoutListener(this)
+                } catch (e: IllegalStateException) {
+                    if (BuildConfig.DEBUG) {
+                        Timber.d("ViewTree를 한 번만 실행시키기 위해 제거했기 때문에 발생하는 예외")
+                    }
+                }
+            }
+
+        })
+    }
 
     override fun onClick(v: View?) {
         when (v?.id) {
