@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="invite_domain_url_prefix">https://lmsservice.page.link</string>
+</resources>

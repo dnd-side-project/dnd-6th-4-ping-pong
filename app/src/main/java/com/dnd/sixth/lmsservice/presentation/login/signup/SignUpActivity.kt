@@ -1,6 +1,7 @@
 package com.dnd.sixth.lmsservice.presentation.login.signup
 
 import android.graphics.Color
+import android.net.Uri
 import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -13,6 +14,8 @@ import android.widget.Toast
 import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.databinding.ActivitySignUpBinding
 import com.dnd.sixth.lmsservice.presentation.base.BaseActivity
+import com.google.firebase.dynamiclinks.ktx.dynamicLinks
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -51,6 +54,7 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding,SignUpViewModel>() {
             //유효성 검사
             edittextListen(signupEmailEdittext, "email")
             edittextListen(signupPasswordEdittext , "password")
+
 
 
 
@@ -229,6 +233,8 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding,SignUpViewModel>() {
         }
 
     }
+
+
 
 
 }
