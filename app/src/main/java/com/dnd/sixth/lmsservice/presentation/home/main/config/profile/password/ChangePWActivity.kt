@@ -2,6 +2,7 @@ package com.dnd.sixth.lmsservice.presentation.home.main.config.profile.password
 
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import com.dnd.sixth.lmsservice.R
@@ -116,6 +117,10 @@ class ChangePWActivity : BaseActivity<ActivityChangePwBinding, PasswordViewModel
             "^(?=.*[A-Za-z])(?=.*[$@$!%*#?&.])[A-Za-z$@$!%*#?&.]{8,20}$" // 영문, 특수문자
         val pwPattern4 =
             "^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!%*#?&.])[A-Za-z[0-9]$@$!%*#?&.]{8,20}$" // 영문, 숫자, 특수문자
+
+        val pattern = Pattern.compile(pwPattern1)
+        val matcher = pattern.matcher(pwPattern1)
+        Log.d("Match", matcher.find().toString())
 
         return (Pattern.matches(pwPattern1, password) ||
                 Pattern.matches(pwPattern2, password) ||

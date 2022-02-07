@@ -3,11 +3,16 @@ package com.dnd.sixth.lmsservice.presentation.home.main
 import android.content.Intent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.view.updateLayoutParams
 import androidx.viewpager2.widget.ViewPager2
 import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.databinding.FragmentClassHomeBinding
 import com.dnd.sixth.lmsservice.presentation.adapter.viewpager.ClassManageViewPagerAdapter
 import com.dnd.sixth.lmsservice.presentation.base.BaseFragment
+import com.dnd.sixth.lmsservice.presentation.home.main.calendar.HomeCalendarViewModel
+import com.dnd.sixth.lmsservice.presentation.home.main.classes.ClassFragment
+import com.dnd.sixth.lmsservice.presentation.home.main.classes.ClassViewModel
 import com.dnd.sixth.lmsservice.presentation.home.main.config.ConfigActivity
 import com.dnd.sixth.lmsservice.presentation.utility.UnitConverter
 import com.google.android.material.tabs.TabLayoutMediator
@@ -44,6 +49,13 @@ class ClassHomeFragment : BaseFragment<FragmentClassHomeBinding, ClassHomeViewMo
             setMarginTabItem() // 탭 간에 margin 설정
             setOnClickListener(binding)
 
+
+            /* 클래스(수업) 및 캘린더 Fragment의 높이에 따라 ViewPager 스크롤을 위한 ScrollView의 높이를 업데이트해준다.  */
+            ClassHomeViewModel.screenHeight.observe(this@ClassHomeFragment) { viewPagerHeight ->
+                viewPagerScrollView.updateLayoutParams {
+                    height = viewPagerHeight
+                }
+            }
 
         }
     }

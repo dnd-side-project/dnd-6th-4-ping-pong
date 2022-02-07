@@ -10,14 +10,9 @@ import com.dnd.sixth.lmsservice.databinding.ItemClassBinding
 import com.dnd.sixth.lmsservice.presentation.extensions.visibleViewListIfContain
 import com.dnd.sixth.lmsservice.presentation.listner.OnRecyclerItemClickListener
 
-class ClassAdapter(val listener: OnRecyclerItemClickListener) :
+class ClassAdapter(val itemList: ArrayList<ClassItem>, val listener: OnRecyclerItemClickListener) :
     RecyclerView.Adapter<ClassAdapter.ClassViewHolder>() {
 
-    val testList = arrayListOf<ClassItem>(
-        ClassItem("1", "백지성", "1", "고3", "영어", listOf("월", "수"), true),
-        ClassItem("1", "김철수", "1", "고3", "영어", listOf("토"), false),
-        ClassItem("1", "김철수", "1", "고3", "영어", listOf("토"), false),
-    )
     val dayOfWeeks = listOf<String>("월", "화", "수", "목", "금", "토", "일")
 
     inner class ClassViewHolder(val binding: ItemClassBinding) :
@@ -25,7 +20,7 @@ class ClassAdapter(val listener: OnRecyclerItemClickListener) :
 
         fun bind() {
             val context = binding.root.context
-            val classModel = testList[adapterPosition]
+            val classModel = itemList[adapterPosition]
             val classDayOfWeeks = classModel.classDays
 
             with(binding) {
@@ -57,6 +52,11 @@ class ClassAdapter(val listener: OnRecyclerItemClickListener) :
         holder.bind()
     }
 
-    override fun getItemCount(): Int = testList.size
+    override fun getItemCount(): Int = itemList.size
 
+    fun updateItem(newItemList : List<ClassItem>) {
+        itemList.clear()
+        itemList.addAll(newItemList)
+        notifyDataSetChanged()
+    }
 }
