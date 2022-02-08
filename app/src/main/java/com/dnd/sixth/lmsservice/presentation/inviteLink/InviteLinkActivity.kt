@@ -37,10 +37,15 @@ class InviteLinkActivity : BaseActivity<ActivityInviteLinkBinding, InviteLinkVie
                     deepLink = pendingDynamicLinkData.link
                 }
 
+                // 쿼리로 초대한 선생님의 uid가 존재한다면
                 if (deepLink != null &&
-                    deepLink.getBooleanQueryParameter("id", false)
+                    deepLink.getBooleanQueryParameter("uid", false)
                 ) {
-                    val referrerUserId = deepLink.getQueryParameter("id")
+                    /*
+                    * 수업 리스트에 초대하는 로직
+                    * */
+
+                    val referrerUserId = deepLink.getQueryParameter("uid")
                     Toast.makeText(this, "$referrerUserId", Toast.LENGTH_SHORT).show()
                 }
             }

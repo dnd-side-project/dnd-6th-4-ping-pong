@@ -9,14 +9,13 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dnd.sixth.lmsservice.BuildConfig
 import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.databinding.ActivityClassProgressBinding
 import com.dnd.sixth.lmsservice.presentation.adapter.recyclerAdapter.TimeLineAdapter
 import com.dnd.sixth.lmsservice.presentation.base.BaseActivity
 import com.dnd.sixth.lmsservice.presentation.feedback.StartFeedBackActivity
 import com.dnd.sixth.lmsservice.presentation.feedback.WriteFeedBackActivity
-import com.google.firebase.dynamiclinks.DynamicLink
+import com.google.firebase.dynamiclinks.DynamicLink.AndroidParameters
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -29,7 +28,6 @@ class ClassProgressActivity : BaseActivity<ActivityClassProgressBinding, ClassPr
     override val viewModel: ClassProgressViewModel by viewModel()
 
     val REQUEST_CODE = 100
-
 
     //액티비티 초기화 메서드
     override fun initActivity() {
@@ -78,26 +76,24 @@ class ClassProgressActivity : BaseActivity<ActivityClassProgressBinding, ClassPr
 
     private fun invite() {
         val userId = "kim1234" // Query로 사용할 유저 아이디 (Uid로 변경 가능성)
-        val invitationLink = "https://lmsservice.page.link/invite" // 딥 링크 URL
-        val longLink = "https://lmsservice.page.link/?link=https://pingpong.class.com&apn=com.dnd.sixth.lmsservice&id=$userId"
 
-        FirebaseDynamicLinks.getInstance().createDynamicLink()
-            .setLink(Uri.parse(invitationLink))
-            .setLongLink(Uri.parse(longLink))
-            .setDomainUriPrefix("pingpong.class.com")
-            .setAndroidParameters(
-                DynamicLink.AndroidParameters.Builder(packageName)
-                    .setMinimumVersion(1)
-                    .build()
-            ).buildShortDynamicLink().addOnSuccessListener { shortDynamicLink ->
-                showToast(shortDynamicLink.shortLink.toString())
-                shortDynamicLink.shortLink?.let { sendInviteLink(it) }
-            }.addOnFailureListener {
-                if (BuildConfig.DEBUG) {
-                    it.printStackTrace()
-                }
-                showToast("초대하기 기능에 실패했습니다.")
-            }
+        // (Manifest에 설정한 scheme, host, path와 동일해야 함.)
+        val invitationLink = "https://pingpongservice.page.link/invite?uid=$userId" // 생성할 다이나믹 링크
+
+        val dynamicLink =
+            FirebaseDynamicLinks.getInstance().createDynamicLink()
+                .setLink(Uri.parse(invitationLink))
+                .setDomainUriPrefix("https://pingpongservice.page.link") // 파이어베이스 다이나믹 링크란에 설정한 Prefix 입력
+                .setAndroidParameters(
+                    AndroidParameters.Builder().build()
+                )
+                .buildShortDynamicLink()
+
+        dynamicLink.addOnSuccessListener { task ->
+            val inviteLink = task.shortLink!!
+            sendInviteLink(inviteLink)
+        }
+
     }
 
 
@@ -115,7 +111,7 @@ class ClassProgressActivity : BaseActivity<ActivityClassProgressBinding, ClassPr
 
         try {
             startActivity(inviteIntent) // 수업 초대를 위해 카카오톡 실행
-        }catch (e: ActivityNotFoundException) {
+        } catch (e: ActivityNotFoundException) {
             // 카카오톡이 설치되어 있지 않은 경우 예외 발생
             showToast("카카오톡이 설치되어 있지 않습니다.")
         }
