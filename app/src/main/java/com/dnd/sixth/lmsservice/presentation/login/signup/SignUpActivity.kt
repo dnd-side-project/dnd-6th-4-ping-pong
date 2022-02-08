@@ -37,6 +37,8 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding,SignUpViewModel>() {
 
     var pageNumber = 1
 
+    //회원가입 유형 -> 추후 정리 필요
+    var checkedType : String? = null
 
     override fun initActivity() {
         with(binding){
@@ -50,6 +52,7 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding,SignUpViewModel>() {
 
             initNextButton()
             initBackButton()
+            initTypeCheckButton()
 
             //유효성 검사
             edittextListen(signupEmailEdittext, "email")
@@ -64,6 +67,21 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding,SignUpViewModel>() {
 
         }
     }
+    //타입 선택 버튼 초기화
+    fun initTypeCheckButton(){
+        with(binding){
+            signupStudentCheckbox.setOnClickListener {
+                checkedType = "Student"
+                signupStudentCheckbox.setImageResource(R.drawable.ic_checked_student)
+                signupTeacherCheckbox.setImageResource(R.drawable.ic_unchecked_teacher)
+            }
+            signupTeacherCheckbox.setOnClickListener {
+                checkedType = "Teacher"
+                signupStudentCheckbox.setImageResource(R.drawable.ic_unchecked_student)
+                signupTeacherCheckbox.setImageResource(R.drawable.ic_checked_teacher)
+            }
+        }
+    }
 
     //다음 버튼 초기화
     fun initNextButton(){
@@ -73,8 +91,7 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding,SignUpViewModel>() {
                 when(pageNumber){
                     //현재 회원가입 유형 체크일 때
                     1 ->{
-                        if(signupStudentCheckbox.isChecked==false&&signupTeacherCheckbox.isChecked==false||
-                            signupStudentCheckbox.isChecked==true&&signupTeacherCheckbox.isChecked==true){
+                        if(checkedType == null){
                             Toast.makeText(applicationContext, "가입유형을 한가지 체크해주세요!",Toast.LENGTH_LONG).show()
                             return@setOnClickListener
                         }else{
@@ -205,7 +222,7 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding,SignUpViewModel>() {
                 emailPass = true
                 true
             }else{
-                signupEmailEdittext.setTextColor(Color.RED)
+                //signupEmailEdittext.setTextColor(Color.RED) 붉은 색 처리 디자인 변경으로 주석처리
                 emailPass = false
                 false
             }
@@ -224,8 +241,8 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding,SignUpViewModel>() {
                 passwordPass = true
                 true
             }else{
-                signupPasswordEdittext.setTextColor(Color.RED)
-                signupPasswordTextContainer.setBackgroundDrawable(resources.getDrawable(R.drawable.bg_wrong_edittext))
+                //signupPasswordEdittext.setTextColor(Color.RED)
+                //signupPasswordTextContainer.setBackgroundDrawable(resources.getDrawable(R.drawable.bg_wrong_edittext))
                 descriptionWrongPassword.visibility=VISIBLE
                 passwordPass = false
                 false

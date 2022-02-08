@@ -13,12 +13,8 @@
         android:theme="@style/Theme.LMSService">
         <activity
             android:name=".presentation.homework.HomeworkManageActivity"
-            android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="false" >
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".presentation.home.main.calendar.add.push.PushTimePickerActivity"
@@ -66,7 +62,13 @@
         </activity>
         <activity
             android:name=".presentation.login.LoginActivity"
-            android:exported="true" />
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".presentation.home.main.classes.create.ClassCreateActivity"
             android:exported="false" />

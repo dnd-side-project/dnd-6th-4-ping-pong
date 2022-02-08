@@ -34,7 +34,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
                 startActivity(intent)
             }
 
-            buttonInit()
 
 
             //getAppKeyHash()
@@ -48,19 +47,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
 
     }
 
-    // 로그인 타입 버튼 설정
-    private fun buttonInit(){
-        with(binding){
-            loginStudentBtn.setOnClickListener {
-                loginStudentBtn.setBackgroundColor(resources.getColor(R.color.signUpBtn))
-                loginTeacherBtn.setBackgroundColor(resources.getColor(R.color.white))
-            }
-            loginTeacherBtn.setOnClickListener {
-                loginStudentBtn.setBackgroundColor(resources.getColor(R.color.white))
-                loginTeacherBtn.setBackgroundColor(resources.getColor(R.color.signUpBtn))
-
-            }
-        }
 
     }
 
@@ -82,5 +68,3 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
 //            }
 //        }
 
-
-}
