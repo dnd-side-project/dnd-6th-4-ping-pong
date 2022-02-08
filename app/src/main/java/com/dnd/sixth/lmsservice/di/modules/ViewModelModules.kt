@@ -21,6 +21,7 @@ import com.dnd.sixth.lmsservice.presentation.home.main.config.profile.password.P
 import com.dnd.sixth.lmsservice.presentation.home.main.config.push.PushViewModel
 import com.dnd.sixth.lmsservice.presentation.home.manage.ManageViewModel
 import com.dnd.sixth.lmsservice.presentation.home.manage.student.StudentViewModel
+import com.dnd.sixth.lmsservice.presentation.homework.HomeworkManageViewModel
 import com.dnd.sixth.lmsservice.presentation.inviteLink.InviteLinkViewModel
 import com.dnd.sixth.lmsservice.presentation.lesson.progress.ClassProgressViewModel
 import com.dnd.sixth.lmsservice.presentation.login.LoginViewModel
@@ -103,5 +104,9 @@ val viewModelModules = module {
     }
     viewModel {
         TeacherScheduleEditViewModel()
+
+    }
+    viewModel{
+        HomeworkManageViewModel()
     }
 }

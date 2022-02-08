@@ -12,6 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LMSService">
         <activity
+            android:name=".presentation.homework.HomeworkManageActivity"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".presentation.home.main.calendar.add.push.PushTimePickerActivity"
             android:exported="false" />
         <activity
@@ -37,13 +46,8 @@
         </activity>
         <activity
             android:name=".presentation.lesson.progress.ClassProgressActivity"
-            android:exported="true">
+            android:exported="false">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".presentation.feedback.WriteFeedBackActivity"
@@ -71,6 +75,8 @@
             android:exported="true"
             android:theme="@style/Theme.LMSService.EdgedBottomSheetDialog">
 
+
+
         </activity>
         <activity
             android:name=".presentation.home.main.config.profile.ProfileActivity"
@@ -92,13 +98,13 @@
             android:name=".presentation.home.main.classes.edit.ClassEditActivity"
             android:exported="false" />
         <activity
-            android:name="com.dnd.sixth.lmsservice.presentation.home.main.calendar.detail.teacher.edit.TeacherScheduleEditActivity"
+            android:name=".presentation.home.main.calendar.detail.teacher.edit.TeacherScheduleEditActivity"
             android:exported="false" />
         <activity
-            android:name="com.dnd.sixth.lmsservice.presentation.home.main.calendar.detail.teacher.response.EditResponseActivity"
+            android:name=".presentation.home.main.calendar.detail.teacher.response.EditResponseActivity"
             android:exported="false" />
         <activity
-            android:name="com.dnd.sixth.lmsservice.presentation.home.main.calendar.detail.student.edit.StudentScheduleEditActivity"
+            android:name=".presentation.home.main.calendar.detail.student.edit.StudentScheduleEditActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.home.main.calendar.detail.student.request.EditRequestActivity"

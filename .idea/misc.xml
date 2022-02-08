@@ -134,6 +134,7 @@
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/datepicker/src/main/res/layout/ios_clone.xml" value="0.36770833333333336" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/datepicker/src/main/res/layout/native_picker.xml" value="0.36770833333333336" />
         <entry key="app/src/main/res/drawable-v24/bg_wrong_edittext.xml" value="0.19537037037037036" />
+        <entry key="app/src/main/res/drawable-v24/selector_checkbox_comment.xml" value="0.26851851851851855" />
         <entry key="app/src/main/res/drawable/bg_checkbox_outline_blank.xml" value="0.19537037037037036" />
         <entry key="app/src/main/res/drawable/bg_checked_box.xml" value="0.19537037037037036" />
         <entry key="app/src/main/res/drawable/bg_make_class_edit_text.xml" value="0.19537037037037036" />
@@ -142,12 +143,25 @@
         <entry key="app/src/main/res/drawable/bg_switch_thumb.xml" value="0.19537037037037036" />
         <entry key="app/src/main/res/drawable/bg_unchecked_box.xml" value="0.29739583333333336" />
         <entry key="app/src/main/res/drawable/btn_category_check_box.xml" value="0.19537037037037036" />
+        <entry key="app/src/main/res/drawable/btn_make_class_day.xml" value="0.26851851851851855" />
+        <entry key="app/src/main/res/drawable/ic_complete.xml" value="0.25" />
+        <entry key="app/src/main/res/drawable/ic_frame.xml" value="0.2657407407407407" />
+        <entry key="app/src/main/res/drawable/ic_frame__1_.xml" value="0.28425925925925927" />
+        <entry key="app/src/main/res/drawable/ic_pingpong_comment_unchecked_checkbox.xml" value="0.2657407407407407" />
         <entry key="app/src/main/res/drawable/ic_unchecked_box.xml" value="0.19537037037037036" />
         <entry key="app/src/main/res/drawable/selector_checkbox_signup.xml" value="0.19537037037037036" />
         <entry key="app/src/main/res/layout/activity_class_progress.xml" value="0.13323201621073963" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/activity_comment.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_homework_manage.xml" value="0.1716485507246377" />
+        <entry key="app/src/main/res/layout/activity_invite_link.xml" value="0.45" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_push_time_picker.xml" value="0.1621376811594203" />
+        <entry key="app/src/main/res/layout/activity_schedule_add.xml" value="0.3988382262820337" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.3072289156626506" />
-        <entry key="app/src/main/res/layout/activity_start_feed_back.xml" value="0.13677811550151975" />
+        <entry key="app/src/main/res/layout/activity_start_feed_back.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/activity_student.xml" value="0.4884876867610275" />
+        <entry key="app/src/main/res/layout/activity_student_schedule_edit.xml" value="1.7125990952866676" />
+        <entry key="app/src/main/res/layout/fragment_manage.xml" value="0.1621376811594203" />
       </map>
     </option>
   </component>
