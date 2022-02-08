@@ -59,7 +59,7 @@
 
 
         <LinearLayout
-            tools:visibility="visible"
+
             android:id="@+id/signup_checkbox_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -81,70 +81,40 @@
                 android:textColor="@color/richBlack" />
 
             <LinearLayout
+                android:layout_gravity="center"
                 android:id="@+id/signup_teacher_container"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="12dp"
-                android:background="@drawable/bg_make_class_edit_text"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <CheckBox
+
+                <ImageView
+                    android:layout_marginRight="16dp"
                     android:id="@+id/signup_teacher_checkbox"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginLeft="19.35dp"
-                    android:button="@null"
-                    android:background="@drawable/selector_checkbox_signup"/>
-
-                <TextView
-                    android:id="@+id/signup_teacher_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:text="과외 선생님으로 가입"
-                    android:textColor="@color/richBlack"
-                    android:textSize="14sp" />
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:id="@+id/signup_student_container"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/bg_make_class_edit_text"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <CheckBox
+                    android:src="@drawable/ic_unchecked_teacher"
+                    />
+                <ImageView
                     android:id="@+id/signup_student_checkbox"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginLeft="19.35dp"
-                    android:button="@null"
-
-                    android:background="@drawable/selector_checkbox_signup"/>
-
-                <TextView
-                    android:id="@+id/signup_student_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:text="학생으로 가입"
-                    android:textColor="@color/richBlack"
-                    android:textSize="14sp" />
+                    android:src="@drawable/ic_unchecked_teacher"
+                    />
+
 
             </LinearLayout>
+
 
 
         </LinearLayout>
 
 
         <LinearLayout
+
             android:id="@+id/signup_email_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -192,6 +162,8 @@
         </LinearLayout>
 
         <LinearLayout
+
+            tools:visibility="visible"
             android:visibility="gone"
             android:id="@+id/signup_password_container"
             android:layout_width="match_parent"
@@ -209,47 +181,38 @@
                 android:text="비밀번호 입력해주세요"
                 android:textColor="@color/richBlack" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/signup_password_text_container"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="8dp"
-                android:background="@drawable/bg_make_class_edit_text"
+                app:boxBackgroundColor="@android:color/transparent"
+                android:background="@android:color/transparent"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                app:passwordToggleEnabled="true">
 
                 <EditText
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:background="@drawable/bg_round_white_line_btn"
                     android:id="@+id/signup_password_edittext"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="16dp"
-                    android:background="@null"
-                    android:hint="영문+숫자 조합 8자리 이상 입력해주세요."
-                    android:textColor="@color/richBlack"
-                    android:textSize="14sp" />
-                <ImageView
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    android:layout_width="22dp"
-                    android:layout_height="18.7dp"
-                    android:src="@drawable/ic_baseline_visibility_off_24"
-                    android:layout_marginRight="14.3dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:hint="비밀번호를 입력해주세요"
+                    android:textColorHint="@color/gray85"
+                    android:textSize="14sp"
+                    android:inputType="textPassword"
                     />
+            </com.google.android.material.textfield.TextInputLayout>
 
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
             <TextView
+
                 android:id="@+id/description_wrong_password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="10sp"
-                android:text="8~16자 영문 대소문자, 숫자, 특수문자를 사용하세요."
-                android:textColor="#FF0000"
+                android:text="영문, 숫자, 특수문자 중 2가지 이상을 조합해 최소 8자리를 입력해주세"
+                android:textColor="@color/firstMainColor"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:visibility="invisible"/>
