@@ -20,7 +20,6 @@ class InviteLinkActivity : BaseActivity<ActivityInviteLinkBinding, InviteLinkVie
     override fun initActivity() {
         with(binding) {
 
-
             // 초대 코드 링크를 통해 들어온 것인지 확인
             checkInviteLink()
         }

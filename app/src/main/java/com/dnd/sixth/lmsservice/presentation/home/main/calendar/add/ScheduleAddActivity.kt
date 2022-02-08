@@ -2,7 +2,6 @@ package com.dnd.sixth.lmsservice.presentation.home.main.calendar.add
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.MenuItem
@@ -282,7 +281,7 @@ class ScheduleAddActivity : BaseActivity<ActivityScheduleAddBinding, ScheduleAdd
             dayOfMonth,
             DateConverter().getDayOfWeek(dayOfWeek), // 숫자 요일을 한국어로 변환
             TimeConverter().getAMPM(date), // 오전 오후를 구분하여 반환해주는 함수
-            TimeConverter().getHourInPM(hour), // 14시 -> 2시로 변환
+            TimeConverter().convertHourInPM(hour), // 14시 -> 2시로 변환
             minute
         )
 

@@ -13,8 +13,7 @@
         android:theme="@style/Theme.LMSService">
         <activity
             android:name=".presentation.homework.HomeworkManageActivity"
-            android:exported="false" >
-
+            android:exported="true" >
         </activity>
         <activity
             android:name=".presentation.home.main.calendar.add.push.PushTimePickerActivity"
@@ -71,7 +70,7 @@
         </activity>
         <activity
             android:name=".presentation.home.main.classes.create.ClassCreateActivity"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".presentation.home.HomeActivity"
             android:exported="true"
