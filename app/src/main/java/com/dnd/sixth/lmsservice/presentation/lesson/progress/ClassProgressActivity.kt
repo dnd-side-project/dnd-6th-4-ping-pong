@@ -43,11 +43,13 @@ class ClassProgressActivity : BaseActivity<ActivityClassProgressBinding, ClassPr
                 startActivity(intent)
             }
             recyclerviewForTimeLine.layoutManager = LinearLayoutManager(this@ClassProgressActivity)
+            binding.recyclerviewForTimeLine.visibility = VISIBLE
+            binding.emptyClassStatusImg.visibility = GONE
 
-            progressStartFeedbackBtn.setOnClickListener {
-                var intent = Intent(this@ClassProgressActivity, StartFeedBackActivity::class.java)
-                startActivityForResult(intent, REQUEST_CODE)
-            }
+//            progressStartFeedbackBtn.setOnClickListener {
+//                var intent = Intent(this@ClassProgressActivity, StartFeedBackActivity::class.java)
+//                startActivityForResult(intent, REQUEST_CODE)
+//            }
         }
 
         // 클릭리스너 추가
@@ -56,17 +58,17 @@ class ClassProgressActivity : BaseActivity<ActivityClassProgressBinding, ClassPr
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == REQUEST_CODE) {
-            if (resultCode != Activity.RESULT_OK) {
-                return
-            }
-            binding.recyclerviewForTimeLine.visibility = VISIBLE
-            binding.progressStartFeedbackBtn.visibility = GONE
-        }
-    }
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//
+//        if (requestCode == REQUEST_CODE) {
+//            if (resultCode != Activity.RESULT_OK) {
+//                return
+//            }
+//            binding.recyclerviewForTimeLine.visibility = VISIBLE
+//            binding.progressStartFeedbackBtn.visibility = GONE
+//        }
+//    }
 
     override fun onClick(v: View?) {
         when (v?.id) {
