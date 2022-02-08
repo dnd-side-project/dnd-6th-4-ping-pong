@@ -2,17 +2,11 @@ package com.dnd.sixth.lmsservice.presentation.home.main.calendar.detail.student.
 
 import android.content.Context
 import android.content.Intent
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.MenuItem
 import android.view.View
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
 import android.view.inputmethod.InputMethodManager
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContextCompat
-import androidx.core.text.isDigitsOnly
 import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.databinding.ActivityStudentScheduleEditBinding
 import com.dnd.sixth.lmsservice.databinding.DialogPushTimePickerBinding
@@ -172,7 +166,7 @@ class StudentScheduleEditActivity :
             dayOfMonth,
             DateConverter().getDayOfWeek(dayOfWeek), // 숫자 요일을 한국어로 변환
             TimeConverter().getAMPM(date), // 오전 오후를 구분하여 반환해주는 함수
-            TimeConverter().getHourInPM(hour), // 14시 -> 2시로 변환
+            TimeConverter().convertHourInPM(hour), // 14시 -> 2시로 변환
             minute
         )
 
