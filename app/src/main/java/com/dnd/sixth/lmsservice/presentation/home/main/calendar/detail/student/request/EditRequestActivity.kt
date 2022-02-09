@@ -1,11 +1,9 @@
 package com.dnd.sixth.lmsservice.presentation.home.main.calendar.detail.student.request
 
-import android.content.Intent
 import android.view.MenuItem
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import androidx.activity.result.ActivityResultLauncher
 import androidx.core.content.ContextCompat
 import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.databinding.ActivityEditRequestBinding
@@ -139,7 +137,7 @@ class EditRequestActivity : BaseActivity<ActivityEditRequestBinding, EditRequest
             dayOfMonth,
             DateConverter().getDayOfWeek(dayOfWeek), // 숫자 요일을 한국어로 변환
             TimeConverter().getAMPM(date), // 오전 오후를 구분하여 반환해주는 함수
-            TimeConverter().getHourInPM(hour), // 14시 -> 2시로 변환
+            TimeConverter().convertHourInPM(hour), // 14시 -> 2시로 변환
             minute
         )
 

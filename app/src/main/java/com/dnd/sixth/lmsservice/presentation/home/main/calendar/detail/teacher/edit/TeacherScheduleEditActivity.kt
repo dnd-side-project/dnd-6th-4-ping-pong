@@ -14,7 +14,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.core.text.isDigitsOnly
 import com.dnd.sixth.lmsservice.R
-import com.dnd.sixth.lmsservice.databinding.ActivityStudentScheduleEditBinding
 import com.dnd.sixth.lmsservice.databinding.ActivityTeacherScheduleEditBinding
 import com.dnd.sixth.lmsservice.databinding.DialogPushTimePickerBinding
 import com.dnd.sixth.lmsservice.presentation.base.BaseActivity
@@ -285,7 +284,7 @@ class TeacherScheduleEditActivity : BaseActivity<ActivityTeacherScheduleEditBind
             dayOfMonth,
             DateConverter().getDayOfWeek(dayOfWeek), // 숫자 요일을 한국어로 변환
             TimeConverter().getAMPM(date), // 오전 오후를 구분하여 반환해주는 함수
-            TimeConverter().getHourInPM(hour), // 14시 -> 2시로 변환
+            TimeConverter().convertHourInPM(hour), // 14시 -> 2시로 변환
             minute
         )
 
