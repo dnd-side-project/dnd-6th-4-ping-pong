@@ -1,8 +1,10 @@
 package com.dnd.sixth.lmsservice.di.modules
 
 import com.dnd.sixth.lmsservice.presentation.comment.CommentViewModel
+import com.dnd.sixth.lmsservice.presentation.comment.check.CheckCommentViewModel
 import com.dnd.sixth.lmsservice.presentation.feedback.StartFeedBackViewModel
 import com.dnd.sixth.lmsservice.presentation.feedback.WriteFeedBackViewModel
+import com.dnd.sixth.lmsservice.presentation.feedback.check.CheckFeedBackViewModel
 import com.dnd.sixth.lmsservice.presentation.home.HomeViewModel
 import com.dnd.sixth.lmsservice.presentation.home.main.ClassHomeViewModel
 import com.dnd.sixth.lmsservice.presentation.home.main.calendar.HomeCalendarViewModel
@@ -108,5 +110,12 @@ val viewModelModules = module {
     }
     viewModel{
         HomeworkManageViewModel()
+    }
+
+    viewModel{
+        CheckFeedBackViewModel()
+    }
+    viewModel{
+        CheckCommentViewModel()
     }
 }

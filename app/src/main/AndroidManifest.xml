@@ -12,10 +12,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LMSService">
         <activity
+            android:name=".presentation.comment.check.CheckCommentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.feedback.check.CheckFeedBackActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.homework.HomeworkManageActivity"
-            android:exported="false" >
-
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".presentation.home.main.calendar.add.push.PushTimePickerActivity"
             android:exported="false" />
@@ -33,7 +37,6 @@
                     android:host="pingpongservice.page.link"
                     android:path="/invite"
                     android:scheme="https" />
-
                 <data
                     android:host="pingpongservice.page.link"
                     android:path="/invite"
@@ -48,7 +51,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".presentation.feedback.WriteFeedBackActivity"
@@ -62,25 +64,17 @@
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".presentation.login.signup.SignUpActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".presentation.login.LoginActivity"
-            android:exported="true" >
-
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".presentation.home.main.classes.create.ClassCreateActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.home.HomeActivity"
             android:exported="true"
-            android:theme="@style/Theme.LMSService.EdgedBottomSheetDialog">
-
-
-
-        </activity>
+            android:theme="@style/Theme.LMSService.EdgedBottomSheetDialog" />
         <activity
             android:name=".presentation.home.main.config.profile.ProfileActivity"
             android:exported="false" />
