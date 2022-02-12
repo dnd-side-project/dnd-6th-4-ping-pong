@@ -1,6 +1,7 @@
 package com.dnd.sixth.lmsservice.presentation.comment
 
 import android.graphics.Color
+import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
 import com.dnd.sixth.lmsservice.R
@@ -15,7 +16,7 @@ class CommentActivity : BaseActivity<ActivityCommentBinding,CommentViewModel>() 
     override val viewModel: CommentViewModel by viewModel()
 
     //체크박스 컴포넌트 배열
-    private val listOfCheckbox: MutableMap<ImageView, TextView> by lazy {
+    private val listOfCheckbox: MutableMap< CheckBox, TextView> by lazy {
         mutableMapOf(
             binding.completeCheckBox to binding.completeText,
             binding.almostCheckBox to binding.almostText,
@@ -38,28 +39,28 @@ class CommentActivity : BaseActivity<ActivityCommentBinding,CommentViewModel>() 
     //체크박스 초기화 메소드
     fun initCheckBox() {
         with(binding) {
-            commentCompleteCheckboxContainer.setOnClickListener {
+            completeCheckBox.setOnClickListener {
                 checkUncheck()
                 chekboxCheck(completeCheckBox, completeText)
 
 
             }
-            commentAlmostCheckboxContainer.setOnClickListener {
+            almostCheckBox.setOnClickListener {
                 checkUncheck()
                 chekboxCheck(almostCheckBox, almostText)
 
             }
-            commentOkayCheckboxContainer.setOnClickListener {
+            okayCheckBox.setOnClickListener {
                 checkUncheck()
                 chekboxCheck(okayCheckBox, okayText)
 
             }
-            commentDifficultCheckboxContainer.setOnClickListener {
+            difficultCheckBox.setOnClickListener {
                 checkUncheck()
                 chekboxCheck(difficultCheckBox, difficultText)
 
             }
-            commentHellCheckboxContainer.setOnClickListener {
+            hellCheckBox.setOnClickListener {
                 checkUncheck()
                 chekboxCheck(hellCheckBox, hellText)
 
@@ -70,15 +71,16 @@ class CommentActivity : BaseActivity<ActivityCommentBinding,CommentViewModel>() 
     //다른 체크박스 클릭시 기존에 체크된 체크박스 순회하여 초기화하는 메소드
     private fun checkUncheck() {
         listOfCheckbox.forEach {
-            it.key.setBackgroundResource(R.drawable.ic_pingpong_comment_unchecked_checkbox)
+            it.key.isChecked = false
             it.value.setTextColor(Color.parseColor("#AAAAAA"))
+
         }
     }
 
 
     //체크박스 눌렀을 때 체크
-    private fun chekboxCheck(completeCheckBox: ImageView, completeText: TextView) {
-        completeCheckBox.setBackgroundResource(R.drawable.ic_pingpong_comment_checked_checkbox)
+    private fun chekboxCheck(checkbox: CheckBox, completeText: TextView) {
+        checkbox.isChecked = true
         completeText.setTextColor(Color.parseColor("#FF000000"))
     }
 

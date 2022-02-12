@@ -11,6 +11,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LMSService">
+        <activity android:name=".presentation.comment.CommentActivity"
+            android:exported="true"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
         <activity
             android:name=".presentation.comment.check.CheckCommentActivity"
             android:exported="false" />
@@ -48,12 +58,8 @@
         </activity>
         <activity
             android:name=".presentation.lesson.progress.ClassProgressActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="false">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".presentation.feedback.WriteFeedBackActivity"
