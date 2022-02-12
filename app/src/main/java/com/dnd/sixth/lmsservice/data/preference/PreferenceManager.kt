@@ -161,7 +161,10 @@ class PreferenceManager(
     }
 
     fun getIdToken(): String? {
-        return prefs.getString(KEY_ID_TOKEN, null)
+        // 인증 타입
+        // Authorization: <type> <credentials>
+        var credentials = "Bearer"
+        return "$credentials ${prefs.getString(KEY_ID_TOKEN, null)}"
     }
 
     fun removedToken() {
