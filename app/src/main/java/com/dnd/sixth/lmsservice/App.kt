@@ -22,7 +22,8 @@ class App : Application() {
             androidContext(this@App)
             modules(
                 listOf(
-                    viewModelModules
+                    viewModelModules,
+                    repositoryModules
                 )
             )
 
