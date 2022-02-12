@@ -50,16 +50,24 @@ class ClassFragment : BaseFragment<FragmentClassBinding, ClassViewModel>(),
                 layoutManager = LinearLayoutManager(requireContext())
             }
 
+            // 수업 리스트가 변경됨에 따라 화면 크기 조절을 하기 위한 Observer
+            viewModel?.classLiveDataList?.observe(this@ClassFragment) {
+                if(viewModel?.hasClass() == true) { // 수업이 있다면
+                    setClassHomeScrollViewHeight() // 수업 RecyclerView Item 사이즈에 맞게 HomeFragment의 Scroll 높이 재설정
+                    binding.noClassContainer.visibility = View.GONE // '수업이 없어요' 화면 가리기
+                } else { // 수업이 없다면
+                    binding.noClassContainer.visibility = View.VISIBLE // '수업이 없어요' 화면 가리기
+                }
+
+                // 리사이클러뷰 갱신
+                classAdapter?.updateItem(it)
+            }
+
         }
     }
 
     private fun setBindingData() {
         binding.viewModel = viewModel // ViewModel 바인딩
-    }
-
-    override fun onResume() {
-        super.onResume()
-        setClassHomeScrollViewHeight()
     }
 
 

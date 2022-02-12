@@ -42,8 +42,6 @@ class CommentActivity : BaseActivity<ActivityCommentBinding,CommentViewModel>() 
             completeCheckBox.setOnClickListener {
                 checkUncheck()
                 chekboxCheck(completeCheckBox, completeText)
-
-
             }
             almostCheckBox.setOnClickListener {
                 checkUncheck()

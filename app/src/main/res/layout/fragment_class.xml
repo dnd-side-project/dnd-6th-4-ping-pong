@@ -12,73 +12,108 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/main_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clipToPadding="false"
         android:nestedScrollingEnabled="false"
-        android:paddingBottom="16dp"
         tools:context=".presentation.home.main.ClassHomeFragment">
 
-        <TextView
-            android:id="@+id/class_count_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="전체 0개"
-            android:textColor="#858585"
-            android:textSize="12sp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/class_recycler_view"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:overScrollMode="never"
-            app:layout_constraintTop_toBottomOf="@+id/class_count_text_view"
-            tools:itemCount="2"
-            tools:listitem="@layout/item_class" />
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/class_add_card_view"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="8dp"
-            android:background="@color/white"
-            app:cardCornerRadius="3dp"
-            app:cardElevation="5dp"
-            app:layout_constraintTop_toBottomOf="@+id/class_recycler_view">
+            android:layout_height="match_parent">
 
             <LinearLayout
-                android:id="@+id/class_add_btn"
+                android:id="@+id/no_class_container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:clickable="true"
-                android:foreground="?android:selectableItemBackground"
                 android:gravity="center"
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_big_plus" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_no_class_book" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
                     android:gravity="center"
-                    android:text="@string/no_class"
-                    android:textColor="#A6A6A6"
-                    android:textSize="12sp" />
-
-
+                    android:textColor="@color/gray85"
+                    android:textSize="12dp"
+                    android:layout_marginTop="23dp"
+                    android:text="아직 만들어진 수업이 없어요\n수업이 생성될 때까지 조금만 기다려주세요!" />
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/main_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:clipToPadding="false"
+            android:paddingBottom="16dp">
+
+            <TextView
+                android:id="@+id/class_count_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="전체 0개"
+                android:textColor="#858585"
+                android:textSize="12sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/class_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:overScrollMode="never"
+                app:layout_constraintTop_toBottomOf="@+id/class_count_text_view"
+                tools:itemCount="2"
+                tools:listitem="@layout/item_class" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/class_add_card_view"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/white"
+                app:cardCornerRadius="3dp"
+                app:cardElevation="5dp"
+                app:layout_constraintTop_toBottomOf="@+id/class_recycler_view">
+
+                <LinearLayout
+                    android:id="@+id/class_add_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clickable="true"
+                    android:foreground="?android:selectableItemBackground"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_big_plus" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center"
+                        android:text="@string/no_class"
+                        android:textColor="#A6A6A6"
+                        android:textSize="12sp" />
+
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
