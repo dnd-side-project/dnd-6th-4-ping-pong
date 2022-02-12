@@ -151,24 +151,17 @@
                 android:layout_height="86dp"
                 >
 
-                <ImageView
+                <CheckBox
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:id="@+id/complete_check_box"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="20dp"
-                    android:background="@drawable/selector_checkbox_comment"
-                    android:button="@null" />
-
-                <ImageView
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginStart="11.5dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_complete"
+                    android:background="@drawable/selector_checkbox_grinning_squinting"
+                    android:button="@null"
                     />
+
 
                 <TextView
                     android:id="@+id/complete_text"
@@ -193,25 +186,16 @@
                 android:layout_height="86dp"
                 >
 
-                <ImageView
+                <CheckBox
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:id="@+id/almost_check_box"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="20dp"
-                    android:background="@drawable/selector_checkbox_comment"
+                    android:background="@drawable/selector_checkbox_grinning"
                     android:button="@null" />
 
-                <ImageView
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginLeft="11.5dp"
-                    android:layout_marginStart="11.5dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_almost"
-                    />
 
                 <TextView
                     android:id="@+id/almost_text"
@@ -236,25 +220,16 @@
                 android:layout_height="86dp"
                 >
 
-                <ImageView
+                <CheckBox
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:id="@+id/okay_check_box"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="20dp"
-                    android:background="@drawable/selector_checkbox_comment"
+                    android:background="@drawable/selector_checkbox_neutral"
                     android:button="@null" />
 
-                <ImageView
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginLeft="11.5dp"
-                    android:layout_marginStart="11.5dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_its_okay"
-                    />
 
                 <TextView
                     android:id="@+id/okay_text"
@@ -278,25 +253,17 @@
                 android:layout_height="86dp"
                 >
 
-                <ImageView
+                <CheckBox
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:id="@+id/difficult_check_box"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="20dp"
-                    android:background="@drawable/selector_checkbox_comment"
+                    android:background="@drawable/selector_checkbox_worried_face"
                     android:button="@null" />
 
-                <ImageView
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginLeft="11.5dp"
-                    android:layout_marginStart="11.5dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_difficult_img"
-                    />
+
 
                 <TextView
                     android:id="@+id/difficult_text"
@@ -320,25 +287,16 @@
                 android:layout_height="86dp"
                 >
 
-                <ImageView
+                <CheckBox
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:id="@+id/hell_check_box"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="20dp"
-                    android:background="@drawable/selector_checkbox_comment"
+                    android:background="@drawable/selector_checkbox_loudly_crying_face"
                     android:button="@null" />
 
-                <ImageView
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginLeft="11.5dp"
-                    android:layout_marginStart="11.5dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_it_is_hell"
-                    />
 
                 <TextView
                     android:id="@+id/hell_text"
