@@ -30,6 +30,7 @@ internal fun provideGsonConverterFactory(): GsonConverterFactory {
 
 internal fun buildOkHttpClient(): OkHttpClient {
     val interceptor = HttpLoggingInterceptor()
+
     if (BuildConfig.DEBUG) {
         interceptor.level = HttpLoggingInterceptor.Level.BODY
     } else {

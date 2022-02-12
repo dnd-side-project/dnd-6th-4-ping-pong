@@ -14,11 +14,6 @@
         <activity android:name=".presentation.comment.CommentActivity"
             android:exported="true"
             >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
         <activity
@@ -83,7 +78,14 @@
         <activity
             android:name=".presentation.home.HomeActivity"
             android:exported="true"
-            android:theme="@style/Theme.LMSService.EdgedBottomSheetDialog" />
+            android:theme="@style/Theme.LMSService.EdgedBottomSheetDialog" >
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".presentation.home.main.config.profile.ProfileActivity"
             android:exported="false" />

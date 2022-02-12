@@ -3,10 +3,11 @@ package com.dnd.sixth.lmsservice.presentation.adapter.recyclerAdapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.data.entity.ClassItem
 import com.dnd.sixth.lmsservice.databinding.ItemClassBinding
+import com.dnd.sixth.lmsservice.presentation.base.BaseDiffUtil
 import com.dnd.sixth.lmsservice.presentation.extensions.visibleViewListIfContain
 import com.dnd.sixth.lmsservice.presentation.listner.OnRecyclerItemClickListener
 
@@ -54,9 +55,12 @@ class ClassAdapter(val itemList: ArrayList<ClassItem>, val listener: OnRecyclerI
 
     override fun getItemCount(): Int = itemList.size
 
-    fun updateItem(newItemList : List<ClassItem>) {
+    fun updateItem(newItemList: List<ClassItem>) {
+        val diffUtilCallback = BaseDiffUtil(itemList, newItemList)
+        val diffResult = DiffUtil.calculateDiff(diffUtilCallback)
+
         itemList.clear()
         itemList.addAll(newItemList)
-        notifyDataSetChanged()
+        diffResult.dispatchUpdatesTo(this)
     }
 }

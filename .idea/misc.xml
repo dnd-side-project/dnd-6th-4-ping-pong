@@ -6,6 +6,7 @@
         <entry key="..\:/android_project/LMSService/app/src/main/res/layout/activity_main.xml" value="0.22291666666666668" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/drawable-v24/bg_round_bottom_sheet_dialog.xml" value="0.2838541666666667" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/drawable-v24/bg_round_bottom_sheetdialog.xml" value="0.32314814814814813" />
+        <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/drawable-v24/selector_checkbox_grinning.xml" value="0.21927083333333333" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/drawable/bg_am_pm.xml" value="0.2796296296296296" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/drawable/bg_am_pm_radio_group.xml" value="0.2796296296296296" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/drawable/bg_calendar_date_selector.xml" value="0.2838541666666667" />
@@ -70,6 +71,7 @@
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/activity_class_add.xml" value="0.33" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/activity_class_edit.xml" value="0.2677083333333333" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/activity_class_progress.xml" value="0.36770833333333336" />
+        <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/activity_comment.xml" value="0.203125" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/activity_config.xml" value="0.25" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/activity_edit_class.xml" value="0.25" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/activity_edit_request.xml" value="0.33" />
