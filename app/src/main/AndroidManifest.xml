@@ -8,7 +8,7 @@
         android:fitsSystemWindows="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/Theme.LMSService">
         <activity android:name=".presentation.comment.CommentActivity"
@@ -29,7 +29,7 @@
         
 
         <activity
-            android:name=".presentation.home.main.calendar.add.push.PushTimePickerActivity"
+            android:name=".presentation.main.classmanage.calendar.add.push.PushTimePickerActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.inviteLink.InviteLinkActivity"
@@ -63,7 +63,7 @@
             android:name=".presentation.feedback.StartFeedBackActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.home.main.calendar.add.ScheduleAddActivity"
+            android:name=".presentation.main.classmanage.calendar.add.ScheduleAddActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
         <activity
@@ -73,11 +73,12 @@
             android:name=".presentation.login.LoginActivity"
             android:exported="true" />
         <activity
-            android:name=".presentation.home.main.classes.create.ClassCreateActivity"
+            android:name=".presentation.main.classmanage.classes.create.ClassCreateActivity"
             android:exported="false"/>
         <activity
-            android:name=".presentation.home.HomeActivity"
+            android:name=".presentation.main.MainActivity"
             android:exported="true"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.LMSService.EdgedBottomSheetDialog" >
 
             <intent-filter>
@@ -87,35 +88,35 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".presentation.home.main.config.profile.ProfileActivity"
+            android:name="com.dnd.sixth.lmsservice.presentation.main.classmanage.config.profile.ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.home.main.config.push.PushActivity"
+            android:name="com.dnd.sixth.lmsservice.presentation.main.classmanage.config.push.PushActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.home.manage.student.StudentActivity"
+            android:name=".presentation.main.studentmanage.info.InfoActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.home.main.config.ConfigActivity"
+            android:name="com.dnd.sixth.lmsservice.presentation.main.classmanage.config.ConfigActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.home.main.config.profile.password.ChangePWActivity"
+            android:name="com.dnd.sixth.lmsservice.presentation.main.classmanage.config.profile.password.ChangePWActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".presentation.home.main.classes.edit.ClassEditActivity"
+            android:name=".presentation.main.classmanage.classes.edit.ClassEditActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.home.main.calendar.detail.teacher.edit.TeacherScheduleEditActivity"
+            android:name=".presentation.main.classmanage.calendar.detail.teacher.edit.TeacherScheduleEditActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.home.main.calendar.detail.teacher.response.EditResponseActivity"
+            android:name=".presentation.main.classmanage.calendar.detail.teacher.response.EditResponseActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.home.main.calendar.detail.student.edit.StudentScheduleEditActivity"
+            android:name=".presentation.main.classmanage.calendar.detail.student.edit.StudentScheduleEditActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.home.main.calendar.detail.student.request.EditRequestActivity"
+            android:name=".presentation.main.classmanage.calendar.detail.student.request.EditRequestActivity"
             android:exported="false" />
     </application>
 

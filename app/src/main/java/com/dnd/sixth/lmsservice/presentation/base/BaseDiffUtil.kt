@@ -2,7 +2,7 @@ package com.dnd.sixth.lmsservice.presentation.base
 
 import androidx.recyclerview.widget.DiffUtil
 
-class BaseDiffUtil<T>(private val newList: ArrayList<T>, private val oldList: List<T>) : DiffUtil.Callback() {
+class BaseDiffUtil<T>(private val oldList: List<T>, private val newList: List<T>) : DiffUtil.Callback() {
     override fun getOldListSize(): Int {
         return oldList.size
     }

@@ -7,14 +7,15 @@
 
         <variable
             name="viewModel"
-            type="com.dnd.sixth.lmsservice.presentation.home.main.calendar.add.ScheduleAddViewModel" />
+            type="com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.add.ScheduleAddViewModel" />
+        <import type="com.dnd.sixth.lmsservice.presentation.adapter.Converter"/>
     </data>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fillViewport="true"
-        tools:context=".presentation.home.main.calendar.add.ScheduleAddActivity">
+        tools:context=".presentation.main.classmanage.calendar.add.ScheduleAddActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -120,7 +121,7 @@
                     android:layout_marginTop="16dp"
                     android:background="@drawable/bg_divider"
                     app:layout_constraintTop_toBottomOf="@+id/category_scroll_view"
-                    app:tint="#EEEEEE" />
+                    app:tint="@color/grayEF" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/class_round_container"
@@ -156,7 +157,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="1회차"
+                        android:text="@{@string/class_round_format(viewModel.classRound)}"
                         android:textColor="@color/richBlack"
                         android:textSize="14sp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -187,6 +188,7 @@
                         android:foreground="?attr/selectableItemBackground"
                         android:gravity="center"
                         android:text="-"
+                        android:onClick="@{() -> viewModel.minusClassRound()}"
                         android:textColor="@color/richBlack"
                         android:textSize="18dp" />
 
@@ -199,7 +201,7 @@
                         android:gravity="center"
                         android:inputType="numberDecimal"
                         android:maxLength="3"
-                        android:text="1"
+                        android:text="@={Converter.toString(viewModel.classRound)}"
                         android:textColorHint="#C4C4C4"
                         android:textSize="14sp" />
 
@@ -212,6 +214,7 @@
                         android:foreground="?attr/selectableItemBackground"
                         android:gravity="center"
                         android:text="+"
+                        android:onClick="@{() -> viewModel.plusClassRound()}"
                         android:textColor="@color/richBlack"
                         android:textSize="18dp" />
 
@@ -225,7 +228,7 @@
                     android:layout_height="1dp"
                     android:background="@drawable/bg_divider"
                     app:layout_constraintTop_toBottomOf="@+id/class_round_count_view"
-                    app:tint="#EEEEEE" />
+                    app:tint="@color/grayEF" />
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -310,7 +313,7 @@
                     android:layout_height="1dp"
                     android:background="@drawable/bg_divider"
                     app:layout_constraintTop_toBottomOf="@+id/scroll_date_container"
-                    app:tint="#EEEEEE" />
+                    app:tint="@color/grayEF" />
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -343,6 +346,7 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:background="@null"
+                        android:text="@{viewModel.place}"
                         android:hint="수업 장소를 입력해 주세요"
                         android:textColor="@color/richBlack"
                         android:textColorHint="@color/grayDD"
@@ -358,7 +362,7 @@
                     android:layout_height="1dp"
                     android:background="@drawable/bg_divider"
                     app:layout_constraintTop_toBottomOf="@+id/class_place_container"
-                    app:tint="#EEEEEE" />
+                    app:tint="@color/grayEF" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/class_progress_container"
@@ -390,6 +394,7 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:background="@null"
+                        android:text="@{viewModel.chapter}"
                         android:hint="교육 과정에 따른 챕터를 입력해 주세요"
                         android:textColor="@color/richBlack"
                         android:textColorHint="@color/grayDD"
@@ -404,7 +409,7 @@
                     android:layout_height="1dp"
                     android:background="@drawable/bg_divider"
                     app:layout_constraintTop_toBottomOf="@+id/class_progress_container"
-                    app:tint="#EEEEEE" />
+                    app:tint="@color/grayEF" />
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -438,6 +443,7 @@
                         android:layout_height="match_parent"
                         android:background="@null"
                         android:hint="메모를 입력해주세요"
+                        android:text="@={viewModel.memo}"
                         android:textColor="@color/richBlack"
                         android:textColorHint="@color/grayDD"
                         android:textSize="14sp"
@@ -452,7 +458,7 @@
                     android:layout_height="1dp"
                     android:background="@drawable/bg_divider"
                     app:layout_constraintTop_toBottomOf="@+id/class_memo_container"
-                    app:tint="#EEEEEE" />
+                    app:tint="@color/grayEF" />
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout

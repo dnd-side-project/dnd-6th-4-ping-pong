@@ -7,13 +7,13 @@
 
         <variable
             name="viewModel"
-            type="com.dnd.sixth.lmsservice.presentation.home.manage.student.StudentViewModel" />
+            type="com.dnd.sixth.lmsservice.presentation.main.studentmanage.info.InfoViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.home.manage.student.info.ClassInfoFragment">
+        tools:context=".presentation.main.studentmanage.info.details.ClassInfoFragment">
 
 
         <androidx.constraintlayout.widget.Guideline
