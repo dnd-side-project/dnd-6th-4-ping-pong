@@ -11,7 +11,7 @@ import com.dnd.sixth.lmsservice.presentation.base.BaseDiffUtil
 import com.dnd.sixth.lmsservice.presentation.extensions.visibleViewListIfContain
 import com.dnd.sixth.lmsservice.presentation.listner.OnRecyclerItemClickListener
 
-class ClassAdapter(val itemList: ArrayList<ClassItem>, val listener: OnRecyclerItemClickListener) :
+class ClassAdapter(var itemList: List<ClassItem>, val listener: OnRecyclerItemClickListener) :
     RecyclerView.Adapter<ClassAdapter.ClassViewHolder>() {
 
     val dayOfWeeks = listOf<String>("월", "화", "수", "목", "금", "토", "일")
@@ -20,7 +20,6 @@ class ClassAdapter(val itemList: ArrayList<ClassItem>, val listener: OnRecyclerI
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind() {
-            val context = binding.root.context
             val classModel = itemList[adapterPosition]
             val classDayOfWeeks = classModel.classDays
 
@@ -28,10 +27,10 @@ class ClassAdapter(val itemList: ArrayList<ClassItem>, val listener: OnRecyclerI
                 model = classModel
 
                 moreBtn.setOnClickListener {
-                    listener.onClick(it.id)
+                    listener.onClick(it.id, adapterPosition)
                 }
                 classBtn.setOnClickListener {
-                    listener.onClick(it.id)
+                    listener.onClick(it.id, adapterPosition)
                 }
 
                 // 수업 요일을 보여줌
@@ -57,10 +56,9 @@ class ClassAdapter(val itemList: ArrayList<ClassItem>, val listener: OnRecyclerI
 
     fun updateItem(newItemList: List<ClassItem>) {
         val diffUtilCallback = BaseDiffUtil(itemList, newItemList)
-        val diffResult = DiffUtil.calculateDiff(diffUtilCallback)
+        val diffResult = DiffUtil.calculateDiff(diffUtilCallback, true)
 
-        itemList.clear()
-        itemList.addAll(newItemList)
+        itemList = newItemList
         diffResult.dispatchUpdatesTo(this)
     }
 }

@@ -5,29 +5,29 @@ import com.dnd.sixth.lmsservice.presentation.comment.check.CheckCommentViewModel
 import com.dnd.sixth.lmsservice.presentation.feedback.StartFeedBackViewModel
 import com.dnd.sixth.lmsservice.presentation.feedback.WriteFeedBackViewModel
 import com.dnd.sixth.lmsservice.presentation.feedback.check.CheckFeedBackViewModel
-import com.dnd.sixth.lmsservice.presentation.home.HomeViewModel
-import com.dnd.sixth.lmsservice.presentation.home.main.ClassHomeViewModel
-import com.dnd.sixth.lmsservice.presentation.home.main.calendar.HomeCalendarViewModel
-import com.dnd.sixth.lmsservice.presentation.home.main.calendar.add.ScheduleAddViewModel
-import com.dnd.sixth.lmsservice.presentation.home.main.calendar.add.push.PushTimeViewModel
-import com.dnd.sixth.lmsservice.presentation.home.main.calendar.detail.student.edit.StudentScheduleEditViewModel
-import com.dnd.sixth.lmsservice.presentation.home.main.calendar.detail.student.request.EditRequestViewModel
-import com.dnd.sixth.lmsservice.presentation.home.main.calendar.detail.teacher.edit.TeacherScheduleEditViewModel
-import com.dnd.sixth.lmsservice.presentation.home.main.calendar.detail.teacher.response.EditResponseViewModel
-import com.dnd.sixth.lmsservice.presentation.home.main.classes.ClassViewModel
-import com.dnd.sixth.lmsservice.presentation.home.main.classes.create.CreateClassViewModel
-import com.dnd.sixth.lmsservice.presentation.home.main.classes.edit.ClassEditViewModel
-import com.dnd.sixth.lmsservice.presentation.home.main.config.ConfigViewModel
-import com.dnd.sixth.lmsservice.presentation.home.main.config.profile.ProfileViewModel
-import com.dnd.sixth.lmsservice.presentation.home.main.config.profile.password.PasswordViewModel
-import com.dnd.sixth.lmsservice.presentation.home.main.config.push.PushViewModel
-import com.dnd.sixth.lmsservice.presentation.home.manage.ManageViewModel
-import com.dnd.sixth.lmsservice.presentation.home.manage.student.StudentViewModel
 import com.dnd.sixth.lmsservice.presentation.homework.HomeworkManageViewModel
 import com.dnd.sixth.lmsservice.presentation.inviteLink.InviteLinkViewModel
 import com.dnd.sixth.lmsservice.presentation.lesson.progress.ClassProgressViewModel
 import com.dnd.sixth.lmsservice.presentation.login.LoginViewModel
 import com.dnd.sixth.lmsservice.presentation.login.signup.SignUpViewModel
+import com.dnd.sixth.lmsservice.presentation.main.MainViewModel
+import com.dnd.sixth.lmsservice.presentation.main.classmanage.ClassManageViewModel
+import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.CalendarViewModel
+import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.add.ScheduleAddViewModel
+import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.add.push.PushTimeViewModel
+import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.detail.student.edit.StudentScheduleEditViewModel
+import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.detail.student.request.EditRequestViewModel
+import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.detail.teacher.edit.TeacherScheduleEditViewModel
+import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.detail.teacher.response.EditResponseViewModel
+import com.dnd.sixth.lmsservice.presentation.main.classmanage.classes.ClassViewModel
+import com.dnd.sixth.lmsservice.presentation.main.classmanage.classes.create.CreateClassViewModel
+import com.dnd.sixth.lmsservice.presentation.main.classmanage.classes.edit.ClassEditViewModel
+import com.dnd.sixth.lmsservice.presentation.main.classmanage.config.ConfigViewModel
+import com.dnd.sixth.lmsservice.presentation.main.classmanage.config.profile.ProfileViewModel
+import com.dnd.sixth.lmsservice.presentation.main.classmanage.config.profile.password.PasswordViewModel
+import com.dnd.sixth.lmsservice.presentation.main.classmanage.config.push.PushViewModel
+import com.dnd.sixth.lmsservice.presentation.main.studentmanage.StudentManageViewModel
+import com.dnd.sixth.lmsservice.presentation.main.studentmanage.info.InfoViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -39,13 +39,13 @@ val viewModelModules = module {
         SignUpViewModel()
     }
     viewModel {
-        ClassHomeViewModel()
+        ClassManageViewModel()
     }
     viewModel {
         CreateClassViewModel()
     }
     viewModel {
-        HomeCalendarViewModel()
+        CalendarViewModel()
     }
     viewModel {
         ScheduleAddViewModel()
@@ -60,7 +60,7 @@ val viewModelModules = module {
         WriteFeedBackViewModel()
     }
     viewModel {
-        HomeViewModel()
+        MainViewModel()
     }
     viewModel {
         ClassViewModel()
@@ -84,10 +84,10 @@ val viewModelModules = module {
         CommentViewModel()
     }
     viewModel {
-        StudentViewModel()
+        InfoViewModel()
     }
     viewModel {
-        ManageViewModel()
+        StudentManageViewModel()
     }
     viewModel {
         PasswordViewModel()
@@ -106,12 +106,10 @@ val viewModelModules = module {
     }
     viewModel {
         TeacherScheduleEditViewModel()
-
     }
     viewModel{
         HomeworkManageViewModel()
     }
-
     viewModel{
         CheckFeedBackViewModel()
     }

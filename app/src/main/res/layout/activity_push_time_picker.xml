@@ -7,14 +7,14 @@
 
         <variable
             name="viewModel"
-            type="com.dnd.sixth.lmsservice.presentation.home.main.calendar.add.push.PushTimeViewModel" />
+            type="com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.add.push.PushTimeViewModel" />
     </data>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
-        tools:context=".presentation.home.main.calendar.add.push.PushTimePickerActivity">
+        tools:context=".presentation.main.classmanage.calendar.add.push.PushTimePickerActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

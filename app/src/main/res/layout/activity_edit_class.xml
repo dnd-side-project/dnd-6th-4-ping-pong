@@ -4,10 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="viewModel"
-            type="com.dnd.sixth.lmsservice.presentation.home.main.classes.edit.ClassEditViewModel" />
+            type="com.dnd.sixth.lmsservice.presentation.main.classmanage.classes.edit.ClassEditViewModel" />
     </data>
 
 
@@ -19,7 +18,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:context=".presentation.home.main.classes.create.ClassCreateActivity">
+            tools:context=".presentation.main.classmanage.classes.create.ClassCreateActivity">
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar"
@@ -62,58 +61,6 @@
                     app:layout_constraintTop_toBottomOf="@+id/class_board_name_subtitle" />
 
 
-                <TextView
-                    android:id="@+id/salary_date_subtitle"
-                    style="@style/makeClassSubTitleTextView"
-                    android:layout_marginTop="36dp"
-                    android:text="정산일 설정"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/class_board_name_edit_text" />
-
-                <RadioGroup
-                    android:id="@+id/salary_date_radio_group"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:orientation="horizontal"
-                    app:layout_constraintTop_toBottomOf="@+id/salary_date_subtitle">
-
-                    <RadioButton
-                        android:id="@+id/first_salary_btn"
-                        android:layout_width="0dp"
-                        android:layout_height="36dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/btn_salary_radio"
-                        android:button="@null"
-                        android:gravity="center"
-                        android:text="4회"
-                        android:textColor="@color/color_salary_radio_text" />
-
-                    <RadioButton
-                        android:id="@+id/second_salary_btn"
-                        android:layout_width="0dp"
-                        android:layout_height="36dp"
-                        android:layout_marginHorizontal="16dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/btn_salary_radio"
-                        android:button="@null"
-                        android:checked="true"
-                        android:gravity="center"
-                        android:text="8회"
-                        android:textColor="@color/color_salary_radio_text" />
-
-                    <RadioButton
-                        android:id="@+id/third_salary_btn"
-                        android:layout_width="0dp"
-                        android:layout_height="36dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/btn_salary_radio"
-                        android:button="@null"
-                        android:gravity="center"
-                        android:text="10회"
-                        android:textColor="#707070" />
-
-                </RadioGroup>
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/time_subtitle"
@@ -121,7 +68,7 @@
                     android:layout_marginTop="36dp"
                     android:text="수업 시간"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/salary_date_radio_group" />
+                    app:layout_constraintTop_toBottomOf="@+id/class_board_name_edit_text" />
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -315,6 +262,59 @@
                         android:textColor="@color/color_week_of_day" />
 
                 </LinearLayout>
+
+                <TextView
+                    android:id="@+id/salary_date_subtitle"
+                    style="@style/makeClassSubTitleTextView"
+                    android:layout_marginTop="36dp"
+                    android:text="정산일 설정"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/day_check_box_container" />
+
+                <RadioGroup
+                    android:id="@+id/salary_date_radio_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/salary_date_subtitle">
+
+                    <RadioButton
+                        android:id="@+id/first_salary_btn"
+                        android:layout_width="0dp"
+                        android:layout_height="36dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_salary_radio"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="4회"
+                        android:textColor="@color/color_salary_radio_text" />
+
+                    <RadioButton
+                        android:id="@+id/second_salary_btn"
+                        android:layout_width="0dp"
+                        android:layout_height="36dp"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_salary_radio"
+                        android:button="@null"
+                        android:checked="true"
+                        android:gravity="center"
+                        android:text="8회"
+                        android:textColor="@color/color_salary_radio_text" />
+
+                    <RadioButton
+                        android:id="@+id/third_salary_btn"
+                        android:layout_width="0dp"
+                        android:layout_height="36dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_salary_radio"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="10회"
+                        android:textColor="#707070" />
+
+                </RadioGroup>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

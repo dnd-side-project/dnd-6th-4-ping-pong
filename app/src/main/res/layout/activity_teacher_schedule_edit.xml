@@ -7,14 +7,14 @@
 
         <variable
             name="viewModel"
-            type="com.dnd.sixth.lmsservice.presentation.home.main.calendar.detail.teacher.edit.TeacherScheduleEditViewModel" />
+            type="com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.detail.teacher.edit.TeacherScheduleEditViewModel" />
     </data>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fillViewport="true"
-        tools:context=".presentation.home.main.calendar.add.ScheduleAddActivity">
+        tools:context=".presentation.main.classmanage.calendar.add.ScheduleAddActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -120,7 +120,7 @@
                     android:layout_marginTop="16dp"
                     android:background="@drawable/bg_divider"
                     app:layout_constraintTop_toBottomOf="@+id/category_scroll_view"
-                    app:tint="#EEEEEE" />
+                    app:tint="@color/grayEF" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/class_round_container"
@@ -225,7 +225,7 @@
                     android:layout_height="1dp"
                     android:background="@drawable/bg_divider"
                     app:layout_constraintTop_toBottomOf="@+id/class_round_count_view"
-                    app:tint="#EEEEEE" />
+                    app:tint="@color/grayEF" />
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -310,7 +310,7 @@
                     android:layout_height="1dp"
                     android:background="@drawable/bg_divider"
                     app:layout_constraintTop_toBottomOf="@+id/scroll_date_container"
-                    app:tint="#EEEEEE" />
+                    app:tint="@color/grayEF" />
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -358,7 +358,7 @@
                     android:layout_height="1dp"
                     android:background="@drawable/bg_divider"
                     app:layout_constraintTop_toBottomOf="@+id/class_place_container"
-                    app:tint="#EEEEEE" />
+                    app:tint="@color/grayEF" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/class_progress_container"
@@ -404,7 +404,7 @@
                     android:layout_height="1dp"
                     android:background="@drawable/bg_divider"
                     app:layout_constraintTop_toBottomOf="@+id/class_progress_container"
-                    app:tint="#EEEEEE" />
+                    app:tint="@color/grayEF" />
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -452,7 +452,7 @@
                     android:layout_height="1dp"
                     android:background="@drawable/bg_divider"
                     app:layout_constraintTop_toBottomOf="@+id/class_memo_container"
-                    app:tint="#EEEEEE" />
+                    app:tint="@color/grayEF" />
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout

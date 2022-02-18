@@ -13,7 +13,7 @@
         <item>1일 전</item>
     </string-array>
 
-    <string-array name="month_list">
+    <string-array name="month_string_list">
         <item>1월</item>
         <item>2월</item>
         <item>3월</item>
@@ -27,6 +27,21 @@
         <item>11월</item>
         <item>12월</item>
     </string-array>
+
+    <integer-array name="month_integer_list">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </integer-array>
 
     <string-array name="home_tab_list">
         <item>클래스</item>

@@ -3,17 +3,18 @@
     <string name="calendar_progress_switch_tooltip">숙제 진행률을\n체크해보세요!</string>
     <string name="calendar_class_switch_tooltip">수업마다 색이 다르게\n표시되어 보여져요.</string>
 
+    <!-- 래금ㅅ -->
     <string name="class_round_format">%d회차</string>
     <string name="class_round_info_format">%d회</string>
+    <string name="hello_format">%s님, 안녕하세요!</string>
     <string name="class_date_format">%4d년&#160;%d월&#160;%d일&#160;(%s)</string>
     <string name="class_time_format">%2s&#160;%02d&#160;:&#160;%02d</string>
     <string name="class_date_time_format">%4d년&#160;%d월&#160;%d일&#160;(%s)&#160;&#160;%2s&#160;%02d&#160;:&#160;%02d</string>
     <string name="class_date_time_dot_format">%4d. %02d. %02d. %s&#160;&#160;&#160;%s&#160;%02d&#160;:&#160;%02d</string>
     <string name="calendar_date_format">%4d.%02d.%02d. %s</string> <!-- 2022.01.05. 수 -->
     <string name="class_noti_format">%d일 전</string>
-    <string name="no_class_title">오늘은 수업이 없어요</string>
-    <string name="class_teacher_title_format">%d일 뒤, %s 학생과\n%d회차 수업이 있어요</string>
-    <string name="class_student_title_format">%d일 뒤, %s 선생님과\n%d회차 수업이 있어요</string>
+    <string name="class_teacher_title_format">%d일 뒤에 %s 학생과\n%d회차 수업이 있어요</string>
+    <string name="class_student_title_format">%d일 뒤에 %s 선생님과\n%d회차 수업이 있어요</string>
     <string name="class_count_format">전체 %d개</string>
     <string name="require_edit_title_format">%02d.%02d.%02d(%s) %02d : %02d %s\n수업 일정 변경이 필요해요.</string>
     <string name="class_changed_format">%s 선생님이 다가오는 %s\n %02d시 %02d분 수업 일정을 변경했어요.\n캘린더를 통해 자세한 일정을 확인해주세요.</string>
@@ -28,7 +29,8 @@
     <string name="name_school_format">%s, %s</string> <!-- 백지성, 강남고 -->
     <string name="hour_or_minute_format">%02d</string> <!-- 시간 형식 -->
 
-    <string name="no_class">아직 클래스가 없어요\n클래스를 만들어보세요</string>
+    <string name="no_class_title">오늘은 수업이 없는 날이네요.</string>
+    <string name="no_class">클래스 추가</string>
     <string name="add_class">클래스 추가</string>
 
     <string name="error_dialog_dismiss">예기치 않은 오류로 다이얼로그가 종료되었습니다.</string>
@@ -54,5 +56,10 @@
 
     <string name="create_class_dialog_title">클래스가 생성되었어요 👏</string>
     <string name="pick_push_time">알림 시간을 선택해주세요</string>
+
+    <string name="no_class_teacher">아직 클래스가 없어요😯 \n <br/><b>클래스를 만들고 수업을 시작해보세요</b></string>
+    <string name="no_class_student">아직 클래스가 없어요😯 \n <br/><b>수업이 생성될 때까지 조금만 기다려주세요!</b></string>
+    <string name="create_class_text">+ 클래스 만들기</string>
+
 
 </resources>

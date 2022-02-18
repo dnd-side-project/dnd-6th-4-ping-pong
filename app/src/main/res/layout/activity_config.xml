@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.dnd.sixth.lmsservice.presentation.home.main.config.ConfigViewModel" />
+            type="com.dnd.sixth.lmsservice.presentation.main.classmanage.config.ConfigViewModel" />
     </data>
 
 
@@ -64,10 +64,21 @@
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:layout_marginTop="16dp"
+                    android:clickable="true"
+                    android:background="?attr/selectableItemBackground"
                     android:src="@drawable/ic_edit_profile"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="@id/profile_card_view" />
+
+                <ImageView
+                    android:layout_width="13dp"
+                    android:layout_height="13dp"
+                    android:src="@drawable/ic_edit_profile_pencil"
+                    app:layout_constraintTop_toTopOf="@+id/profile_image_view"
+                    app:layout_constraintBottom_toBottomOf="@+id/profile_image_view"
+                    app:layout_constraintLeft_toLeftOf="@+id/profile_image_view"
+                    app:layout_constraintRight_toRightOf="@+id/profile_image_view"/>
 
                 <TextView
                     android:id="@+id/nickname_text_view"
@@ -86,7 +97,7 @@
                 <ImageView
                     android:layout_width="13dp"
                     android:layout_height="13dp"
-                    android:src="@drawable/ic_edit_pencil"
+                    android:src="@drawable/ic_edit_name_pencil"
                     app:layout_constraintLeft_toRightOf="@id/nickname_text_view"
                     app:layout_constraintTop_toTopOf="@id/nickname_text_view"
                     app:layout_constraintBottom_toBottomOf="@id/nickname_text_view"
@@ -124,7 +135,7 @@
                         android:id="@+id/option_divider1"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="#EEEEEE"
+                        android:background="@color/grayEF"
                         app:layout_constraintTop_toBottomOf="@+id/option_profile_account" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -153,7 +164,7 @@
                         android:id="@+id/option_divider2"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="#EEEEEE"
+                        android:background="@color/grayEF"
                         app:layout_constraintTop_toBottomOf="@+id/option_homework_account" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -180,7 +191,7 @@
                         android:id="@+id/option_divider3"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="#EEEEEE"
+                        android:background="@color/grayEF"
                         app:layout_constraintBottom_toBottomOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

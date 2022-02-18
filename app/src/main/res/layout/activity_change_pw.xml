@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.dnd.sixth.lmsservice.presentation.home.main.config.profile.password.PasswordViewModel" />
+            type="com.dnd.sixth.lmsservice.presentation.main.classmanage.config.profile.password.PasswordViewModel" />
     </data>
 
 
