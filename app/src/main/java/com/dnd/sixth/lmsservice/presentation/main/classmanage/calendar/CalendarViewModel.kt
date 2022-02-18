@@ -6,6 +6,7 @@ import com.dnd.sixth.lmsservice.App
 import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.data.entity.ClassItem
 import com.dnd.sixth.lmsservice.presentation.base.BaseViewModel
+import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.custom.DateColor
 import java.util.*
 
 class CalendarViewModel : BaseViewModel() {
@@ -56,6 +57,10 @@ class CalendarViewModel : BaseViewModel() {
     // Spinner의 position을 바탕으로 Month를 가져온다
     fun transPosIntoMonth(position: Int): Int = monthIntegerList?.get(position) ?: getCurrentDate().month
 
+    // 현재 선택한 날짜와 입력받은 날짜가 같은지 비교
+    fun isSameDate(date: Date): Boolean {
+        return date == currentDate
+    }
 
     // 선택된 날짜의 수업 개수를 가져온다.
     fun getSelectedClassCount() = _selectedClassList.value?.size ?: 0

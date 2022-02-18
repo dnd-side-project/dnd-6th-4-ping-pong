@@ -43,7 +43,6 @@ class CenteredDotSpan : LineBackgroundSpan {
             paint.color = color
         }
 
-        paint.color = ContextCompat.getColor(App.context!!, R.color.secondMainColor)
         // 중앙에 반지름 Radius만큼의 원을 그린다
         canvas.drawCircle(
             ((left + right) / 2).toFloat(),

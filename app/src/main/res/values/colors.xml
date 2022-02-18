@@ -35,6 +35,14 @@
     <color name="gray63">#636363</color>
     <color name="grayFA">#FAFAFA</color>
     <color name="blue02">#2A3A99</color>
-    <color name="dateSelectColor">@color/colorPrimary</color>
+    <color name="dateSelectColor">@color/white</color>
 
+
+    <color name="calendarRed">#E57373</color>
+    <color name="calendarOrange">@color/secondMainColor</color>
+    <color name="calendarYellow">#FFF59D</color>
+    <color name="calendarGreen">#A5D6A7</color>
+    <color name="calendarBlue">#90CAF9</color>
+    <color name="calendarDarkBlue">@color/colorPrimary</color>
+    <color name="calendarPurple">#B39DDB</color>
 </resources>

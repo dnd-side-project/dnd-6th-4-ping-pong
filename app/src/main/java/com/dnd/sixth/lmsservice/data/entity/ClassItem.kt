@@ -11,5 +11,5 @@ data class ClassItem(
     val classDays: List<String>,
     val hasNotification: Boolean,
     val classTime: String,
-    val salaryDateType: Int
+    val salaryDateType: Int,
 ): Serializable

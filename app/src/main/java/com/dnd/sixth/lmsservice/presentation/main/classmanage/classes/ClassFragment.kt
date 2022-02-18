@@ -15,6 +15,7 @@ import com.dnd.sixth.lmsservice.presentation.adapter.recyclerAdapter.ClassAdapte
 import com.dnd.sixth.lmsservice.presentation.base.BaseFragment
 import com.dnd.sixth.lmsservice.presentation.listner.OnRecyclerItemClickListener
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.ClassManageViewModel
+import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.CalendarViewModel
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.classes.create.ClassCreateActivity
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.classes.edit.ClassEditActivity
 import com.dnd.sixth.lmsservice.presentation.utility.UnitConverter
@@ -100,6 +101,8 @@ class ClassFragment : BaseFragment<FragmentClassBinding, ClassViewModel>(),
         super.onResume()
         // Host Fragment의 ScrollView 높이 재설정
         setClassHomeScrollViewHeight()
+        // 클래스 Fragment가 재게되면, 캘린더 Fragment의 Calendar를 다시 펼친다.
+        CalendarViewModel.expandCalendar()
     }
 
 

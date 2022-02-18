@@ -1,13 +1,13 @@
 package com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.custom.decorator
 
-import android.content.res.Resources
+import android.annotation.SuppressLint
 import android.graphics.Color
-import android.graphics.Typeface
 import android.text.style.ForegroundColorSpan
 import android.text.style.RelativeSizeSpan
-import android.text.style.StyleSpan
+import androidx.annotation.IdRes
+import androidx.core.content.ContextCompat
 import com.dnd.sixth.lmsservice.App
-import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.custom.span.CenteredStrokeDotSpan
+import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.custom.span.CenteredDotSpan
 import com.dnd.sixth.lmsservice.presentation.utility.UnitConverter
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.DayViewDecorator
@@ -17,7 +17,7 @@ import com.prolificinteractive.materialcalendarview.DayViewFacade
 * 오늘 날짜를 꾸며주는 데코레이터
 * */
 
-class TodayDecorator(val res: Resources) : DayViewDecorator {
+class TodayDecorator(@IdRes val color: Int) : DayViewDecorator {
 
     val date = CalendarDay.today()
 
@@ -25,14 +25,18 @@ class TodayDecorator(val res: Resources) : DayViewDecorator {
         return day?.equals(date) ?: false
     }
 
+    @SuppressLint("ResourceType")
     override fun decorate(view: DayViewFacade?) {
-        view?.addSpan(StyleSpan(Typeface.BOLD)) // 날짜 텍스트 Bold
-        view?.addSpan(ForegroundColorSpan(Color.WHITE)) // 날짜 텍스트 색상 흰색
-        view?.addSpan(RelativeSizeSpan(1.1f)) // 상대적인 크기 1.1배
-        view?.addSpan(
-            CenteredStrokeDotSpan(
-                UnitConverter.convertDPtoPX(App.context!!, 18).toFloat(), Color.WHITE
-            )
-        ) // 흰색 테두리
+        view?.run {
+            // addSpan(StyleSpan(Typeface.BOLD)) // 날짜 텍스트 Bold
+            addSpan(ForegroundColorSpan(Color.WHITE)) // 날짜 텍스트 색상 흰색
+            addSpan(RelativeSizeSpan(1.0f)) // 상대적인 크기 1.0배
+            addSpan(
+                CenteredDotSpan(
+                    UnitConverter.convertDPtoPX(App.context!!, 18).toFloat(),
+                    ContextCompat.getColor(App.context!!, color)
+                )
+            ) // 흰색 테두리
+        }
     }
 }

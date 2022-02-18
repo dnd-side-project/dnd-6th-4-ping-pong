@@ -1,20 +1,22 @@
 package com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar
 
+import android.annotation.SuppressLint
 import android.content.Intent
-import android.content.res.Configuration
+import android.graphics.Color
 import android.util.Log
 import android.view.View
 import android.view.ViewTreeObserver
 import android.view.ViewTreeObserver.OnGlobalLayoutListener
 import android.widget.*
 import androidx.activity.OnBackPressedCallback
-import androidx.core.view.updateLayoutParams
+import androidx.core.content.ContextCompat
 import com.dnd.sixth.lmsservice.BuildConfig
 import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.databinding.FragmentCalendarBinding
 import com.dnd.sixth.lmsservice.presentation.base.BaseFragment
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.ClassManageViewModel
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.add.ScheduleAddActivity
+import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.custom.DateColor
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.custom.decorator.MySelectorDecorator
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.custom.decorator.ScheduleDecorator
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.custom.decorator.TodayDecorator
@@ -38,7 +40,7 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding, CalendarViewModel
     var viewTreeObserver: ViewTreeObserver? = null
 
     // 최상위 ViewTreeObserver (높이를 구하기 위한 변수)
-   // var viewTreeObserver: ViewTreeObserver? = null
+    // var viewTreeObserver: ViewTreeObserver? = null
 
     //액티비티 초기화 메서드
     override fun initActivity() {
@@ -106,6 +108,7 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding, CalendarViewModel
     }
 
 
+    @SuppressLint("ResourceType")
     private fun setCalendar() {
         with(binding.calendarView) {
             // 날짜 클릭 시 이벤트
@@ -158,11 +161,31 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding, CalendarViewModel
                 CalendarDay.from(temp2)
             )
 
-            // 캘린더 데코레이터 지정
+
+
+            val temp3 = Calendar.getInstance().apply {
+                set(2022, 1, 8)
+            }
+            val temp4 = Calendar.getInstance().apply {
+                set(2022, 1, 20)
+            }
+
+            val tempEventDate2 = listOf<CalendarDay>(
+                CalendarDay.from(temp3),
+                CalendarDay.from(temp4)
+            )
+
+
+            /*  캘린더 데코레이터 지정
+            *   ScheduleDecorator 아이디어 : 수업 종류만큼 ScheduleDecorator 를 추가한다.
+            *   First Params : 수업 Id와 (1일 단위)수업에 들어있는 수업 Id를 비교하여 배열을 만들어 전달.
+            *   Second Params : 수업 Model(ClassItem)로부터 해당 수업에 지정된 색상을 가져와 전달
+            * */
             addDecorators(
-                MySelectorDecorator(requireActivity()),
-                ScheduleDecorator(R.color.colorPrimary, tempEventDate),
-                TodayDecorator(resources),
+                MySelectorDecorator(R.drawable.bg_calendar_selected_date, viewModel),
+                ScheduleDecorator(tempEventDate, DateColor.DARK_BLUE),
+                ScheduleDecorator(tempEventDate2, DateColor.ORANGE),
+                TodayDecorator(R.color.secondMainColor),
             )
 
             // 캘린더 확장 여부 관찰
@@ -214,9 +237,9 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding, CalendarViewModel
 
             try {
                 // viewTreeObserver 제거
-                    if(binding.monthSpinner.measuredHeight > 0) {
-                        viewTreeObserver?.removeOnGlobalLayoutListener(this)
-                    }
+                if (binding.monthSpinner.measuredHeight > 0) {
+                    viewTreeObserver?.removeOnGlobalLayoutListener(this)
+                }
             } catch (e: IllegalStateException) {
                 if (BuildConfig.DEBUG) {
                     Timber.d("ViewTree를 한 번만 실행시키기 위해 제거했기 때문에 발생하는 예외")

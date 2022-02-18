@@ -10,6 +10,7 @@ import com.dnd.sixth.lmsservice.databinding.FragmentClassManageBinding
 import com.dnd.sixth.lmsservice.presentation.adapter.viewpager.ClassManageViewPagerAdapter
 import com.dnd.sixth.lmsservice.presentation.base.BaseFragment
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.ClassManageViewModel.Companion.selectedFragmentName
+import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.CalendarViewModel
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.config.ConfigActivity
 import com.dnd.sixth.lmsservice.presentation.utility.UnitConverter
 import com.google.android.material.tabs.TabLayout
@@ -57,6 +58,10 @@ class ClassManageFragment : BaseFragment<FragmentClassManageBinding, ClassManage
             }
 
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
     }
 
     internal fun switchFragment() {

@@ -11,6 +11,7 @@
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/drawable/bg_am_pm.xml" value="0.2796296296296296" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/drawable/bg_am_pm_radio_group.xml" value="0.2796296296296296" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/drawable/bg_calendar_date_selector.xml" value="0.2838541666666667" />
+        <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/drawable/bg_calendar_select.xml" value="0.20885416666666667" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/drawable/bg_calendar_selected_date.xml" value="0.2838541666666667" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/drawable/bg_calendar_selector.xml" value="0.2838541666666667" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/drawable/bg_calendar_unselected_date.xml" value="0.2838541666666667" />
@@ -60,8 +61,10 @@
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/drawable/btn_salary_radio.xml" value="0.38385416666666666" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/drawable/ic_all_student.xml" value="0.2838541666666667" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/drawable/ic_baseline_access_time_24.xml" value="0.3333333333333333" />
+        <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/drawable/ic_checked_student.xml" value="0.20885416666666667" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/drawable/ic_edit_profile.xml" value="0.3416666666666667" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/drawable/ic_exist_notification.xml" value="0.2838541666666667" />
+        <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/drawable/ic_it_is_hell.xml" value="0.20885416666666667" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/drawable/ic_student_category_check.xml" value="0.2838541666666667" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/drawable/my_selector.xml" value="0.3398148148148148" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/drawable/selector_calendar_date.xml" value="0.2838541666666667" />
@@ -132,7 +135,7 @@
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/fragment_student_manage.xml" value="0.17882472137791286" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/fragment_user_info.xml" value="0.1431159420289855" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/item_calendar.xml" value="0.5" />
-        <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/item_calendar_student.xml" value="1.25" />
+        <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/item_calendar_student.xml" value="0.22" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/item_class.xml" value="0.33" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/item_feedback_student.xml" value="0.36770833333333336" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/item_homework_timeline_.xml" value="0.2677083333333333" />
