@@ -1,8 +1,8 @@
-package com.dnd.sixth.lmsservice.data.entity
+package com.dnd.sixth.lmsservice.data.model
 
 import java.io.Serializable
 
-data class ClassItem(
+data class ClassModel(
     val classId: String,
     val name: String,
     val profileUrl: String,

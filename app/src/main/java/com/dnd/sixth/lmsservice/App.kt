@@ -23,7 +23,8 @@ class App : Application() {
             modules(
                 listOf(
                     viewModelModules,
-                    repositoryModules
+                    repositoryModules,
+                    networkModules
                 )
             )
 

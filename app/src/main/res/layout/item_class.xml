@@ -6,7 +6,7 @@
     <data>
         <variable
             name="model"
-            type="com.dnd.sixth.lmsservice.data.entity.ClassItem" />
+            type="com.dnd.sixth.lmsservice.data.model.ClassModel" />
     </data>
 
     <androidx.cardview.widget.CardView

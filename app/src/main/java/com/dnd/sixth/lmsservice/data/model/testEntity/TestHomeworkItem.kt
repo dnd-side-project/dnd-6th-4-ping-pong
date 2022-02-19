@@ -1,4 +1,4 @@
-package com.dnd.sixth.lmsservice.data.entity.testEntity
+package com.dnd.sixth.lmsservice.data.model.testEntity
 
 data class TestHomeworkItem(
     val id: Long,

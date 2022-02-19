@@ -1,4 +1,4 @@
-package com.dnd.sixth.lmsservice.data.network
+package com.dnd.sixth.lmsservice.data.network.base
 
 object Url {
 

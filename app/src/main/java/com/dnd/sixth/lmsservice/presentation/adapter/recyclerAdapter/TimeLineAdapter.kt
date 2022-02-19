@@ -1,20 +1,13 @@
 package com.dnd.sixth.lmsservice.presentation.adapter.recyclerAdapter
 
-import android.annotation.SuppressLint
-import android.app.Activity
-import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.dnd.sixth.lmsservice.R
-import com.dnd.sixth.lmsservice.data.entity.testEntity.TestClassEntity
+import com.dnd.sixth.lmsservice.data.model.testEntity.TestClassEntity
 import com.dnd.sixth.lmsservice.databinding.ViewholderTimelineItemBinding
-import com.dnd.sixth.lmsservice.presentation.feedback.WriteFeedBackActivity
 import com.github.vipulasri.timelineview.TimelineView
 
 //리사이클러뷰 뷰홀더 안에 타임라인 컴포넌트를 추가할 예정
