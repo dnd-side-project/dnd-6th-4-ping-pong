@@ -1,4 +1,4 @@
-package com.dnd.sixth.lmsservice.data.network
+package com.dnd.sixth.lmsservice.data.network.base
 
 import androidx.databinding.ktx.BuildConfig
 import com.dnd.sixth.lmsservice.data.preference.PreferenceManager
@@ -10,11 +10,11 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-val TIME_OUT = 5L // 타임아웃 시간 (단위 : Sec)
+const val TIME_OUT = 5L // 타임아웃 시간 (단위 : Sec)
 
 //레트로핏 빌더, 인스턴스 관련 함수들 모음 파일
-internal fun provideApiService(retrofit: Retrofit): ApiService {
-    return retrofit.create(ApiService::class.java)
+internal fun provideApiService(retrofit: Retrofit): BaseApi {
+    return retrofit.create(BaseApi::class.java)
 }
 
 internal fun provideRetrofit(
@@ -32,7 +32,8 @@ internal fun provideGsonConverterFactory(): GsonConverterFactory {
     return GsonConverterFactory.create()
 }
 
-internal fun buildOkHttpClient(vararg interceptors: Interceptor): OkHttpClient {
+// Access Token 인터셉터를 포함한 OkHttpClient
+internal fun buildOkHttpClientWithAccessToken(vararg interceptors: Interceptor): OkHttpClient {
 
     val builder = OkHttpClient.Builder()
         .connectTimeout(TIME_OUT, TimeUnit.SECONDS)
@@ -48,6 +49,7 @@ internal fun buildOkHttpClient(vararg interceptors: Interceptor): OkHttpClient {
     return builder.build()
 }
 
+
 // HTTP Log 출력을 위한 Interceptor
 internal fun getHttpLoggingInterceptor() =
     HttpLoggingInterceptor().apply {
@@ -59,14 +61,13 @@ internal fun getHttpLoggingInterceptor() =
     }
 
 
-// JWT 인증 토큰을 Header 에 포함한 Interceptor
-internal fun getJWTInterceptor(sharedPreferences: PreferenceManager) =
+// JWT 인증 토큰(Access Token)을 Header에 포함한 Interceptor
+internal fun getAccessTokenInterceptor(sharedPreferences: PreferenceManager) =
     object : Interceptor {
         override fun intercept(chain: Interceptor.Chain): Response {
-            val jwtToken = sharedPreferences.getIdToken()
-            val builder = chain.request().newBuilder().header("Authorization", jwtToken!!)
+            val accessToken = sharedPreferences.getAccessToken()
+            val builder = chain.request().newBuilder().header("Authorization", accessToken)
 
             return chain.proceed(builder.build())
         }
     }
-

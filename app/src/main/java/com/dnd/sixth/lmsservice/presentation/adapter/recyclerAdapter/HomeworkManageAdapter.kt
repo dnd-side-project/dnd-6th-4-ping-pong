@@ -1,22 +1,12 @@
 package com.dnd.sixth.lmsservice.presentation.adapter.recyclerAdapter
 
-import android.annotation.SuppressLint
-import android.app.Activity
-import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.dnd.sixth.lmsservice.R
-import com.dnd.sixth.lmsservice.data.entity.testEntity.TestClassEntity
-import com.dnd.sixth.lmsservice.data.entity.testEntity.TestHomeworkItem
+import com.dnd.sixth.lmsservice.data.model.testEntity.TestHomeworkItem
 import com.dnd.sixth.lmsservice.databinding.ItemHomeworkTimelineBinding
-import com.dnd.sixth.lmsservice.databinding.ViewholderTimelineItemBinding
-import com.dnd.sixth.lmsservice.presentation.feedback.WriteFeedBackActivity
 import com.github.vipulasri.timelineview.TimelineView
 
 // 숙제관리 타임라인 형식리스트를 위한 어답터

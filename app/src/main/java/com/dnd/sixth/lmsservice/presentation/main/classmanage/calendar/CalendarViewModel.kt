@@ -4,9 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.dnd.sixth.lmsservice.App
 import com.dnd.sixth.lmsservice.R
-import com.dnd.sixth.lmsservice.data.entity.ClassItem
+import com.dnd.sixth.lmsservice.data.model.ClassModel
 import com.dnd.sixth.lmsservice.presentation.base.BaseViewModel
-import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.custom.DateColor
 import java.util.*
 
 class CalendarViewModel : BaseViewModel() {
@@ -15,8 +14,8 @@ class CalendarViewModel : BaseViewModel() {
     private val monthIntegerList: IntArray? = App.context?.resources?.getIntArray(R.array.month_integer_list)
 
     // 선택된 수업 리스트
-    private val _selectedClassList = MutableLiveData<List<ClassItem>>()
-    val selectedClassList: LiveData<List<ClassItem>> = _selectedClassList
+    private val _selectedClassList = MutableLiveData<List<ClassModel>>()
+    val selectedClassList: LiveData<List<ClassModel>> = _selectedClassList
 
     private var currentDate: Date = Date()
     var isDone = true // 캘린더 관련 데이터 업데이트 완료 여부

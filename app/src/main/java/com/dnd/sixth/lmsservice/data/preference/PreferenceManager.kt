@@ -18,7 +18,8 @@ class PreferenceManager(
         private const val DEFAULT_VALUE_LONG = -1L
         private const val DEFAULT_VALUE_FLOAT = -1f
 
-        const val KEY_ID_TOKEN = "ID_TOKEN"
+        const val KEY_ACCESS_TOKEN = "ACCESS_TOKEN"
+        const val KEY_REFRESH_TOKEN = "REFRESH_TOKEN"
     }
 
     private fun getPreferences(context: Context): SharedPreferences {
@@ -155,20 +156,30 @@ class PreferenceManager(
         editor.apply()
     }
 
-    fun putIdToken(idToken: String) {
-        editor.putString(KEY_ID_TOKEN, idToken)
+    fun putAccessToken(accessToken: String) {
+        editor.putString(KEY_ACCESS_TOKEN, accessToken)
         editor.apply()
     }
 
-    fun getIdToken(): String? {
+    fun getAccessToken(): String {
         // 인증 타입
         // Authorization: <type> <credentials>
-        var credentials = "Bearer"
-        return "$credentials ${prefs.getString(KEY_ID_TOKEN, null)}"
+        val credentials = "Bearer"
+        return "$credentials ${prefs.getString(KEY_ACCESS_TOKEN, null)}"
+    }
+
+    fun putRefreshToken(refreshToken: String) {
+        editor.putString(KEY_REFRESH_TOKEN, refreshToken)
+        editor.apply()
+    }
+
+    fun getRefreshToken(): String {
+        val credentials = "Bearer"
+        return "$credentials ${prefs.getString(KEY_REFRESH_TOKEN, null)}"
     }
 
     fun removedToken() {
-        editor.putString(KEY_ID_TOKEN, null)
+        editor.putString(KEY_ACCESS_TOKEN, null)
         editor.apply()
     }
 }
