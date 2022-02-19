@@ -10,12 +10,11 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
+/*
+ 레트로핏 빌더, 인스턴스 관련 함수들 모음 파일
+ */
 const val TIME_OUT = 5L // 타임아웃 시간 (단위 : Sec)
 
-//레트로핏 빌더, 인스턴스 관련 함수들 모음 파일
-internal fun provideApiService(retrofit: Retrofit): BaseApi {
-    return retrofit.create(BaseApi::class.java)
-}
 
 internal fun provideRetrofit(
     okHttpClient: OkHttpClient,

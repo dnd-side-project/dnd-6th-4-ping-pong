@@ -12,6 +12,5 @@ val networkModules = module {
         )
     }
     single { provideRetrofit(get(), get()) }
-    single { provideApiService(get()) }
     single { getHttpLoggingInterceptor() }
 }
