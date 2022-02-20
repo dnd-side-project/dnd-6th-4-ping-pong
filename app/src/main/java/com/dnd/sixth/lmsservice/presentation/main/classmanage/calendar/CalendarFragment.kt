@@ -233,7 +233,7 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding, CalendarViewModel
                         binding.noScheduleScrollView.measuredHeight * viewModel.getSelectedClassCount()
 
             ClassManageViewModel.screenHeight.value = sumHeight
-            Log.d("height2", "${sumHeight}")
+            Timber.tag("CalendarFragment Height").d("$sumHeight")
 
             try {
                 // viewTreeObserver 제거

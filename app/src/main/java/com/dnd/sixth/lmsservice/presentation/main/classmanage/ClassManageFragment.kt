@@ -60,9 +60,6 @@ class ClassManageFragment : BaseFragment<FragmentClassManageBinding, ClassManage
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-    }
 
     internal fun switchFragment() {
         val currentPage = binding.homeViewPager.currentItem

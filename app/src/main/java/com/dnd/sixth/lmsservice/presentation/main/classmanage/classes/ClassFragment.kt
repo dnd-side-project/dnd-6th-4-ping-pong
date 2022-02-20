@@ -99,10 +99,16 @@ class ClassFragment : BaseFragment<FragmentClassBinding, ClassViewModel>(),
 
     override fun onResume() {
         super.onResume()
+        /* 캘린더가 펼쳐지면 Observer를 통해 높이를 다시 측정하기 때문에
+        *  캘린더를 먼저 펼친 후에 ClassFragment의 높이를 재측정한다.
+        *  */
+
+        // 클래스 Fragment가 재게되면, 캘린더 Fragment의 Calendar를 다시 펼친다.
+        if(CalendarViewModel.isExpanded.value == false) {
+            CalendarViewModel.expandCalendar()
+        }
         // Host Fragment의 ScrollView 높이 재설정
         setClassHomeScrollViewHeight()
-        // 클래스 Fragment가 재게되면, 캘린더 Fragment의 Calendar를 다시 펼친다.
-        CalendarViewModel.expandCalendar()
     }
 
 
@@ -128,13 +134,13 @@ class ClassFragment : BaseFragment<FragmentClassBinding, ClassViewModel>(),
                         ) * classAdapter?.itemCount!!
 
             ClassManageViewModel.screenHeight.value = sumHeight
+            Timber.tag("classFragment Height").d("$sumHeight")
 
-            Log.d("height1", "${sumHeight}")
             try {
                 // viewTreeObserver 제거
-                    if( binding.classAddCardView.measuredHeight> 0) {
-                        viewTreeObserver?.removeOnGlobalLayoutListener(this)
-                    }
+                if (binding.classAddCardView.measuredHeight > 0) {
+                    viewTreeObserver?.removeOnGlobalLayoutListener(this)
+                }
             } catch (e: IllegalStateException) {
                 if (BuildConfig.DEBUG) {
                     Timber.d("ViewTree를 한 번만 실행시키기 위해 제거했기 때문에 발생하는 예외")
