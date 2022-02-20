@@ -12,9 +12,12 @@ import timber.log.Timber
 
 class App : Application() {
 
+    val context: Context
+        get() = this
+
     override fun onCreate() {
         super.onCreate()
-        context = this
+        instance = this
         Timber.plant(Timber.DebugTree())
 
         startKoin {
@@ -31,14 +34,11 @@ class App : Application() {
         }
     }
 
-    override fun onTerminate() {
-        super.onTerminate()
-        context = null
-    }
 
     companion object {
+
         @SuppressLint("StaticFieldLeak")
-        var context: Context? = null
+        lateinit var instance: App
             private set
     }
 

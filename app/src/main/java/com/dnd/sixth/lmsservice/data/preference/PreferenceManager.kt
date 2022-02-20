@@ -2,6 +2,8 @@ package com.dnd.sixth.lmsservice.data.preference
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.dnd.sixth.lmsservice.data.network.base.NetworkCommons
+
 //SharedPreference
 /**
  * 데이터 저장 및 로드 클래스
@@ -164,8 +166,8 @@ class PreferenceManager(
     fun getAccessToken(): String {
         // 인증 타입
         // Authorization: <type> <credentials>
-        val credentials = "Bearer"
-        return "$credentials ${prefs.getString(KEY_ACCESS_TOKEN, null)}"
+        val credentialsType = NetworkCommons.CREDENTIAL_TYPE
+        return "$credentialsType ${prefs.getString(KEY_ACCESS_TOKEN, null)}"
     }
 
     fun putRefreshToken(refreshToken: String) {
@@ -174,8 +176,8 @@ class PreferenceManager(
     }
 
     fun getRefreshToken(): String {
-        val credentials = "Bearer"
-        return "$credentials ${prefs.getString(KEY_REFRESH_TOKEN, null)}"
+        val credentialsType = NetworkCommons.CREDENTIAL_TYPE
+        return "$credentialsType ${prefs.getString(KEY_REFRESH_TOKEN, null)}"
     }
 
     fun removedToken() {

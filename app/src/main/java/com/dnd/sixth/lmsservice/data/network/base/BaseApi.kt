@@ -4,9 +4,11 @@ import org.koin.core.KoinComponent
 import org.koin.core.inject
 import retrofit2.Retrofit
 
-//레트로핏을 기반하여 동작
-// 사용할 메소드 선언 // 사용할 HTTP CRUD동작들을 정의해두는 인터페이스
+// HTTP통신을 할 Api 클래스들의 Root 클래스
 abstract class BaseApi: KoinComponent {
     val retrofit: Retrofit by inject()
+
+    // Refresh 토큰으로 Access 토큰 요청
+
 
 }
