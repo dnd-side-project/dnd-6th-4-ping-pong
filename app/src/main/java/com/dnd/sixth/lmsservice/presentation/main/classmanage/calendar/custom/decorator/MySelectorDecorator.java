@@ -43,7 +43,7 @@ public class MySelectorDecorator implements DayViewDecorator {
     @SuppressLint("ResourceType")
     @Override
     public void decorate(DayViewFacade view) {
-        view.setSelectionDrawable(App.Companion.getContext().getDrawable(drawableResId)); // 가져온 Selector 이미지 등록
+        view.setSelectionDrawable(App.Companion.getInstance().getContext().getDrawable(drawableResId)); // 가져온 Selector 이미지 등록
         view.addSpan(new ForegroundColorSpan(Color.BLACK)); // 날짜 텍스트 색상 검정색
     }
 }

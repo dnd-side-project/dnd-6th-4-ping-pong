@@ -33,8 +33,8 @@ class TodayDecorator(@IdRes val color: Int) : DayViewDecorator {
             addSpan(RelativeSizeSpan(1.0f)) // 상대적인 크기 1.0배
             addSpan(
                 CenteredDotSpan(
-                    UnitConverter.convertDPtoPX(App.context!!, 18).toFloat(),
-                    ContextCompat.getColor(App.context!!, color)
+                    UnitConverter.convertDPtoPX(App.instance.context, 18).toFloat(),
+                    ContextCompat.getColor(App.instance.context, color)
                 )
             ) // 흰색 테두리
         }

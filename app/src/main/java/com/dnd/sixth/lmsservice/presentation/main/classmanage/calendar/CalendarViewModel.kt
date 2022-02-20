@@ -10,8 +10,8 @@ import java.util.*
 
 class CalendarViewModel : BaseViewModel() {
     // 달력 월 리스트
-    private val monthStringList: Array<String>? = App.context?.resources?.getStringArray(R.array.month_string_list)
-    private val monthIntegerList: IntArray? = App.context?.resources?.getIntArray(R.array.month_integer_list)
+    private val monthStringList: Array<String>? = App.instance.context.resources?.getStringArray(R.array.month_string_list)
+    private val monthIntegerList: IntArray? = App.instance.context.resources?.getIntArray(R.array.month_integer_list)
 
     // 선택된 수업 리스트
     private val _selectedClassList = MutableLiveData<List<ClassModel>>()
