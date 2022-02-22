@@ -9,7 +9,7 @@ import java.util.*
 class ScheduleAddViewModel : BaseViewModel() {
 
     // 일정 : DateTimePicker로 선택한 날짜의 Calendar 데이터
-    var pickedDate: Calendar? = null
+    val pickedDate = MutableLiveData<Date>(null)
 
     var place: String? = null // 장소
     var chapter: String? = null // 챕터

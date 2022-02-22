@@ -32,9 +32,11 @@
     <color name="grayAA">#AAAAAA</color>
     <color name="grayF5">#F5F5F5</color>
     <color name="grayF3">#F3F3F3</color>
+    <color name="gray9F">#9F9F9F</color>
     <color name="gray63">#636363</color>
     <color name="grayFA">#FAFAFA</color>
     <color name="blue02">#2A3A99</color>
+    <color name="iconBlue">#BFC5E4</color>
     <color name="dateSelectColor">@color/white</color>
 
 

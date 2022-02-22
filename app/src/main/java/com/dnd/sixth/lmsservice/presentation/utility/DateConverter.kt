@@ -48,8 +48,12 @@ class DateConverter {
     *  @return 2022. 02. 17 목  오전 12 : 50
     * */
     @SuppressLint("SimpleDateFormat")
-    fun getFullDate(date: Date): String {
-        val dateFormat = SimpleDateFormat("yyyy. MM. dd. E  a HH : mm")
-        return dateFormat.format(date.time)
+    fun getFullDate(date: Date?): String? {
+        return if(date != null) {
+            val dateFormat = SimpleDateFormat("yyyy. MM. dd. E  a HH : mm")
+            dateFormat.format(date.time)
+        } else {
+            null
+        }
     }
 }

@@ -2,8 +2,6 @@ package com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.detail.t
 
 import android.content.Context
 import android.content.Intent
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.MenuItem
 import android.view.View
 import android.view.animation.Animation
@@ -12,15 +10,14 @@ import android.view.inputmethod.InputMethodManager
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
-import androidx.core.text.isDigitsOnly
 import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.databinding.ActivityTeacherScheduleEditBinding
 import com.dnd.sixth.lmsservice.databinding.DialogPushTimePickerBinding
 import com.dnd.sixth.lmsservice.presentation.base.BaseActivity
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.add.push.PushTimePickerActivity
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.add.push.type.PushTime
+import com.dnd.sixth.lmsservice.presentation.utility.CustomInputFilter
 import com.dnd.sixth.lmsservice.presentation.utility.DateConverter
-import com.dnd.sixth.lmsservice.presentation.utility.TimeConverter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 
@@ -28,9 +25,9 @@ import java.util.*
 class TeacherScheduleEditActivity : BaseActivity<ActivityTeacherScheduleEditBinding, TeacherScheduleEditViewModel>(),
     View.OnClickListener {
     override val layoutResId: Int
-        get() = R.layout.activity_student_schedule_edit
+        get() = R.layout.activity_teacher_schedule_edit
     override val viewModel: TeacherScheduleEditViewModel by viewModel()
-    private var pushTimeResultLauncher: ActivityResultLauncher<Intent>? = null // 푸시 타임 피커 액티비티 런쳐
+    private var activityResultLauncher: ActivityResultLauncher<Intent>? = null // 푸시 타임 피커 액티비티 런쳐
 
     // 액티비티 초기화 메서드
     override fun initActivity() {
@@ -40,6 +37,7 @@ class TeacherScheduleEditActivity : BaseActivity<ActivityTeacherScheduleEditBind
 
     private fun setBindingData() {
         binding.viewModel = viewModel // ViewModel 바인딩
+        binding.dateConverter = DateConverter() // DateConverter 객체 바인딩
     }
 
     private fun initView() {
@@ -48,58 +46,19 @@ class TeacherScheduleEditActivity : BaseActivity<ActivityTeacherScheduleEditBind
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
             supportActionBar?.setDisplayShowTitleEnabled(false)
 
-            setDateTimePicker(this) // DateTime Picker 설정
-            setListener(this) // 리스너 설정
+            setDateTimePicker() // DateTime Picker 설정
+            setListener() // 리스너 설정
             setActivityLauncher() // 액티비티 런처 설정
 
-            // 수업 회차 EditText TextWatcher
-            val classRoundTextWatcher = object : TextWatcher {
-                override fun beforeTextChanged(
-                    s: CharSequence?,
-                    start: Int,
-                    count: Int,
-                    after: Int
-                ) {
-                }
-
-                override fun onTextChanged(
-                    s: CharSequence?,
-                    start: Int,
-                    before: Int,
-                    count: Int
-                ) {
-
-                    // EditText의 값을 아예 지워서 비어지게 되는 경우에는
-                    if (classRoundEditText.text.isBlank()) {
-                        // 기본 값인 1로 설정한다.
-                        viewModel?.setDefaultClassRound()
-                    } else {
-                        // 그렇지 않고, 어떠한 값이라도 입력이 된다면 classRound 라이브 데이터 갱신
-                        if (classRoundEditText.text.isDigitsOnly()) {
-                            viewModel?.setClassRound(classRoundEditText.text.toString().toInt())
-                        }
-                    }
-                }
-
-                override fun afterTextChanged(s: Editable?) {}
-
-            }
-
-            // ClassRound의 TextWatcher 등록
-            classRoundEditText.addTextChangedListener(classRoundTextWatcher)
-
+            // 숫자만 입력 받을 수 있도록 Filter 설정
+            classRoundEditText.filters = arrayOf(CustomInputFilter())
 
             // 수업 회차 입력값이 변경됨을 감지
-            viewModel!!.classRound.observe(this@TeacherScheduleEditActivity) {
-                // 무한 루프를 방지하기 위해 TextWatcher 일시적으로 제거
-                classRoundEditText.removeTextChangedListener(classRoundTextWatcher)
-
-                classRoundEditText.setText(viewModel!!.classRound.value?.toString()) // 에딧 텍스트 값 변경
-                classRoundTextView.text = getString(R.string.class_round_format, it) // 텍스트 값 변경
+            viewModel?.classRound?.observe(this@TeacherScheduleEditActivity) {
                 classRoundEditText.setSelection(classRoundEditText.length()) // 에딧 텍스트 커서 맨 뒤에 배치
-
-                // 로직 수행 후에 TextWatcher 다시 추가
-                classRoundEditText.addTextChangedListener(classRoundTextWatcher)
+                if(it < 1) {
+                    viewModel?.setDefaultClassRound()
+                }
             }
 
             DialogPushTimePickerBinding.inflate(layoutInflater)
@@ -111,30 +70,13 @@ class TeacherScheduleEditActivity : BaseActivity<ActivityTeacherScheduleEditBind
                     return@observe
                 }
                 notiTextView.isEnabled = true // 색상 변경을 위해 활성화 True
-                when (pushTime) {
-                    PushTime.NONE -> {
-                        notiTextView.text = "없음"
-                    }
-                    PushTime.TEN -> {
-                        notiTextView.text = "10분 전"
-                    }
-                    PushTime.THIRTY -> {
-                        notiTextView.text = "30분 전"
-                    }
-                    PushTime.ONE_HOUR -> {
-                        notiTextView.text = "1시간 전"
-                    }
-                    PushTime.THREE_HOUR -> {
-                        notiTextView.text = "3시간 전"
-                    }
-
-                }
+                notiTextView.text = pushTime.timeText // 푸시 알림 텍스트뷰 갱신
             }
         }
     }
 
     private fun setActivityLauncher() {
-        pushTimeResultLauncher =
+        activityResultLauncher =
             registerForActivityResult(
                 ActivityResultContracts.StartActivityForResult()
             ) { result ->
@@ -150,97 +92,24 @@ class TeacherScheduleEditActivity : BaseActivity<ActivityTeacherScheduleEditBind
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.date_container -> {
-                with(binding) {
-                    // Expandable 처리
-                    // 가려져 있는 상태에서는 드롭 다운 애니메이션과 함께 Visible
-                    if (scrollDateContainer.visibility == View.GONE) {
-                        val dropDownAnimation =
-                            AnimationUtils.loadAnimation(
-                                this@TeacherScheduleEditActivity,
-                                R.anim.anim_drop_down
-                            )
-                        scrollDateContainer.visibility = View.VISIBLE
-                        scrollDateContainer.startAnimation(dropDownAnimation)
-                        dateTimeTextView.setTextColor(ContextCompat.getColor(this@TeacherScheduleEditActivity, R.color.grayC4))
-                    }
-                    // 보이는 상태에서는 드롭 업 애니메이션과 함께 Gone
-                    else {
-                        val dropUpAnimation =
-                            AnimationUtils.loadAnimation(
-                                this@TeacherScheduleEditActivity,
-                                R.anim.anim_drop_up
-                            ).apply {
-                                setAnimationListener(object : Animation.AnimationListener {
-                                    override fun onAnimationStart(animation: Animation?) {}
-                                    override fun onAnimationEnd(animation: Animation?) {
-                                        // 애니메이션 종료시 Visibility Gone 으로 설정
-                                        scrollDateContainer.visibility = View.GONE
-                                        dateTimeTextView.setTextColor(
-                                            ContextCompat.getColor(
-                                                this@TeacherScheduleEditActivity,
-                                                R.color.richBlack
-                                            )
-                                        )
-                                    }
-
-                                    override fun onAnimationRepeat(animation: Animation?) {}
-                                })
-                            }
-
-                        scrollDateContainer.startAnimation(dropUpAnimation)
-                    }
-                }
+                // 날짜 피커뷰를 상태에 따라 보여주거나 가린다.
+                showOrHideDateScrollView()
             }
             R.id.class_round_container -> {
-                // Expandable 처리
-                // 가려져 있는 상태에서는 드롭 다운 애니메이션과 함께 Visible
-                if (binding.classRoundCountView.visibility == View.GONE) {
-                    val dropDownAnimation =
-                        AnimationUtils.loadAnimation(this, R.anim.anim_drop_down)
-                    binding.classRoundCountView.visibility = View.VISIBLE
-                    binding.classRoundCountView.startAnimation(dropDownAnimation)
-                }
-                // 보이는 상태에서는 드롭 업 애니메이션과 함께 Gone
-                else {
-                    val dropUpAnimation =
-                        AnimationUtils.loadAnimation(this, R.anim.anim_drop_up).apply {
-                            setAnimationListener(object : Animation.AnimationListener {
-                                override fun onAnimationStart(animation: Animation?) {}
-                                override fun onAnimationEnd(animation: Animation?) {
-                                    // 애니메이션 종료시 Visibility Gone 으로 설정
-                                    binding.classRoundCountView.visibility = View.GONE
-                                }
-
-                                override fun onAnimationRepeat(animation: Animation?) {}
-                            })
-                        }
-                    binding.classRoundCountView.startAnimation(dropUpAnimation)
-                }
-            }
-            R.id.count_plus_btn -> {
-                // 수업 회차 + 버튼 클릭시 1을 더해준다.
-                viewModel.plusClassRound()
-                //binding.classRoundEditText.clearFocus() // 포커스 해제
-            }
-            R.id.count_minus_btn -> {
-                // 수업 회차 - 버튼 클릭시 1을 빼준다.
-                viewModel.minusClassRound()
-                //binding.classRoundEditText.clearFocus() // 포커스 해제
+                // 수업 회차 피커뷰를 상태에 따라 보여주거나 가린다.
+                showOrHideRoundView()
             }
             R.id.class_noti_container, R.id.noti_down_arrow_btn -> { // 푸시 타임 선택할 수 있는 액티비티로 이동
                 // 현재 푸시 타임 데이터 전달
                 val intent = Intent(this, PushTimePickerActivity::class.java).putExtra(
                     INTENT_PUSH_TOKEN_KEY, viewModel.pushTime.value
                 )
-                pushTimeResultLauncher?.launch(intent) // 런처를 통해 푸시 선택 액티비티 선택
-            }
-            R.id.delete_btn -> { // 수업 삭제 버튼
-
+                activityResultLauncher?.launch(intent) // 런처를 통해 푸시 선택 액티비티 선택
             }
         }
     }
 
-    private fun setListener(binding: ActivityTeacherScheduleEditBinding) {
+    private fun setListener() {
         with(binding) {
             dateContainer.setOnClickListener(this@TeacherScheduleEditActivity)
             classRoundCountView.setOnClickListener(this@TeacherScheduleEditActivity)
@@ -249,38 +118,99 @@ class TeacherScheduleEditActivity : BaseActivity<ActivityTeacherScheduleEditBind
             countPlusBtn.setOnClickListener(this@TeacherScheduleEditActivity)
             classNotiContainer.setOnClickListener(this@TeacherScheduleEditActivity)
             notiDownArrowBtn.setOnClickListener(this@TeacherScheduleEditActivity)
-            deleteBtn.setOnClickListener(this@TeacherScheduleEditActivity)
+
         }
     }
 
-    private fun setDateTimePicker(binding: ActivityTeacherScheduleEditBinding) {
-        binding.dateTimePicker.setOnSelectedDateChangedListener { date ->
-            // 화면 회전시 초기화되는 것을 방지하기 위해
-            // ViewModel에 데이터 저장
-            viewModel.pickedDate = date
-            setDateTimeText(date)
+    private fun setDateTimePicker() {
+        binding.dateTimePicker.setOnSelectedDateChangedListener { dateCalendar ->
+            /* 리스너를 통해 전달받은 Calendar 객체는 1일이 뺀 결과가 반환 됨 */
+            val dateClone = dateCalendar.clone() as Calendar // 캘린더 객체 클론
+            dateClone.add(Calendar.DAY_OF_MONTH, 1) // 1일 추가
+            viewModel.pickedDate.value = dateClone.time // ViewModel에 전달
         }
     }
 
-    // DateTimePicker 변경시 해당 메서드로 Calendar 객체를 전달하여
-    // 화면 갱신
-    private fun setDateTimeText(date: Calendar) {
-        binding.dateTimeTextView.text = DateConverter().getFullDate(date.time)
+    // 날짜를 선택할 수 있는 PickerView를 보여주거나 가린다.
+    private fun showOrHideDateScrollView() {
+        // Expandable 처리
+        // 가려져 있는 상태에서는 드롭 다운 애니메이션과 함께 Visible
+        with(binding) {
+            if (scrollDateContainer.visibility == View.GONE) {
+                val dropDownAnimation =
+                    AnimationUtils.loadAnimation(
+                        this@TeacherScheduleEditActivity,
+                        R.anim.anim_drop_down
+                    )
+                scrollDateContainer.visibility = View.VISIBLE
+                scrollDateContainer.startAnimation(dropDownAnimation)
+                dateTimeTextView.setTextColor(
+                    ContextCompat.getColor(
+                        this@TeacherScheduleEditActivity,
+                        R.color.grayC4
+                    )
+                )
+            }
+            // 보이는 상태에서는 드롭 업 애니메이션과 함께 Gone
+            else {
+                val dropUpAnimation =
+                    AnimationUtils.loadAnimation(
+                        this@TeacherScheduleEditActivity,
+                        R.anim.anim_drop_up
+                    ).apply {
+                        setAnimationListener(object : Animation.AnimationListener {
+                            override fun onAnimationStart(animation: Animation?) {}
+                            override fun onAnimationEnd(animation: Animation?) {
+                                // 애니메이션 종료시 Visibility Gone 으로 설정
+                                scrollDateContainer.visibility = View.GONE
+                                dateTimeTextView.setTextColor(
+                                    ContextCompat.getColor(
+                                        this@TeacherScheduleEditActivity,
+                                        R.color.richBlack
+                                    )
+                                )
+                            }
+
+                            override fun onAnimationRepeat(animation: Animation?) {}
+                        })
+                    }
+
+                scrollDateContainer.startAnimation(dropUpAnimation)
+            }
+        }
+
+
     }
 
-    override fun onResume() {
-        super.onResume()
 
-        // onResume 호출시 ViewModel에 저장된 데이터를 View에 적용
-        loadDateOnResume()
+    // 회차를 선택할 수 있는 View를 보여주거나 가린다.
+    private fun showOrHideRoundView() {
+        // Expandable 처리
+        // 가려져 있는 상태에서는 드롭 다운 애니메이션과 함께 Visible
+        if (binding.classRoundCountView.visibility == View.GONE) {
+            val dropDownAnimation =
+                AnimationUtils.loadAnimation(this, R.anim.anim_drop_down)
+            binding.classRoundCountView.visibility = View.VISIBLE
+            binding.classRoundCountView.startAnimation(dropDownAnimation)
+        }
+        // 보이는 상태에서는 드롭 업 애니메이션과 함께 Gone
+        else {
+            val dropUpAnimation =
+                AnimationUtils.loadAnimation(this, R.anim.anim_drop_up).apply {
+                    setAnimationListener(object : Animation.AnimationListener {
+                        override fun onAnimationStart(animation: Animation?) {}
+                        override fun onAnimationEnd(animation: Animation?) {
+                            // 애니메이션 종료시 Visibility Gone 으로 설정
+                            binding.classRoundCountView.visibility = View.GONE
+                        }
+
+                        override fun onAnimationRepeat(animation: Animation?) {}
+                    })
+                }
+            binding.classRoundCountView.startAnimation(dropUpAnimation)
+        }
     }
 
-    private fun loadDateOnResume() {
-        viewModel.pickedDate?.let { setDateTimeText(it) } // 과외 일정, 시간 텍스트
-        binding.classRoundTextView.text =
-            getString(R.string.class_round_format, viewModel.classRound.value) // 수업 회차 Text ex) 7회차
-        binding.classRoundEditText.setText(viewModel.classRound.value.toString()) // 수업 회차 EditText
-    }
 
     private fun hideKeyBoard() {
         val focusedView = currentFocus

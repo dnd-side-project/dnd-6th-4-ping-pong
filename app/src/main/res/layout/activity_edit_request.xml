@@ -8,6 +8,10 @@
         <variable
             name="viewModel"
             type="com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.detail.student.request.EditRequestViewModel" />
+
+        <variable
+            name="dateConverter"
+            type="com.dnd.sixth.lmsservice.presentation.utility.DateConverter" />
     </data>
 
     <ScrollView
@@ -46,18 +50,20 @@
 
                 <ImageView
                     android:id="@+id/round_icon"
-                    android:layout_width="15dp"
-                    android:layout_height="17dp"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
                     android:layout_marginTop="20dp"
-                    android:src="@drawable/ic_location"
+                    android:src="@drawable/ic_book"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/iconBlue" />
 
                 <TextView
                     android:id="@+id/round_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="14dp"
+                    android:text="@{@string/class_round_format(viewModel.classRound)}"
                     android:textColor="@color/richBlack"
                     app:layout_constraintBottom_toBottomOf="@id/round_icon"
                     app:layout_constraintLeft_toRightOf="@+id/round_icon"
@@ -95,7 +101,7 @@
 
                     <RadioGroup
                         android:id="@+id/request_radio_group"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:orientation="horizontal">
 
@@ -109,9 +115,9 @@
                             android:button="@null"
                             android:checked="true"
                             android:gravity="center"
+                            android:text="학교 관련 일정"
                             android:textColor="@color/color_salary_radio_text"
-                            android:textSize="14sp"
-                            android:text="학교 관련 일정" />
+                            android:textSize="14sp" />
 
                         <RadioButton
                             android:id="@+id/radio_type_private"
@@ -122,9 +128,9 @@
                             android:background="@drawable/btn_salary_radio"
                             android:button="@null"
                             android:gravity="center"
+                            android:text="개인 일정"
                             android:textColor="@color/color_salary_radio_text"
-                            android:textSize="14sp"
-                            android:text="개인 일정" />
+                            android:textSize="14sp" />
 
                         <RadioButton
                             android:id="@+id/radio_type_hospital"
@@ -134,9 +140,9 @@
                             android:background="@drawable/btn_salary_radio"
                             android:button="@null"
                             android:gravity="center"
+                            android:text="병원 방문"
                             android:textColor="@color/color_salary_radio_text"
-                            android:textSize="14sp"
-                            android:text="병원 방문" />
+                            android:textSize="14sp" />
 
                     </RadioGroup>
                 </HorizontalScrollView>
@@ -174,12 +180,13 @@
 
                     <ImageView
                         android:id="@+id/date_icon"
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
                         android:layout_marginTop="20dp"
                         android:src="@drawable/ic_watch"
                         app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/date_title" />
+                        app:layout_constraintTop_toBottomOf="@+id/date_title"
+                        app:tint="@color/iconBlue" />
 
                     <TextView
                         android:id="@+id/date_time_text_view"
@@ -187,6 +194,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="14dp"
+                        android:text="@{dateConverter.getFullDate(viewModel.pickedDate)}"
                         android:textColor="@color/richBlack"
                         android:textSize="14sp"
                         app:layout_constraintBottom_toBottomOf="@+id/date_icon"

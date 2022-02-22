@@ -53,7 +53,7 @@ object Converter {
 
     @JvmStatic
     fun toInt(
-        value: String
+        value: String?
     ): Int {
         // 입력받은 값이 Null이거나 비어있으면, 또는 1보다 작은 수인 경우 1을 반환한다
         return if (value.isNullOrEmpty() || Integer.parseInt(value) < 1) {

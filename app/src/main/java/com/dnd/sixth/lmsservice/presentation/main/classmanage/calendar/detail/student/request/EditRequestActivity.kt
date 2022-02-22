@@ -10,9 +10,7 @@ import com.dnd.sixth.lmsservice.databinding.ActivityEditRequestBinding
 import com.dnd.sixth.lmsservice.presentation.base.BaseActivity
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.detail.student.edit.StudentScheduleEditActivity
 import com.dnd.sixth.lmsservice.presentation.utility.DateConverter
-import com.dnd.sixth.lmsservice.presentation.utility.TimeConverter
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.text.SimpleDateFormat
 import java.util.*
 
 class EditRequestActivity : BaseActivity<ActivityEditRequestBinding, EditRequestViewModel>(),
@@ -29,17 +27,18 @@ class EditRequestActivity : BaseActivity<ActivityEditRequestBinding, EditRequest
 
     private fun setBindingData() {
         binding.viewModel = viewModel // ViewModel 바인딩
+        binding.dateConverter = DateConverter() // DateConverter 객체 바인딩
     }
 
     private fun initView() {
         with(binding) {
-            setDateTimePicker(this) // DateTime Picker 설정
-            setListener(this) // 리스너 설정
-
             // 툴바 설정
             setSupportActionBar(toolbar)
             supportActionBar?.setDisplayHomeAsUpEnabled(true) // 뒤로가기 버튼 활성화
             supportActionBar?.setDisplayShowTitleEnabled(false) // 타이틀 보이지 않도록 설정
+
+            setDateTimePicker(this) // DateTime Picker 설정
+            setListener(this) // 리스너 설정
         }
     }
 
@@ -108,25 +107,14 @@ class EditRequestActivity : BaseActivity<ActivityEditRequestBinding, EditRequest
     }
 
     private fun setDateTimePicker(binding: ActivityEditRequestBinding) {
-        binding.dateTimePicker.setOnSelectedDateChangedListener { date ->
-            // 화면 회전시 초기화되는 것을 방지하기 위해
-            // ViewModel에 데이터 저장
-            viewModel.pickedDate = date
-            setDateTimeText(date)
+        binding.dateTimePicker.setOnSelectedDateChangedListener { dateCalendar ->
+            /* 리스너를 통해 전달받은 Calendar 객체는 1일이 뺀 결과가 반환 됨 */
+            val dateClone = dateCalendar.clone() as Calendar // 캘린더 객체 클론
+            dateClone.add(Calendar.DAY_OF_MONTH, 1) // 1일 추가
+            viewModel.pickedDate.value = dateClone.time // ViewModel에 전달
         }
     }
 
-    // DateTimePicker 변경시 해당 메서드로 Calendar 객체를 전달하여
-    // 화면 갱신
-    private fun setDateTimeText(date: Calendar) {
-        binding.dateTimeTextView.text = DateConverter().getFullDate(date.time) // 날짜 형식 변환
-    }
-
-    override fun onResume() {
-        super.onResume()
-        // onResume 호출시 ViewModel에 저장된 데이터를 View에 적용
-        loadDateOnResume()
-    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
@@ -136,8 +124,5 @@ class EditRequestActivity : BaseActivity<ActivityEditRequestBinding, EditRequest
         return true
     }
 
-    private fun loadDateOnResume() {
-        viewModel.pickedDate?.let { setDateTimeText(it) } // 과외 일정, 시간 텍스트
-    }
 
 }

@@ -1,6 +1,5 @@
 package com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.add
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.view.MenuItem
@@ -19,18 +18,15 @@ import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.add.push.
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.add.push.type.PushTime
 import com.dnd.sixth.lmsservice.presentation.utility.CustomInputFilter
 import com.dnd.sixth.lmsservice.presentation.utility.DateConverter
-import com.dnd.sixth.lmsservice.presentation.utility.TimeConverter
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.text.SimpleDateFormat
 import java.util.*
-
 
 class ScheduleAddActivity : BaseActivity<ActivityScheduleAddBinding, ScheduleAddViewModel>(),
     View.OnClickListener {
     override val layoutResId: Int
         get() = R.layout.activity_schedule_add
     override val viewModel: ScheduleAddViewModel by viewModel()
-    private var pushTimeResultLauncher: ActivityResultLauncher<Intent>? = null // 푸시 타임 피커 액티비티 런쳐
+    private var activityResultLauncher: ActivityResultLauncher<Intent>? = null // 푸시 타임 피커 액티비티 런쳐
 
     // 액티비티 초기화 메서드
     override fun initActivity() {
@@ -40,6 +36,7 @@ class ScheduleAddActivity : BaseActivity<ActivityScheduleAddBinding, ScheduleAdd
 
     private fun setBindingData() {
         binding.viewModel = viewModel // ViewModel 바인딩
+        binding.dateConverter = DateConverter() // DateConverter 객체 바인딩
     }
 
     private fun initView() {
@@ -72,30 +69,13 @@ class ScheduleAddActivity : BaseActivity<ActivityScheduleAddBinding, ScheduleAdd
                     return@observe
                 }
                 notiTextView.isEnabled = true // 색상 변경을 위해 활성화 True
-                when (pushTime) {
-                    PushTime.NONE -> {
-                        notiTextView.text = "없음"
-                    }
-                    PushTime.TEN -> {
-                        notiTextView.text = "10분 전"
-                    }
-                    PushTime.THIRTY -> {
-                        notiTextView.text = "30분 전"
-                    }
-                    PushTime.ONE_HOUR -> {
-                        notiTextView.text = "1시간 전"
-                    }
-                    PushTime.THREE_HOUR -> {
-                        notiTextView.text = "3시간 전"
-                    }
-
-                }
+                notiTextView.text = pushTime.timeText // 푸시 알림 텍스트뷰 갱신
             }
         }
     }
 
     private fun setActivityLauncher() {
-        pushTimeResultLauncher =
+        activityResultLauncher =
             registerForActivityResult(
                 ActivityResultContracts.StartActivityForResult()
             ) { result ->
@@ -123,7 +103,7 @@ class ScheduleAddActivity : BaseActivity<ActivityScheduleAddBinding, ScheduleAdd
                 val intent = Intent(this, PushTimePickerActivity::class.java).putExtra(
                     INTENT_PUSH_TOKEN_KEY, viewModel.pushTime.value
                 )
-                pushTimeResultLauncher?.launch(intent) // 런처를 통해 푸시 선택 액티비티 선택
+                activityResultLauncher?.launch(intent) // 런처를 통해 푸시 선택 액티비티 선택
             }
         }
     }
@@ -142,11 +122,11 @@ class ScheduleAddActivity : BaseActivity<ActivityScheduleAddBinding, ScheduleAdd
     }
 
     private fun setDateTimePicker() {
-        binding.dateTimePicker.setOnSelectedDateChangedListener { date ->
-            // 화면 회전시 초기화되는 것을 방지하기 위해
-            // ViewModel에 데이터 저장
-            viewModel.pickedDate = date
-            setDateTimeText(date)
+        binding.dateTimePicker.setOnSelectedDateChangedListener { dateCalendar ->
+            /* 리스너를 통해 전달받은 Calendar 객체는 1일이 뺀 결과가 반환 됨 */
+            val dateClone = dateCalendar.clone() as Calendar // 캘린더 객체 클론
+            dateClone.add(Calendar.DAY_OF_MONTH, 1) // 1일 추가
+            viewModel.pickedDate.value = dateClone.time // ViewModel에 전달
         }
     }
 
@@ -230,24 +210,6 @@ class ScheduleAddActivity : BaseActivity<ActivityScheduleAddBinding, ScheduleAdd
         }
     }
 
-
-    // DateTimePicker 변경시 해당 메서드로  Calendar객체를 전달하여
-    // 화면 갱신
-    @SuppressLint("SimpleDateFormat")
-    private fun setDateTimeText(date: Calendar) {
-        binding.dateTimeTextView.text = DateConverter().getFullDate(date.time) // 날짜 형식 변환
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-        // onResume 호출시 ViewModel에 저장된 데이터를 View에 적용
-        loadDateOnResume()
-    }
-
-    private fun loadDateOnResume() {
-        viewModel.pickedDate?.let { setDateTimeText(it) } // 과외 일정, 시간 텍스트
-    }
 
     private fun hideKeyBoard() {
         val focusedView = currentFocus
