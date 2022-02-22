@@ -12,7 +12,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
-        android:theme="@style/Theme.LMSService">
+        android:theme="@style/Theme.LMSService"
+        android:usesCleartextTraffic="true">
         <activity android:name=".presentation.comment.CommentActivity"
             android:exported="true"
             >
