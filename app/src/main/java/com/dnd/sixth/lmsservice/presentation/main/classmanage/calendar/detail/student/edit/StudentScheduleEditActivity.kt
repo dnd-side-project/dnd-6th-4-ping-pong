@@ -26,7 +26,7 @@ class StudentScheduleEditActivity :
     override val layoutResId: Int
         get() = R.layout.activity_student_schedule_edit
     override val viewModel: StudentScheduleEditViewModel by viewModel()
-    private var pushTimeResultLauncher: ActivityResultLauncher<Intent>? = null // 푸시 타임 피커 액티비티 런쳐
+    private var activityResultLauncher: ActivityResultLauncher<Intent>? = null // 푸시 타임 피커 액티비티 런쳐
     private var editRequestResultLauncher: ActivityResultLauncher<Intent>? = null // 일정 변경 액티비티 런쳐
 
     // 액티비티 초기화 메서드
@@ -57,31 +57,14 @@ class StudentScheduleEditActivity :
                     return@observe
                 }
                 notiTextView.isEnabled = true // 색상 변경을 위해 활성화 True
-                when (pushTime) {
-                    PushTime.NONE -> {
-                        notiTextView.text = "없음"
-                    }
-                    PushTime.TEN -> {
-                        notiTextView.text = "10분 전"
-                    }
-                    PushTime.THIRTY -> {
-                        notiTextView.text = "30분 전"
-                    }
-                    PushTime.ONE_HOUR -> {
-                        notiTextView.text = "1시간 전"
-                    }
-                    PushTime.THREE_HOUR -> {
-                        notiTextView.text = "3시간 전"
-                    }
-
-                }
+                notiTextView.text = pushTime.timeText // 푸시 알림 텍스트뷰 갱신
             }
         }
     }
 
     private fun setActivityLauncher() {
         // 푸시 타임 피커 액티비티 런쳐
-        pushTimeResultLauncher =
+        activityResultLauncher =
             registerForActivityResult(
                 ActivityResultContracts.StartActivityForResult()
             ) { result ->
@@ -123,7 +106,7 @@ class StudentScheduleEditActivity :
                 val intent = Intent(this, PushTimePickerActivity::class.java).putExtra(
                     INTENT_PUSH_TOKEN_KEY, viewModel.pushTime.value
                 )
-                pushTimeResultLauncher?.launch(intent) // 런처를 통해 푸시 선택 액티비티 선택
+                activityResultLauncher?.launch(intent) // 런처를 통해 푸시 선택 액티비티 선택
             }
             R.id.edit_request_btn -> { // 일정 변경 요청 화면으로 이동
                 val intent = Intent(this, EditRequestActivity::class.java)
@@ -146,48 +129,10 @@ class StudentScheduleEditActivity :
 
     // DateTimePicker 변경시 해당 메서드로 Calendar 객체를 전달하여
     // 화면 갱신
-    private fun setDateTimeText(date: Calendar) {
-        val year = date[Calendar.YEAR]
-        val month = date[Calendar.MONTH]
-        val dayOfMonth = date[Calendar.DAY_OF_MONTH]
-        val dayOfWeek = date[Calendar.DAY_OF_WEEK]
-        val hour = date[Calendar.HOUR_OF_DAY]
-        val minute = date[Calendar.MINUTE]
+   /* private fun setDateTimeText(date: Calendar) {
+        binding.dateTimeTextView.text = DateConverter().getFullDate(date.time) // 날짜 형식 변환
+    }*/
 
-        /*
-        * 날짜 형식
-        * ex) 2022. 01. 22. 토   오후 03 : 30
-        * */
-        val dateString: String = String.format(
-            Locale.KOREA,
-            getString(R.string.class_date_time_dot_format),
-            year,
-            month + 1,
-            dayOfMonth,
-            DateConverter().getDayOfWeek(dayOfWeek), // 숫자 요일을 한국어로 변환
-            TimeConverter().getAMPM(date), // 오전 오후를 구분하여 반환해주는 함수
-            TimeConverter().convertHourInPM(hour), // 14시 -> 2시로 변환
-            minute
-        )
-
-
-        with(binding) {
-            dateTimeTextView.text = dateString
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-        // onResume 호출시 ViewModel에 저장된 데이터를 View에 적용
-        loadDateOnResume()
-    }
-
-    private fun loadDateOnResume() {
-        viewModel.pickedDate?.let { setDateTimeText(it) } // 과외 일정, 시간 텍스트
-        binding.classRoundTextView.text =
-            getString(R.string.class_round_format, viewModel.classRound.value) // 수업 회차 Text ex) 7회차
-    }
 
     private fun hideKeyBoard() {
         val focusedView = currentFocus

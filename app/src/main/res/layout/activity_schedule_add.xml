@@ -8,7 +8,13 @@
         <variable
             name="viewModel"
             type="com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.add.ScheduleAddViewModel" />
-        <import type="com.dnd.sixth.lmsservice.presentation.adapter.Converter"/>
+
+        <variable
+            name="dateConverter"
+            type="com.dnd.sixth.lmsservice.presentation.utility.DateConverter" />
+
+        <import type="com.dnd.sixth.lmsservice.presentation.adapter.Converter" />
+
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -139,7 +145,8 @@
                         android:src="@drawable/ic_book"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/iconBlue" />
 
 
                     <androidx.constraintlayout.widget.Guideline
@@ -187,8 +194,8 @@
                         android:clickable="true"
                         android:foreground="?attr/selectableItemBackground"
                         android:gravity="center"
-                        android:text="-"
                         android:onClick="@{() -> viewModel.minusClassRound()}"
+                        android:text="-"
                         android:textColor="@color/richBlack"
                         android:textSize="18dp" />
 
@@ -213,8 +220,8 @@
                         android:clickable="true"
                         android:foreground="?attr/selectableItemBackground"
                         android:gravity="center"
-                        android:text="+"
                         android:onClick="@{() -> viewModel.plusClassRound()}"
+                        android:text="+"
                         android:textColor="@color/richBlack"
                         android:textSize="18dp" />
 
@@ -246,7 +253,8 @@
                         android:src="@drawable/ic_watch"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/iconBlue" />
 
                     <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guide_line_1"
@@ -263,12 +271,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:hint="수업 시간을 설정해주세요"
+                        android:textColorHint="@color/grayC4"
+                        android:text="@{dateConverter.getFullDate(viewModel.pickedDate)}"
                         android:textColor="@color/richBlack"
                         android:textSize="14sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toRightOf="@+id/guide_line_1"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:hint="수업 시간을 설정해주세요"/>
+                        app:layout_constraintTop_toTopOf="parent" />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -329,7 +339,8 @@
                         android:src="@drawable/ic_location"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/iconBlue" />
 
                     <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guide_line_4"
@@ -346,10 +357,10 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:background="@null"
-                        android:text="@{viewModel.place}"
                         android:hint="수업 장소를 입력해 주세요"
+                        android:text="@{viewModel.place}"
                         android:textColor="@color/richBlack"
-                        android:textColorHint="@color/grayDD"
+                        android:textColorHint="@color/grayE1"
                         android:textSize="14sp"
                         app:layout_constraintLeft_toRightOf="@+id/guide_line_4" />
 
@@ -377,7 +388,8 @@
                         android:src="@drawable/ic_bookmark"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/iconBlue" />
 
                     <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guide_line_3"
@@ -394,10 +406,10 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:background="@null"
-                        android:text="@{viewModel.chapter}"
                         android:hint="교육 과정에 따른 챕터를 입력해 주세요"
+                        android:text="@{viewModel.chapter}"
                         android:textColor="@color/richBlack"
-                        android:textColorHint="@color/grayDD"
+                        android:textColorHint="@color/grayE1"
                         android:textSize="14sp"
                         app:layout_constraintLeft_toRightOf="@+id/guide_line_3" />
 
@@ -425,7 +437,8 @@
                         android:src="@drawable/ic_memo"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/iconBlue" />
 
                     <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guide_line_5"
@@ -445,7 +458,7 @@
                         android:hint="메모를 입력해주세요"
                         android:text="@={viewModel.memo}"
                         android:textColor="@color/richBlack"
-                        android:textColorHint="@color/grayDD"
+                        android:textColorHint="@color/grayE1"
                         android:textSize="14sp"
                         app:layout_constraintLeft_toRightOf="@+id/guide_line_5" />
 
@@ -476,7 +489,8 @@
                         android:src="@drawable/ic_alarm"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/iconBlue" />
 
                     <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guide_line_7"
@@ -509,7 +523,7 @@
                         app:layout_constraintBottom_toBottomOf="@+id/noti_text_view"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/noti_text_view"
-                        app:tint="#707070" />
+                        app:tint="@color/gray9F" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

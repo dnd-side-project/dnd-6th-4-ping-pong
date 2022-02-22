@@ -75,7 +75,8 @@
                         android:src="@drawable/ic_book"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/iconBlue" />
 
 
                     <androidx.constraintlayout.widget.Guideline
@@ -127,7 +128,8 @@
                         android:src="@drawable/ic_watch"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/iconBlue" />
 
                     <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guide_line_1"
@@ -145,6 +147,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:textColor="@color/richBlack"
+                        android:textColorHint="@color/grayC4"
                         android:textSize="14sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toRightOf="@+id/guide_line_1"
@@ -192,7 +195,8 @@
                         android:src="@drawable/ic_location"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/iconBlue" />
 
                     <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guide_line_4"
@@ -211,7 +215,7 @@
                         android:background="@null"
                         android:hint="수업 장소를 입력해 주세요"
                         android:textColor="@color/richBlack"
-                        android:textColorHint="@color/grayDD"
+                        android:textColorHint="@color/grayE1"
                         android:textSize="14sp"
                         app:layout_constraintLeft_toRightOf="@+id/guide_line_4" />
 
@@ -240,7 +244,8 @@
                         android:src="@drawable/ic_memo"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/iconBlue" />
 
                     <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guide_line_5"
@@ -259,7 +264,7 @@
                         android:background="@null"
                         android:hint="메모를 입력해주세요"
                         android:textColor="@color/richBlack"
-                        android:textColorHint="@color/grayDD"
+                        android:textColorHint="@color/grayE1"
                         android:textSize="14sp"
                         app:layout_constraintLeft_toRightOf="@+id/guide_line_5" />
 
@@ -290,7 +295,8 @@
                         android:src="@drawable/ic_alarm"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/iconBlue" />
 
                     <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guide_line_7"
