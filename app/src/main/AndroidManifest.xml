@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.dnd.sixth.lmsservice">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -10,7 +12,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
-        android:theme="@style/Theme.LMSService">
+        android:theme="@style/Theme.LMSService"
+        android:usesCleartextTraffic="true">
         <activity android:name=".presentation.comment.CommentActivity"
             android:exported="true"
             >
@@ -26,7 +29,7 @@
             android:name=".presentation.homework.HomeworkManageActivity"
 
             android:exported="false" />
-        
+
 
         <activity
             android:name=".presentation.main.classmanage.calendar.add.push.PushTimePickerActivity"
@@ -71,7 +74,13 @@
             android:exported="true" />
         <activity
             android:name=".presentation.login.LoginActivity"
-            android:exported="true" />
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".presentation.main.classmanage.classes.create.ClassCreateActivity"
             android:exported="false"/>
@@ -81,11 +90,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.LMSService.EdgedBottomSheetDialog" >
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name="com.dnd.sixth.lmsservice.presentation.main.classmanage.config.profile.ProfileActivity"
