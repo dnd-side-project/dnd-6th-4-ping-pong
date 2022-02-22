@@ -60,6 +60,7 @@
 
         <LinearLayout
 
+            tools:visibility="visible"
             android:id="@+id/signup_checkbox_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -86,23 +87,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="24dp"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
 
                 <ImageView
                     android:layout_marginRight="16dp"
                     android:id="@+id/signup_teacher_checkbox"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_unchecked_teacher"
+                    android:layout_width="328dp"
+                    android:layout_height="152dp"
+                    android:src="@drawable/ic_teacher_disabled"
                     />
                 <ImageView
+                    android:layout_marginTop="16dp"
                     android:id="@+id/signup_student_checkbox"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_unchecked_teacher"
+                    android:layout_width="328dp"
+                    android:layout_height="152dp"
+                    android:src="@drawable/ic_student_disabled"
                     />
 
 
@@ -163,7 +165,7 @@
 
         <LinearLayout
 
-            tools:visibility="visible"
+
             android:visibility="gone"
             android:id="@+id/signup_password_container"
             android:layout_width="match_parent"

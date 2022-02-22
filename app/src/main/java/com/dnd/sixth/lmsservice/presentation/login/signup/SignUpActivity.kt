@@ -72,13 +72,13 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding,SignUpViewModel>() {
         with(binding){
             signupStudentCheckbox.setOnClickListener {
                 checkedType = "Student"
-                signupStudentCheckbox.setImageResource(R.drawable.ic_checked_student)
-                signupTeacherCheckbox.setImageResource(R.drawable.ic_unchecked_teacher)
+                signupStudentCheckbox.setImageResource(R.drawable.ic_student_activated)
+                signupTeacherCheckbox.setImageResource(R.drawable.ic_teacher_disabled)
             }
             signupTeacherCheckbox.setOnClickListener {
                 checkedType = "Teacher"
-                signupStudentCheckbox.setImageResource(R.drawable.ic_unchecked_student)
-                signupTeacherCheckbox.setImageResource(R.drawable.ic_checked_teacher)
+                signupStudentCheckbox.setImageResource(R.drawable.ic_student_disabled)
+                signupTeacherCheckbox.setImageResource(R.drawable.ic_teacher_activated)
             }
         }
     }
