@@ -265,33 +265,7 @@ class TeacherScheduleEditActivity : BaseActivity<ActivityTeacherScheduleEditBind
     // DateTimePicker 변경시 해당 메서드로 Calendar 객체를 전달하여
     // 화면 갱신
     private fun setDateTimeText(date: Calendar) {
-        val year = date[Calendar.YEAR]
-        val month = date[Calendar.MONTH]
-        val dayOfMonth = date[Calendar.DAY_OF_MONTH]
-        val dayOfWeek = date[Calendar.DAY_OF_WEEK]
-        val hour = date[Calendar.HOUR_OF_DAY]
-        val minute = date[Calendar.MINUTE]
-
-        /*
-        * 날짜 형식
-        * ex) 2022. 01. 22. 토   오후 03 : 30
-        * */
-        val dateString: String = String.format(
-            Locale.KOREA,
-            getString(R.string.class_date_time_dot_format),
-            year,
-            month + 1,
-            dayOfMonth,
-            DateConverter().getDayOfWeek(dayOfWeek), // 숫자 요일을 한국어로 변환
-            TimeConverter().getAMPM(date), // 오전 오후를 구분하여 반환해주는 함수
-            TimeConverter().convertHourInPM(hour), // 14시 -> 2시로 변환
-            minute
-        )
-
-
-        with(binding) {
-            dateTimeTextView.text = dateString
-        }
+        binding.dateTimeTextView.text = DateConverter().getFullDate(date.time)
     }
 
     override fun onResume() {

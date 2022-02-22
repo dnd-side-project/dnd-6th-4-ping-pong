@@ -312,7 +312,7 @@
                         android:button="@null"
                         android:gravity="center"
                         android:text="10회"
-                        android:textColor="#707070" />
+                        android:textColor="@color/color_salary_radio_text" />
 
                 </RadioGroup>
 

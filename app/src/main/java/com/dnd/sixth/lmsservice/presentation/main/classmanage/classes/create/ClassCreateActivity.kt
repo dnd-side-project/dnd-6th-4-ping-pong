@@ -53,6 +53,8 @@ class ClassCreateActivity : BaseActivity<ActivityCreateClassBinding, CreateClass
                         }
                     }
                 }
+
+                notifyTimeChanged() // 변경된 시간대로 텍스트뷰 설정
             }
         }
     }
@@ -101,9 +103,13 @@ class ClassCreateActivity : BaseActivity<ActivityCreateClassBinding, CreateClass
             binding.amPmRadioGroup.check(R.id.am_radio_btn)
         }
 
+        notifyTimeChanged() // 변경된 시간대로 텍스트뷰 설정
+    }
+
+    private fun notifyTimeChanged() {
         binding.hourTextView.text =
-            getString(R.string.hour_or_minute_format, TimeConverter().convertHourInZeroPM(viewModel.hour))
+            getString(R.string.hour_or_minute_format, TimeConverter().convertHourPmIncludedZero(viewModel.hour))
         binding.minTextView.text =
-            getString(R.string.hour_or_minute_format, TimeConverter().convertHourInZeroPM(viewModel.minute))
+            getString(R.string.hour_or_minute_format, TimeConverter().convertHourPmIncludedZero(viewModel.minute))
     }
 }

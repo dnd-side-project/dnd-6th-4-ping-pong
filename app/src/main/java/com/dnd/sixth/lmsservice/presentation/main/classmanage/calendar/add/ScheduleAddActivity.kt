@@ -1,10 +1,8 @@
 package com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.add
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.text.Editable
-import android.text.InputFilter
-import android.text.TextWatcher
 import android.view.MenuItem
 import android.view.View
 import android.view.animation.Animation
@@ -13,7 +11,6 @@ import android.view.inputmethod.InputMethodManager
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
-import androidx.core.text.isDigitsOnly
 import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.databinding.ActivityScheduleAddBinding
 import com.dnd.sixth.lmsservice.databinding.DialogPushTimePickerBinding
@@ -24,6 +21,7 @@ import com.dnd.sixth.lmsservice.presentation.utility.CustomInputFilter
 import com.dnd.sixth.lmsservice.presentation.utility.DateConverter
 import com.dnd.sixth.lmsservice.presentation.utility.TimeConverter
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -233,36 +231,11 @@ class ScheduleAddActivity : BaseActivity<ActivityScheduleAddBinding, ScheduleAdd
     }
 
 
-    // DateTimePicker 변경시 해당 메서드로 Calendar 객체를 전달하여
+    // DateTimePicker 변경시 해당 메서드로  Calendar객체를 전달하여
     // 화면 갱신
+    @SuppressLint("SimpleDateFormat")
     private fun setDateTimeText(date: Calendar) {
-        val year = date[Calendar.YEAR]
-        val month = date[Calendar.MONTH]
-        val dayOfMonth = date[Calendar.DAY_OF_MONTH]
-        val dayOfWeek = date[Calendar.DAY_OF_WEEK]
-        val hour = date[Calendar.HOUR_OF_DAY]
-        val minute = date[Calendar.MINUTE]
-
-        /*
-        * 날짜 형식
-        * ex) 2022. 01. 22. 토   오후 03 : 30
-        * */
-        val dateString: String = String.format(
-            Locale.KOREA,
-            getString(R.string.class_date_time_dot_format),
-            year,
-            month + 1,
-            dayOfMonth,
-            DateConverter().getDayOfWeek(dayOfWeek), // 숫자 요일을 한국어로 변환
-            TimeConverter().getAMPM(date), // 오전 오후를 구분하여 반환해주는 함수
-            TimeConverter().convertHourInPM(hour), // 14시 -> 2시로 변환
-            minute
-        )
-
-
-        with(binding) {
-            dateTimeTextView.text = dateString
-        }
+        binding.dateTimeTextView.text = DateConverter().getFullDate(date.time) // 날짜 형식 변환
     }
 
     override fun onResume() {

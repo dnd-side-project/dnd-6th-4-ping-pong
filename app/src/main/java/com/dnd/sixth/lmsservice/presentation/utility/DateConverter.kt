@@ -42,4 +42,14 @@ class DateConverter {
         calendar.time = parsedDate // 캘린더 객체에 Date 지정
         return getDayOfWeek(calendar[DAY_OF_WEEK]) // Calendar의 요일 숫자를 요일 텍스트로 반환
     }
+
+    /*
+    *  @param date : 변환할 Date 객체
+    *  @return 2022. 02. 17 목  오전 12 : 50
+    * */
+    @SuppressLint("SimpleDateFormat")
+    fun getFullDate(date: Date): String {
+        val dateFormat = SimpleDateFormat("yyyy. MM. dd. E  a HH : mm")
+        return dateFormat.format(date.time)
+    }
 }
