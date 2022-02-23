@@ -7,6 +7,7 @@ import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
 import com.dnd.sixth.lmsservice.R
+import com.dnd.sixth.lmsservice.data.preference.PreferenceManager
 import com.dnd.sixth.lmsservice.databinding.ActivityLoginBinding
 import com.dnd.sixth.lmsservice.presentation.base.BaseActivity
 import com.dnd.sixth.lmsservice.presentation.login.signup.SignUpActivity
@@ -23,6 +24,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
     override val viewModel: LoginViewModel by viewModel()
 
 
+
     // 액티비티 초기화 메서드
     override fun initActivity() {
         with(binding) {
@@ -34,6 +36,14 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
                 startActivity(intent)
             }
 
+
+            loginBtn.setOnClickListener{
+                //login() 로그인 요청
+
+                //로그인 성공 시 데이터 저장
+
+                var abc = 1
+            }
 
 
             //getAppKeyHash()
