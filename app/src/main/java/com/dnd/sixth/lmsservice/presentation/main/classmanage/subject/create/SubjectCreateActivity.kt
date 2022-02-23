@@ -5,9 +5,12 @@ import android.content.Intent
 import android.view.MenuItem
 import android.view.View
 import com.dnd.sixth.lmsservice.R
+import com.dnd.sixth.lmsservice.data.preference.PreferenceManager
 import com.dnd.sixth.lmsservice.databinding.ActivityCreateSubjectBinding
 import com.dnd.sixth.lmsservice.presentation.base.BaseActivity
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.subject.SubjectFragment
+import com.dnd.sixth.lmsservice.presentation.utility.COLOR_COUNT
+import com.dnd.sixth.lmsservice.presentation.utility.SUBJECT_COLOR
 import com.dnd.sixth.lmsservice.presentation.utility.TimeConverter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -40,7 +43,7 @@ class SubjectCreateActivity : BaseActivity<ActivityCreateSubjectBinding, CreateS
             // 과외 시간대 텍스트뷰 설정
             setClassTime()
 
-            amPmRadioGroup.setOnCheckedChangeListener { group, checkedId ->
+            amPmRadioGroup.setOnCheckedChangeListener { _, checkedId ->
                 when (checkedId) {
                     R.id.am_radio_btn -> { // 오전 버튼 클릭시
                         // 설정된 시간이 오후면 -12 연산해서 저장
@@ -72,10 +75,19 @@ class SubjectCreateActivity : BaseActivity<ActivityCreateSubjectBinding, CreateS
             // '수업 생성 결과 Entity' 관찰
             viewModel?.resultSubject?.observe(this@SubjectCreateActivity) { resultSubjectEntity ->
                 if (resultSubjectEntity != null) { // 수업 생성 성공
+
+                    // 생성한 수업의 SubjectEntity를 담는다.
                     val resultIntent = Intent().putExtra(
                         SubjectFragment.INTENT_CREATE_SUBJECT_ENTITY_KEY,
                         resultSubjectEntity
-                    ) // 생성한 수업의 SubjectEntity를 담는다.
+                    )
+
+                    val preferenceManager = PreferenceManager(this@SubjectCreateActivity)
+                    // 현재 색상의 Enum Ordinal
+                    val currentColorOrdinal = preferenceManager.getInt(SUBJECT_COLOR)
+                    // 1을 더해서 다음 색상을 준비합니다.
+                    preferenceManager.setInt(SUBJECT_COLOR, (currentColorOrdinal + 1) % COLOR_COUNT)
+
                     setResult(SubjectFragment.INTENT_CREATE_SUBJECT_ACTIVITY_CODE, resultIntent) // 초대코드 Dialog를 보여주기 위한 결과 반환
                     finish() //액티비티 종료
                 } else { // 수업 생성 실패
@@ -105,7 +117,7 @@ class SubjectCreateActivity : BaseActivity<ActivityCreateSubjectBinding, CreateS
                 // 과외 시간대를 설정할 수 있는 Time Picker Dialog 보여줌
                 val timePickerDialog = TimePickerDialog(
                     this,
-                    { view, hourOfDay, minute ->
+                    { _, hourOfDay, minute ->
                         // ViewModel 시간 설정
                         viewModel.hour = hourOfDay
                         viewModel.minute = minute

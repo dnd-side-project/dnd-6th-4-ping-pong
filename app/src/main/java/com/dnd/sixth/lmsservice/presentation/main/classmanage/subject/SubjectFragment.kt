@@ -12,7 +12,7 @@ import com.dnd.sixth.lmsservice.BuildConfig
 import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.databinding.FragmentClassBinding
 import com.dnd.sixth.lmsservice.databinding.LayoutEditDeleteBottomSheetBinding
-import com.dnd.sixth.lmsservice.presentation.adapter.recyclerAdapter.ClassAdapter
+import com.dnd.sixth.lmsservice.presentation.adapter.recyclerAdapter.SubjectAdapter
 import com.dnd.sixth.lmsservice.presentation.base.BaseFragment
 import com.dnd.sixth.lmsservice.presentation.listner.OnRecyclerItemClickListener
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.ClassManageViewModel
@@ -25,7 +25,6 @@ import kotlinx.android.synthetic.main.layout_edit_delete_bottom_sheet.view.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
@@ -38,14 +37,17 @@ class SubjectFragment : BaseFragment<FragmentClassBinding, SubjectViewModel>(),
     override val viewModel: SubjectViewModel by viewModel()
     private val hostViewModel: ClassManageViewModel by sharedViewModel()
 
-    private var classAdapter: ClassAdapter? = null
+    private var subjectAdapter: SubjectAdapter? = null
     private var viewTreeObserver: ViewTreeObserver? = null
     private lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
 
 
     companion object {
         const val INTENT_CREATE_SUBJECT_ENTITY_KEY = "createSubject"
+        const val INTENT_UPDATE_SUBJECT_ENTITY_KEY = "updateSubject"
+
         const val INTENT_CREATE_SUBJECT_ACTIVITY_CODE = 1001
+        const val INTENT_UPDATE_SUBJECT_ACTIVITY_CODE = 1002
     }
 
 
@@ -63,12 +65,12 @@ class SubjectFragment : BaseFragment<FragmentClassBinding, SubjectViewModel>(),
             makeClassBtn.setOnClickListener(this@SubjectFragment)
             classAddBtn.setOnClickListener(this@SubjectFragment)
 
-            classAdapter = ClassAdapter(
+            subjectAdapter = SubjectAdapter(
                 hostViewModel?.generalSubjectDataList?.value!!,
                 this@SubjectFragment
             ) // 수업 리사이클러뷰 어댑터
             with(classRecyclerView) {
-                adapter = classAdapter // 어댑터 적용
+                adapter = subjectAdapter // 어댑터 적용
                 layoutManager = LinearLayoutManager(requireContext())
             }
 
@@ -91,7 +93,7 @@ class SubjectFragment : BaseFragment<FragmentClassBinding, SubjectViewModel>(),
                 }
 
                 // 리사이클러뷰 갱신
-                classAdapter?.updateItem(it)
+                subjectAdapter?.updateItem(it)
 
                 // 리사이클러뷰의 개수가 추가되면 화면의 높이를 다시 측정한다.
                 setClassHomeScrollViewHeight()
@@ -158,7 +160,7 @@ class SubjectFragment : BaseFragment<FragmentClassBinding, SubjectViewModel>(),
                         UnitConverter.convertDPtoPX(
                             requireContext(),
                             116
-                        ) * classAdapter?.itemCount!!
+                        ) * subjectAdapter?.itemCount!!
 
             ClassManageViewModel.screenHeight.value = sumHeight
             Timber.tag("SubjectFragment Height").d("$sumHeight")

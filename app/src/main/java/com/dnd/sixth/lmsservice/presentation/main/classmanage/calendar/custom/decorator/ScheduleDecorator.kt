@@ -29,7 +29,7 @@ class ScheduleDecorator(
     @SuppressLint("ResourceType")
     override fun decorate(view: DayViewFacade?) {
         // 해당 날짜에 점(Dot)을 표시한다.
-        view?.addSpan(DotSpan(8F, ContextCompat.getColor(App.instance.context, dateColor.getColorResId())))
+        view?.addSpan(DotSpan(8F, ContextCompat.getColor(App.instance.context, dateColor.getTextColorResId())))
     }
 }
 
