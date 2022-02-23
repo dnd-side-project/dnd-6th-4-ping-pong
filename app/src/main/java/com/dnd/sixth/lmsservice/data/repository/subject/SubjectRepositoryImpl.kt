@@ -10,19 +10,22 @@ import com.dnd.sixth.lmsservice.domain.repository.SubjectRepository
 class SubjectRepositoryImpl(
     private val subjectRemoteDataSource: SubjectRemoteDataSource,
     private val remoteErrorEmitter: RemoteErrorEmitter
-): SubjectRepository {
+) : SubjectRepository {
 
-    override suspend fun createSubject(subjectEntity: SubjectEntity): SubjectEntity? {
-        return subjectRemoteDataSource.createSubject(remoteErrorEmitter, subjectEntity)?.toEntity()
-    }
+    override suspend fun createSubject(subjectEntity: SubjectEntity): SubjectEntity? =
+        subjectRemoteDataSource.createSubject(remoteErrorEmitter, subjectEntity)?.toEntity()
 
-    override suspend fun getGeneralClassList(uid: Int): List<GeneralSubjectEntity>? {
-        return subjectRemoteDataSource.getGeneralClassList(remoteErrorEmitter, uid)?.map {
+
+    override suspend fun getGeneralClassList(uid: Int): List<GeneralSubjectEntity>? =
+        subjectRemoteDataSource.getGeneralClassList(remoteErrorEmitter, uid)?.map {
             it.toEntity()
         }
-    }
 
-    override suspend fun deleteSubject(subjectId: Int): SubjectEntity? {
-        return subjectRemoteDataSource.deleteSubject(remoteErrorEmitter, subjectId)?.toEntity()
-    }
+    override suspend fun deleteSubject(subjectId: Int): SubjectEntity? =
+        subjectRemoteDataSource.deleteSubject(remoteErrorEmitter, subjectId)?.toEntity()
+
+
+    override suspend fun updateSubject(subjectEntity: SubjectEntity): SubjectEntity? =
+        subjectRemoteDataSource.updateSubject(remoteErrorEmitter, subjectEntity)?.toEntity()
+
 }

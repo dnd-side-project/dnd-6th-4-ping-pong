@@ -12,6 +12,7 @@ import com.dnd.sixth.lmsservice.domain.useCase.CreateSubjectUseCase
 import com.dnd.sixth.lmsservice.presentation.base.BaseViewModel
 import com.dnd.sixth.lmsservice.presentation.extensions.convertDowBit
 import com.dnd.sixth.lmsservice.presentation.extensions.isAllFalse
+import com.dnd.sixth.lmsservice.presentation.extensions.onIO
 import com.dnd.sixth.lmsservice.presentation.extensions.toggle
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.custom.DateColor
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.subject.type.DayOfWeek
@@ -28,7 +29,7 @@ class CreateSubjectViewModel(
     var minute = 0 // 수업 시간 (Minute)
 
     // 수업 이름
-    val className = MutableLiveData<String>()
+    val subjectName = MutableLiveData<String>()
 
     // 수업 요일 리스트
     private val _weekOfDayList = MutableLiveData(
@@ -76,20 +77,19 @@ class CreateSubjectViewModel(
     *  @return false : else
     */
     fun setDoneClickable() {
-        val isNullClassName: Boolean = className.value.isNullOrBlank()
+        val isNullClassName: Boolean = subjectName.value.isNullOrBlank()
         val isEmptyList: Boolean = _weekOfDayList.value?.isAllFalse() ?: true
 
         // 확인 클릭 가능 여부 갱신
         _isDoneClickable.value = (isNullClassName.not() && isEmptyList.not())
     }
 
-    // 서버에 데이터를 전송하여 클래스 생성
+    // 서버에 데이터를 전달하여 수업(Subject) 생성
     fun createSubject(view: View) {
-
-        viewModelScope.launch {
+        onIO {
             val resultSubjectEntity = createSubjectUseCase(
                 SubjectEntity(
-                    subjectName = className.value.toString(),
+                    subjectName = subjectName.value.toString(),
                     monthlyCnt = salaryDay.countInt,
                     classTime = App.instance.context.getString(
                         R.string.hour_minute_format,
