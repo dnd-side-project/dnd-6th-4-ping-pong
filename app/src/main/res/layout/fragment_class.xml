@@ -8,6 +8,10 @@
         <variable
             name="viewModel"
             type="com.dnd.sixth.lmsservice.presentation.main.classmanage.subject.SubjectViewModel" />
+
+        <variable
+            name="hostViewModel"
+            type="com.dnd.sixth.lmsservice.presentation.main.classmanage.ClassManageViewModel" />
     </data>
 
 

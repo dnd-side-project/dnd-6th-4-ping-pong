@@ -25,6 +25,8 @@ import kotlinx.android.synthetic.main.layout_edit_delete_bottom_sheet.view.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
@@ -32,7 +34,9 @@ class SubjectFragment : BaseFragment<FragmentClassBinding, SubjectViewModel>(),
     View.OnClickListener, OnRecyclerItemClickListener {
     override val layoutResId: Int
         get() = R.layout.fragment_class
+
     override val viewModel: SubjectViewModel by viewModel()
+    private val hostViewModel: ClassManageViewModel by sharedViewModel()
 
     private var classAdapter: ClassAdapter? = null
     private var viewTreeObserver: ViewTreeObserver? = null
@@ -41,10 +45,7 @@ class SubjectFragment : BaseFragment<FragmentClassBinding, SubjectViewModel>(),
 
     companion object {
         const val INTENT_CREATE_SUBJECT_ENTITY_KEY = "createSubject"
-        const val INTENT_UPDATE_SUBJECT_ENTITY_KEY = "updateSubject"
-
         const val INTENT_CREATE_SUBJECT_ACTIVITY_CODE = 1001
-        const val INTENT_UPDATE_SUBJECT_ACTIVITY_CODE = 1002
     }
 
 
@@ -55,7 +56,6 @@ class SubjectFragment : BaseFragment<FragmentClassBinding, SubjectViewModel>(),
     override fun initActivity() {
         setBindingData() // 필요한 데이터 바인딩
         initView() // 뷰 초기화
-
     }
 
     private fun initView() {
@@ -64,7 +64,7 @@ class SubjectFragment : BaseFragment<FragmentClassBinding, SubjectViewModel>(),
             classAddBtn.setOnClickListener(this@SubjectFragment)
 
             classAdapter = ClassAdapter(
-                viewModel?.generalSubjectDataList?.value!!,
+                hostViewModel?.generalSubjectDataList?.value!!,
                 this@SubjectFragment
             ) // 수업 리사이클러뷰 어댑터
             with(classRecyclerView) {
@@ -72,15 +72,14 @@ class SubjectFragment : BaseFragment<FragmentClassBinding, SubjectViewModel>(),
                 layoutManager = LinearLayoutManager(requireContext())
             }
 
-            // 서버로부터 수업 리스틀를 가져와 업데이트한다.
-            //viewModel?.updateGeneralSubjectList()
+
 
             // 수업 리스트가 변경됨에 따라 화면 크기 조절을 하기 위한 Observer
-            viewModel?.generalSubjectDataList?.observe(this@SubjectFragment) {
+            hostViewModel?.generalSubjectDataList?.observe(this@SubjectFragment) {
                 // ClassManageFragment(ParentFragment)에 수업 개수 전달.
                 ClassManageViewModel.classCount.value = it.size
 
-                if (viewModel?.hasClass() == true) { // 수업이 있다면
+                if (hostViewModel?.hasClass() == true) { // 수업이 있다면
                     //setClassHomeScrollViewHeight() // 수업 RecyclerView Item 사이즈에 맞게 HomeFragment의 Scroll 높이 재설정
                     noClassContainer.visibility = View.GONE // '수업이 없어요' 화면 가리기
                     classRecyclerView.visibility = View.VISIBLE // '수업 목록' 리사이클러뷰 보여주기
@@ -100,32 +99,21 @@ class SubjectFragment : BaseFragment<FragmentClassBinding, SubjectViewModel>(),
 
             activityResultLauncher =
                 registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-                    val resultIntent = result.data
-
-                    // 수업 생성
                     if (result.resultCode == INTENT_CREATE_SUBJECT_ACTIVITY_CODE) {
+                        val resultIntent = result.data
                         val newSubjectEntity =
                             resultIntent?.getSerializableExtra(INTENT_CREATE_SUBJECT_ENTITY_KEY) // 수업을 생성하고 새롭게 반환된 Subject Entity
-                        viewModel.updateGeneralSubjectList() // GeneralSubject 리스트 갱신
-                        Log.d("new entity", newSubjectEntity.toString())
-                    }
-                    // 수업 업데이트
-                    else if (result.resultCode == INTENT_UPDATE_SUBJECT_ACTIVITY_CODE) {
-                        val updatedSubjectEntity =
-                            resultIntent?.getSerializableExtra(INTENT_UPDATE_SUBJECT_ENTITY_KEY) // 수업 데이터를 변경하고 새롭게 반환된 Subject Entity
-                        viewModel.updateGeneralSubjectList() // GeneralSubject 리스트 갱신
-                        Log.d("updated entity", updatedSubjectEntity.toString())
+                        Log.d("entity", newSubjectEntity.toString())
                     }
                 }
 
-
         }
-
 
     }
 
     private fun setBindingData() {
-        binding.viewModel = viewModel // ViewModel 바인딩
+        binding.viewModel = viewModel
+        binding.hostViewModel = hostViewModel // ViewModel 바인딩
     }
 
 
@@ -220,11 +208,11 @@ class SubjectFragment : BaseFragment<FragmentClassBinding, SubjectViewModel>(),
                         // 수정 버튼 클릭시, 수업 정보를 Edit할 수 있는 Activity로 이동
                         editBtn.setOnClickListener {
                             // 수업 수정 Activity로 이동, ClassItem 전달
-                            activityResultLauncher.launch(
+                            startActivity(
                                 Intent(
                                     requireContext(),
                                     SubjectEditActivity::class.java
-                                ).putExtra("classModel", viewModel.getClassModel(position))
+                                ).putExtra("classModel", hostViewModel.getClassModel(position))
                             )
                             dialog.dismiss() // 하단 Dialog 종료
                         }
@@ -249,16 +237,16 @@ class SubjectFragment : BaseFragment<FragmentClassBinding, SubjectViewModel>(),
             .setPositiveButton(
                 "삭제"
             ) { _, _ ->
-                val mainDispatcher = Dispatchers.Main
-                val ioDispatcher = Dispatchers.IO
-
                 // 수업 삭제 로직 수행
-                CoroutineScope(ioDispatcher).launch {
-                    val isSuccess = viewModel.deleteSubject(position) // 수업 삭제
-                    launch(mainDispatcher) {
-                        if (isSuccess) {
+                CoroutineScope(Dispatchers.IO).launch {
+                    val isSuccess = hostViewModel.deleteSubject(position) // 수업 삭제
+                    launch(Dispatchers.Main) {
+                        if(isSuccess) {
                             showSnackBar(getString(R.string.success_delete_subject))
-                            viewModel.updateGeneralSubjectList() // GeneralSubject 리스트 갱신
+
+                            // viewModel의 List에서 해당 수업 삭제 로직 구현 예정
+                            //
+                            //
                         } else {
                             showSnackBar(getString(R.string.failed_delete_subject))
                         }
