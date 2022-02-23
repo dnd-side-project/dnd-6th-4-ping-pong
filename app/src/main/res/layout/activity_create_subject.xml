@@ -348,7 +348,7 @@
                 android:foreground="?attr/selectableItemBackground"
                 android:gravity="center"
                 android:text="완료"
-                android:onClick="@{viewModel::makeSubject}"
+                android:onClick="@{viewModel::createSubject}"
                 android:textColor="@color/color_done_text"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent" />

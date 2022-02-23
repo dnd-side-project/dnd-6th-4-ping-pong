@@ -4,7 +4,7 @@ import com.dnd.sixth.lmsservice.data.model.subject.SubjectModel
 import com.dnd.sixth.lmsservice.domain.entity.SubjectEntity
 
 
-fun SubjectModel.toSubjectEntity(): SubjectEntity {
+fun SubjectModel.toEntity(): SubjectEntity {
     return SubjectEntity(
         this.subjectName,
         this.monthlyCnt,
@@ -12,11 +12,11 @@ fun SubjectModel.toSubjectEntity(): SubjectEntity {
         "2022-02-23",
         this.teacherId,
         this.color,
-        0b1000001
+        this.classDays
     )
 }
 
-fun SubjectEntity.toSubjectModel(): SubjectModel {
+fun SubjectEntity.toModel(): SubjectModel {
     return SubjectModel(
         this.subjectName,
         0,
@@ -24,6 +24,7 @@ fun SubjectEntity.toSubjectModel(): SubjectModel {
         this.classTime,
         this.classDate,
         this.teacherId,
-        this.color
+        this.color,
+        this.classDays
     )
 }

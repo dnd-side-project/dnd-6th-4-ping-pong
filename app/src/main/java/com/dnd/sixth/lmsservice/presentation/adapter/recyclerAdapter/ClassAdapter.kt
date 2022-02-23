@@ -5,15 +5,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.dnd.sixth.lmsservice.data.response.User
 import com.dnd.sixth.lmsservice.databinding.ItemClassBinding
-import com.dnd.sixth.lmsservice.domain.entity.DailyClass
-import com.dnd.sixth.lmsservice.domain.entity.SubjectEntity
+import com.dnd.sixth.lmsservice.domain.entity.GeneralSubjectEntity
 import com.dnd.sixth.lmsservice.presentation.base.BaseDiffUtil
 import com.dnd.sixth.lmsservice.presentation.extensions.visibleViewListIfContain
 import com.dnd.sixth.lmsservice.presentation.listner.OnRecyclerItemClickListener
 
-class ClassAdapter(var modelListDaily: List<SubjectEntity>, val listener: OnRecyclerItemClickListener) :
+class ClassAdapter(
+    var modelListDaily: List<GeneralSubjectEntity>,
+    val listener: OnRecyclerItemClickListener
+) :
     RecyclerView.Adapter<ClassAdapter.ClassViewHolder>() {
 
 
@@ -21,13 +22,15 @@ class ClassAdapter(var modelListDaily: List<SubjectEntity>, val listener: OnRecy
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind() {
-            val subjectModel = modelListDaily[adapterPosition]
-            val dayOfWeekBinary = subjectModel.classDowBit
+            val classModel = modelListDaily[adapterPosition]
+
+            // 수업 듣는 요일을 Binary 형태로 표현한 String (ex. 1110111)
+            // 8bit 데이터의 공백은 0으로 채웁니다.
+            val classDayBinaryString =
+                String.format("%7s", classModel.classDayBit).replace("", "0")
 
             with(binding) {
-                setSubjectModel(subjectModel)
-                dailyModel = DailyClass(0,0,"","","","","","","","",true,"",0b0001000)
-                userModel = User(0,true,"")
+                setClassModel(classModel)
 
 
                 moreBtn.setOnClickListener {
@@ -37,9 +40,10 @@ class ClassAdapter(var modelListDaily: List<SubjectEntity>, val listener: OnRecy
                     listener.onClick(it.id, adapterPosition)
                 }
 
+
                 // 수업 요일을 보여줌
                 visibleViewListIfContain(
-                    dayOfWeekBinary,
+                    classDayBinaryString,
                     listOf<View>(monIcon, tueIcon, wedIcon, thurIcon, friIcon, satIcon, sunIcon)
                 )
 
@@ -58,7 +62,7 @@ class ClassAdapter(var modelListDaily: List<SubjectEntity>, val listener: OnRecy
 
     override fun getItemCount(): Int = modelListDaily.size
 
-    fun updateItem(newModelListDaily: List<SubjectEntity>) {
+    fun updateItem(newModelListDaily: List<GeneralSubjectEntity>) {
         val diffUtilCallback = BaseDiffUtil(modelListDaily, newModelListDaily)
         val diffResult = DiffUtil.calculateDiff(diffUtilCallback, true)
 

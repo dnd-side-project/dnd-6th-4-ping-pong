@@ -10,7 +10,7 @@ import com.dnd.sixth.lmsservice.databinding.FragmentClassManageBinding
 import com.dnd.sixth.lmsservice.presentation.adapter.viewpager.ClassManageViewPagerAdapter
 import com.dnd.sixth.lmsservice.presentation.base.BaseFragment
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.config.ConfigActivity
-import com.dnd.sixth.lmsservice.presentation.utility.Saved_NAME_KEY
+import com.dnd.sixth.lmsservice.presentation.utility.SAVED_NAME_KEY
 import com.dnd.sixth.lmsservice.presentation.utility.UnitConverter
 import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -48,7 +48,8 @@ class ClassManageFragment : BaseFragment<FragmentClassManageBinding, ClassManage
             setOnClickListener(binding)
 
             // 인사말 텍스트뷰에 유저 이름 설정
-            helloNameTextView.text = PreferenceManager(requireContext()).getString(Saved_NAME_KEY)
+            val userName = PreferenceManager(requireContext()).getString(SAVED_NAME_KEY)
+            helloNameTextView.text = getString(R.string.hello_format, userName)
 
             /* 클래스(수업) 및 캘린더 Fragment의 높이에 따라 ViewPager 스크롤을 위한 ScrollView의 높이를 업데이트해준다.  */
             ClassManageViewModel.screenHeight.observe(this@ClassManageFragment) { viewPagerHeight ->

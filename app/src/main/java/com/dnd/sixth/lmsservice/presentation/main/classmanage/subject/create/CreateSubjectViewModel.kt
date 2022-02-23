@@ -8,7 +8,7 @@ import com.dnd.sixth.lmsservice.App
 import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.data.preference.PreferenceManager
 import com.dnd.sixth.lmsservice.domain.entity.SubjectEntity
-import com.dnd.sixth.lmsservice.domain.useCase.MakeSubjectUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.CreateSubjectUseCase
 import com.dnd.sixth.lmsservice.presentation.base.BaseViewModel
 import com.dnd.sixth.lmsservice.presentation.extensions.convertDowBit
 import com.dnd.sixth.lmsservice.presentation.extensions.isAllFalse
@@ -16,11 +16,11 @@ import com.dnd.sixth.lmsservice.presentation.extensions.toggle
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.custom.DateColor
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.subject.type.DayOfWeek
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.subject.type.SalaryDay
-import com.dnd.sixth.lmsservice.presentation.utility.SAVED_ID_KEY
+import com.dnd.sixth.lmsservice.presentation.utility.SAVED_UID_KEY
 import kotlinx.coroutines.launch
 
 class CreateSubjectViewModel(
-    private val makeSubjectUseCase: MakeSubjectUseCase,
+    private val createSubjectUseCase: CreateSubjectUseCase,
     private val preferenceManager: PreferenceManager
 ) : BaseViewModel() {
 
@@ -84,10 +84,10 @@ class CreateSubjectViewModel(
     }
 
     // 서버에 데이터를 전송하여 클래스 생성
-    fun makeSubject(view: View) {
+    fun createSubject(view: View) {
 
         viewModelScope.launch {
-            val resultSubjectEntity = makeSubjectUseCase(
+            val resultSubjectEntity = createSubjectUseCase(
                 SubjectEntity(
                     subjectName = className.value.toString(),
                     monthlyCnt = salaryDay.countInt,
@@ -96,9 +96,9 @@ class CreateSubjectViewModel(
                         hour,
                         minute
                     ),
-                    teacherId = preferenceManager.getInt(SAVED_ID_KEY),
+                    teacherId = preferenceManager.getInt(SAVED_UID_KEY),
                     color = DateColor.BLUE.ordinal,
-                    classDowBit = _weekOfDayList.value!!.convertDowBit()
+                    classDays = _weekOfDayList.value!!.convertDowBit()
                 )
             )
 

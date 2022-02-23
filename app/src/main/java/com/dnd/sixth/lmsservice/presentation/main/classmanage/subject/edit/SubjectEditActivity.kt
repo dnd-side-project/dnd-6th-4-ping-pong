@@ -2,8 +2,8 @@ package com.dnd.sixth.lmsservice.presentation.main.classmanage.subject.edit
 
 import android.view.MenuItem
 import com.dnd.sixth.lmsservice.R
-import com.dnd.sixth.lmsservice.domain.entity.DailyClass
 import com.dnd.sixth.lmsservice.databinding.ActivityEditClassBinding
+import com.dnd.sixth.lmsservice.domain.entity.GeneralSubjectEntity
 import com.dnd.sixth.lmsservice.presentation.base.BaseActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -16,7 +16,7 @@ class SubjectEditActivity : BaseActivity<ActivityEditClassBinding, SubjectEditVi
     // 액티비티 초기화 메서드
     override fun initActivity() {
         // 전달받은 ClassItem을 ViewModel에 초기화
-        viewModel.dailyClass = (intent.getSerializableExtra("classModel") as DailyClass)
+        viewModel.generalSubjectEntity = (intent.getSerializableExtra("classModel") as GeneralSubjectEntity)
 
         with(binding) {
             viewModel = this@SubjectEditActivity.viewModel

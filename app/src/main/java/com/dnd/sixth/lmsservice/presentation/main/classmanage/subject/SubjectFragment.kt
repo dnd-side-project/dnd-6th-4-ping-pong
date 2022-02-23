@@ -43,7 +43,7 @@ class SubjectFragment : BaseFragment<FragmentClassBinding, SubjectViewModel>(),
 
 
     // 최상위 ViewTreeObserver (높이를 구하기 위한 변수)
-//    var viewTreeObserver: ViewTreeObserver? = null
+    // var viewTreeObserver: ViewTreeObserver? = null
 
     // 액티비티 초기화 메서드
     override fun initActivity() {
@@ -58,7 +58,7 @@ class SubjectFragment : BaseFragment<FragmentClassBinding, SubjectViewModel>(),
             classAddBtn.setOnClickListener(this@SubjectFragment)
 
             classAdapter = ClassAdapter(
-                viewModel?.dailyClassDataList?.value!!,
+                viewModel?.generalSubjectDataList?.value!!,
                 this@SubjectFragment
             ) // 수업 리사이클러뷰 어댑터
             with(classRecyclerView) {
@@ -66,8 +66,11 @@ class SubjectFragment : BaseFragment<FragmentClassBinding, SubjectViewModel>(),
                 layoutManager = LinearLayoutManager(requireContext())
             }
 
+            // 서버로부터 수업 리스틀를 가져와 업데이트한다.
+            viewModel?.updateGeneralSubjectList()
+
             // 수업 리스트가 변경됨에 따라 화면 크기 조절을 하기 위한 Observer
-            viewModel?.dailyClassDataList?.observe(this@SubjectFragment) {
+            viewModel?.generalSubjectDataList?.observe(this@SubjectFragment) {
                 // ClassManageFragment(ParentFragment)에 수업 개수 전달.
                 ClassManageViewModel.classCount.value = it.size
 
@@ -98,6 +101,9 @@ class SubjectFragment : BaseFragment<FragmentClassBinding, SubjectViewModel>(),
                         Log.d("entity", newSubjectEntity.toString())
                     }
                 }
+
+
+
 
         }
 

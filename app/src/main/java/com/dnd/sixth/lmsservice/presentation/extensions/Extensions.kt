@@ -18,11 +18,11 @@ fun List<String>.visibleIfContains(text: String, view: View) {
 /*
 * @param dowBinary : 0000001, 0110011 (요일을 비트화 해놓은 형태, 오른쪽부터 왼쪽으로 '월화수목금토일')
 * */
-fun visibleViewListIfContain(dayOfWeekBit: Int, view: List<View>) {
+fun visibleViewListIfContain(dayOfWeekBit: String, view: List<View>) {
     val containDate = '1'
-    val notContainDAte = '0'
+    val notContainDate = '0'
 
-    val dayOfWeekCharList = dayOfWeekBit.toString().toCharArray() // 전달받은 요일(dayOfWeekBit)
+    val dayOfWeekCharList = dayOfWeekBit.toCharArray() // 전달받은 요일(dayOfWeekBit)
 
     for (i in dayOfWeekCharList.size downTo 0) {
         if (dayOfWeekCharList[i] == containDate) {
@@ -51,7 +51,7 @@ fun Boolean.toggle(): Boolean = this.not()
 
 
 // DayOfWeek HashMap으로 부터 유저가 선택한 요일을 비트로 변환
-fun Map<DayOfWeek, Boolean>.convertDowBit(): Int {
+fun Map<DayOfWeek, Boolean>.convertDowBit(): String {
     // 순서대로 (일토금목수화월)
     val dayOfWeekCharList = mutableListOf<Char>('0', '0', '0', '0', '0', '0', '0')
 
@@ -64,7 +64,7 @@ fun Map<DayOfWeek, Boolean>.convertDowBit(): Int {
         cursor -= 1
     }
 
-    return dayOfWeekCharList.joinToString("").toInt()
+    return dayOfWeekCharList.joinToString("")
 }
 
 

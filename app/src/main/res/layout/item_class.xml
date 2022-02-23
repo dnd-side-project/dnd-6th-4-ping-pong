@@ -6,16 +6,9 @@
     <data>
 
         <variable
-            name="subjectModel"
-            type="com.dnd.sixth.lmsservice.domain.entity.SubjectEntity" />
+            name="classModel"
+            type="com.dnd.sixth.lmsservice.domain.entity.GeneralSubjectEntity" />
 
-        <variable
-            name="dailyModel"
-            type="com.dnd.sixth.lmsservice.domain.entity.DailyClass" />
-
-        <variable
-            name="userModel"
-            type="com.dnd.sixth.lmsservice.data.response.User" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -42,7 +35,7 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/user_profile"
-                setProfileUrl="@{userModel.profile_url}"
+                setProfileUrl="@{classModel.profileUri}"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_marginLeft="8dp"
@@ -54,7 +47,7 @@
 
             <ImageView
                 android:id="@+id/noti_image_view"
-                notificationVisible="@{dailyModel.changeFeedback}"
+                notificationVisible="@{classModel.feedbackChange}"
                 android:layout_width="12dp"
                 android:layout_height="12dp"
                 android:src="@drawable/ic_new"
@@ -68,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:fontFamily="@font/spoqa_medium"
-                android:text="@{userModel.toString()}"
+                android:text="@{classModel.studentName}"
                 android:textColor="@color/richBlack"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toTopOf="@+id/student_type_text_view"
@@ -92,7 +85,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/spoqa_medium"
-                android:text="@{subjectModel.subjectName}"
+                android:text="@{classModel.subjectName}"
                 android:textColor="#707070"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@+id/user_profile"

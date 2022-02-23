@@ -2,7 +2,7 @@ package com.dnd.sixth.lmsservice.domain.entity
 
 import java.io.Serializable
 
-data class DailyClass(
+data class DailyEntity(
     val subjectId: Number,
     val classOrder: Number,
     val startTime: String,
