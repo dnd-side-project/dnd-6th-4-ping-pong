@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.dnd.sixth.lmsservice.presentation.main.classmanage.classes.edit.ClassEditViewModel" />
+            type="com.dnd.sixth.lmsservice.presentation.main.classmanage.subject.edit.SubjectEditViewModel" />
     </data>
 
 
@@ -18,7 +18,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:context=".presentation.main.classmanage.classes.create.ClassCreateActivity">
+            tools:context=".presentation.main.classmanage.subject.create.SubjectCreateActivity">
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar"

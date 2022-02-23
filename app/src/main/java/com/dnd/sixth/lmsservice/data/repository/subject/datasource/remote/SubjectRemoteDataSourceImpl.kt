@@ -9,7 +9,7 @@ class SubjectRemoteDataSourceImpl(private val subjectApi: SubjectApi) : SubjectR
     override suspend fun makeSubject(
         remoteErrorEmitter: RemoteErrorEmitter,
         subjectEntity: SubjectEntity
-    ): Boolean {
+    ): Boolean? {
         return safeApiCall(remoteErrorEmitter) {
             subjectApi.makeSubject(
                 subjectEntity.subjectName,
@@ -19,7 +19,7 @@ class SubjectRemoteDataSourceImpl(private val subjectApi: SubjectApi) : SubjectR
                 subjectEntity.teacherId,
                 subjectEntity.color,
                 subjectEntity.classDays,
-            ).body()!!
+            ).body()
         }!!
     }
 }

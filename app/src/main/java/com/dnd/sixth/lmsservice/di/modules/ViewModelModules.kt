@@ -19,9 +19,9 @@ import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.detail.st
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.detail.student.request.EditRequestViewModel
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.detail.teacher.edit.TeacherScheduleEditViewModel
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.detail.teacher.response.EditResponseViewModel
-import com.dnd.sixth.lmsservice.presentation.main.classmanage.classes.ClassViewModel
-import com.dnd.sixth.lmsservice.presentation.main.classmanage.classes.create.CreateClassViewModel
-import com.dnd.sixth.lmsservice.presentation.main.classmanage.classes.edit.ClassEditViewModel
+import com.dnd.sixth.lmsservice.presentation.main.classmanage.subject.SubjectViewModel
+import com.dnd.sixth.lmsservice.presentation.main.classmanage.subject.create.CreateSubjectViewModel
+import com.dnd.sixth.lmsservice.presentation.main.classmanage.subject.edit.SubjectEditViewModel
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.config.ConfigViewModel
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.config.profile.ProfileViewModel
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.config.profile.password.PasswordViewModel
@@ -42,7 +42,7 @@ val viewModelModules = module {
         ClassManageViewModel()
     }
     viewModel {
-        CreateClassViewModel()
+        CreateSubjectViewModel(get())
     }
     viewModel {
         CalendarViewModel()
@@ -63,7 +63,7 @@ val viewModelModules = module {
         MainViewModel()
     }
     viewModel {
-        ClassViewModel()
+        SubjectViewModel()
     }
     viewModel {
         EditResponseViewModel()
@@ -93,7 +93,7 @@ val viewModelModules = module {
         PasswordViewModel()
     }
     viewModel {
-        ClassEditViewModel()
+        SubjectEditViewModel()
     }
     viewModel {
         PushTimeViewModel()

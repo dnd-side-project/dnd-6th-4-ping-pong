@@ -1,4 +1,4 @@
-package com.dnd.sixth.lmsservice.presentation.main.classmanage.classes.create
+package com.dnd.sixth.lmsservice.presentation.main.classmanage.subject.create
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -14,7 +14,7 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 class InviteDialogFragment : DialogFragment(), View.OnClickListener {
 
     private lateinit var binding: FragmentInviteDialogBinding
-    val viewModel: CreateClassViewModel by sharedViewModel()
+    val viewModel: CreateSubjectViewModel by sharedViewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

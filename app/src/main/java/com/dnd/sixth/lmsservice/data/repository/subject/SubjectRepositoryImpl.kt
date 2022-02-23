@@ -9,7 +9,7 @@ class SubjectRepositoryImpl(
     private val subjectRemoteDataSource: SubjectRemoteDataSource,
     private val remoteErrorEmitter: RemoteErrorEmitter
 ): SubjectRepository {
-    override suspend fun makeSubject(subjectEntity: SubjectEntity): Boolean {
+    override suspend fun makeSubject(subjectEntity: SubjectEntity): Boolean? {
         return subjectRemoteDataSource.makeSubject(remoteErrorEmitter, subjectEntity)
     }
 }

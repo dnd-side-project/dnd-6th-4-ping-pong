@@ -5,5 +5,5 @@ import com.dnd.sixth.lmsservice.data.repository.subject.datasource.base.BaseRemo
 import com.dnd.sixth.lmsservice.domain.entity.SubjectEntity
 
 interface SubjectRemoteDataSource: BaseRemoteRepository {
-    suspend fun makeSubject(remoteErrorEmitter: RemoteErrorEmitter, subjectEntity: SubjectEntity): Boolean
+    suspend fun makeSubject(remoteErrorEmitter: RemoteErrorEmitter, subjectEntity: SubjectEntity): Boolean?
 }

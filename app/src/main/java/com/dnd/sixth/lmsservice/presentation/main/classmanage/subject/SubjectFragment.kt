@@ -1,12 +1,9 @@
-package com.dnd.sixth.lmsservice.presentation.main.classmanage.classes
+package com.dnd.sixth.lmsservice.presentation.main.classmanage.subject
 
 import android.content.Intent
-import android.content.res.Configuration
-import android.util.Log
 import android.view.View
 import android.view.ViewTreeObserver
 import androidx.appcompat.app.AlertDialog
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.dnd.sixth.lmsservice.BuildConfig
 import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.databinding.FragmentClassBinding
@@ -16,19 +13,18 @@ import com.dnd.sixth.lmsservice.presentation.base.BaseFragment
 import com.dnd.sixth.lmsservice.presentation.listner.OnRecyclerItemClickListener
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.ClassManageViewModel
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.CalendarViewModel
-import com.dnd.sixth.lmsservice.presentation.main.classmanage.classes.create.ClassCreateActivity
-import com.dnd.sixth.lmsservice.presentation.main.classmanage.classes.edit.ClassEditActivity
+import com.dnd.sixth.lmsservice.presentation.main.classmanage.subject.create.SubjectCreateActivity
 import com.dnd.sixth.lmsservice.presentation.utility.UnitConverter
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.android.synthetic.main.layout_edit_delete_bottom_sheet.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
-class ClassFragment : BaseFragment<FragmentClassBinding, ClassViewModel>(),
+class SubjectFragment : BaseFragment<FragmentClassBinding, SubjectViewModel>(),
     View.OnClickListener, OnRecyclerItemClickListener {
     override val layoutResId: Int
         get() = R.layout.fragment_class
-    override val viewModel: ClassViewModel by viewModel()
+    override val viewModel: SubjectViewModel by viewModel()
 
     private var classAdapter: ClassAdapter? = null
     private var viewTreeObserver: ViewTreeObserver? = null
@@ -45,12 +41,12 @@ class ClassFragment : BaseFragment<FragmentClassBinding, ClassViewModel>(),
 
     private fun initView() {
         with(binding) {
-            makeClassBtn.setOnClickListener(this@ClassFragment)
-            classAddBtn.setOnClickListener(this@ClassFragment)
+            makeClassBtn.setOnClickListener(this@SubjectFragment)
+            classAddBtn.setOnClickListener(this@SubjectFragment)
 
             classAdapter = ClassAdapter(
-                viewModel?.classDataList?.value!!,
-                this@ClassFragment
+                viewModel?.dailyClassDataList?.value!!,
+                this@SubjectFragment
             ) // 수업 리사이클러뷰 어댑터
             with(classRecyclerView) {
                 adapter = classAdapter // 어댑터 적용
@@ -58,7 +54,7 @@ class ClassFragment : BaseFragment<FragmentClassBinding, ClassViewModel>(),
             }
 
             // 수업 리스트가 변경됨에 따라 화면 크기 조절을 하기 위한 Observer
-            viewModel?.classDataList?.observe(this@ClassFragment) {
+            viewModel?.dailyClassDataList?.observe(this@SubjectFragment) {
                 // 클래스 개수 텍스트 설정
                 classCountTextView.text = getString(R.string.class_count_format, it.size)
 
@@ -155,7 +151,7 @@ class ClassFragment : BaseFragment<FragmentClassBinding, ClassViewModel>(),
     override fun onClick(view: View?) {
         when (view?.id) {
             R.id.make_class_btn, R.id.class_add_btn -> {
-                startActivity(Intent(requireContext(), ClassCreateActivity::class.java))
+                startActivity(Intent(requireContext(), SubjectCreateActivity::class.java))
             }
         }
     }

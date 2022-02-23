@@ -6,7 +6,7 @@
     <data>
         <variable
             name="model"
-            type="com.dnd.sixth.lmsservice.data.model.ClassModel" />
+            type="com.dnd.sixth.lmsservice.domain.entity.DailyClass" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -48,7 +48,7 @@
                 android:layout_width="4dp"
                 android:layout_height="4dp"
                 android:src="@drawable/ic_new"
-                notificationVisible="@{model.hasNotification}"
+                notificationVisible="@{model.changeFeedback}"
                 app:layout_constraintBottom_toTopOf="@+id/student_name_text_view"
                 app:layout_constraintLeft_toRightOf="@+id/student_name_text_view"
                 tools:visibility="visible" />
@@ -64,7 +64,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/student_type_text_view"
                 app:layout_constraintLeft_toRightOf="@+id/student_profile"
                 app:layout_constraintTop_toTopOf="@+id/student_profile"
-                android:text="@{model.name}"
+                android:text="@{model.}"
                 tools:text="백지성" />
 
             <ImageView

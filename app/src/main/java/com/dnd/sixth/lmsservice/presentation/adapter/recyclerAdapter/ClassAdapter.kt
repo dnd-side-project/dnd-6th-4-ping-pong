@@ -5,13 +5,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.dnd.sixth.lmsservice.data.model.ClassModel
+import com.dnd.sixth.lmsservice.domain.entity.DailyClass
 import com.dnd.sixth.lmsservice.databinding.ItemClassBinding
 import com.dnd.sixth.lmsservice.presentation.base.BaseDiffUtil
 import com.dnd.sixth.lmsservice.presentation.extensions.visibleViewListIfContain
 import com.dnd.sixth.lmsservice.presentation.listner.OnRecyclerItemClickListener
 
-class ClassAdapter(var modelList: List<ClassModel>, val listener: OnRecyclerItemClickListener) :
+class ClassAdapter(var modelListDaily: List<DailyClass>, val listener: OnRecyclerItemClickListener) :
     RecyclerView.Adapter<ClassAdapter.ClassViewHolder>() {
 
     val dayOfWeeks = listOf<String>("월", "화", "수", "목", "금", "토", "일")
@@ -20,7 +20,7 @@ class ClassAdapter(var modelList: List<ClassModel>, val listener: OnRecyclerItem
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind() {
-            val classModel = modelList[adapterPosition]
+            val classModel = modelListDaily[adapterPosition]
             val classDayOfWeeks = classModel.classDays
 
             with(binding) {
@@ -52,13 +52,13 @@ class ClassAdapter(var modelList: List<ClassModel>, val listener: OnRecyclerItem
         holder.bind()
     }
 
-    override fun getItemCount(): Int = modelList.size
+    override fun getItemCount(): Int = modelListDaily.size
 
-    fun updateItem(newModelList: List<ClassModel>) {
-        val diffUtilCallback = BaseDiffUtil(modelList, newModelList)
+    fun updateItem(newModelListDaily: List<DailyClass>) {
+        val diffUtilCallback = BaseDiffUtil(modelListDaily, newModelListDaily)
         val diffResult = DiffUtil.calculateDiff(diffUtilCallback, true)
 
-        modelList = newModelList
+        modelListDaily = newModelListDaily
         diffResult.dispatchUpdatesTo(this)
     }
 }

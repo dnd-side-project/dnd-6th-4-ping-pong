@@ -27,7 +27,9 @@ class App : Application() {
                 listOf(
                     viewModelModules,
                     repositoryModules,
-                    networkModules
+                    networkModules,
+                    useCaseModules,
+                    dataSourceModules,
                 )
             )
 

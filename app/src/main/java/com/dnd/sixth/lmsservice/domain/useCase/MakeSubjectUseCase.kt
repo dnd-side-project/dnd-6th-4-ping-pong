@@ -4,7 +4,7 @@ import com.dnd.sixth.lmsservice.domain.entity.SubjectEntity
 import com.dnd.sixth.lmsservice.domain.repository.SubjectRepository
 
 class MakeSubjectUseCase(private val subjectRepository: SubjectRepository) {
-    suspend operator fun invoke(subjectEntity: SubjectEntity): Boolean {
+    suspend operator fun invoke(subjectEntity: SubjectEntity): Boolean? {
         return subjectRepository.makeSubject(subjectEntity)
     }
 }

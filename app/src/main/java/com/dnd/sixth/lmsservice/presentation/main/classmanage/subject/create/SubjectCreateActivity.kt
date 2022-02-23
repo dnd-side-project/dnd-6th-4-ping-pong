@@ -1,20 +1,20 @@
-package com.dnd.sixth.lmsservice.presentation.main.classmanage.classes.create
+package com.dnd.sixth.lmsservice.presentation.main.classmanage.subject.create
 
 import android.app.TimePickerDialog
 import android.view.MenuItem
 import android.view.View
 import com.dnd.sixth.lmsservice.R
-import com.dnd.sixth.lmsservice.databinding.ActivityCreateClassBinding
+import com.dnd.sixth.lmsservice.databinding.ActivityCreateSubjectBinding
 import com.dnd.sixth.lmsservice.presentation.base.BaseActivity
 import com.dnd.sixth.lmsservice.presentation.utility.TimeConverter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class ClassCreateActivity : BaseActivity<ActivityCreateClassBinding, CreateClassViewModel>(),
+class SubjectCreateActivity : BaseActivity<ActivityCreateSubjectBinding, CreateSubjectViewModel>(),
     View.OnClickListener {
     override val layoutResId: Int
-        get() = R.layout.activity_create_class
-    override val viewModel: CreateClassViewModel by viewModel()
+        get() = R.layout.activity_create_subject
+    override val viewModel: CreateSubjectViewModel by viewModel()
 
 
     // 액티비티 초기화 메서드
@@ -24,7 +24,7 @@ class ClassCreateActivity : BaseActivity<ActivityCreateClassBinding, CreateClass
     }
 
     private fun setViewModel() {
-        binding.viewModel = this@ClassCreateActivity.viewModel
+        binding.viewModel = this@SubjectCreateActivity.viewModel
     }
 
     // 뷰 초기화
@@ -33,7 +33,7 @@ class ClassCreateActivity : BaseActivity<ActivityCreateClassBinding, CreateClass
             setSupportActionBar(toolbar)
             supportActionBar?.setDisplayHomeAsUpEnabled(true) // 뒤로가기 버튼 활성화
             supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_black_close_btn) // 뒤로가기 버튼 변경
-            setOnClickListener(this) // 클릭 리스너 설정
+            setOnClickListener() // 클릭 리스너 설정
 
             // 과외 시간대 텍스트뷰 설정
             setClassTime()
@@ -56,12 +56,32 @@ class ClassCreateActivity : BaseActivity<ActivityCreateClassBinding, CreateClass
 
                 notifyTimeChanged() // 변경된 시간대로 텍스트뷰 설정
             }
+
+            // ClassName 값이 변경될 때마다 '완료' 버튼 클릭 가능 여부를 변경한다.
+            viewModel.className.observe(this@SubjectCreateActivity) {
+                viewModel.setDoneClickable()
+            }
+
+            // '완료' 클릭 가능 여부 관찰
+            viewModel.isDoneClickable.observe(this@SubjectCreateActivity) {
+                doneBtn.isEnabled = true // 완료버튼 활성화
+            }
+
+            // '수업 생성 성공 여부' 관찰
+            viewModel.isMakeSuccess.observe(this@SubjectCreateActivity) { isSuccess ->
+                if (isSuccess) { // 수업 생성 성공
+                    // setResult()로 초대코드 Dialog를 보여주기 위한 결과 반환
+                    finish() //액티비티 종료
+                } else { // 수업 생성 실패
+                    showToast(getString(R.string.failed_make_class)) // 실패 Toast 출력
+                }
+            }
         }
     }
 
-    private fun setOnClickListener(binding: ActivityCreateClassBinding) {
+    private fun setOnClickListener() {
         with(binding) {
-            timeSelectContainer.setOnClickListener(this@ClassCreateActivity)
+            timeSelectContainer.setOnClickListener(this@SubjectCreateActivity)
         }
     }
 
@@ -99,7 +119,7 @@ class ClassCreateActivity : BaseActivity<ActivityCreateClassBinding, CreateClass
         // 선택한 시간대가 오후라면
         if (TimeConverter().isPM(viewModel.hour)) {
             binding.amPmRadioGroup.check(R.id.pm_radio_btn)
-        }else{
+        } else {
             binding.amPmRadioGroup.check(R.id.am_radio_btn)
         }
 
@@ -108,8 +128,14 @@ class ClassCreateActivity : BaseActivity<ActivityCreateClassBinding, CreateClass
 
     private fun notifyTimeChanged() {
         binding.hourTextView.text =
-            getString(R.string.hour_or_minute_format, TimeConverter().convertHourPmIncludedZero(viewModel.hour))
+            getString(
+                R.string.hour_or_minute_format,
+                TimeConverter().convertHourPmIncludedZero(viewModel.hour)
+            )
         binding.minTextView.text =
-            getString(R.string.hour_or_minute_format, TimeConverter().convertHourPmIncludedZero(viewModel.minute))
+            getString(
+                R.string.hour_or_minute_format,
+                TimeConverter().convertHourPmIncludedZero(viewModel.minute)
+            )
     }
 }
