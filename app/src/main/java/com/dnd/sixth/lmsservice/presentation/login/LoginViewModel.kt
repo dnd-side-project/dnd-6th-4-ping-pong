@@ -30,7 +30,7 @@ class LoginViewModel(
             //setString(Saved_NAME_KEY,name)
             //setString(Saved_ROLE_KEY,role)
             //setString(Saved_PHONE_NUMBER_KEY, phone_number)
-            
+            //setString(Saved_UID_KEY, uid)
             //TODO 토큰 저장
 
 
