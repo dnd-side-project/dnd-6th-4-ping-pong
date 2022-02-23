@@ -11,7 +11,7 @@ import android.widget.Toast
 import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.data.network.api.SignApi
 import com.dnd.sixth.lmsservice.data.response.UserCreateDto
-import com.dnd.sixth.lmsservice.data.response.User
+import com.dnd.sixth.lmsservice.data.response.UserResponse
 import com.dnd.sixth.lmsservice.databinding.ActivitySignUpBinding
 import com.dnd.sixth.lmsservice.presentation.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_sign_up.*
@@ -159,16 +159,16 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding,SignUpViewModel>() {
                         val signUpData = UserCreateDto(email,"string","string",1,"string",null)
                         //회원가입 요청
 
-                        signApi.api.signUp(signUpData).enqueue(object : Callback<User>{
+                        signApi.api.signUp(signUpData).enqueue(object : Callback<UserResponse>{
                             override fun onResponse(
-                                call: Call<User>,
-                                response: Response<User>
+                                call: Call<UserResponse>,
+                                response: Response<UserResponse>
                             ) {
                                 Log.d("signUp","success")
                                 return
                             }
 
-                            override fun onFailure(call: Call<User>, t: Throwable) {
+                            override fun onFailure(call: Call<UserResponse>, t: Throwable) {
                                 Log.d("signUp", "fail")
                             }
 
