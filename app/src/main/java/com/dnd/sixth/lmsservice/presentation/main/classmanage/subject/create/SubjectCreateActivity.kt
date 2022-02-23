@@ -60,7 +60,7 @@ class SubjectCreateActivity : BaseActivity<ActivityCreateSubjectBinding, CreateS
             }
 
             // ClassName 값이 변경될 때마다 '완료' 버튼 클릭 가능 여부를 변경한다.
-            viewModel?.className?.observe(this@SubjectCreateActivity) {
+            viewModel?.subjectName?.observe(this@SubjectCreateActivity) {
                 viewModel?.setDoneClickable()
             }
 
