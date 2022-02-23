@@ -16,6 +16,7 @@ import com.dnd.sixth.lmsservice.presentation.extensions.toggle
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.custom.DateColor
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.subject.type.DayOfWeek
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.subject.type.SalaryDay
+import com.dnd.sixth.lmsservice.presentation.utility.SAVED_ID_KEY
 import kotlinx.coroutines.launch
 
 class CreateSubjectViewModel(
@@ -88,12 +89,16 @@ class CreateSubjectViewModel(
         viewModelScope.launch {
             val resultSubjectEntity = makeSubjectUseCase(
                 SubjectEntity(
-                    subjectName=className.value.toString(),
-                    monthlyCnt=salaryDay.countInt,
-                    classTime=App.instance.context.getString(R.string.hour_minute_format, hour, minute),
-                    teacherId=preferenceManager.getInt("uid"),
-                    color=DateColor.BLUE.ordinal,
-                    classDowBit=_weekOfDayList.value!!.convertDowBit()
+                    subjectName = className.value.toString(),
+                    monthlyCnt = salaryDay.countInt,
+                    classTime = App.instance.context.getString(
+                        R.string.hour_minute_format,
+                        hour,
+                        minute
+                    ),
+                    teacherId = preferenceManager.getInt(SAVED_ID_KEY),
+                    color = DateColor.BLUE.ordinal,
+                    classDowBit = _weekOfDayList.value!!.convertDowBit()
                 )
             )
 

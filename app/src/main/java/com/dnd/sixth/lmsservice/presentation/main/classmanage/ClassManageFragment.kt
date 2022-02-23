@@ -1,19 +1,17 @@
 package com.dnd.sixth.lmsservice.presentation.main.classmanage
 
 import android.content.Intent
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.updateLayoutParams
 import com.dnd.sixth.lmsservice.R
+import com.dnd.sixth.lmsservice.data.preference.PreferenceManager
 import com.dnd.sixth.lmsservice.databinding.FragmentClassManageBinding
 import com.dnd.sixth.lmsservice.presentation.adapter.viewpager.ClassManageViewPagerAdapter
 import com.dnd.sixth.lmsservice.presentation.base.BaseFragment
-import com.dnd.sixth.lmsservice.presentation.main.classmanage.ClassManageViewModel.Companion.selectedFragmentName
-import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.CalendarViewModel
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.config.ConfigActivity
+import com.dnd.sixth.lmsservice.presentation.utility.Saved_NAME_KEY
 import com.dnd.sixth.lmsservice.presentation.utility.UnitConverter
-import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.math.abs
@@ -46,15 +44,23 @@ class ClassManageFragment : BaseFragment<FragmentClassManageBinding, ClassManage
                 tab.text = resources.getStringArray(R.array.home_tab_list)[position]
             }.attach() // 탭 클릭시 Fragment 전환
 
-            setMarginTabItem() // 탭 간에 margin 설정
+            //setMarginTabItem() // 탭 간에 margin 설정
             setOnClickListener(binding)
 
+            // 인사말 텍스트뷰에 유저 이름 설정
+            helloNameTextView.text = PreferenceManager(requireContext()).getString(Saved_NAME_KEY)
 
             /* 클래스(수업) 및 캘린더 Fragment의 높이에 따라 ViewPager 스크롤을 위한 ScrollView의 높이를 업데이트해준다.  */
             ClassManageViewModel.screenHeight.observe(this@ClassManageFragment) { viewPagerHeight ->
                 viewPagerScrollView.updateLayoutParams {
                     height = viewPagerHeight
                 }
+            }
+
+            // SubjectFragment(ChildFragment)에서 수업 데이터를 가져오면 전체 수업 개수를 갱신한다.
+            ClassManageViewModel.classCount.observe(this@ClassManageFragment) { classCount ->
+                // 클래스 개수 텍스트 설정
+                classCountTextView.text = getString(R.string.class_count_format, classCount)
             }
 
         }

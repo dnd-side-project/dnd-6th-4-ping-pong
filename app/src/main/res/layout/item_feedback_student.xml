@@ -9,7 +9,7 @@
     android:layout_marginTop="8dp">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/student_profile"
+        android:id="@+id/user_profile"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:src="@drawable/ic_anonymous"
@@ -26,8 +26,8 @@
         android:textColor="@color/richBlack"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/student_type_text_view"
-        app:layout_constraintLeft_toRightOf="@+id/student_profile"
-        app:layout_constraintTop_toTopOf="@+id/student_profile"
+        app:layout_constraintLeft_toRightOf="@+id/user_profile"
+        app:layout_constraintTop_toTopOf="@+id/user_profile"
         android:fontFamily="@font/spoqa_medium"
         tools:text="백지성"/>
 
@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:textColor="#707070"
         android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/student_profile"
+        app:layout_constraintBottom_toBottomOf="@+id/user_profile"
         app:layout_constraintLeft_toLeftOf="@+id/student_name_text_view"
         app:layout_constraintTop_toBottomOf="@+id/student_name_text_view"
         android:fontFamily="@font/spoqa_medium"
@@ -50,9 +50,9 @@
         android:layout_marginLeft="8dp"
         android:textColor="@color/richBlack"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/student_profile"
+        app:layout_constraintBottom_toBottomOf="@+id/user_profile"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/student_profile"
+        app:layout_constraintTop_toTopOf="@+id/user_profile"
         android:fontFamily="@font/spoqa_medium"
         tools:text="월/수요일"/>
 

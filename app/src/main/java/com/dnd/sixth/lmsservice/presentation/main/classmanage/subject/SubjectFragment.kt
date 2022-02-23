@@ -68,8 +68,8 @@ class SubjectFragment : BaseFragment<FragmentClassBinding, SubjectViewModel>(),
 
             // 수업 리스트가 변경됨에 따라 화면 크기 조절을 하기 위한 Observer
             viewModel?.dailyClassDataList?.observe(this@SubjectFragment) {
-                // 클래스 개수 텍스트 설정
-                classCountTextView.text = getString(R.string.class_count_format, it.size)
+                // ClassManageFragment(ParentFragment)에 수업 개수 전달.
+                ClassManageViewModel.classCount.value = it.size
 
                 if (viewModel?.hasClass() == true) { // 수업이 있다면
                     //setClassHomeScrollViewHeight() // 수업 RecyclerView Item 사이즈에 맞게 HomeFragment의 Scroll 높이 재설정
@@ -119,7 +119,7 @@ class SubjectFragment : BaseFragment<FragmentClassBinding, SubjectViewModel>(),
     override fun onResume() {
         super.onResume()
         /* 캘린더가 펼쳐지면 Observer를 통해 높이를 다시 측정하기 때문에
-        *  캘린더를 먼저 펼친 후에 ClassFragment의 높이를 재측정한다.
+        *  캘린더를 먼저 펼친 후에 SubjectFragment의 높이를 재측정한다.
         *  */
 
         // 클래스 Fragment가 재게되면, 캘린더 Fragment의 Calendar를 다시 펼친다.
@@ -139,8 +139,8 @@ class SubjectFragment : BaseFragment<FragmentClassBinding, SubjectViewModel>(),
             val sumHeight =
                 // 클래스 추가하기 버튼 높이
                 binding.classAddCardView.measuredHeight +
-                        // 클래스 카운트 TextView의 높이
-                        binding.classCountTextView.measuredHeight +
+                        /*// 클래스 카운트 TextView의 높이
+                        binding.classCountTextView.measuredHeight +*/
                         // 뷰 사이의 마진값
                         UnitConverter.convertDPtoPX(
                             requireContext(),
@@ -153,11 +153,13 @@ class SubjectFragment : BaseFragment<FragmentClassBinding, SubjectViewModel>(),
                         ) * classAdapter?.itemCount!!
 
             ClassManageViewModel.screenHeight.value = sumHeight
-            Timber.tag("classFragment Height").d("$sumHeight")
+            Timber.tag("SubjectFragment Height").d("$sumHeight")
 
             try {
                 // viewTreeObserver 제거
-                if (binding.classAddCardView.measuredHeight > 0) {
+                if ((binding.classAddCardView.visibility == View.VISIBLE && binding.classAddCardView.measuredHeight > 0) ||
+                    binding.classAddCardView.visibility == View.GONE
+                ) {
                     viewTreeObserver?.removeOnGlobalLayoutListener(this)
                 }
             } catch (e: IllegalStateException) {
@@ -173,7 +175,12 @@ class SubjectFragment : BaseFragment<FragmentClassBinding, SubjectViewModel>(),
     override fun onClick(view: View?) {
         when (view?.id) {
             R.id.make_class_btn, R.id.class_add_btn -> {
-                activityResultLauncher.launch(Intent(requireContext(), SubjectCreateActivity::class.java))
+                activityResultLauncher.launch(
+                    Intent(
+                        requireContext(),
+                        SubjectCreateActivity::class.java
+                    )
+                )
             }
         }
     }

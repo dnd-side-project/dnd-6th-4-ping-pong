@@ -10,5 +10,6 @@ class ClassManageViewModel : BaseViewModel(){
         val screenHeight = MutableLiveData<Int>()
         // 선택된 Fragment (클래스, 캘린더) 의 이름
         val selectedFragmentName = MutableLiveData<String>(SubjectFragment::class.java.simpleName)
+        val classCount = MutableLiveData<Int>(0)
     }
 }

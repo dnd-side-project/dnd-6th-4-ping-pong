@@ -10,7 +10,6 @@ import com.dnd.sixth.lmsservice.data.network.base.NetworkCommons
  */
 class PreferenceManager(
     private val context: Context,
-
 ) {
 
     companion object {
@@ -43,7 +42,7 @@ class PreferenceManager(
      */
     fun setString(key: String?, value: String?) {
         editor.putString(key, value)
-        editor.apply()
+        editor.commit()
     }
 
     /**
