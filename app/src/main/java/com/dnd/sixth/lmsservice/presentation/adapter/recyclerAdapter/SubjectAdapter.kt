@@ -3,19 +3,21 @@ package com.dnd.sixth.lmsservice.presentation.adapter.recyclerAdapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.dnd.sixth.lmsservice.databinding.ItemClassBinding
 import com.dnd.sixth.lmsservice.domain.entity.GeneralSubjectEntity
 import com.dnd.sixth.lmsservice.presentation.base.BaseDiffUtil
+import com.dnd.sixth.lmsservice.presentation.extensions.applyDowColor
 import com.dnd.sixth.lmsservice.presentation.extensions.visibleViewListIfContain
 import com.dnd.sixth.lmsservice.presentation.listner.OnRecyclerItemClickListener
 
-class ClassAdapter(
+class SubjectAdapter(
     var modelListDaily: List<GeneralSubjectEntity>,
     val listener: OnRecyclerItemClickListener
 ) :
-    RecyclerView.Adapter<ClassAdapter.ClassViewHolder>() {
+    RecyclerView.Adapter<SubjectAdapter.ClassViewHolder>() {
 
 
     inner class ClassViewHolder(val binding: ItemClassBinding) :
@@ -40,11 +42,16 @@ class ClassAdapter(
                     listener.onClick(it.id, adapterPosition)
                 }
 
-
                 // 수업 요일을 보여줌
                 visibleViewListIfContain(
                     classDayBinaryString,
                     listOf<View>(monIcon, tueIcon, wedIcon, thurIcon, friIcon, satIcon, sunIcon)
+                )
+
+                // 수업 요일 색상 변경
+                applyDowColor(
+                    classModel.color.toInt(),
+                    listOf<TextView>(monIcon, tueIcon, wedIcon, thurIcon, friIcon, satIcon, sunIcon)
                 )
 
             }
