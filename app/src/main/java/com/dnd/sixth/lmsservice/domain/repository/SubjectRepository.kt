@@ -15,4 +15,9 @@ interface SubjectRepository {
     *  @return : List<ClassEntity>
     * */
     suspend fun getGeneralClassList(uid: Int): List<GeneralSubjectEntity>?
+
+    /*
+    * 수업 지우기
+    * */
+    suspend fun deleteSubject(subjectId: Int): SubjectEntity?
 }

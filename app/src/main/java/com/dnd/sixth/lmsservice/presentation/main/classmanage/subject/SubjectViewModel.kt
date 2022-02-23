@@ -5,13 +5,16 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.dnd.sixth.lmsservice.data.preference.PreferenceManager
 import com.dnd.sixth.lmsservice.domain.entity.GeneralSubjectEntity
+import com.dnd.sixth.lmsservice.domain.useCase.DeleteSubjectUseCase
 import com.dnd.sixth.lmsservice.domain.useCase.GetGeneralSubjectListUseCase
 import com.dnd.sixth.lmsservice.presentation.base.BaseViewModel
 import com.dnd.sixth.lmsservice.presentation.utility.SAVED_UID_KEY
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class SubjectViewModel(
     private val getGeneralSubjectListUseCase: GetGeneralSubjectListUseCase,
+    private val deleteSubjectUseCase: DeleteSubjectUseCase,
     private val preferenceManager: PreferenceManager
 ) : BaseViewModel() {
     /*
@@ -28,14 +31,26 @@ class SubjectViewModel(
         return _generalSubjectList.value?.get(position) ?: throw Exception("Exist no item")
     }
 
-    /*
-    *  General SubjectList를 서버 DB로부터 갱신
+
+    /*  General SubjectList를 서버 DB로부터 갱신
     * */
     fun updateGeneralSubjectList() {
         viewModelScope.launch {
-            val generalSubjectList = getGeneralSubjectListUseCase(preferenceManager.getString(SAVED_UID_KEY)?.toInt()!!)
+            val generalSubjectList =
+                getGeneralSubjectListUseCase(preferenceManager.getString(SAVED_UID_KEY)?.toInt()!!)
             _generalSubjectList.value = generalSubjectList
 
         }
     }
+
+    /*  선택한 수업 삭제
+    * */
+    suspend fun deleteSubject(position: Int): Boolean =
+        withContext(viewModelScope.coroutineContext) {
+            val deleteSubjectId = _generalSubjectList.value?.get(position)?.classId?.toInt()
+            val deletedSubjectEntity = deleteSubjectId?.let { deleteSubjectUseCase(it) }
+            (deletedSubjectEntity == null)
+        }
+
+
 }

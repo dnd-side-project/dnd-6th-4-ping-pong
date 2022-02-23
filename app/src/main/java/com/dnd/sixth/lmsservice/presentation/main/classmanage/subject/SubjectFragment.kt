@@ -22,6 +22,10 @@ import com.dnd.sixth.lmsservice.presentation.main.classmanage.subject.edit.Subje
 import com.dnd.sixth.lmsservice.presentation.utility.UnitConverter
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.android.synthetic.main.layout_edit_delete_bottom_sheet.view.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
@@ -67,7 +71,7 @@ class SubjectFragment : BaseFragment<FragmentClassBinding, SubjectViewModel>(),
             }
 
             // 서버로부터 수업 리스틀를 가져와 업데이트한다.
-            viewModel?.updateGeneralSubjectList()
+            //viewModel?.updateGeneralSubjectList()
 
             // 수업 리스트가 변경됨에 따라 화면 크기 조절을 하기 위한 Observer
             viewModel?.generalSubjectDataList?.observe(this@SubjectFragment) {
@@ -201,7 +205,7 @@ class SubjectFragment : BaseFragment<FragmentClassBinding, SubjectViewModel>(),
                         // 삭제 버튼 클릭시, 하단 Dialog 종료와 함께, 삭제 여부를 묻는 Dialog를 보여준다.
                         deleteBtn.setOnClickListener {
                             dialog.dismiss() // 하단 Dialog 종료
-                            showDeleteClassDialog() // 삭제 여부를 묻는 Dialog show
+                            showDeleteClassDialog(position) // 삭제 여부를 묻는 Dialog show
                         }
                         // 수정 버튼 클릭시, 수업 정보를 Edit할 수 있는 Activity로 이동
                         editBtn.setOnClickListener {
@@ -229,13 +233,27 @@ class SubjectFragment : BaseFragment<FragmentClassBinding, SubjectViewModel>(),
 
 
     // 클래스 삭제 여부를 묻는 다이얼로그를 보여준다.
-    private fun showDeleteClassDialog() {
+    private fun showDeleteClassDialog(position: Int) {
         // 삭제를 묻는 Dialog Builder 생성
         val builder = AlertDialog.Builder(requireContext()).setMessage("클래스를 삭제하시겠어요?")
             .setPositiveButton(
                 "삭제"
             ) { _, _ ->
                 // 수업 삭제 로직 수행
+                CoroutineScope(Dispatchers.IO).launch {
+                    val isSuccess = viewModel.deleteSubject(position) // 수업 삭제
+                    launch(Dispatchers.Main) {
+                        if(isSuccess) {
+                            showSnackBar(getString(R.string.success_delete_subject))
+
+                            // viewModel의 List에서 해당 수업 삭제 로직 구현 예정
+                            //
+                            //
+                        } else {
+                            showSnackBar(getString(R.string.failed_delete_subject))
+                        }
+                    }
+                }
             }.setNegativeButton("취소")
             { dialog, _ ->
                 dialog.dismiss()

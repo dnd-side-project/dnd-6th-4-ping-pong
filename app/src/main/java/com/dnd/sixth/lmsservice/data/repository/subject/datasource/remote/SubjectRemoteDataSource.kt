@@ -9,4 +9,5 @@ import com.dnd.sixth.lmsservice.domain.entity.SubjectEntity
 interface SubjectRemoteDataSource {
     suspend fun createSubject(remoteErrorEmitter: RemoteErrorEmitter, subjectEntity: SubjectEntity): SubjectModel?
     suspend fun getGeneralClassList(remoteErrorEmitter: RemoteErrorEmitter, uid: Int): List<GeneralSubjectModel>?
+    suspend fun deleteSubject(remoteErrorEmitter: RemoteErrorEmitter, subjectId: Int): SubjectModel?
 }
