@@ -1,24 +1,24 @@
 package com.dnd.sixth.lmsservice.presentation.login.signup
 
 import android.graphics.Color
-import android.net.Uri
-import android.opengl.Visibility
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.EditText
 import android.widget.Toast
 import com.dnd.sixth.lmsservice.R
+import com.dnd.sixth.lmsservice.data.network.api.SignApi
+import com.dnd.sixth.lmsservice.data.response.UserCreateDto
+import com.dnd.sixth.lmsservice.data.response.User
 import com.dnd.sixth.lmsservice.databinding.ActivitySignUpBinding
 import com.dnd.sixth.lmsservice.presentation.base.BaseActivity
-import com.google.firebase.dynamiclinks.ktx.dynamicLinks
-import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_sign_up.*
-import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.regex.Pattern
 
 class SignUpActivity : BaseActivity<ActivitySignUpBinding,SignUpViewModel>() {
@@ -38,7 +38,20 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding,SignUpViewModel>() {
     var pageNumber = 1
 
     //회원가입 유형 -> 추후 정리 필요
-    var checkedType : String? = null
+   // var checkedType : String? = null
+
+    //회원가입 요청 시 넘겨줄 정보
+    lateinit var email : String
+    lateinit var userNm : String
+    lateinit var password : String
+    var role = 2 //선택 안 할 시 2
+    var phoneNum : String = "0100101"
+    var parentPhoneNum : String? = null
+
+    //회원가입 api
+    val signApi : SignApi = SignApi()
+
+
 
     override fun initActivity() {
         with(binding){
@@ -71,14 +84,16 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding,SignUpViewModel>() {
     fun initTypeCheckButton(){
         with(binding){
             signupStudentCheckbox.setOnClickListener {
-                checkedType = "Student"
-                signupStudentCheckbox.setImageResource(R.drawable.ic_checked_student)
-                signupTeacherCheckbox.setImageResource(R.drawable.ic_unchecked_teacher)
+                //checkedType = "Student"
+                role = 0 //학생인 경우 0
+                signupStudentCheckbox.setImageResource(R.drawable.ic_student_activated)
+                signupTeacherCheckbox.setImageResource(R.drawable.ic_teacher_disabled)
             }
             signupTeacherCheckbox.setOnClickListener {
-                checkedType = "Teacher"
-                signupStudentCheckbox.setImageResource(R.drawable.ic_unchecked_student)
-                signupTeacherCheckbox.setImageResource(R.drawable.ic_checked_teacher)
+                //checkedType = "Teacher"
+                role = 1 //선생님인 경우 1
+                signupStudentCheckbox.setImageResource(R.drawable.ic_student_disabled)
+                signupTeacherCheckbox.setImageResource(R.drawable.ic_teacher_activated)
             }
         }
     }
@@ -89,9 +104,9 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding,SignUpViewModel>() {
 
             signup_next_button.setOnClickListener {
                 when(pageNumber){
-                    //현재 회원가입 유형 체크일 때
+                    //현재 회원가입 유형 체크하고 버튼 클릭
                     1 ->{
-                        if(checkedType == null){
+                        if(role == 2){ //아무것도 선택안 했을 시 ==2
                             Toast.makeText(applicationContext, "가입유형을 한가지 체크해주세요!",Toast.LENGTH_LONG).show()
                             return@setOnClickListener
                         }else{
@@ -103,7 +118,7 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding,SignUpViewModel>() {
                             return@setOnClickListener
                         }
                     }
-                    //이메일 입력중일 때
+                    //이메일 입력후 버튼 클릭
                     2 -> {
 
 
@@ -111,6 +126,8 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding,SignUpViewModel>() {
                             pageNumber++
                             signupEmailContainer.visibility = GONE
                             signupPasswordContainer.visibility = VISIBLE
+                            //입력된 이메일
+                            email = signupEmailEdittext.text.toString()
                             return@setOnClickListener
                         }else{
                             Toast.makeText(applicationContext, "다시 확인해주세요.",Toast.LENGTH_LONG).show()
@@ -118,14 +135,16 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding,SignUpViewModel>() {
 
                     }
 
-                    3->{
+                    3->{ //비밀번호 입력후 버튼 클릭
 
-
+                        //비밀번호 형식이 통과하였을 때
                         if(passwordPass){
                             pageNumber++
+                            password = signupPasswordEdittext.text.toString()
                             signupPasswordContainer.visibility=GONE
                             signupNameContainer.visibility = VISIBLE
                             signupNextButton.text = "회원가입하기"
+                            password = signupPasswordEdittext.text.toString()
                             return@setOnClickListener
                         }else{
                             Toast.makeText(applicationContext, "다시 확인해주세요.",Toast.LENGTH_LONG).show()
@@ -133,7 +152,33 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding,SignUpViewModel>() {
 
                     }
 
-                    4->{
+                    4->{//이름 입력하고 회원가입
+                        //입력된 이름
+                        userNm = signupNameEdittext.text.toString()
+                        //val signUpData = SignUpCall(email,user_nm,password,role,"010-0101-0101",null)
+                        val signUpData = UserCreateDto(email,"string","string",1,"string",null)
+                        //회원가입 요청
+
+                        signApi.api.signUp(signUpData).enqueue(object : Callback<User>{
+                            override fun onResponse(
+                                call: Call<User>,
+                                response: Response<User>
+                            ) {
+                                Log.d("signUp","success")
+                                return
+                            }
+
+                            override fun onFailure(call: Call<User>, t: Throwable) {
+                                Log.d("signUp", "fail")
+                            }
+
+                        })
+
+
+
+
+
+
 
 
                     }
@@ -157,12 +202,12 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding,SignUpViewModel>() {
                         toolbarQuitBtn.visibility = VISIBLE
                         pageNumber--
                     }
-                    3 -> {
+                    3 -> {//비밀번호 입력 화면
                         signupPasswordContainer.visibility = GONE
                         signupEmailContainer.visibility = VISIBLE
                         pageNumber--
                     }
-                    4->{
+                    4->{//이름
                         signupNameContainer.visibility = GONE
                         signupPasswordContainer.visibility = VISIBLE
                         signupNextButton.text = "다음"

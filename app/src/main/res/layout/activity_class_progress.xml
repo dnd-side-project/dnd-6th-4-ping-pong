@@ -115,14 +115,33 @@
                     android:visibility="gone" />
 
 
-                <ImageView
+                <LinearLayout
                     android:id="@+id/empty_class_status_img"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_empty_class"
+                    android:orientation="vertical"
                     android:layout_gravity="center"
-                    android:layout_marginTop="100.25dp"
-                    android:layout_marginBottom="40dp"/>
+                    >
+                    <ImageView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_before_class_invite"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="100.25dp"
+                        />
+                    <TextView
+                        android:gravity="center"
+                        android:layout_marginTop="16dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="아직 수업 시작 전이네요😯 \n백지성 학생을 초대하고, 수업을 시작해보세요"
+                        android:textSize="12sp"
+                        />
+
+
+                </LinearLayout>
+
 
             </FrameLayout>
 
