@@ -14,8 +14,6 @@ import com.dnd.sixth.lmsservice.presentation.base.BaseActivity
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.add.push.PushTimePickerActivity
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.add.push.type.PushTime
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.detail.student.request.EditRequestActivity
-import com.dnd.sixth.lmsservice.presentation.utility.DateConverter
-import com.dnd.sixth.lmsservice.presentation.utility.TimeConverter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 
@@ -27,7 +25,12 @@ class StudentScheduleEditActivity :
         get() = R.layout.activity_student_schedule_edit
     override val viewModel: StudentScheduleEditViewModel by viewModel()
     private var activityResultLauncher: ActivityResultLauncher<Intent>? = null // 푸시 타임 피커 액티비티 런쳐
-    private var editRequestResultLauncher: ActivityResultLauncher<Intent>? = null // 일정 변경 액티비티 런쳐
+
+    companion object {
+        const val INTENT_PUSH_TOKEN_KEY = "newPushToken"
+        const val INTENT_PUSH_ACTIVITY_CODE = 1000
+        const val INTENT_EDIT_REQUEST_ACTIVITY_CODE = 2000
+    }
 
     // 액티비티 초기화 메서드
     override fun initActivity() {
@@ -73,20 +76,15 @@ class StudentScheduleEditActivity :
                     val newPushTime: PushTime? =
                         data?.getSerializableExtra(INTENT_PUSH_TOKEN_KEY) as PushTime?
                     viewModel.changePushTime(newPushTime) // 새로 받아온 푸시 타임으로 갱신
-                }
+                } else if (result.resultCode == INTENT_PUSH_ACTIVITY_CODE)
+                    if (result.resultCode == INTENT_EDIT_REQUEST_ACTIVITY_CODE) {
+                        val data = result.data // 변경된 일정 데이터
+
+                        /* 데이터를 바탕으로 화면을 다시 그림 */
+
+                    }
             }
 
-        // 일정 변경 요청 액티비티 런쳐
-        editRequestResultLauncher = registerForActivityResult(
-            ActivityResultContracts.StartActivityForResult()
-        ) { result ->
-            if (result.resultCode == INTENT_EDIT_REQUEST_ACTIVITY_CODE) {
-                val data = result.data // 변경된 일정 데이터
-                
-                /* 데이터를 바탕으로 화면을 다시 그림 */
-
-            }
-        }
     }
 
     override fun onClick(v: View?) {
@@ -110,7 +108,7 @@ class StudentScheduleEditActivity :
             }
             R.id.edit_request_btn -> { // 일정 변경 요청 화면으로 이동
                 val intent = Intent(this, EditRequestActivity::class.java)
-                editRequestResultLauncher?.launch(intent)
+                activityResultLauncher?.launch(intent)
             }
         }
     }
@@ -126,12 +124,11 @@ class StudentScheduleEditActivity :
     }
 
 
-
     // DateTimePicker 변경시 해당 메서드로 Calendar 객체를 전달하여
     // 화면 갱신
-   /* private fun setDateTimeText(date: Calendar) {
-        binding.dateTimeTextView.text = DateConverter().getFullDate(date.time) // 날짜 형식 변환
-    }*/
+    /* private fun setDateTimeText(date: Calendar) {
+         binding.dateTimeTextView.text = DateConverter().getFullDate(date.time) // 날짜 형식 변환
+     }*/
 
 
     private fun hideKeyBoard() {
@@ -149,13 +146,5 @@ class StudentScheduleEditActivity :
 
         return true
     }
-
-
-    companion object {
-        const val INTENT_PUSH_TOKEN_KEY = "newPushToken"
-        const val INTENT_PUSH_ACTIVITY_CODE = 1000
-        const val INTENT_EDIT_REQUEST_ACTIVITY_CODE = 2000
-    }
-
 
 }

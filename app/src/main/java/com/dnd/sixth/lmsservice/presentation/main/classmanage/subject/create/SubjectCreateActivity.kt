@@ -1,12 +1,13 @@
 package com.dnd.sixth.lmsservice.presentation.main.classmanage.subject.create
 
 import android.app.TimePickerDialog
-import android.util.Log
+import android.content.Intent
 import android.view.MenuItem
 import android.view.View
 import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.databinding.ActivityCreateSubjectBinding
 import com.dnd.sixth.lmsservice.presentation.base.BaseActivity
+import com.dnd.sixth.lmsservice.presentation.main.classmanage.subject.SubjectFragment
 import com.dnd.sixth.lmsservice.presentation.utility.TimeConverter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -68,10 +69,14 @@ class SubjectCreateActivity : BaseActivity<ActivityCreateSubjectBinding, CreateS
                 doneBtn.isEnabled = isClickable // 완료버튼 활성화
             }
 
-            // '수업 생성 성공 여부' 관찰
-            viewModel?.isMakeSuccess?.observe(this@SubjectCreateActivity) { isSuccess ->
-                if (isSuccess) { // 수업 생성 성공
-                    // setResult()로 초대코드 Dialog를 보여주기 위한 결과 반환
+            // '수업 생성 결과 Entity' 관찰
+            viewModel?.resultSubject?.observe(this@SubjectCreateActivity) { resultSubjectEntity ->
+                if (resultSubjectEntity != null) { // 수업 생성 성공
+                    val resultIntent = Intent().putExtra(
+                        SubjectFragment.INTENT_CREATE_SUBJECT_ENTITY_KEY,
+                        resultSubjectEntity
+                    ) // 생성한 수업의 SubjectEntity를 담는다.
+                    setResult(SubjectFragment.INTENT_CREATE_SUBJECT_ACTIVITY_CODE, resultIntent) // 초대코드 Dialog를 보여주기 위한 결과 반환
                     finish() //액티비티 종료
                 } else { // 수업 생성 실패
                     showToast(getString(R.string.failed_make_class)) // 실패 Toast 출력

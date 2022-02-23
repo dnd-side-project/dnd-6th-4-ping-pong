@@ -1,8 +1,11 @@
 package com.dnd.sixth.lmsservice.presentation.main.classmanage.subject
 
 import android.content.Intent
+import android.util.Log
 import android.view.View
 import android.view.ViewTreeObserver
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dnd.sixth.lmsservice.BuildConfig
@@ -30,6 +33,14 @@ class SubjectFragment : BaseFragment<FragmentClassBinding, SubjectViewModel>(),
 
     private var classAdapter: ClassAdapter? = null
     private var viewTreeObserver: ViewTreeObserver? = null
+    private lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
+
+
+    companion object {
+        const val INTENT_CREATE_SUBJECT_ENTITY_KEY = "createSubject"
+        const val INTENT_CREATE_SUBJECT_ACTIVITY_CODE = 1001
+    }
+
 
     // 최상위 ViewTreeObserver (높이를 구하기 위한 변수)
 //    var viewTreeObserver: ViewTreeObserver? = null
@@ -78,6 +89,16 @@ class SubjectFragment : BaseFragment<FragmentClassBinding, SubjectViewModel>(),
                 setClassHomeScrollViewHeight()
             }
 
+            activityResultLauncher =
+                registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                    if (result.resultCode == INTENT_CREATE_SUBJECT_ACTIVITY_CODE) {
+                        val resultIntent = result.data
+                        val newSubjectEntity =
+                            resultIntent?.getSerializableExtra(INTENT_CREATE_SUBJECT_ENTITY_KEY) // 수업을 생성하고 새롭게 반환된 Subject Entity
+                        Log.d("entity", newSubjectEntity.toString())
+                    }
+                }
+
         }
 
 
@@ -102,7 +123,7 @@ class SubjectFragment : BaseFragment<FragmentClassBinding, SubjectViewModel>(),
         *  */
 
         // 클래스 Fragment가 재게되면, 캘린더 Fragment의 Calendar를 다시 펼친다.
-        if(CalendarViewModel.isExpanded.value == false) {
+        if (CalendarViewModel.isExpanded.value == false) {
             CalendarViewModel.expandCalendar()
         }
         // Host Fragment의 ScrollView 높이 재설정
@@ -149,11 +170,10 @@ class SubjectFragment : BaseFragment<FragmentClassBinding, SubjectViewModel>(),
     }
 
 
-
     override fun onClick(view: View?) {
         when (view?.id) {
             R.id.make_class_btn, R.id.class_add_btn -> {
-                startActivity(Intent(requireContext(), SubjectCreateActivity::class.java))
+                activityResultLauncher.launch(Intent(requireContext(), SubjectCreateActivity::class.java))
             }
         }
     }

@@ -1,6 +1,5 @@
 package com.dnd.sixth.lmsservice.presentation.main.classmanage.subject.create
 
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -51,8 +50,8 @@ class CreateSubjectViewModel(
     val isDoneClickable: LiveData<Boolean> = _isDoneClickable
 
     // 수업 생성 성공 여부
-    private val _isMakeSuccess = MutableLiveData<Boolean>()
-    val isMakeSuccess: LiveData<Boolean> = _isMakeSuccess
+    private val _resultSubject = MutableLiveData<SubjectEntity?>()
+    val resultSubject: LiveData<SubjectEntity?> = _resultSubject
 
     // 수업 요일 항목을 클릭
     fun onClickClassDow(dayOfWeek: DayOfWeek) {
@@ -98,7 +97,7 @@ class CreateSubjectViewModel(
                 )
             )
 
-            _isMakeSuccess.postValue(resultSubjectEntity != null)
+            _resultSubject.postValue(resultSubjectEntity)
         }
     }
 }
