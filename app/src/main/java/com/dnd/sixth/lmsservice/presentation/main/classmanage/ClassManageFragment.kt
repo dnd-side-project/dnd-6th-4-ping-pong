@@ -1,6 +1,7 @@
 package com.dnd.sixth.lmsservice.presentation.main.classmanage
 
 import android.content.Intent
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.updateLayoutParams
@@ -12,6 +13,7 @@ import com.dnd.sixth.lmsservice.presentation.base.BaseFragment
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.config.ConfigActivity
 import com.dnd.sixth.lmsservice.presentation.utility.SAVED_NAME_KEY
 import com.dnd.sixth.lmsservice.presentation.utility.UnitConverter
+import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.math.abs
@@ -43,6 +45,19 @@ class ClassManageFragment : BaseFragment<FragmentClassManageBinding, ClassManage
             TabLayoutMediator(tabLayout, homeViewPager) { tab, position ->
                 tab.text = resources.getStringArray(R.array.home_tab_list)[position]
             }.attach() // 탭 클릭시 Fragment 전환
+
+            tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+                override fun onTabSelected(tab: TabLayout.Tab?) {
+                    when (tab?.position) {
+                        0 -> classCountTextView.visibility = View.VISIBLE
+                        1 -> classCountTextView.visibility = View.GONE
+                    }
+                }
+
+                override fun onTabUnselected(tab: TabLayout.Tab?) {}
+
+                override fun onTabReselected(tab: TabLayout.Tab?) {}
+            })
 
             //setMarginTabItem() // 탭 간에 margin 설정
             setOnClickListener(binding)

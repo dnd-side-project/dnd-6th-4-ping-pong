@@ -10,6 +10,4 @@ class SubjectViewModel(
     val classLiveDataList: LiveData<ArrayList<ClassItem>> = classMutableLiveDataList
      */
 
-
-
 }

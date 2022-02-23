@@ -93,7 +93,7 @@ val viewModelModules = module {
         PasswordViewModel()
     }
     viewModel {
-        SubjectEditViewModel()
+        SubjectEditViewModel(get(), get())
     }
     viewModel {
         PushTimeViewModel()

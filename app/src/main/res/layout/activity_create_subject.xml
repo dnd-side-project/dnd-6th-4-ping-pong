@@ -62,7 +62,7 @@
                     android:maxLines="1"
                     android:imeOptions="actionDone"
                     android:paddingHorizontal="16dp"
-                    android:text="@={viewModel.className}"
+                    android:text="@={viewModel.subjectName}"
                     android:textColor="@color/richBlack"
                     android:textSize="14sp"
                     app:layout_constraintTop_toBottomOf="@+id/class_board_name_subtitle" />
