@@ -9,7 +9,8 @@ import com.dnd.sixth.lmsservice.data.network.base.NetworkCommons
  * 데이터 저장 및 로드 클래스
  */
 class PreferenceManager(
-    private val context: Context
+    private val context: Context,
+
 ) {
 
     companion object {
