@@ -200,15 +200,17 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding, CalendarViewModel
             )
 
             // 캘린더 확장 여부 관찰
-            CalendarViewModel.isExpanded.observe(this@CalendarFragment) { isNewlyExpanded ->
+            CalendarViewModel.isExpanded.observe(this@CalendarFragment) { isExpand ->
                 // 스크롤 가능한 화면 높이 설정
                 setClassHomeScrollViewHeight()
 
                 // 새롭게 변경된 상태 값이 'Expand' 이면
-                if (isNewlyExpanded) {
+                if (isExpand) {
                     // 캘린더를 펼쳐서 월 단위로 캘린더를 보여준다
                     state().edit().setCalendarDisplayMode(CalendarMode.MONTHS).commit()
-
+                    binding.noScheduleContainer.visibility = View.GONE
+                } else {
+                    binding.noScheduleContainer.visibility = View.VISIBLE
                 }
             }
 

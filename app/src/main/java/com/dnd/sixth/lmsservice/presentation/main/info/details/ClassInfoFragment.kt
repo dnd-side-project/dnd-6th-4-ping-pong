@@ -1,10 +1,10 @@
-package com.dnd.sixth.lmsservice.presentation.main.studentmanage.info.details
+package com.dnd.sixth.lmsservice.presentation.main.info.details
 
 import android.view.View
 import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.databinding.FragmentClassInfoBinding
 import com.dnd.sixth.lmsservice.presentation.base.BaseFragment
-import com.dnd.sixth.lmsservice.presentation.main.studentmanage.info.InfoViewModel
+import com.dnd.sixth.lmsservice.presentation.main.info.InfoViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class ClassInfoFragment : BaseFragment<FragmentClassInfoBinding, InfoViewModel>(),

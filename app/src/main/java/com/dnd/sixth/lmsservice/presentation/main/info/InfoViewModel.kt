@@ -1,4 +1,4 @@
-package com.dnd.sixth.lmsservice.presentation.main.studentmanage.info
+package com.dnd.sixth.lmsservice.presentation.main.info
 
 import com.dnd.sixth.lmsservice.presentation.base.BaseViewModel
 

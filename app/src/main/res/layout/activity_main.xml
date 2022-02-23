@@ -16,15 +16,15 @@
         android:layout_height="match_parent"
         tools:context=".presentation.main.MainActivity">
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/view_pager"
+        <FrameLayout
+            android:id="@+id/main_frame_layout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/main_tab_layout"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
 
-        <com.google.android.material.tabs.TabLayout
+       <!-- <com.google.android.material.tabs.TabLayout
             android:id="@+id/main_tab_layout"
             android:layout_width="match_parent"
             android:layout_height="56dp"
@@ -49,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:text="마이페이지" />
 
-        </com.google.android.material.tabs.TabLayout>
+        </com.google.android.material.tabs.TabLayout>-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

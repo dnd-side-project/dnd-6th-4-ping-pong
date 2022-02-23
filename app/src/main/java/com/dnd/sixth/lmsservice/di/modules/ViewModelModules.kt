@@ -26,8 +26,7 @@ import com.dnd.sixth.lmsservice.presentation.main.classmanage.config.ConfigViewM
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.config.profile.ProfileViewModel
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.config.profile.password.PasswordViewModel
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.config.push.PushViewModel
-import com.dnd.sixth.lmsservice.presentation.main.studentmanage.StudentManageViewModel
-import com.dnd.sixth.lmsservice.presentation.main.studentmanage.info.InfoViewModel
+import com.dnd.sixth.lmsservice.presentation.main.info.InfoViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -85,9 +84,6 @@ val viewModelModules = module {
     }
     viewModel {
         InfoViewModel()
-    }
-    viewModel {
-        StudentManageViewModel()
     }
     viewModel {
         PasswordViewModel()
