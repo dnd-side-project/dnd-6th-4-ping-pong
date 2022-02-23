@@ -8,3 +8,8 @@ const val SAVED_NAME_KEY = "savedName"
 const val SAVED_ROLE_KEY = "savedRole"
 const val SAVED_PHONE_NUMBER_KEY = "savedPhoneNumber"
 const val SAVED_UID_KEY = "savedUID"
+const val SUBJECT_COLOR = "nextSubjectColor"
+
+
+// 공통 상수
+const val COLOR_COUNT = 7

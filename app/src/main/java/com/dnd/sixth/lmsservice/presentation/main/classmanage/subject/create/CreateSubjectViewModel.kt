@@ -3,7 +3,6 @@ package com.dnd.sixth.lmsservice.presentation.main.classmanage.subject.create
 import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
 import com.dnd.sixth.lmsservice.App
 import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.data.preference.PreferenceManager
@@ -14,11 +13,10 @@ import com.dnd.sixth.lmsservice.presentation.extensions.convertDowBit
 import com.dnd.sixth.lmsservice.presentation.extensions.isAllFalse
 import com.dnd.sixth.lmsservice.presentation.extensions.onIO
 import com.dnd.sixth.lmsservice.presentation.extensions.toggle
-import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.custom.DateColor
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.subject.type.DayOfWeek
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.subject.type.SalaryDay
+import com.dnd.sixth.lmsservice.presentation.utility.SUBJECT_COLOR
 import com.dnd.sixth.lmsservice.presentation.utility.SAVED_UID_KEY
-import kotlinx.coroutines.launch
 
 class CreateSubjectViewModel(
     private val createSubjectUseCase: CreateSubjectUseCase,
@@ -97,7 +95,7 @@ class CreateSubjectViewModel(
                         minute
                     ),
                     teacherId = preferenceManager.getInt(SAVED_UID_KEY),
-                    color = DateColor.BLUE.ordinal,
+                    color = preferenceManager.getInt(SUBJECT_COLOR),
                     classDays = _weekOfDayList.value!!.convertDowBit()
                 )
             )

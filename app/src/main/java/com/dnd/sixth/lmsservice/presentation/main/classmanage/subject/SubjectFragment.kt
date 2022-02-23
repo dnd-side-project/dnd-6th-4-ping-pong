@@ -44,7 +44,10 @@ class SubjectFragment : BaseFragment<FragmentClassBinding, SubjectViewModel>(),
 
     companion object {
         const val INTENT_CREATE_SUBJECT_ENTITY_KEY = "createSubject"
+        const val INTENT_UPDATE_SUBJECT_ENTITY_KEY = "updateSubject"
+
         const val INTENT_CREATE_SUBJECT_ACTIVITY_CODE = 1001
+        const val INTENT_UPDATE_SUBJECT_ACTIVITY_CODE = 1002
     }
 
 
