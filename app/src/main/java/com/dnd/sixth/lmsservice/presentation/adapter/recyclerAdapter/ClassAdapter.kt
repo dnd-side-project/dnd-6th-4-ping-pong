@@ -5,26 +5,33 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.dnd.sixth.lmsservice.data.model.ClassModel
 import com.dnd.sixth.lmsservice.databinding.ItemClassBinding
+import com.dnd.sixth.lmsservice.domain.entity.GeneralSubjectEntity
 import com.dnd.sixth.lmsservice.presentation.base.BaseDiffUtil
 import com.dnd.sixth.lmsservice.presentation.extensions.visibleViewListIfContain
 import com.dnd.sixth.lmsservice.presentation.listner.OnRecyclerItemClickListener
 
-class ClassAdapter(var modelList: List<ClassModel>, val listener: OnRecyclerItemClickListener) :
+class ClassAdapter(
+    var modelListDaily: List<GeneralSubjectEntity>,
+    val listener: OnRecyclerItemClickListener
+) :
     RecyclerView.Adapter<ClassAdapter.ClassViewHolder>() {
 
-    val dayOfWeeks = listOf<String>("월", "화", "수", "목", "금", "토", "일")
 
     inner class ClassViewHolder(val binding: ItemClassBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind() {
-            val classModel = modelList[adapterPosition]
-            val classDayOfWeeks = classModel.classDays
+            val classModel = modelListDaily[adapterPosition]
+
+            // 수업 듣는 요일을 Binary 형태로 표현한 String (ex. 1110111)
+            // 8bit 데이터의 공백은 0으로 채웁니다.
+            val classDayBinaryString =
+                String.format("%7s", classModel.classDayBit).replace("", "0")
 
             with(binding) {
-                model = classModel
+                setClassModel(classModel)
+
 
                 moreBtn.setOnClickListener {
                     listener.onClick(it.id, adapterPosition)
@@ -33,9 +40,10 @@ class ClassAdapter(var modelList: List<ClassModel>, val listener: OnRecyclerItem
                     listener.onClick(it.id, adapterPosition)
                 }
 
+
                 // 수업 요일을 보여줌
-                dayOfWeeks.visibleViewListIfContain(
-                    classDayOfWeeks,
+                visibleViewListIfContain(
+                    classDayBinaryString,
                     listOf<View>(monIcon, tueIcon, wedIcon, thurIcon, friIcon, satIcon, sunIcon)
                 )
 
@@ -52,13 +60,13 @@ class ClassAdapter(var modelList: List<ClassModel>, val listener: OnRecyclerItem
         holder.bind()
     }
 
-    override fun getItemCount(): Int = modelList.size
+    override fun getItemCount(): Int = modelListDaily.size
 
-    fun updateItem(newModelList: List<ClassModel>) {
-        val diffUtilCallback = BaseDiffUtil(modelList, newModelList)
+    fun updateItem(newModelListDaily: List<GeneralSubjectEntity>) {
+        val diffUtilCallback = BaseDiffUtil(modelListDaily, newModelListDaily)
         val diffResult = DiffUtil.calculateDiff(diffUtilCallback, true)
 
-        modelList = newModelList
+        modelListDaily = newModelListDaily
         diffResult.dispatchUpdatesTo(this)
     }
 }

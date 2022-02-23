@@ -29,7 +29,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:context=".presentation.main.classmanage.classes.create.InviteDialogFragment">
+                tools:context=".presentation.main.classmanage.subject.create.InviteDialogFragment">
 
                 <ImageView
                     android:id="@+id/fluctuated_schedule_image_view"

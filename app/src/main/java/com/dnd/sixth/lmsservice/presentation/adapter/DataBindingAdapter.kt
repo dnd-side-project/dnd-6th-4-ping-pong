@@ -17,14 +17,6 @@ fun setProfileUrl(circularImageView: CircleImageView, url: String) {
     App.instance.context.let { Glide.with(it).load(Uri.parse(url)).into(circularImageView) }
 }
 
-@BindingAdapter("grade", "subject")
-fun setGradeSubject(textView: TextView, grade: String, subject: String) {
-    // 학생님 수업 정보
-    textView.text = App.instance.context.getString(R.string.grade_subject_format, grade, subject)
-
-    // 선생님 수업 정보
-    //text = context.getString(R.string.subject_format, "영어")
-}
 
 @BindingAdapter("notificationVisible")
 fun setNotificationVisible(imageView: ImageView, hasNoti: Boolean) {

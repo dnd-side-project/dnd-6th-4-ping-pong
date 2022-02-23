@@ -20,7 +20,7 @@ class StartFeedBackActivity : BaseActivity<ActivityStartFeedBackBinding,StartFee
             viewModel = this@StartFeedBackActivity.viewModel
             feedbackStartBtn.setOnClickListener {
                 var intentFeedBackSet = Intent()
-                setResult(RESULT_OK,intentFeedBackSet)
+                setResult(RESULT_OK, intentFeedBackSet)
                 finish()
             }
 

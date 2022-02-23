@@ -31,7 +31,7 @@ internal fun provideGsonConverterFactory(): GsonConverterFactory {
 // Access Token 인터셉터를 포함한 OkHttpClient
 internal fun buildOkHttpClientWithAccessToken(
     httpLogInterceptor: HttpLoggingInterceptor,
-    authTokenInterceptor: AuthTokenInterceptor
+    //authTokenInterceptor: AuthTokenInterceptor
 ): OkHttpClient {
 
     val builder = OkHttpClient.Builder()
@@ -40,7 +40,7 @@ internal fun buildOkHttpClientWithAccessToken(
         .writeTimeout(TIME_OUT, TimeUnit.SECONDS)
         .callTimeout(TIME_OUT, TimeUnit.SECONDS)
         .addInterceptor(httpLogInterceptor) // Http 통신 Log를 출력하기 위한 Interceptor
-        .addInterceptor(authTokenInterceptor) // Token 관련 Interceptor
+     //   .addInterceptor(authTokenInterceptor) // Token 관련 Interceptor
 
 
     return builder.build()

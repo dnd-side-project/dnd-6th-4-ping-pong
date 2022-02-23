@@ -1,10 +1,11 @@
-package com.dnd.sixth.lmsservice.presentation.main.classmanage.classes
+package com.dnd.sixth.lmsservice.presentation.main.classmanage.subject
 
 import android.content.Intent
-import android.content.res.Configuration
 import android.util.Log
 import android.view.View
 import android.view.ViewTreeObserver
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dnd.sixth.lmsservice.BuildConfig
@@ -16,25 +17,33 @@ import com.dnd.sixth.lmsservice.presentation.base.BaseFragment
 import com.dnd.sixth.lmsservice.presentation.listner.OnRecyclerItemClickListener
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.ClassManageViewModel
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.CalendarViewModel
-import com.dnd.sixth.lmsservice.presentation.main.classmanage.classes.create.ClassCreateActivity
-import com.dnd.sixth.lmsservice.presentation.main.classmanage.classes.edit.ClassEditActivity
+import com.dnd.sixth.lmsservice.presentation.main.classmanage.subject.create.SubjectCreateActivity
+import com.dnd.sixth.lmsservice.presentation.main.classmanage.subject.edit.SubjectEditActivity
 import com.dnd.sixth.lmsservice.presentation.utility.UnitConverter
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.android.synthetic.main.layout_edit_delete_bottom_sheet.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
-class ClassFragment : BaseFragment<FragmentClassBinding, ClassViewModel>(),
+class SubjectFragment : BaseFragment<FragmentClassBinding, SubjectViewModel>(),
     View.OnClickListener, OnRecyclerItemClickListener {
     override val layoutResId: Int
         get() = R.layout.fragment_class
-    override val viewModel: ClassViewModel by viewModel()
+    override val viewModel: SubjectViewModel by viewModel()
 
     private var classAdapter: ClassAdapter? = null
     private var viewTreeObserver: ViewTreeObserver? = null
+    private lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
+
+
+    companion object {
+        const val INTENT_CREATE_SUBJECT_ENTITY_KEY = "createSubject"
+        const val INTENT_CREATE_SUBJECT_ACTIVITY_CODE = 1001
+    }
+
 
     // 최상위 ViewTreeObserver (높이를 구하기 위한 변수)
-//    var viewTreeObserver: ViewTreeObserver? = null
+    // var viewTreeObserver: ViewTreeObserver? = null
 
     // 액티비티 초기화 메서드
     override fun initActivity() {
@@ -45,22 +54,25 @@ class ClassFragment : BaseFragment<FragmentClassBinding, ClassViewModel>(),
 
     private fun initView() {
         with(binding) {
-            makeClassBtn.setOnClickListener(this@ClassFragment)
-            classAddBtn.setOnClickListener(this@ClassFragment)
+            makeClassBtn.setOnClickListener(this@SubjectFragment)
+            classAddBtn.setOnClickListener(this@SubjectFragment)
 
             classAdapter = ClassAdapter(
-                viewModel?.classDataList?.value!!,
-                this@ClassFragment
+                viewModel?.generalSubjectDataList?.value!!,
+                this@SubjectFragment
             ) // 수업 리사이클러뷰 어댑터
             with(classRecyclerView) {
                 adapter = classAdapter // 어댑터 적용
                 layoutManager = LinearLayoutManager(requireContext())
             }
 
+            // 서버로부터 수업 리스틀를 가져와 업데이트한다.
+            viewModel?.updateGeneralSubjectList()
+
             // 수업 리스트가 변경됨에 따라 화면 크기 조절을 하기 위한 Observer
-            viewModel?.classDataList?.observe(this@ClassFragment) {
-                // 클래스 개수 텍스트 설정
-                classCountTextView.text = getString(R.string.class_count_format, it.size)
+            viewModel?.generalSubjectDataList?.observe(this@SubjectFragment) {
+                // ClassManageFragment(ParentFragment)에 수업 개수 전달.
+                ClassManageViewModel.classCount.value = it.size
 
                 if (viewModel?.hasClass() == true) { // 수업이 있다면
                     //setClassHomeScrollViewHeight() // 수업 RecyclerView Item 사이즈에 맞게 HomeFragment의 Scroll 높이 재설정
@@ -79,6 +91,19 @@ class ClassFragment : BaseFragment<FragmentClassBinding, ClassViewModel>(),
                 // 리사이클러뷰의 개수가 추가되면 화면의 높이를 다시 측정한다.
                 setClassHomeScrollViewHeight()
             }
+
+            activityResultLauncher =
+                registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                    if (result.resultCode == INTENT_CREATE_SUBJECT_ACTIVITY_CODE) {
+                        val resultIntent = result.data
+                        val newSubjectEntity =
+                            resultIntent?.getSerializableExtra(INTENT_CREATE_SUBJECT_ENTITY_KEY) // 수업을 생성하고 새롭게 반환된 Subject Entity
+                        Log.d("entity", newSubjectEntity.toString())
+                    }
+                }
+
+
+
 
         }
 
@@ -100,11 +125,11 @@ class ClassFragment : BaseFragment<FragmentClassBinding, ClassViewModel>(),
     override fun onResume() {
         super.onResume()
         /* 캘린더가 펼쳐지면 Observer를 통해 높이를 다시 측정하기 때문에
-        *  캘린더를 먼저 펼친 후에 ClassFragment의 높이를 재측정한다.
+        *  캘린더를 먼저 펼친 후에 SubjectFragment의 높이를 재측정한다.
         *  */
 
         // 클래스 Fragment가 재게되면, 캘린더 Fragment의 Calendar를 다시 펼친다.
-        if(CalendarViewModel.isExpanded.value == false) {
+        if (CalendarViewModel.isExpanded.value == false) {
             CalendarViewModel.expandCalendar()
         }
         // Host Fragment의 ScrollView 높이 재설정
@@ -120,8 +145,8 @@ class ClassFragment : BaseFragment<FragmentClassBinding, ClassViewModel>(),
             val sumHeight =
                 // 클래스 추가하기 버튼 높이
                 binding.classAddCardView.measuredHeight +
-                        // 클래스 카운트 TextView의 높이
-                        binding.classCountTextView.measuredHeight +
+                        /*// 클래스 카운트 TextView의 높이
+                        binding.classCountTextView.measuredHeight +*/
                         // 뷰 사이의 마진값
                         UnitConverter.convertDPtoPX(
                             requireContext(),
@@ -134,11 +159,13 @@ class ClassFragment : BaseFragment<FragmentClassBinding, ClassViewModel>(),
                         ) * classAdapter?.itemCount!!
 
             ClassManageViewModel.screenHeight.value = sumHeight
-            Timber.tag("classFragment Height").d("$sumHeight")
+            Timber.tag("SubjectFragment Height").d("$sumHeight")
 
             try {
                 // viewTreeObserver 제거
-                if (binding.classAddCardView.measuredHeight > 0) {
+                if ((binding.classAddCardView.visibility == View.VISIBLE && binding.classAddCardView.measuredHeight > 0) ||
+                    binding.classAddCardView.visibility == View.GONE
+                ) {
                     viewTreeObserver?.removeOnGlobalLayoutListener(this)
                 }
             } catch (e: IllegalStateException) {
@@ -151,11 +178,15 @@ class ClassFragment : BaseFragment<FragmentClassBinding, ClassViewModel>(),
     }
 
 
-
     override fun onClick(view: View?) {
         when (view?.id) {
             R.id.make_class_btn, R.id.class_add_btn -> {
-                startActivity(Intent(requireContext(), ClassCreateActivity::class.java))
+                activityResultLauncher.launch(
+                    Intent(
+                        requireContext(),
+                        SubjectCreateActivity::class.java
+                    )
+                )
             }
         }
     }
@@ -178,7 +209,7 @@ class ClassFragment : BaseFragment<FragmentClassBinding, ClassViewModel>(),
                             startActivity(
                                 Intent(
                                     requireContext(),
-                                    ClassEditActivity::class.java
+                                    SubjectEditActivity::class.java
                                 ).putExtra("classModel", viewModel.getClassModel(position))
                             )
                             dialog.dismiss() // 하단 Dialog 종료

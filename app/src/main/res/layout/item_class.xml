@@ -4,9 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
-            name="model"
-            type="com.dnd.sixth.lmsservice.data.model.ClassModel" />
+            name="classModel"
+            type="com.dnd.sixth.lmsservice.domain.entity.GeneralSubjectEntity" />
+
     </data>
 
     <androidx.cardview.widget.CardView
@@ -18,7 +20,7 @@
         android:background="@color/white"
         android:outlineAmbientShadowColor="#40000000"
         android:outlineSpotShadowColor="#40000000"
-        app:cardCornerRadius="3dp"
+        app:cardCornerRadius="16dp"
         app:cardElevation="8dp"
         app:cardUseCompatPadding="false">
 
@@ -26,31 +28,31 @@
             android:id="@+id/class_btn"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingHorizontal="12dp"
-            android:clickable="true"
             android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:paddingHorizontal="12dp"
             android:paddingVertical="14dp">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/student_profile"
+                android:id="@+id/user_profile"
+                setProfileUrl="@{classModel.profileUri}"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
+                android:layout_marginLeft="8dp"
                 android:src="@drawable/ic_anonymous"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
-                android:layout_marginLeft="8dp"
-                setProfileUrl="@{model.profileUrl}"
                 app:layout_constraintTop_toTopOf="parent"
                 app:tint="#C4C4C4" />
 
             <ImageView
                 android:id="@+id/noti_image_view"
-                android:layout_width="4dp"
-                android:layout_height="4dp"
+                notificationVisible="@{classModel.feedbackChange}"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
                 android:src="@drawable/ic_new"
-                notificationVisible="@{model.hasNotification}"
-                app:layout_constraintBottom_toTopOf="@+id/student_name_text_view"
-                app:layout_constraintLeft_toRightOf="@+id/student_name_text_view"
+                app:layout_constraintRight_toRightOf="@+id/user_profile"
+                app:layout_constraintTop_toTopOf="@+id/user_profile"
                 tools:visibility="visible" />
 
             <TextView
@@ -59,12 +61,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:fontFamily="@font/spoqa_medium"
+                android:text="@{classModel.studentName}"
                 android:textColor="@color/richBlack"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toTopOf="@+id/student_type_text_view"
-                app:layout_constraintLeft_toRightOf="@+id/student_profile"
-                app:layout_constraintTop_toTopOf="@+id/student_profile"
-                android:text="@{model.name}"
+                app:layout_constraintLeft_toRightOf="@+id/user_profile"
+                app:layout_constraintTop_toTopOf="@+id/user_profile"
                 tools:text="백지성" />
 
             <ImageView
@@ -75,18 +77,18 @@
                 android:clickable="true"
                 android:src="@drawable/ic_more_vertical"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/gray9F" />
 
             <TextView
                 android:id="@+id/student_type_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/spoqa_medium"
+                android:text="@{classModel.subjectName}"
                 android:textColor="#707070"
                 android:textSize="12sp"
-                grade="@{model.grade}"
-                subject="@{model.subject}"
-                app:layout_constraintBottom_toBottomOf="@+id/student_profile"
+                app:layout_constraintBottom_toBottomOf="@+id/user_profile"
                 app:layout_constraintLeft_toLeftOf="@+id/student_name_text_view"
                 app:layout_constraintTop_toBottomOf="@+id/student_name_text_view"
                 tools:text="고2, 영어" />
@@ -101,6 +103,7 @@
                 android:text="월"
                 android:textColor="@color/white"
                 android:textSize="10sp"
+                android:textStyle="bold"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toLeftOf="@+id/tue_icon"
@@ -117,6 +120,7 @@
                 android:text="화"
                 android:textColor="@color/white"
                 android:textSize="10sp"
+                android:textStyle="bold"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toLeftOf="@+id/wed_icon"
@@ -133,6 +137,7 @@
                 android:text="수"
                 android:textColor="@color/white"
                 android:textSize="10sp"
+                android:textStyle="bold"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toLeftOf="@+id/thur_icon"
@@ -149,6 +154,7 @@
                 android:text="목"
                 android:textColor="@color/white"
                 android:textSize="10sp"
+                android:textStyle="bold"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toLeftOf="@+id/fri_icon"
@@ -165,6 +171,7 @@
                 android:text="금"
                 android:textColor="@color/white"
                 android:textSize="10sp"
+                android:textStyle="bold"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toLeftOf="@+id/sat_icon"
@@ -181,6 +188,7 @@
                 android:text="토"
                 android:textColor="@color/white"
                 android:textSize="10sp"
+                android:textStyle="bold"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toLeftOf="@+id/sun_icon"
@@ -196,6 +204,7 @@
                 android:text="일"
                 android:textColor="@color/white"
                 android:textSize="10sp"
+                android:textStyle="bold"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
