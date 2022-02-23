@@ -20,4 +20,9 @@ interface SubjectRepository {
     * 수업 지우기
     * */
     suspend fun deleteSubject(subjectId: Int): SubjectEntity?
+
+    /*
+    *  수업 데이터 업데이트
+    * */
+    suspend fun updateSubject(subjectEntity: SubjectEntity): SubjectEntity?
 }

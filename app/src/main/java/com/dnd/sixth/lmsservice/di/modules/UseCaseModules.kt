@@ -3,6 +3,7 @@ package com.dnd.sixth.lmsservice.di.modules
 import com.dnd.sixth.lmsservice.domain.useCase.CreateSubjectUseCase
 import com.dnd.sixth.lmsservice.domain.useCase.DeleteSubjectUseCase
 import com.dnd.sixth.lmsservice.domain.useCase.GetGeneralSubjectListUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.UpdateSubjectUseCase
 import org.koin.dsl.module
 
 val useCaseModules = module {
@@ -15,5 +16,8 @@ val useCaseModules = module {
     }
     factory {
         DeleteSubjectUseCase(get())
+    }
+    factory {
+        UpdateSubjectUseCase(get())
     }
 }

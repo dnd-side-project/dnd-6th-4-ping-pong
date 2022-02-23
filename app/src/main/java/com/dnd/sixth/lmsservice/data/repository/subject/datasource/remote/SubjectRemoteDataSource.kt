@@ -10,4 +10,5 @@ interface SubjectRemoteDataSource {
     suspend fun createSubject(remoteErrorEmitter: RemoteErrorEmitter, subjectEntity: SubjectEntity): SubjectModel?
     suspend fun getGeneralClassList(remoteErrorEmitter: RemoteErrorEmitter, uid: Int): List<GeneralSubjectModel>?
     suspend fun deleteSubject(remoteErrorEmitter: RemoteErrorEmitter, subjectId: Int): SubjectModel?
+    suspend fun updateSubject(remoteErrorEmitter: RemoteErrorEmitter, subjectEntity: SubjectEntity): SubjectModel?
 }

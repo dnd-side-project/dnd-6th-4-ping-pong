@@ -25,7 +25,6 @@ import kotlinx.android.synthetic.main.layout_edit_delete_bottom_sheet.view.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
@@ -42,7 +41,10 @@ class SubjectFragment : BaseFragment<FragmentClassBinding, SubjectViewModel>(),
 
     companion object {
         const val INTENT_CREATE_SUBJECT_ENTITY_KEY = "createSubject"
+        const val INTENT_UPDATE_SUBJECT_ENTITY_KEY = "updateSubject"
+
         const val INTENT_CREATE_SUBJECT_ACTIVITY_CODE = 1001
+        const val INTENT_UPDATE_SUBJECT_ACTIVITY_CODE = 1002
     }
 
 
@@ -98,15 +100,23 @@ class SubjectFragment : BaseFragment<FragmentClassBinding, SubjectViewModel>(),
 
             activityResultLauncher =
                 registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                    val resultIntent = result.data
+
+                    // 수업 생성
                     if (result.resultCode == INTENT_CREATE_SUBJECT_ACTIVITY_CODE) {
-                        val resultIntent = result.data
                         val newSubjectEntity =
                             resultIntent?.getSerializableExtra(INTENT_CREATE_SUBJECT_ENTITY_KEY) // 수업을 생성하고 새롭게 반환된 Subject Entity
-                        Log.d("entity", newSubjectEntity.toString())
+                        viewModel.updateGeneralSubjectList() // GeneralSubject 리스트 갱신
+                        Log.d("new entity", newSubjectEntity.toString())
+                    }
+                    // 수업 업데이트
+                    else if (result.resultCode == INTENT_UPDATE_SUBJECT_ACTIVITY_CODE) {
+                        val updatedSubjectEntity =
+                            resultIntent?.getSerializableExtra(INTENT_UPDATE_SUBJECT_ENTITY_KEY) // 수업 데이터를 변경하고 새롭게 반환된 Subject Entity
+                        viewModel.updateGeneralSubjectList() // GeneralSubject 리스트 갱신
+                        Log.d("updated entity", updatedSubjectEntity.toString())
                     }
                 }
-
-
 
 
         }
@@ -210,7 +220,7 @@ class SubjectFragment : BaseFragment<FragmentClassBinding, SubjectViewModel>(),
                         // 수정 버튼 클릭시, 수업 정보를 Edit할 수 있는 Activity로 이동
                         editBtn.setOnClickListener {
                             // 수업 수정 Activity로 이동, ClassItem 전달
-                            startActivity(
+                            activityResultLauncher.launch(
                                 Intent(
                                     requireContext(),
                                     SubjectEditActivity::class.java
@@ -239,16 +249,16 @@ class SubjectFragment : BaseFragment<FragmentClassBinding, SubjectViewModel>(),
             .setPositiveButton(
                 "삭제"
             ) { _, _ ->
-                // 수업 삭제 로직 수행
-                CoroutineScope(Dispatchers.IO).launch {
-                    val isSuccess = viewModel.deleteSubject(position) // 수업 삭제
-                    launch(Dispatchers.Main) {
-                        if(isSuccess) {
-                            showSnackBar(getString(R.string.success_delete_subject))
+                val mainDispatcher = Dispatchers.Main
+                val ioDispatcher = Dispatchers.IO
 
-                            // viewModel의 List에서 해당 수업 삭제 로직 구현 예정
-                            //
-                            //
+                // 수업 삭제 로직 수행
+                CoroutineScope(ioDispatcher).launch {
+                    val isSuccess = viewModel.deleteSubject(position) // 수업 삭제
+                    launch(mainDispatcher) {
+                        if (isSuccess) {
+                            showSnackBar(getString(R.string.success_delete_subject))
+                            viewModel.updateGeneralSubjectList() // GeneralSubject 리스트 갱신
                         } else {
                             showSnackBar(getString(R.string.failed_delete_subject))
                         }

@@ -11,6 +11,11 @@ interface SubjectService {
         @Body subjectModel: SubjectModel
     ): Call<SubjectModel>
 
+    @PUT("subject")
+    fun updateSubject(
+        @Body subjectModel: SubjectModel
+    ): Call<SubjectModel>
+
     @DELETE("subject")
     fun deleteSubject(
         @Query("id") subjectId: Int

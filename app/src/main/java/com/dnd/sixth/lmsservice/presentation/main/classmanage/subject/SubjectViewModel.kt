@@ -31,6 +31,9 @@ class SubjectViewModel(
         return _generalSubjectList.value?.get(position) ?: throw Exception("Exist no item")
     }
 
+    init {
+        updateGeneralSubjectList()
+    }
 
     /*  General SubjectList를 서버 DB로부터 갱신
     * */

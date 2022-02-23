@@ -4,9 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.dnd.sixth.lmsservice.presentation.main.classmanage.subject.edit.SubjectEditViewModel" />
+
+        <import type="com.dnd.sixth.lmsservice.presentation.main.classmanage.subject.type.DayOfWeek" />
+
+        <import type="com.dnd.sixth.lmsservice.presentation.main.classmanage.subject.type.SalaryDay" />
     </data>
 
 
@@ -18,7 +23,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:context=".presentation.main.classmanage.subject.create.SubjectCreateActivity">
+            tools:context=".presentation.main.classmanage.subject.edit.SubjectEditActivity">
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar"
@@ -28,8 +33,8 @@
                 android:layout_marginTop="24dp"
                 android:background="@color/white"
                 app:layout_constraintTop_toTopOf="parent"
-                app:title="클래스 수정"
-                app:titleCentered="true"/>
+                app:title="클래스 만들기"
+                app:titleCentered="true" />
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -52,14 +57,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_marginTop="16dp"
-                    android:maxLines="1"
                     android:background="@drawable/bg_make_class_edit_text"
                     android:hint="Ex. 김학생, 강남고, 고3"
+                    android:maxLines="1"
+                    android:imeOptions="actionDone"
                     android:paddingHorizontal="16dp"
+                    android:text="@={viewModel.subjectName}"
                     android:textColor="@color/richBlack"
                     android:textSize="14sp"
                     app:layout_constraintTop_toBottomOf="@+id/class_board_name_subtitle" />
-
 
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -119,6 +125,8 @@
                         android:layout_width="170dp"
                         android:layout_height="36dp"
                         android:background="@drawable/bg_make_class_edit_text"
+                        android:clickable="true"
+                        android:foreground="?attr/selectableItemBackground"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toRightOf="@+id/am_pm_radio_group"
                         app:layout_constraintRight_toRightOf="parent"
@@ -129,7 +137,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:gravity="center"
-                            android:text="10"
+                            android:text="00"
                             android:textColor="@color/richBlack"
                             android:textSize="14dp"
                             app:layout_constraintLeft_toLeftOf="parent"
@@ -150,7 +158,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:gravity="center"
-                            android:text="30"
+                            android:text="00"
                             android:textColor="@color/richBlack"
                             android:textSize="14dp"
                             app:layout_constraintLeft_toRightOf="@id/hour_min_colon"
@@ -186,6 +194,7 @@
                         android:background="@drawable/btn_class_day"
                         android:button="@null"
                         android:gravity="center"
+                        android:onClick="@{() -> viewModel.onClickClassDow(DayOfWeek.SUN)}"
                         android:text="일"
                         android:textColor="@color/color_week_of_day" />
 
@@ -198,6 +207,7 @@
                         android:background="@drawable/btn_class_day"
                         android:button="@null"
                         android:gravity="center"
+                        android:onClick="@{() -> viewModel.onClickClassDow(DayOfWeek.MON)}"
                         android:text="월"
                         android:textColor="@color/color_week_of_day" />
 
@@ -210,6 +220,7 @@
                         android:background="@drawable/btn_class_day"
                         android:button="@null"
                         android:gravity="center"
+                        android:onClick="@{() -> viewModel.onClickClassDow(DayOfWeek.TUE)}"
                         android:text="화"
                         android:textColor="@color/color_week_of_day" />
 
@@ -222,6 +233,7 @@
                         android:background="@drawable/btn_class_day"
                         android:button="@null"
                         android:gravity="center"
+                        android:onClick="@{() -> viewModel.onClickClassDow(DayOfWeek.WED)}"
                         android:text="수"
                         android:textColor="@color/color_week_of_day" />
 
@@ -234,6 +246,7 @@
                         android:background="@drawable/btn_class_day"
                         android:button="@null"
                         android:gravity="center"
+                        android:onClick="@{() -> viewModel.onClickClassDow(DayOfWeek.THU)}"
                         android:text="목"
                         android:textColor="@color/color_week_of_day" />
 
@@ -246,6 +259,7 @@
                         android:background="@drawable/btn_class_day"
                         android:button="@null"
                         android:gravity="center"
+                        android:onClick="@{() -> viewModel.onClickClassDow(DayOfWeek.FRI)}"
                         android:text="금"
                         android:textColor="@color/color_week_of_day"
                         tools:checked="true" />
@@ -258,10 +272,12 @@
                         android:background="@drawable/btn_class_day"
                         android:button="@null"
                         android:gravity="center"
+                        android:onClick="@{() -> viewModel.onClickClassDow(DayOfWeek.SAT)}"
                         android:text="토"
                         android:textColor="@color/color_week_of_day" />
 
                 </LinearLayout>
+
 
                 <TextView
                     android:id="@+id/salary_date_subtitle"
@@ -286,7 +302,9 @@
                         android:layout_weight="1"
                         android:background="@drawable/btn_salary_radio"
                         android:button="@null"
+                        android:checked="true"
                         android:gravity="center"
+                        android:onCheckedChanged="@{(cb, isChecked) -> viewModel.onSelectSalaryDay(SalaryDay.FOUR, isChecked)}"
                         android:text="4회"
                         android:textColor="@color/color_salary_radio_text" />
 
@@ -298,8 +316,8 @@
                         android:layout_weight="1"
                         android:background="@drawable/btn_salary_radio"
                         android:button="@null"
-                        android:checked="true"
                         android:gravity="center"
+                        android:onCheckedChanged="@{(cb, isChecked) -> viewModel.onSelectSalaryDay(SalaryDay.EIGHT, isChecked)}"
                         android:text="8회"
                         android:textColor="@color/color_salary_radio_text" />
 
@@ -311,6 +329,7 @@
                         android:background="@drawable/btn_salary_radio"
                         android:button="@null"
                         android:gravity="center"
+                        android:onCheckedChanged="@{(cb, isChecked) -> viewModel.onSelectSalaryDay(SalaryDay.TWENTY, isChecked)}"
                         android:text="10회"
                         android:textColor="@color/color_salary_radio_text" />
 
@@ -329,6 +348,7 @@
                 android:foreground="?attr/selectableItemBackground"
                 android:gravity="center"
                 android:text="완료"
+                android:onClick="@{viewModel::updateSubject}"
                 android:textColor="@color/color_done_text"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent" />
