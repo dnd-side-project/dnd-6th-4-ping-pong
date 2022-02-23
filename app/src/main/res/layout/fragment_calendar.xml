@@ -8,6 +8,10 @@
         <variable
             name="viewModel"
             type="com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.CalendarViewModel" />
+
+        <variable
+            name="hostViewModel"
+            type="com.dnd.sixth.lmsservice.presentation.main.classmanage.ClassManageViewModel" />
     </data>
 
 

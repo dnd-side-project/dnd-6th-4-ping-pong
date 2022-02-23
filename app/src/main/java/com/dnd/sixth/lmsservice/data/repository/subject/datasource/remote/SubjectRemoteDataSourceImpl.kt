@@ -26,7 +26,6 @@ class SubjectRemoteDataSourceImpl(private val subjectApi: SubjectApi) : SubjectR
         subjectEntity: SubjectEntity
     ): SubjectModel? =
         suspendCancellableCoroutine { cont ->
-
             // 서버에 전송할 Subject Entity를 Model로 변환
             val requestCall = subjectApi.api.createSubject(subjectEntity.toModel())
 
@@ -36,7 +35,6 @@ class SubjectRemoteDataSourceImpl(private val subjectApi: SubjectApi) : SubjectR
                     call: Call<SubjectModel>,
                     response: Response<SubjectModel>
                 ) {
-
                     // Http 통신 결과 (200 코드대인 경우)
                     if (response.isSuccessful) {
                         // 서버 DB로부터 받은 DTO객체
@@ -49,7 +47,7 @@ class SubjectRemoteDataSourceImpl(private val subjectApi: SubjectApi) : SubjectR
                         // 코루틴 재게
                         cont.resumeWith(Result.success(subjectModel))
                     } else { // 서버로부터 에러 반환
-                        Log.d(TAG, response.errorBody().toString())
+                        Log.e(TAG, response.code().toString())
                     }
 
                 }

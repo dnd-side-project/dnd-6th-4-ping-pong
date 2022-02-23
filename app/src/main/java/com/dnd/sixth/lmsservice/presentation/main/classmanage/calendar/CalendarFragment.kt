@@ -25,6 +25,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.jaredrummler.materialspinner.MaterialSpinner
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.CalendarMode
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 import java.util.*
@@ -36,6 +37,8 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding, CalendarViewModel
 
     //뷰모델 추가
     override val viewModel: CalendarViewModel by viewModel()
+    private val hostViewModel: ClassManageViewModel by sharedViewModel()
+
     private var categoryDialog: BottomSheetDialog? = null
     var viewTreeObserver: ViewTreeObserver? = null
 
@@ -44,8 +47,17 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding, CalendarViewModel
 
     //액티비티 초기화 메서드
     override fun initActivity() {
+        setBindingData() // 필요한 데이터 바인딩
+        initView() // 뷰 초기화
+    }
+
+    private fun setBindingData() {
+        binding.viewModel = viewModel
+        binding.hostViewModel = hostViewModel // ViewModel 바인딩
+    }
+
+    private fun initView() {
         with(binding) {
-            viewModel = this@CalendarFragment.viewModel
 
             calendarView.topbarVisible = false // 캘린더 헤더 가리기
             setSpinner(monthSpinner) // 스피너 설정
@@ -65,7 +77,6 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding, CalendarViewModel
                 }
             })
     }
-
 
     private fun makeStudentCategoryDialog() {
         val sheetView = layoutInflater.inflate(R.layout.layout_student_category_bottom_sheet, null)
