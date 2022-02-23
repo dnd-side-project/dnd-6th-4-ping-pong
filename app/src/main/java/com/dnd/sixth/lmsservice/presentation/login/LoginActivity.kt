@@ -7,13 +7,19 @@ import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
 import com.dnd.sixth.lmsservice.R
+import com.dnd.sixth.lmsservice.data.network.api.SignApi
 import com.dnd.sixth.lmsservice.data.preference.PreferenceManager
+import com.dnd.sixth.lmsservice.data.response.UserResponse
 import com.dnd.sixth.lmsservice.databinding.ActivityLoginBinding
 import com.dnd.sixth.lmsservice.presentation.base.BaseActivity
 import com.dnd.sixth.lmsservice.presentation.login.signup.SignUpActivity
 import kotlinx.android.synthetic.main.activity_login.*
+import org.koin.android.ext.android.inject
 
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 import java.security.MessageDigest
 import java.util.*
@@ -22,6 +28,10 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
     override val layoutResId: Int
         get() = R.layout.activity_login
     override val viewModel: LoginViewModel by viewModel()
+
+    //api
+    var LoginApi : SignApi = SignApi()
+
 
 
 
@@ -39,6 +49,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
 
             loginBtn.setOnClickListener{
                 //login() 로그인 요청
+                login()
 
                 //로그인 성공 시 데이터 저장
 
@@ -55,10 +66,49 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
 
 
 
+
     }
+    /*
+        로그인
+         */
+    fun login(){
+        //요청이 성공하였을 때
+
+
+
+        var userEmail = binding.loginIdEdittext.text.toString()
+
+        //로그인하면서 유저 정보 요청
+        LoginApi.api.getUserInfo(userEmail).enqueue(object : Callback<UserResponse>{
+            override fun onResponse(
+                call: Call<UserResponse>,
+                response: Response<UserResponse>
+            ) {
+                var userInfo = response.body()
+                if (userInfo != null) {
+                    //로그인 정보 저장
+                    viewModel.saveLoginInfo(userInfo)
+                }
+                Log.d("login", "SuccessGetUserInfo")
+
+            }
+
+            override fun onFailure(call: Call<UserResponse>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
 
 
     }
+    //자동 로그인
+    fun autoLogin(){
+        
+    }
+
+
+
+}
 
 //    //sha-1 해시키 발급 함수
 //
