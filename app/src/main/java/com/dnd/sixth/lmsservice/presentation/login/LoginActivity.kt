@@ -39,9 +39,10 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
 
             loginBtn.setOnClickListener{
                 //login() 로그인 요청
-                
+
                 //로그인 성공 시 데이터 저장
 
+                var abc = 1
             }
 
 
