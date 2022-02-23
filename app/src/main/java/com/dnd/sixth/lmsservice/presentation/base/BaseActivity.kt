@@ -55,4 +55,6 @@ abstract class BaseActivity<T: ViewDataBinding, S: BaseViewModel> : AppCompatAct
     fun showSnackBar(msg: String) {
         Snackbar.make(binding.root, msg, Snackbar.LENGTH_LONG).show()
     }
+
+
 }

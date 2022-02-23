@@ -27,10 +27,10 @@ class LoginViewModel(
 
             setString(SAVED_ID_KEY,userInfo.email)
             setString(SAVED_PW_KEY,userInfo.password)
-            setString(Saved_NAME_KEY,userInfo.email)
-            setString(Saved_ROLE_KEY,userInfo.email)
-            setString(Saved_PHONE_NUMBER_KEY, userInfo.email)
-            //setString(Saved_UID_KEY, uid)
+            setString(SAVED_NAME_KEY,userInfo.user_nm)
+            setInt(SAVED_ROLE_KEY,userInfo.role)
+            setString(SAVED_PHONE_NUMBER_KEY, userInfo.parent_phone_num)
+            setInt(SAVED_UID_KEY,userInfo.id)
             //TODO 토큰 저장
 
 

@@ -3,8 +3,8 @@ package com.dnd.sixth.lmsservice.data.response
 
 data class UserResponse(
 
-    var id : Int,
-    var email : String,
+    var id : Int, //uid
+    var email : String, //이메일
     var user_nm : String,
     var password : String,
     var role : Int,
