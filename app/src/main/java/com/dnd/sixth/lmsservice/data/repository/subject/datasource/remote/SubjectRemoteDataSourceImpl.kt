@@ -40,14 +40,14 @@ class SubjectRemoteDataSourceImpl(private val subjectApi: SubjectApi) : SubjectR
                     // Http 통신 결과 (200 코드대인 경우)
                     if (response.isSuccessful) {
                         // 서버 DB로부터 받은 DTO객체
-                        val responseObject = response.body()
+                        val subjectModel = response.body() as SubjectModel
                         if (BuildConfig.DEBUG) {
                             Log.d(TAG, response.code().toString())
-                            Log.d(TAG, responseObject.toString())
+                            Log.d(TAG, subjectModel.toString())
                         }
 
                         // 코루틴 재게
-                        cont.resumeWith(Result.success(responseObject))
+                        cont.resumeWith(Result.success(subjectModel))
                     } else { // 서버로부터 에러 반환
                         Log.d(TAG, response.errorBody().toString())
                     }
@@ -79,15 +79,15 @@ class SubjectRemoteDataSourceImpl(private val subjectApi: SubjectApi) : SubjectR
                     // Http 통신 결과 (200 코드대인 경우)
                     if (response.isSuccessful) {
                         // 서버 DB로부터 받은 DTO객체
-                        val responseObject = response.body() as List<GeneralSubjectModel>
+                        val generalSubjectList = response.body() as List<GeneralSubjectModel>
 
                         if (BuildConfig.DEBUG) {
                             Log.d(TAG, response.code().toString())
-                            Log.d(TAG, responseObject.toString())
+                            Log.d(TAG, generalSubjectList.toString())
                         }
 
-                        // 코루틴 재게
-                        cont.resumeWith(Result.success(responseObject))
+                        // 코루틴 재게 (성공 데이터 반환)
+                        cont.resumeWith(Result.success(generalSubjectList))
                     } else { // 서버로부터 에러 반환
                         Timber.d(response.errorBody().toString())
                     }
@@ -101,4 +101,35 @@ class SubjectRemoteDataSourceImpl(private val subjectApi: SubjectApi) : SubjectR
                 }
             })
         }
+
+    override suspend fun deleteSubject(
+        remoteErrorEmitter: RemoteErrorEmitter,
+        subjectId: Int
+    ) : SubjectModel? = suspendCancellableCoroutine { cont ->
+        subjectApi.api.deleteSubject(subjectId).enqueue(object : Callback<SubjectModel> {
+            @SuppressLint("LongLogTag")
+            override fun onResponse(call: Call<SubjectModel>, response: Response<SubjectModel>) {
+                if (response.isSuccessful) {
+                    // 삭제한 수업 Subject 모델을 받아온다.
+                    val deletedSubjectModel = response.body() as SubjectModel
+
+                    if (BuildConfig.DEBUG) {
+                        Log.d(TAG, response.code().toString())
+                        Log.d(TAG, deletedSubjectModel.toString())
+                    }
+
+                    // 삭제한 수업 Subject Model 반환
+                    cont.resumeWith(Result.success(deletedSubjectModel))
+                } else { // 서버로부터 에러 반환
+                    Timber.d(response.errorBody().toString())
+                }
+            }
+
+            @SuppressLint("LongLogTag")
+            override fun onFailure(call: Call<SubjectModel>, cause: Throwable) {
+                Log.e(TAG, cause.message.toString())
+                cont.resumeWithException(cause)
+            }
+        })
+    }
 }

@@ -79,7 +79,7 @@ class SubjectCreateActivity : BaseActivity<ActivityCreateSubjectBinding, CreateS
                     setResult(SubjectFragment.INTENT_CREATE_SUBJECT_ACTIVITY_CODE, resultIntent) // 초대코드 Dialog를 보여주기 위한 결과 반환
                     finish() //액티비티 종료
                 } else { // 수업 생성 실패
-                    showToast(getString(R.string.failed_make_class)) // 실패 Toast 출력
+                    showToast(getString(R.string.failed_create_subject)) // 실패 Toast 출력
                 }
             }
         }

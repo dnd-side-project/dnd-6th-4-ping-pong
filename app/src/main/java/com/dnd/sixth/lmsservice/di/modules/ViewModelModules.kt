@@ -63,7 +63,7 @@ val viewModelModules = module {
         MainViewModel()
     }
     viewModel {
-        SubjectViewModel(get(), get())
+        SubjectViewModel(get(), get(), get())
     }
     viewModel {
         EditResponseViewModel()

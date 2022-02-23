@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import com.google.android.material.snackbar.Snackbar
 
 
 abstract class BaseFragment<T : ViewDataBinding, S : BaseViewModel> : Fragment() {
@@ -54,5 +55,10 @@ abstract class BaseFragment<T : ViewDataBinding, S : BaseViewModel> : Fragment()
     // 토스트 띄우기
     fun showToast(msg: String) {
         Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
+    }
+
+    // 스낵바 띄우기
+    fun showSnackBar(msg: String) {
+        Snackbar.make(binding.root, msg, Snackbar.LENGTH_LONG).show()
     }
 }

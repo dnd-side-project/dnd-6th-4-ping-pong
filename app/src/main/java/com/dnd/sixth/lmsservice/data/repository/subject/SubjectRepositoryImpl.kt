@@ -21,4 +21,8 @@ class SubjectRepositoryImpl(
             it.toEntity()
         }
     }
+
+    override suspend fun deleteSubject(subjectId: Int): SubjectEntity? {
+        return subjectRemoteDataSource.deleteSubject(remoteErrorEmitter, subjectId)?.toEntity()
+    }
 }
