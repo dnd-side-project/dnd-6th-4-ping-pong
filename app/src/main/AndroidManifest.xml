@@ -101,7 +101,7 @@
             android:name="com.dnd.sixth.lmsservice.presentation.main.classmanage.config.push.PushActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.main.studentmanage.info.InfoActivity"
+            android:name=".presentation.main.info.InfoActivity"
             android:exported="false" />
         <activity
             android:name="com.dnd.sixth.lmsservice.presentation.main.classmanage.config.ConfigActivity"

@@ -1,4 +1,4 @@
-package com.dnd.sixth.lmsservice.presentation.main.studentmanage.info
+package com.dnd.sixth.lmsservice.presentation.main.info
 
 import android.view.MenuItem
 import android.view.View

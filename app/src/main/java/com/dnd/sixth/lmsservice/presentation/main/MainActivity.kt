@@ -3,11 +3,10 @@ package com.dnd.sixth.lmsservice.presentation.main
 import android.view.View
 import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.databinding.ActivityMainBinding
-import com.dnd.sixth.lmsservice.presentation.adapter.viewpager.HomeViewPagerAdapter
 import com.dnd.sixth.lmsservice.presentation.base.BaseActivity
+import com.dnd.sixth.lmsservice.presentation.main.classmanage.ClassManageFragment
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.CalendarFragment
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.CalendarViewModel
-import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
@@ -15,7 +14,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
     override val layoutResId: Int
         get() = R.layout.activity_main
     override val viewModel: MainViewModel by viewModel()
-    private lateinit var viewPagerAdapter: HomeViewPagerAdapter
 
     // 액티비티 초기화 메서드
     override fun initActivity() {
@@ -27,18 +25,10 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
         binding.viewModel = viewModel // ViewModel 바인딩
     }
 
-
     private fun initView() {
         with(binding) {
-            // FragmentStateAdapter 생성
-            viewPagerAdapter = HomeViewPagerAdapter(this@MainActivity)
-
-            // 생성한 adapter를 ViewPager와 연결
-            viewPager.adapter = viewPagerAdapter
-            viewPager.isUserInputEnabled = false // 뷰 페이저 슬라이드 막기
-            TabLayoutMediator(mainTabLayout, viewPager) { tab, position ->
-                tab.text = resources.getStringArray(R.array.class_manage_tab_list)[position]
-            }.attach() // 탭 클릭시 Fragment 전환
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.main_frame_layout, ClassManageFragment()).commitNow()
         }
     }
 
@@ -60,7 +50,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
 
 
     override fun onClick(v: View?) {
-
         when (v?.id) {
 
         }
