@@ -6,7 +6,8 @@ import java.util.*
 
 data class User(
     var id : Int,
-    var parent_phone_num : Boolean
+    var parent_phone_num : Boolean,
+    var profile_url: String
 ){
     //함수를 추가하여
     //Entity로 바꿀 수 있는 형태로 만들어줌.
@@ -14,6 +15,6 @@ data class User(
         SignUpResponseEntity(
             id = id.toLong(),
             parent_phone_num = null,
-
+            profile_url = profile_url
         )
 }

@@ -1,18 +1,27 @@
 package com.dnd.sixth.lmsservice.presentation.main.classmanage.subject.create
 
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.dnd.sixth.lmsservice.App
+import com.dnd.sixth.lmsservice.R
+import com.dnd.sixth.lmsservice.data.preference.PreferenceManager
 import com.dnd.sixth.lmsservice.domain.entity.SubjectEntity
 import com.dnd.sixth.lmsservice.domain.useCase.MakeSubjectUseCase
 import com.dnd.sixth.lmsservice.presentation.base.BaseViewModel
+import com.dnd.sixth.lmsservice.presentation.extensions.convertDowBit
+import com.dnd.sixth.lmsservice.presentation.extensions.isAllFalse
+import com.dnd.sixth.lmsservice.presentation.extensions.toggle
+import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.custom.DateColor
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.subject.type.DayOfWeek
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.subject.type.SalaryDay
 import kotlinx.coroutines.launch
 
 class CreateSubjectViewModel(
-    private val makeSubjectUseCase: MakeSubjectUseCase
+    private val makeSubjectUseCase: MakeSubjectUseCase,
+    private val preferenceManager: PreferenceManager
 ) : BaseViewModel() {
 
     var hour = 0 // 수업 시간 (Hour)
@@ -22,7 +31,17 @@ class CreateSubjectViewModel(
     val className = MutableLiveData<String>()
 
     // 수업 요일 리스트
-    private val _weekOfDayList = MutableLiveData(mutableListOf<DayOfWeek>())
+    private val _weekOfDayList = MutableLiveData(
+        mutableMapOf<DayOfWeek, Boolean>(
+            DayOfWeek.MON to false,
+            DayOfWeek.TUE to false,
+            DayOfWeek.WED to false,
+            DayOfWeek.THU to false,
+            DayOfWeek.FRI to false,
+            DayOfWeek.SAT to false,
+            DayOfWeek.SUN to false,
+        )
+    )
 
     // 과외비 정산하는 시점 (ex. 4회차, 8회차, 12회차)
     private var salaryDay: SalaryDay = SalaryDay.FOUR
@@ -32,16 +51,14 @@ class CreateSubjectViewModel(
     val isDoneClickable: LiveData<Boolean> = _isDoneClickable
 
     // 수업 생성 성공 여부
-    private val _isMakeSuccess = MutableLiveData<Boolean?>()
+    private val _isMakeSuccess = MutableLiveData<Boolean>()
     val isMakeSuccess: LiveData<Boolean> = _isMakeSuccess
 
     // 수업 요일 항목을 클릭
     fun onClickClassDow(dayOfWeek: DayOfWeek) {
-        if (_weekOfDayList.value!!.contains(dayOfWeek)) {
-            _weekOfDayList.value?.remove(dayOfWeek)
-        } else {
-            _weekOfDayList.value?.add(dayOfWeek)
-        }
+        // 기존 값 Toggle
+        _weekOfDayList.value!![dayOfWeek] =
+            (_weekOfDayList.value?.get(dayOfWeek) as Boolean).toggle()
 
         // 수업 요일을 클릭할 때마다 '확인 클릭 여부' 설정
         setDoneClickable()
@@ -58,18 +75,30 @@ class CreateSubjectViewModel(
     *  @return true : 과외이름, 수업요일, 정산일이 정상적으로 선택이 된 경우
     *  @return false : else
     */
-    fun setDoneClickable(): Boolean {
+    fun setDoneClickable() {
         val isNullClassName: Boolean = className.value.isNullOrBlank()
-        val isEmptyList: Boolean = _weekOfDayList.value?.isEmpty() ?: true
+        val isEmptyList: Boolean = _weekOfDayList.value?.isAllFalse() ?: true
 
-        return !(isNullClassName || isEmptyList)
+        // 확인 클릭 가능 여부 갱신
+        _isDoneClickable.value = (isNullClassName.not() && isEmptyList.not())
     }
 
     // 서버에 데이터를 전송하여 클래스 생성
     fun makeSubject(view: View) {
+
         viewModelScope.launch {
-            val isSuccess = makeSubjectUseCase(SubjectEntity())
-            _isMakeSuccess.postValue(isSuccess)
+            val resultSubjectEntity = makeSubjectUseCase(
+                SubjectEntity(
+                    subjectName=className.value.toString(),
+                    monthlyCnt=salaryDay.countInt,
+                    classTime=App.instance.context.getString(R.string.hour_minute_format, hour, minute),
+                    teacherId=preferenceManager.getInt("uid"),
+                    color=DateColor.BLUE.ordinal,
+                    classDowBit=_weekOfDayList.value!!.convertDowBit()
+                )
+            )
+
+            _isMakeSuccess.postValue(resultSubjectEntity != null)
         }
     }
 }

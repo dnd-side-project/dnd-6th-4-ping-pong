@@ -1,6 +1,7 @@
 package com.dnd.sixth.lmsservice.presentation.main.classmanage.subject.create
 
 import android.app.TimePickerDialog
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import com.dnd.sixth.lmsservice.R
@@ -58,17 +59,17 @@ class SubjectCreateActivity : BaseActivity<ActivityCreateSubjectBinding, CreateS
             }
 
             // ClassName 값이 변경될 때마다 '완료' 버튼 클릭 가능 여부를 변경한다.
-            viewModel.className.observe(this@SubjectCreateActivity) {
-                viewModel.setDoneClickable()
+            viewModel?.className?.observe(this@SubjectCreateActivity) {
+                viewModel?.setDoneClickable()
             }
 
             // '완료' 클릭 가능 여부 관찰
-            viewModel.isDoneClickable.observe(this@SubjectCreateActivity) {
-                doneBtn.isEnabled = true // 완료버튼 활성화
+            viewModel?.isDoneClickable?.observe(this@SubjectCreateActivity) { isClickable ->
+                doneBtn.isEnabled = isClickable // 완료버튼 활성화
             }
 
             // '수업 생성 성공 여부' 관찰
-            viewModel.isMakeSuccess.observe(this@SubjectCreateActivity) { isSuccess ->
+            viewModel?.isMakeSuccess?.observe(this@SubjectCreateActivity) { isSuccess ->
                 if (isSuccess) { // 수업 생성 성공
                     // setResult()로 초대코드 Dialog를 보여주기 위한 결과 반환
                     finish() //액티비티 종료

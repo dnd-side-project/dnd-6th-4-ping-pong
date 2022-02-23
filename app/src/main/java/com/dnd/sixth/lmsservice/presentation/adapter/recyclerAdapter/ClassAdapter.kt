@@ -5,26 +5,30 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.dnd.sixth.lmsservice.domain.entity.DailyClass
+import com.dnd.sixth.lmsservice.data.response.User
 import com.dnd.sixth.lmsservice.databinding.ItemClassBinding
+import com.dnd.sixth.lmsservice.domain.entity.DailyClass
+import com.dnd.sixth.lmsservice.domain.entity.SubjectEntity
 import com.dnd.sixth.lmsservice.presentation.base.BaseDiffUtil
 import com.dnd.sixth.lmsservice.presentation.extensions.visibleViewListIfContain
 import com.dnd.sixth.lmsservice.presentation.listner.OnRecyclerItemClickListener
 
-class ClassAdapter(var modelListDaily: List<DailyClass>, val listener: OnRecyclerItemClickListener) :
+class ClassAdapter(var modelListDaily: List<SubjectEntity>, val listener: OnRecyclerItemClickListener) :
     RecyclerView.Adapter<ClassAdapter.ClassViewHolder>() {
 
-    val dayOfWeeks = listOf<String>("월", "화", "수", "목", "금", "토", "일")
 
     inner class ClassViewHolder(val binding: ItemClassBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind() {
-            val classModel = modelListDaily[adapterPosition]
-            val classDayOfWeeks = classModel.classDays
+            val subjectModel = modelListDaily[adapterPosition]
+            val dayOfWeekBinary = subjectModel.classDowBit
 
             with(binding) {
-                model = classModel
+                setSubjectModel(subjectModel)
+                dailyModel = DailyClass(0,0,"","","","","","","","",true,"",0b0001000)
+                userModel = User(0,true,"")
+
 
                 moreBtn.setOnClickListener {
                     listener.onClick(it.id, adapterPosition)
@@ -34,8 +38,8 @@ class ClassAdapter(var modelListDaily: List<DailyClass>, val listener: OnRecycle
                 }
 
                 // 수업 요일을 보여줌
-                dayOfWeeks.visibleViewListIfContain(
-                    classDayOfWeeks,
+                visibleViewListIfContain(
+                    dayOfWeekBinary,
                     listOf<View>(monIcon, tueIcon, wedIcon, thurIcon, friIcon, satIcon, sunIcon)
                 )
 
@@ -54,7 +58,7 @@ class ClassAdapter(var modelListDaily: List<DailyClass>, val listener: OnRecycle
 
     override fun getItemCount(): Int = modelListDaily.size
 
-    fun updateItem(newModelListDaily: List<DailyClass>) {
+    fun updateItem(newModelListDaily: List<SubjectEntity>) {
         val diffUtilCallback = BaseDiffUtil(modelListDaily, newModelListDaily)
         val diffResult = DiffUtil.calculateDiff(diffUtilCallback, true)
 

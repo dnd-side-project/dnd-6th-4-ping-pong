@@ -5,7 +5,7 @@ import org.koin.dsl.module
 
 val useCaseModules = module {
 
-    factory {
+    single {
         MakeSubjectUseCase(get())
     }
 }

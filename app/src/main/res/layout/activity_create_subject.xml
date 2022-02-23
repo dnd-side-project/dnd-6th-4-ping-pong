@@ -60,6 +60,7 @@
                     android:background="@drawable/bg_make_class_edit_text"
                     android:hint="Ex. 김학생, 강남고, 고3"
                     android:maxLines="1"
+                    android:imeOptions="actionDone"
                     android:paddingHorizontal="16dp"
                     android:text="@={viewModel.className}"
                     android:textColor="@color/richBlack"

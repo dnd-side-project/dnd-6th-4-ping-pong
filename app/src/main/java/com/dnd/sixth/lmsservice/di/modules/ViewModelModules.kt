@@ -42,7 +42,7 @@ val viewModelModules = module {
         ClassManageViewModel()
     }
     viewModel {
-        CreateSubjectViewModel(get())
+        CreateSubjectViewModel(get(), get())
     }
     viewModel {
         CalendarViewModel()

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.view.View
 import android.view.ViewTreeObserver
 import androidx.appcompat.app.AlertDialog
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.dnd.sixth.lmsservice.BuildConfig
 import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.databinding.FragmentClassBinding
@@ -14,6 +15,7 @@ import com.dnd.sixth.lmsservice.presentation.listner.OnRecyclerItemClickListener
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.ClassManageViewModel
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.CalendarViewModel
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.subject.create.SubjectCreateActivity
+import com.dnd.sixth.lmsservice.presentation.main.classmanage.subject.edit.SubjectEditActivity
 import com.dnd.sixth.lmsservice.presentation.utility.UnitConverter
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.android.synthetic.main.layout_edit_delete_bottom_sheet.view.*
@@ -174,7 +176,7 @@ class SubjectFragment : BaseFragment<FragmentClassBinding, SubjectViewModel>(),
                             startActivity(
                                 Intent(
                                     requireContext(),
-                                    ClassEditActivity::class.java
+                                    SubjectEditActivity::class.java
                                 ).putExtra("classModel", viewModel.getClassModel(position))
                             )
                             dialog.dismiss() // 하단 Dialog 종료
