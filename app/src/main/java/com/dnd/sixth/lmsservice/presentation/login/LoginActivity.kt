@@ -13,6 +13,7 @@ import com.dnd.sixth.lmsservice.data.response.UserResponse
 import com.dnd.sixth.lmsservice.databinding.ActivityLoginBinding
 import com.dnd.sixth.lmsservice.presentation.base.BaseActivity
 import com.dnd.sixth.lmsservice.presentation.login.signup.SignUpActivity
+import com.dnd.sixth.lmsservice.presentation.main.MainActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import org.koin.android.ext.android.inject
 
@@ -50,10 +51,10 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
             loginBtn.setOnClickListener{
                 //login() 로그인 요청
                 login()
+                var intent = Intent(this@LoginActivity, MainActivity::class.java)
+                startActivity(intent)
 
-                //로그인 성공 시 데이터 저장
 
-                var abc = 1
             }
 
 
@@ -90,6 +91,8 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
                     viewModel.saveLoginInfo(userInfo)
                 }
                 Log.d("login", "SuccessGetUserInfo")
+
+
 
             }
 
