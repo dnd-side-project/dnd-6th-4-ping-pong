@@ -1,6 +1,6 @@
 package com.dnd.sixth.lmsservice.di.modules
 
-import androidx.lifecycle.ViewModelProvider
+
 import com.dnd.sixth.lmsservice.presentation.comment.CommentViewModel
 import com.dnd.sixth.lmsservice.presentation.comment.check.CheckCommentViewModel
 import com.dnd.sixth.lmsservice.presentation.feedback.StartFeedBackViewModel
@@ -52,7 +52,7 @@ val viewModelModules = module {
         ScheduleAddViewModel()
     }
     viewModel {
-        ClassProgressViewModel()
+        ClassProgressViewModel(get(),get())
     }
     viewModel {
         StartFeedBackViewModel()
