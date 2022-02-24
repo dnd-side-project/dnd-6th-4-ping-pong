@@ -8,6 +8,8 @@ import com.dnd.sixth.lmsservice.presentation.base.BaseViewModel
 import com.dnd.sixth.lmsservice.presentation.extensions.onIO
 import com.dnd.sixth.lmsservice.presentation.utility.SAVED_NAME_KEY
 import com.dnd.sixth.lmsservice.presentation.utility.SAVED_UID_KEY
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class ConfigViewModel(
     private val changeUserNameUseCase: ChangeUserNameUseCase,
@@ -22,12 +24,10 @@ class ConfigViewModel(
         val uid = preferenceManager.getInt(SAVED_UID_KEY) // 유저의 Uid
         var isChanged = false // 닉네임이 변경되었는지에 대한 값을 가집니다.
 
-        onIO {
+        withContext(Dispatchers.IO) {
             if(userName.value != currentName) {
-                val changedCount = changeUserNameUseCase(uid, currentName) // 닉네임 변경시, 데이터를 변경한 개수를 반환합니다.
-                if(changedCount > 0) { // 닉네임이 변경되었다면
-                    isChanged = true
-                }
+                val changedCount = changeUserNameUseCase(uid, userName.value!!) // 닉네임 변경시, 데이터를 변경한 개수를 반환합니다.
+                isChanged = changedCount > 0 // 닉네임이 변경되었는지 판단합니다.
             }
         }
 

@@ -5,7 +5,7 @@ import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.dnd.sixth.lmsservice.domain.entity.DailyEntity
-import com.dnd.sixth.lmsservice.domain.useCase.dailyclass.CreateDailyClassUseCase
+import com.dnd.sixth.lmsservice.domain.usecase.dailyclass.CreateDailyClassUseCase
 import com.dnd.sixth.lmsservice.presentation.base.BaseViewModel
 import com.dnd.sixth.lmsservice.presentation.extensions.onIO
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.add.push.type.PushTime

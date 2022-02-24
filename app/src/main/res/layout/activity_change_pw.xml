@@ -81,6 +81,7 @@
                     android:hint="**********"
                     android:imeOptions="actionDone"
                     android:inputType="textPassword"
+                    android:text="@={viewModel.newPassword}"
                     android:maxLength="20"
                     android:maxLines="1"
                     android:paddingHorizontal="12dp"

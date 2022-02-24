@@ -32,10 +32,6 @@ class PushActivity : BaseActivity<ActivityPushBinding, PushViewModel>(),
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-
-    }
 
     override fun onClick(v: View?) {
 

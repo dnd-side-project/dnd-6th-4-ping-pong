@@ -8,9 +8,9 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class UserRemoteDataSourceImpl(private val userApi: UserApi) : UserRemoteDataSource {
-    override suspend fun changeUserName(uid: Number, changeName: String): Int =
+    override suspend fun changeUserName(uid: Number, newName: String): Int =
         suspendCancellableCoroutine { cont ->
-            val requestCall = userApi.api.changeUserName(uid, changeName)
+            val requestCall = userApi.api.changeUserName(uid, newName)
             requestCall.enqueue(object: Callback<Int> {
                 override fun onResponse(call: Call<Int>, response: Response<Int>) {
                     if(response.isSuccessful) {
@@ -19,12 +19,34 @@ class UserRemoteDataSourceImpl(private val userApi: UserApi) : UserRemoteDataSou
                     } else {
                         Log.d("dddd", response.message().toString())
                         Log.d("dddd", response.code().toString())
-                        cont.resumeWith(Result.failure(Exception("Change User Name Fail Exception")))
+                        cont.resumeWith(Result.failure(Exception("ChangeFailException")))
                     }
                 }
 
                 override fun onFailure(call: Call<Int>, t: Throwable) {
-                    cont.resumeWith(Result.failure(Exception("Change User Name Fail Exception")))
+                    cont.resumeWith(Result.failure(Exception("ChangeFailException")))
+                }
+            })
+        }
+
+
+    override suspend fun changePassword(uid: Number, newPassword: String): Int =
+        suspendCancellableCoroutine { cont ->
+            val requestCall = userApi.api.changePassword(uid, newPassword)
+            requestCall.enqueue(object: Callback<Int> {
+                override fun onResponse(call: Call<Int>, response: Response<Int>) {
+                    if(response.isSuccessful) {
+                        val changeCount = response.body() as Int
+                        cont.resumeWith(Result.success(changeCount))
+                    } else {
+                        Log.d("dddd", response.message().toString())
+                        Log.d("dddd", response.code().toString())
+                        cont.resumeWith(Result.failure(Exception("ChangeFailException")))
+                    }
+                }
+
+                override fun onFailure(call: Call<Int>, t: Throwable) {
+                    cont.resumeWith(Result.failure(Exception("ChangeFailException")))
                 }
             })
         }

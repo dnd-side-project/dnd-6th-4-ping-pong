@@ -9,6 +9,10 @@ import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.databinding.ActivityChangePwBinding
 import com.dnd.sixth.lmsservice.presentation.base.BaseActivity
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.config.profile.password.method.AsteriskPasswordTransformationMethod
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.regex.Pattern
 
@@ -70,7 +74,18 @@ class ChangePWActivity : BaseActivity<ActivityChangePwBinding, PasswordViewModel
 
         when (v?.id) {
             R.id.done_btn -> {
-                finish()
+                CoroutineScope(Dispatchers.IO).launch {
+                    // 비밀번호를 변경합니다.
+                    val isChanged = viewModel.changePassword()
+                    withContext(Dispatchers.Main) {
+                        if (isChanged) {
+                            showSnackBar("비밀번호를 변경했어요!")
+                            finish()
+                        } else {
+                            showSnackBar("비밀번호 변경에 실패했어요!")
+                        }
+                    }
+                }
             }
         }
     }

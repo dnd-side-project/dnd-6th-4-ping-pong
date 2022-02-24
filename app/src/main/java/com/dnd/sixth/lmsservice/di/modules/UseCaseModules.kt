@@ -8,6 +8,7 @@ import com.dnd.sixth.lmsservice.domain.usecase.subject.CreateSubjectUseCase
 import com.dnd.sixth.lmsservice.domain.usecase.subject.DeleteSubjectUseCase
 import com.dnd.sixth.lmsservice.domain.usecase.subject.GetGeneralSubjectListUseCase
 import com.dnd.sixth.lmsservice.domain.usecase.subject.UpdateSubjectUseCase
+import com.dnd.sixth.lmsservice.domain.usecase.user.ChangePasswordUseCase
 import com.dnd.sixth.lmsservice.domain.usecase.user.ChangeUserNameUseCase
 import org.koin.dsl.module
 
@@ -46,5 +47,8 @@ val useCaseModules = module {
     /* User */
     factory {
         ChangeUserNameUseCase(get())
+    }
+    factory {
+        ChangePasswordUseCase(get())
     }
 }

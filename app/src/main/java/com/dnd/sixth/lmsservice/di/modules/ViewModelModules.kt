@@ -88,7 +88,7 @@ val viewModelModules = module {
         InfoViewModel()
     }
     viewModel {
-        PasswordViewModel()
+        PasswordViewModel(get(), get())
     }
     viewModel {
         SubjectEditViewModel(get(), get())
