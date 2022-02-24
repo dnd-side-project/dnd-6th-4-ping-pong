@@ -1,22 +1,20 @@
-package com.dnd.sixth.lmsservice.data.repository.dailyclass.datasource.remote
+package com.dnd.sixth.lmsservice.data.repository.dailyclasstimelist.datasource.remote
 
 import android.annotation.SuppressLint
 import android.util.Log
 import com.dnd.sixth.lmsservice.BuildConfig
 import kotlinx.coroutines.suspendCancellableCoroutine
 import com.dnd.sixth.lmsservice.data.model.dailyclass.DailyClassGetModel
-import com.dnd.sixth.lmsservice.data.model.subject.SubjectModel
 import com.dnd.sixth.lmsservice.data.network.api.DailyClassApi
 import com.dnd.sixth.lmsservice.data.repository.emitter.RemoteErrorEmitter
 import com.dnd.sixth.lmsservice.domain.entity.DailyClassEntity
-import kotlinx.coroutines.suspendCancellableCoroutine
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import kotlin.coroutines.resumeWithException
 
-class DailyClassRemoteDataSourceImpl(private val dailyClassApi: DailyClassApi) :
-    DailyClassRemoteDataSource {
+class DailyClassTimeLineTimeLineRemoteDataSourceImpl(private val dailyClassApi: DailyClassApi) :
+    DailyClassTimeLineRemoteDataSource {
 
     val TAG = "DailyClassRemoteDataSourceImpl"
 

@@ -2,7 +2,7 @@ package com.dnd.sixth.lmsservice.domain.repository
 
 import com.dnd.sixth.lmsservice.domain.entity.DailyClassEntity
 
-interface DailyClassRepository {
+interface DailyClassTimeLineRepository {
 
     /*
     *  DailyClassEntity 수업 리스트 가져오기

@@ -1,16 +1,14 @@
 package com.dnd.sixth.lmsservice.domain.useCase
 
 import com.dnd.sixth.lmsservice.domain.entity.DailyClassEntity
-import com.dnd.sixth.lmsservice.domain.entity.SubjectEntity
-import com.dnd.sixth.lmsservice.domain.repository.DailyClassRepository
-import com.dnd.sixth.lmsservice.domain.repository.SubjectRepository
+import com.dnd.sixth.lmsservice.domain.repository.DailyClassTimeLineRepository
 
 /*
 *  타임라인 같은 경우 해당 과목의 수업(DailyClass)리스트를 가져오는 Usecase
 *  invoke(@param) id : subjectID
 * */
-class GetDailyClassUseCase (private val dailyClassRepository: DailyClassRepository) {
+class GetDailyClassUseCase (private val dailyClassTimeLineRepository: DailyClassTimeLineRepository) {
     suspend operator fun invoke(subjectId: Int): List<DailyClassEntity>? {
-        return dailyClassRepository.getDailyClassList(subjectId)
+        return dailyClassTimeLineRepository.getDailyClassList(subjectId)
     }
 }
