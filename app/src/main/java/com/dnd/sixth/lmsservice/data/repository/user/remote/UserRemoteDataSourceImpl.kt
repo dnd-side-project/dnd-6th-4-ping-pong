@@ -1,6 +1,5 @@
 package com.dnd.sixth.lmsservice.data.repository.user.remote
 
-import android.util.Log
 import com.dnd.sixth.lmsservice.data.network.api.UserApi
 import kotlinx.coroutines.suspendCancellableCoroutine
 import retrofit2.Call
@@ -17,8 +16,6 @@ class UserRemoteDataSourceImpl(private val userApi: UserApi) : UserRemoteDataSou
                         val changeCount = response.body() as Int
                         cont.resumeWith(Result.success(changeCount))
                     } else {
-                        Log.d("dddd", response.message().toString())
-                        Log.d("dddd", response.code().toString())
                         cont.resumeWith(Result.failure(Exception("ChangeFailException")))
                     }
                 }
@@ -39,14 +36,32 @@ class UserRemoteDataSourceImpl(private val userApi: UserApi) : UserRemoteDataSou
                         val changeCount = response.body() as Int
                         cont.resumeWith(Result.success(changeCount))
                     } else {
-                        Log.d("dddd", response.message().toString())
-                        Log.d("dddd", response.code().toString())
                         cont.resumeWith(Result.failure(Exception("ChangeFailException")))
                     }
                 }
 
                 override fun onFailure(call: Call<Int>, t: Throwable) {
                     cont.resumeWith(Result.failure(Exception("ChangeFailException")))
+                }
+            })
+        }
+
+
+    override suspend fun saveContactTime(uid: Number, contactTime: String): Int =
+        suspendCancellableCoroutine { cont ->
+            val requestCall = userApi.api.saveContactTime(uid, contactTime)
+            requestCall.enqueue(object: Callback<Int> {
+                override fun onResponse(call: Call<Int>, response: Response<Int>) {
+                    if(response.isSuccessful) {
+                        val changeCount = response.body() as Int
+                        cont.resumeWith(Result.success(changeCount))
+                    } else {
+                        cont.resumeWith(Result.failure(Exception("SaveFailException")))
+                    }
+                }
+
+                override fun onFailure(call: Call<Int>, t: Throwable) {
+                    cont.resumeWith(Result.failure(Exception("SaveFailException")))
                 }
             })
         }

@@ -23,6 +23,6 @@ val repositoryModules = module {
         DailyClassRepositoryImpl(get(), get())
     }
     single<UserRepository> {
-        UserRepositoryImpl(get())
+        UserRepositoryImpl(get(), get())
     }
 }

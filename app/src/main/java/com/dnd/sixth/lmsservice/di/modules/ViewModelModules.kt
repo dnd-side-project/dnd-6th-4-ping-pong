@@ -73,7 +73,7 @@ val viewModelModules = module {
         ConfigViewModel(get(), get())
     }
     viewModel {
-        ProfileViewModel()
+        ProfileViewModel(get(), get(), get(), get())
     }
     viewModel {
        PushViewModel()
