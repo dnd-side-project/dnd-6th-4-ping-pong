@@ -7,7 +7,7 @@ import com.dnd.sixth.lmsservice.data.repository.subject.SubjectRepositoryImpl
 import com.dnd.sixth.lmsservice.domain.repository.DailyClassTimeLineRepository
 
 import com.dnd.sixth.lmsservice.data.repository.dailyclass.DailyClassRepositoryImpl
-import com.dnd.sixth.lmsservice.data.repository.subject.SubjectRepositoryImpl
+
 import com.dnd.sixth.lmsservice.domain.repository.DailyClassRepository
 
 import com.dnd.sixth.lmsservice.domain.repository.SubjectRepository
@@ -25,11 +25,12 @@ val repositoryModules = module {
     }
 
 
-    single<DailyClassTimeLineRepository>{
-        DailyClassTimeLineTimeLineRepositoryImpl(get(),get())
+    single<DailyClassTimeLineRepository> {
+        DailyClassTimeLineTimeLineRepositoryImpl(get(), get())
+    }
 
     single<DailyClassRepository> {
         DailyClassRepositoryImpl(get(), get())
-
     }
+
 }
