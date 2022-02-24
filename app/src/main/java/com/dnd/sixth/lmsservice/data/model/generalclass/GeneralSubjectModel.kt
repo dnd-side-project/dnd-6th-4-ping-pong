@@ -25,6 +25,6 @@ data class GeneralSubjectModel(
     val studentName: String,
     val classId: Number, // 수업 Uid
     val userId: Number, // 학생 Uid
-    val profileUri: String, // 프로필 Uri
-    val isFeedbackChange: Boolean // 피드백 업데이트 유무
+    val profileUri: String? = null, // 프로필 Uri
+    val isFeedbackChange: Boolean = false // 피드백 업데이트 유무
 )

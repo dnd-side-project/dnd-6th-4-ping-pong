@@ -1,36 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="224dp">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <data>
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:maxHeight="224dp">
 
-        <RadioGroup
-            android:id="@+id/all_btn"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingHorizontal="16dp"
-            app:layout_constraintTop_toTopOf="parent">
+            android:orientation="vertical">
 
-            <com.google.android.material.radiobutton.MaterialRadioButton
-                android:id="@+id/radio_none"
+            <RadioGroup
+                android:id="@+id/student_category_radio_group"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:button="@null"
-                android:drawableRight="@drawable/ic_check"
-                android:text="전체보기"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <!-- 아래에 Programmatically 하게 학생 RadioButton을 더 추가해야함 -->
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/radio_all"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:button="@null"
+                    android:checked="true"
+                    android:drawableRight="@drawable/ic_checked"
+                    android:paddingHorizontal="16dp"
+                    android:text="전체보기"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!-- 아래에 Programmatically 하게 학생 RadioButton을 더 추가해야함 -->
 
 
-        </RadioGroup>
+            </RadioGroup>
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.core.widget.NestedScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

@@ -13,7 +13,11 @@ data class DailyEntity(
     val dailyFeedback: String? = null,
     val dailyComment: String? = null,
     val homework: String? = null,
-    val isChangeFeedback: Boolean? = null,
+    val isChangeFeedback: Boolean = false,
     val changeStartTime: String? = null,
     val difficulty: Int? = null
-): Serializable
+): Serializable {
+    companion object {
+        const val DATE_FORMAT = "yyyy-MM-dd HH-mm"
+    }
+}

@@ -35,7 +35,7 @@ fun GeneralSubjectEntity.toModel(): GeneralSubjectModel {
         this.classDayBit.toInt(),
         this.teacherName,
         this.studentName,
-        this.classId,
+        this.subjectId,
         this.userId,
         this.profileUri,
         this.isFeedbackChange

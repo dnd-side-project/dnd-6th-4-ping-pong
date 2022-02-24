@@ -7,21 +7,24 @@ import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.view.inputmethod.InputMethodManager
+import android.widget.RadioGroup
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.databinding.ActivityScheduleAddBinding
 import com.dnd.sixth.lmsservice.databinding.DialogPushTimePickerBinding
-import com.dnd.sixth.lmsservice.databinding.ItemStudentRadioButtonBinding
+import com.dnd.sixth.lmsservice.databinding.ItemStudentNameRadioButtonBinding
 import com.dnd.sixth.lmsservice.presentation.base.BaseActivity
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.CalendarFragment
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.add.push.PushTimePickerActivity
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.add.push.type.PushTime
 import com.dnd.sixth.lmsservice.presentation.utility.CustomInputFilter
 import com.dnd.sixth.lmsservice.presentation.utility.DateConverter
+import com.dnd.sixth.lmsservice.presentation.utility.UnitConverter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
+
 
 class ScheduleAddActivity : BaseActivity<ActivityScheduleAddBinding, ScheduleAddViewModel>(),
     View.OnClickListener {
@@ -117,7 +120,7 @@ class ScheduleAddActivity : BaseActivity<ActivityScheduleAddBinding, ScheduleAdd
             }
 
             // User 이름을 선택할 수 있는 RadioButton View를 추가한다.
-            addUserRadioButtonViews()
+            addStudentRadioButtonViews()
         }
     }
 
@@ -127,17 +130,31 @@ class ScheduleAddActivity : BaseActivity<ActivityScheduleAddBinding, ScheduleAdd
             intent.getSerializableExtra(CalendarFragment.INTENT_SUBJECT_ID_TO_USER_NAME_MAP_KEY) as HashMap<Int, String>
     }
 
-    private fun addUserRadioButtonViews() {
+    // 학생 선택 라디오버튼 추가
+    private fun addStudentRadioButtonViews() {
         viewModel.subjectIdUserNameMap.toMap().forEach { (subjectId, userName) ->
-            val userRadioButton = ItemStudentRadioButtonBinding.inflate(layoutInflater).apply {
-                userCheckBox.text = userName
-                userCheckBox.setOnCheckedChangeListener { _, isChecked ->
-                    if (isChecked) {
-                        viewModel.subjectId.value = subjectId
+
+            // 동적으로 라디오버튼을 생성하여 라디오그룹에 추가합니다.
+            val userRadioButton = ItemStudentNameRadioButtonBinding.inflate(layoutInflater).run {
+                userRadioButton.apply {
+                    text = userName
+                    id = subjectId
+                    setOnCheckedChangeListener { _, isChecked ->
+                        if (isChecked) {
+                            viewModel.subjectId.value = subjectId
+                        }
                     }
                 }
             }
-            binding.categoryContainer.addView(userRadioButton.userCheckBox)
+            val params: RadioGroup.LayoutParams =
+                RadioGroup.LayoutParams(
+                    RadioGroup.LayoutParams.WRAP_CONTENT,
+                    UnitConverter.convertDPtoPX(this, 30)
+                ).apply {
+                    setMargins(0, 0, UnitConverter.convertDPtoPX(this@ScheduleAddActivity, 6), 0)
+                }
+            binding.studentRadioGroup.addView(userRadioButton, params)
+
         }
     }
 

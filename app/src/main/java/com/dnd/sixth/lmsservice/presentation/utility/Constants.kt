@@ -17,7 +17,5 @@ const val ROLE_STUDENT = 0
 const val ROLE_TEACHER = 1
 
 
-
-
 // 공통 상수
 const val COLOR_COUNT = 7

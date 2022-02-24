@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <com.google.android.material.radiobutton.MaterialRadioButton
+        android:id="@+id/student_radio_button"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:button="@null"
+        tools:text="백지성, 고3"
+        android:paddingHorizontal="16dp"
+        app:layout_constraintTop_toTopOf="parent" />
+</layout>

@@ -65,11 +65,11 @@ class PushTimePickerActivity : BaseActivity<ActivityPushTimePickerBinding, PushT
 
         // 우측에 체크 모양
         if (viewModel.pushTime != null) {
-            val checkIcon = getDrawable(R.drawable.ic_check)
+            val checkIcon = getDrawable(R.drawable.ic_checked)
 
             // 전달 받은 푸시 타임 라디오버튼에 체크 아이콘 표시
             when(viewModel.pushTime) {
-                PushTime.NONE -> binding.radioNone.setCompoundDrawablesWithIntrinsicBounds(null, null, checkIcon, null)
+                PushTime.NONE -> binding.radioAll.setCompoundDrawablesWithIntrinsicBounds(null, null, checkIcon, null)
                 PushTime.TEN -> binding.radioTen.setCompoundDrawablesWithIntrinsicBounds(null, null, checkIcon, null)
                 PushTime.THIRTY -> binding.radioThirty.setCompoundDrawablesWithIntrinsicBounds(null, null, checkIcon, null)
                 PushTime.ONE_HOUR -> binding.radioOneHour.setCompoundDrawablesWithIntrinsicBounds(null, null, checkIcon, null)
