@@ -24,7 +24,7 @@ data class DailyModel(
     @SerializedName("homework")
     val homework: String? = null,
     @SerializedName("change_feedback")
-    val isChangeFeedback: Boolean? = null,
+    val isChangeFeedback: Boolean = false,
     @SerializedName("change_start_time")
     val changeStartTime: String? = null,
     @SerializedName("difficulty")

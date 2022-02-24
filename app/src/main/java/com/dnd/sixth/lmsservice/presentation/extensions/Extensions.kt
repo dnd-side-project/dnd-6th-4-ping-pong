@@ -1,15 +1,22 @@
 package com.dnd.sixth.lmsservice.presentation.extensions
 
+import android.annotation.SuppressLint
 import android.content.res.ColorStateList
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dnd.sixth.lmsservice.App
+import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.data.network.base.NetworkCommons
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.custom.DateColor
+import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.custom.decorator.MySelectorDecorator
+import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.custom.decorator.ScheduleDecorator
+import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.custom.decorator.TodayDecorator
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.subject.type.DayOfWeek
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -34,7 +41,7 @@ fun visibleViewListIfContain(dayOfWeekBit: String, views: List<View>) {
 
     val dayOfWeekCharList = dayOfWeekBit.toCharArray() // 전달받은 요일(dayOfWeekBit)
 
-    for (i in dayOfWeekCharList.size downTo 0) {
+    for (i in dayOfWeekCharList.size-1 downTo 0) {
         if (dayOfWeekCharList[i] == containDate) {
             views[i].visibility = View.VISIBLE
         } else {
@@ -51,11 +58,11 @@ fun applyDowColor(color: Int, views: List<TextView>) {
                 dowView.backgroundTintList =
                     ColorStateList.valueOf(
                         ContextCompat.getColor(
-                            App.instance.context, DateColor.RED.getTextColorResId()
+                            App.instance.context, DateColor.RED.getBgColorResId()
                         )
                     )
                 dowView.setTextColor(ContextCompat.getColor(
-                    App.instance.context, DateColor.RED.getBgColorResId()
+                    App.instance.context, DateColor.RED.getTextColorResId()
                 ))
             }
         }
@@ -65,11 +72,11 @@ fun applyDowColor(color: Int, views: List<TextView>) {
                 dowView.backgroundTintList =
                     ColorStateList.valueOf(
                         ContextCompat.getColor(
-                            App.instance.context, DateColor.ORANGE.getTextColorResId()
+                            App.instance.context, DateColor.ORANGE.getBgColorResId()
                         )
                     )
                 dowView.setTextColor(ContextCompat.getColor(
-                    App.instance.context, DateColor.ORANGE.getBgColorResId()
+                    App.instance.context, DateColor.ORANGE.getTextColorResId()
                 ))
             }
         }
@@ -79,11 +86,11 @@ fun applyDowColor(color: Int, views: List<TextView>) {
                 dowView.backgroundTintList =
                     ColorStateList.valueOf(
                         ContextCompat.getColor(
-                            App.instance.context, DateColor.YELLOW.getTextColorResId()
+                            App.instance.context, DateColor.YELLOW.getBgColorResId()
                         )
                     )
                 dowView.setTextColor(ContextCompat.getColor(
-                    App.instance.context, DateColor.YELLOW.getBgColorResId()
+                    App.instance.context, DateColor.YELLOW.getTextColorResId()
                 ))
             }
         }
@@ -93,11 +100,11 @@ fun applyDowColor(color: Int, views: List<TextView>) {
                 dowView.backgroundTintList =
                     ColorStateList.valueOf(
                         ContextCompat.getColor(
-                            App.instance.context, DateColor.GREEN.getTextColorResId()
+                            App.instance.context, DateColor.GREEN.getBgColorResId()
                         )
                     )
                 dowView.setTextColor(ContextCompat.getColor(
-                    App.instance.context, DateColor.GREEN.getBgColorResId()
+                    App.instance.context, DateColor.GREEN.getTextColorResId()
                 ))
             }
         }
@@ -107,11 +114,11 @@ fun applyDowColor(color: Int, views: List<TextView>) {
                 dowView.backgroundTintList =
                     ColorStateList.valueOf(
                         ContextCompat.getColor(
-                            App.instance.context, DateColor.BLUE.getTextColorResId()
+                            App.instance.context, DateColor.BLUE.getBgColorResId()
                         )
                     )
                 dowView.setTextColor(ContextCompat.getColor(
-                    App.instance.context, DateColor.BLUE.getBgColorResId()
+                    App.instance.context, DateColor.BLUE.getTextColorResId()
                 ))
             }
         }
@@ -121,11 +128,11 @@ fun applyDowColor(color: Int, views: List<TextView>) {
                 dowView.backgroundTintList =
                     ColorStateList.valueOf(
                         ContextCompat.getColor(
-                            App.instance.context, DateColor.DARK_BLUE.getTextColorResId()
+                            App.instance.context, DateColor.DARK_BLUE.getBgColorResId()
                         )
                     )
                 dowView.setTextColor(ContextCompat.getColor(
-                    App.instance.context, DateColor.DARK_BLUE.getBgColorResId()
+                    App.instance.context, DateColor.DARK_BLUE.getTextColorResId()
                 ))
             }
         }
@@ -135,11 +142,11 @@ fun applyDowColor(color: Int, views: List<TextView>) {
                 dowView.backgroundTintList =
                     ColorStateList.valueOf(
                         ContextCompat.getColor(
-                            App.instance.context, DateColor.PURPLE.getTextColorResId()
+                            App.instance.context, DateColor.PURPLE.getBgColorResId()
                         )
                     )
                 dowView.setTextColor(ContextCompat.getColor(
-                    App.instance.context, DateColor.PURPLE.getBgColorResId()
+                    App.instance.context, DateColor.PURPLE.getTextColorResId()
                 ))
             }
         }
@@ -230,3 +237,14 @@ inline fun ViewModel.onIO(crossinline body: suspend CoroutineScope.() -> Unit) =
 inline fun ViewModel.onDefault(
     crossinline body: suspend CoroutineScope.() -> Unit
 ) = viewModelScope.launch(Dispatchers.Default) { body(this) }
+
+
+// 캘린더뷰의 점을 찍는 데코레이터를 모두 제거하고 기본 데코레이터만 추가합니다.
+@SuppressLint("ResourceType")
+fun MaterialCalendarView.removeAllDotDecorators() {
+    this.removeDecorators()
+    addDecorators(
+        MySelectorDecorator(R.drawable.bg_calendar_selected_date),
+        TodayDecorator(R.color.secondMainColor),
+    )
+}

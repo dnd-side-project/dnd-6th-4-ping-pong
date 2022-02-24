@@ -21,6 +21,7 @@ class DailyClassRemoteDataSourceImpl(private val dailyApi: DailyApi) : DailyClas
         dailyModel: DailyModel
     ): DailyModel? = suspendCancellableCoroutine { cont ->
         val requestCall = dailyApi.api.createDaily(dailyModel)
+
         requestCall.enqueue(object : Callback<DailyModel> {
             @SuppressLint("LongLogTag")
             override fun onResponse(call: Call<DailyModel>, response: Response<DailyModel>) {
@@ -36,7 +37,7 @@ class DailyClassRemoteDataSourceImpl(private val dailyApi: DailyApi) : DailyClas
                     // 코루틴 재게
                     cont.resumeWith(Result.success(dailyModel))
                 } else { // 서버로부터 에러 반환
-                    Log.e(TAG, response.code().toString())
+                    Log.e(TAG, response.message().toString())
                 }
             }
 
@@ -54,6 +55,7 @@ class DailyClassRemoteDataSourceImpl(private val dailyApi: DailyApi) : DailyClas
         userId: Int
     ): List<DailyModel>? = suspendCancellableCoroutine { cont ->
         val requestCall = dailyApi.api.getDailyClassList(userId)
+
         requestCall.enqueue(object : Callback<List<DailyModel>> {
             @SuppressLint("LongLogTag")
             override fun onResponse(
@@ -90,6 +92,7 @@ class DailyClassRemoteDataSourceImpl(private val dailyApi: DailyApi) : DailyClas
         dailyId: Int
     ): DailyModel? = suspendCancellableCoroutine { cont ->
         val requestCall = dailyApi.api.deleteDaily(dailyId)
+
         requestCall.enqueue(object : Callback<DailyModel> {
             @SuppressLint("LongLogTag")
             override fun onResponse(call: Call<DailyModel>, response: Response<DailyModel>) {
@@ -123,6 +126,7 @@ class DailyClassRemoteDataSourceImpl(private val dailyApi: DailyApi) : DailyClas
         dailyModel: DailyModel
     ): DailyModel? = suspendCancellableCoroutine { cont ->
         val requestCall = dailyApi.api.updateDaily(dailyModel)
+
         requestCall.enqueue(object : Callback<DailyModel> {
             @SuppressLint("LongLogTag")
             override fun onResponse(call: Call<DailyModel>, response: Response<DailyModel>) {

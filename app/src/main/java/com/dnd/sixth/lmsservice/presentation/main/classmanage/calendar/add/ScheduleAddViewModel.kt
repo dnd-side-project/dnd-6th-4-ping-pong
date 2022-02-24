@@ -1,15 +1,12 @@
 package com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.add
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.dnd.sixth.lmsservice.domain.entity.DailyEntity
-import com.dnd.sixth.lmsservice.domain.entity.SubjectEntity
 import com.dnd.sixth.lmsservice.domain.useCase.dailyclass.CreateDailyClassUseCase
 import com.dnd.sixth.lmsservice.presentation.base.BaseViewModel
-import com.dnd.sixth.lmsservice.presentation.extensions.isAllFalse
 import com.dnd.sixth.lmsservice.presentation.extensions.onIO
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.add.push.type.PushTime
 import java.text.SimpleDateFormat
@@ -27,7 +24,7 @@ class ScheduleAddViewModel(
     val pickedDate = MutableLiveData<Date>(null)
 
     lateinit var subjectIdUserNameMap: HashMap<Int, String>
-    val subjectId = MutableLiveData<Int?>(0)
+    val subjectId = MutableLiveData<Int?>(null)
     val place = MutableLiveData<String?>(null) // 장소
     val chapter = MutableLiveData<String?>(null) // 챕터
     val memo = MutableLiveData<String?>(null) // 메모
@@ -86,15 +83,16 @@ class ScheduleAddViewModel(
         val isNullPlaceNull: Boolean = place.value?.isBlank() ?: true
         val isNullChapterBlank: Boolean = chapter.value?.isBlank() ?: true
         val isNullPickedDate: Boolean = pickedDate.value == null
+        val isNullSubjectId: Boolean = (subjectId.value == null)
 
         // 확인 클릭 가능 여부 갱신
-        _isDoneClickable.value = (isNullPlaceNull.not() && isNullChapterBlank.not() && isNullPickedDate.not())
+        _isDoneClickable.value = (isNullPlaceNull.not() && isNullChapterBlank.not() && isNullPickedDate.not() && isNullSubjectId.not())
     }
 
     // 수업 생성
     @SuppressLint("SimpleDateFormat")
     fun createDailyClass(view: View) {
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd HH-mm")
+        val dateFormat = SimpleDateFormat(DailyEntity.DATE_FORMAT)
         onIO {
             val resultDailyEntity = createDailyClassUseCase(
                 DailyEntity(

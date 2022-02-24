@@ -27,12 +27,10 @@ import java.util.Calendar;
  */
 public class MySelectorDecorator implements DayViewDecorator {
 
-    CalendarViewModel viewModel;
     @IdRes int drawableResId;
 
-    public MySelectorDecorator(int drawableResId, CalendarViewModel viewModel) {
+    public MySelectorDecorator(int drawableResId) {
         this.drawableResId = drawableResId;
-        this.viewModel = viewModel;
     }
 
     @Override

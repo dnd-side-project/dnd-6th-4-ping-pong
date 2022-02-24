@@ -48,7 +48,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
-                    android:id="@+id/radio_none"
+                    android:id="@+id/radio_all"
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
                     android:button="@null"
@@ -61,7 +61,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@drawable/bg_divider"
-                    app:layout_constraintTop_toBottomOf="@+id/radio_none" />
+                    app:layout_constraintTop_toBottomOf="@+id/radio_all" />
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/radio_ten"

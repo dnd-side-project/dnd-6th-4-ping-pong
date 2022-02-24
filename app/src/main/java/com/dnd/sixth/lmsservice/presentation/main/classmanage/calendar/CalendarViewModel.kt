@@ -9,7 +9,7 @@ import com.dnd.sixth.lmsservice.domain.entity.DailyEntity
 import com.dnd.sixth.lmsservice.domain.useCase.dailyclass.GetDailyClassListUseCase
 import com.dnd.sixth.lmsservice.presentation.base.BaseViewModel
 import com.dnd.sixth.lmsservice.presentation.extensions.onIO
-import com.dnd.sixth.lmsservice.presentation.utility.SAVED_UID_KEY
+import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.custom.DateColor
 import java.util.*
 
 class CalendarViewModel(
@@ -27,16 +27,79 @@ class CalendarViewModel(
     val selectedDailyEntityList: LiveData<List<DailyEntity>> = _selectedDailyClassList
 
     // 캘린더에 보여줄 유저의 일일 수업 리스트
-    private val _dailyClassList = MutableLiveData<List<DailyEntity>?>()
-    private val dailyClassList: LiveData<List<DailyEntity>?> = _dailyClassList
+    private val _dailyClassList = MutableLiveData<List<DailyEntity>?>(
+    )
+    val dailyClassList: LiveData<List<DailyEntity>?> = _dailyClassList
+
+    // 유저가 선택한 카테고리
+    // (Subject Id 값을 전달받습니다.)
+    // 카테고리에 따라 CalendarView의 Dot을 필터링해서 보여줍니다.
+    val currentSubjectCategory = MutableLiveData<Int>(CalendarFragment.CATEGORY_ALL)
 
     init {
         onIO {
             // ViewModel 생성시 서버로부터 사용자의 일일 수업 리스트를 가져옵니다.
+            /*_dailyClassList.postValue(
+                getDailyClassListUseCase(preferenceManager.getInt(SAVED_UID_KEY)))*/
             _dailyClassList.postValue(
-                getDailyClassListUseCase(preferenceManager.getInt(SAVED_UID_KEY)))
+                listOf<DailyEntity>(
+                    DailyEntity(
+                        1,
+                        1,
+                        "2022-02-24 03:50",
+                        "",
+                        "",
+                        "",
+                        "",
+                    ),
+                    DailyEntity(
+                        1,
+                        1,
+                        "2022-02-22 03:50",
+                        "",
+                        "",
+                        "",
+                        "",
+                    ),
+                    DailyEntity(
+                        2,
+                        1,
+                        "2022-02-26 03:50",
+                        "",
+                        "",
+                        "",
+                        "",
+                    ),
+                    DailyEntity(
+                        3,
+                        1,
+                        "2022-02-25 03:50",
+                        "",
+                        "",
+                        "",
+                        "",
+                    ),
+                )
+            )
         }
     }
+
+
+    /*
+    *  파라미터로 입력받은 subjectId의 DateColor를 반환합니다.
+    * */
+    fun getDateColorOf(findSubjectId: Int, dateColorMap: Map<Int, DateColor>): DateColor? {
+        var foundDateColor: DateColor? = null
+        dateColorMap.forEach { (subjectId, dateColor) ->
+            if (subjectId == findSubjectId) {
+                foundDateColor = dateColor
+                return@forEach
+            }
+        }
+
+        return foundDateColor
+    }
+
 
     private var currentDate: Date = Date()
     var isDone = true // 캘린더 관련 데이터 업데이트 완료 여부
@@ -85,5 +148,11 @@ class CalendarViewModel(
 
     // 선택된 날짜의 수업 개수를 가져온다.
     fun getSelectedClassCount() = _selectedDailyClassList.value?.size ?: 0
+
+    // SubjectId에 해당하는 수업들만 가져옵니다.
+    fun getDailyClassesById(subjectId: Int) =
+        _dailyClassList.value?.filter {
+            it.subjectId == subjectId
+        }
 
 }

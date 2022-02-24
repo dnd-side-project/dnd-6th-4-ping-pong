@@ -1,6 +1,5 @@
 package com.dnd.sixth.lmsservice.domain.entity
 
-import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 /*
@@ -16,8 +15,8 @@ data class GeneralSubjectEntity(
     val classDayBit: String, // 수업 요일 비트형태 'ex) 1000011'
     val teacherName: String,
     val studentName: String,
-    val classId: Number, // 수업 Uid
+    val subjectId: Number, // 수업 Uid
     val userId: Number, // 학생 Uid
-    val profileUri: String, // 프로필 Uri
-    val isFeedbackChange: Boolean // 피드백 업데이트 유무
-): Serializable
+    val profileUri: String? = null, // 프로필 Uri
+    val isFeedbackChange: Boolean = false // 피드백 업데이트 유무
+) : Serializable

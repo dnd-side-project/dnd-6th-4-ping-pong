@@ -16,7 +16,7 @@ class PushTimeViewModel: BaseViewModel() {
     fun setPushTime(view: View) {
         if(view is RadioButton) {
             when(view.id) {
-                R.id.radio_none -> pushTime = PushTime.NONE
+                R.id.radio_all -> pushTime = PushTime.NONE
                 R.id.radio_ten -> pushTime = PushTime.TEN
                 R.id.radio_thirty -> pushTime = PushTime.THIRTY
                 R.id.radio_one_hour -> pushTime = PushTime.ONE_HOUR

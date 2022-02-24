@@ -87,7 +87,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/category_text_view">
 
                     <RadioGroup
-                        android:id="@+id/category_container"
+                        android:id="@+id/student_radio_group"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
