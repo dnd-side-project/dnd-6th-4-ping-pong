@@ -98,7 +98,7 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding, CalendarViewModel
         val preferenceManager = PreferenceManager(requireContext())
         val role = preferenceManager.getInt(SAVED_ROLE_KEY)
 
-        if (hostViewModel.generalSubjectDataList.value?.isNullOrEmpty() == true && role == ROLE_STUDENT) {
+        if (hostViewModel.generalSubjectDataList.value?.isNullOrEmpty() == true || role == ROLE_STUDENT) {
             binding.scheduleAddFab.visibility = View.GONE
         } else {
             binding.scheduleAddFab.visibility = View.VISIBLE
