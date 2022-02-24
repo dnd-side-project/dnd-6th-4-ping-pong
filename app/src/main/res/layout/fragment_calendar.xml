@@ -62,6 +62,7 @@
                     app:layout_constraintTop_toTopOf="@+id/month_spinner">
 
                     <TextView
+                        android:id="@+id/category_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="전체보기"

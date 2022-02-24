@@ -72,7 +72,9 @@ class SubjectCreateActivity : BaseActivity<ActivityCreateSubjectBinding, CreateS
                 doneBtn.isEnabled = isClickable // 완료버튼 활성화
             }
 
-            // '수업 생성 결과 Entity' 관찰
+            /* SubjectEntity를 정상적으로 서버에 저장시
+            * 해당 Entity를 반환하면서 Activity를 종료합니다.
+            *  */
             viewModel?.resultSubject?.observe(this@SubjectCreateActivity) { resultSubjectEntity ->
                 if (resultSubjectEntity != null) { // 수업 생성 성공
 

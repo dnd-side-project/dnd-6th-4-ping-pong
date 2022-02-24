@@ -12,9 +12,11 @@ fun GeneralSubjectModel.toEntity(): GeneralSubjectEntity {
         "2022-02-23",
         this.teacherId,
         this.color,
+        // 수업 듣는 요일을 Binary 형태로 표현한 String (ex. 1110111)
+        // 8bit 데이터의 공백은 0으로 채웁니다.
+        String.format("%7s", Integer.toBinaryString(this.classDays.toInt())).replace("", "0"),
         this.teacherName,
         this.studentName,
-        this.classDayBit,
         this.classId,
         this.userId,
         this.profileUri,
@@ -30,10 +32,10 @@ fun GeneralSubjectEntity.toModel(): GeneralSubjectModel {
         "2022-02-23",
         this.teacherId,
         this.color,
+        this.classDayBit.toInt(),
         this.teacherName,
         this.studentName,
-        this.classDayBit,
-        this.classId,
+        this.subjectId,
         this.userId,
         this.profileUri,
         this.isFeedbackChange

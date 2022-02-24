@@ -7,19 +7,24 @@ import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.view.inputmethod.InputMethodManager
+import android.widget.RadioGroup
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.databinding.ActivityScheduleAddBinding
 import com.dnd.sixth.lmsservice.databinding.DialogPushTimePickerBinding
+import com.dnd.sixth.lmsservice.databinding.ItemStudentNameRadioButtonBinding
 import com.dnd.sixth.lmsservice.presentation.base.BaseActivity
+import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.CalendarFragment
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.add.push.PushTimePickerActivity
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.add.push.type.PushTime
 import com.dnd.sixth.lmsservice.presentation.utility.CustomInputFilter
 import com.dnd.sixth.lmsservice.presentation.utility.DateConverter
+import com.dnd.sixth.lmsservice.presentation.utility.UnitConverter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
+
 
 class ScheduleAddActivity : BaseActivity<ActivityScheduleAddBinding, ScheduleAddViewModel>(),
     View.OnClickListener {
@@ -45,6 +50,7 @@ class ScheduleAddActivity : BaseActivity<ActivityScheduleAddBinding, ScheduleAdd
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
             supportActionBar?.setDisplayShowTitleEnabled(false)
 
+            setUserMap() // Intent로 전달받은 과목, 유저이름 맵을 ViewModel 변수에 초기화합니다.
             setDateTimePicker() // DateTime Picker 설정
             setListener() // 리스너 설정
             setActivityLauncher() // 액티비티 런처 설정
@@ -55,7 +61,7 @@ class ScheduleAddActivity : BaseActivity<ActivityScheduleAddBinding, ScheduleAdd
             // 수업 회차 입력값이 변경됨을 감지
             viewModel?.classRound?.observe(this@ScheduleAddActivity) {
                 classRoundEditText.setSelection(classRoundEditText.length()) // 에딧 텍스트 커서 맨 뒤에 배치
-                if(it < 1) {
+                if (it < 1) {
                     viewModel?.setDefaultClassRound()
                 }
             }
@@ -71,6 +77,84 @@ class ScheduleAddActivity : BaseActivity<ActivityScheduleAddBinding, ScheduleAdd
                 notiTextView.isEnabled = true // 색상 변경을 위해 활성화 True
                 notiTextView.text = pushTime.timeText // 푸시 알림 텍스트뷰 갱신
             }
+
+
+            /* 완료버튼 활성화를 위한 Observing */
+            viewModel?.isDoneClickable?.observe(this@ScheduleAddActivity) { isClickable ->
+                doneBtn.isEnabled = isClickable
+            }
+
+            viewModel?.place?.observe(this@ScheduleAddActivity) {
+                viewModel?.setDoneClickable()
+            }
+
+            viewModel?.chapter?.observe(this@ScheduleAddActivity) {
+                viewModel?.setDoneClickable()
+            }
+
+            viewModel?.pickedDate?.observe(this@ScheduleAddActivity) {
+                viewModel?.setDoneClickable()
+            }
+
+
+            /* DailyEntity를 정상적으로 서버에 저장시
+            * 해당 Entity를 반환하면서 Activity를 종료합니다.
+            *  */
+            viewModel?.resultDaily?.observe(this@ScheduleAddActivity) { resultDailyEntity ->
+                if (resultDailyEntity != null) { // 수업 생성 성공
+
+                    // 생성한 수업의 SubjectEntity를 담는다.
+                    val resultIntent = Intent().putExtra(
+                        CalendarFragment.INTENT_CREATE_DAILY_ENTITY_KEY,
+                        resultDailyEntity
+                    )
+
+                    setResult(
+                        CalendarFragment.INTENT_CREATE_DAILY_ACTIVITY_CODE,
+                        resultIntent
+                    ) // 초대코드 Dialog를 보여주기 위한 결과 반환
+                    finish() //액티비티 종료
+                } else { // 수업 생성 실패
+                    showToast(getString(R.string.failed_create_subject)) // 실패 Toast 출력
+                }
+            }
+
+            // User 이름을 선택할 수 있는 RadioButton View를 추가한다.
+            addStudentRadioButtonViews()
+        }
+    }
+
+    // Intent로부터 전달받은 과목Id와 User이름 Map 설정
+    private fun setUserMap() {
+        viewModel.subjectIdUserNameMap =
+            intent.getSerializableExtra(CalendarFragment.INTENT_SUBJECT_ID_TO_USER_NAME_MAP_KEY) as HashMap<Int, String>
+    }
+
+    // 학생 선택 라디오버튼 추가
+    private fun addStudentRadioButtonViews() {
+        viewModel.subjectIdUserNameMap.toMap().forEach { (subjectId, userName) ->
+
+            // 동적으로 라디오버튼을 생성하여 라디오그룹에 추가합니다.
+            val userRadioButton = ItemStudentNameRadioButtonBinding.inflate(layoutInflater).run {
+                userRadioButton.apply {
+                    text = userName
+                    id = subjectId
+                    setOnCheckedChangeListener { _, isChecked ->
+                        if (isChecked) {
+                            viewModel.subjectId.value = subjectId
+                        }
+                    }
+                }
+            }
+            val params: RadioGroup.LayoutParams =
+                RadioGroup.LayoutParams(
+                    RadioGroup.LayoutParams.WRAP_CONTENT,
+                    UnitConverter.convertDPtoPX(this, 30)
+                ).apply {
+                    setMargins(0, 0, UnitConverter.convertDPtoPX(this@ScheduleAddActivity, 6), 0)
+                }
+            binding.studentRadioGroup.addView(userRadioButton, params)
+
         }
     }
 

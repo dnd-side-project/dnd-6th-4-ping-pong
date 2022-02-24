@@ -9,5 +9,5 @@ data class SubjectEntity(
     val classDate: String = "2022-02-23",
     val teacherId: Number,
     val color: Number,
-    val classDays: String // 수업이 포함된 요일들 비트화
+    val classDayBit: String // 수업이 포함된 요일들 비트화
 ) : Serializable

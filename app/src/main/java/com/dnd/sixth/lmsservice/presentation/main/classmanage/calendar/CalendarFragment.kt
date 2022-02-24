@@ -2,29 +2,36 @@ package com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.Color
 import android.util.Log
 import android.view.View
 import android.view.ViewTreeObserver
 import android.view.ViewTreeObserver.OnGlobalLayoutListener
 import android.widget.*
 import androidx.activity.OnBackPressedCallback
-import androidx.core.content.ContextCompat
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat.getDrawable
+import androidx.core.view.children
 import com.dnd.sixth.lmsservice.BuildConfig
 import com.dnd.sixth.lmsservice.R
+import com.dnd.sixth.lmsservice.data.preference.PreferenceManager
 import com.dnd.sixth.lmsservice.databinding.FragmentCalendarBinding
+import com.dnd.sixth.lmsservice.databinding.ItemSubjectCategoryRadioButtonBinding
+import com.dnd.sixth.lmsservice.databinding.LayoutStudentCategoryBottomSheetBinding
 import com.dnd.sixth.lmsservice.presentation.base.BaseFragment
+import com.dnd.sixth.lmsservice.presentation.extensions.removeAllDotDecorators
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.ClassManageViewModel
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.add.ScheduleAddActivity
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.custom.DateColor
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.custom.decorator.MySelectorDecorator
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.custom.decorator.ScheduleDecorator
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.custom.decorator.TodayDecorator
-import com.dnd.sixth.lmsservice.presentation.utility.DateConverter
+import com.dnd.sixth.lmsservice.presentation.utility.*
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.jaredrummler.materialspinner.MaterialSpinner
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.CalendarMode
+import kotlinx.android.synthetic.main.layout_student_category_bottom_sheet.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
@@ -41,6 +48,18 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding, CalendarViewModel
 
     private var categoryDialog: BottomSheetDialog? = null
     var viewTreeObserver: ViewTreeObserver? = null
+
+    private lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
+    private var colorDecorators = mutableListOf<ScheduleDecorator>()
+
+    companion object {
+        const val INTENT_CREATE_DAILY_ENTITY_KEY = "createDaily"
+        const val INTENT_SUBJECT_ID_TO_USER_NAME_MAP_KEY = "subjectIdToUserNameMap"
+
+        const val INTENT_CREATE_DAILY_ACTIVITY_CODE = 3000
+
+        const val CATEGORY_ALL = -1 // 전체보기 라디오 버튼의 ID
+    }
 
     // 최상위 ViewTreeObserver (높이를 구하기 위한 변수)
     // var viewTreeObserver: ViewTreeObserver? = null
@@ -64,7 +83,8 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding, CalendarViewModel
             makeStudentCategoryDialog() // 학생 선택 다이얼로그 생성
             setClickListener(this)
             setCalendar() // 캘린더 관련 설정
-
+            setActivityLauncher() // 액티비티 런처 설정
+            //setViewVisibility() // 유저 상태에 따라 View의 Visibillity 설정
         }
 
 
@@ -78,10 +98,53 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding, CalendarViewModel
             })
     }
 
+    // 유저 상태에 따라 View의 Visibillity 설정
+    private fun setViewVisibility() {
+        // 등록된 수업(Subject)가 없고,
+        // 학생 유저이면
+        // 추가버튼(Fab)을 안보이게 한다.
+        val preferenceManager = PreferenceManager(requireContext())
+        val role = preferenceManager.getInt(SAVED_ROLE_KEY)
+
+        if (hostViewModel.generalSubjectDataList.value?.isNullOrEmpty() == true || role == ROLE_STUDENT) {
+            binding.scheduleAddFab.visibility = View.GONE
+        } else {
+            binding.scheduleAddFab.visibility = View.VISIBLE
+        }
+    }
+
+    private fun setActivityLauncher() {
+        activityResultLauncher = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) { result ->
+            val data = result.data
+            if (result.resultCode == INTENT_CREATE_DAILY_ACTIVITY_CODE) {
+                val resultData = data?.getSerializableExtra(INTENT_CREATE_DAILY_ENTITY_KEY)
+
+            }
+        }
+    }
+
     private fun makeStudentCategoryDialog() {
-        val sheetView = layoutInflater.inflate(R.layout.layout_student_category_bottom_sheet, null)
+        val sheetView = LayoutStudentCategoryBottomSheetBinding.inflate(layoutInflater)
         categoryDialog = BottomSheetDialog(requireContext()).apply {
-            setContentView(sheetView)
+            setContentView(sheetView.root)
+            addCategoryRadioButtonViews(sheetView)
+        }
+
+        viewModel.currentSubjectCategory.observe(this) { selectedSubjectId ->
+            // 선택한 SubjectId만 보이도록 CalendarView를 필터링합니다.
+            filterCalendarDot(selectedSubjectId)
+
+            // Radio Button Group을 순회하면서 선택된 Radio Button에 Check아이콘 설정
+            categoryDialog?.student_category_radio_group?.children?.iterator()?.forEach {
+                val checkIcon = getDrawable(requireContext(), R.drawable.ic_checked)
+                if (it.id == selectedSubjectId){ // 선택된 RadioButton
+                    (it as RadioButton).setCompoundDrawablesWithIntrinsicBounds(null, null, checkIcon, null)
+                } else { // 선택되지 않은 RadioButton
+                    (it as RadioButton).setCompoundDrawablesWithIntrinsicBounds(null, null, null, null)
+                }
+            }
         }
     }
 
@@ -118,6 +181,55 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding, CalendarViewModel
 
     }
 
+
+    // 학생 선택 라디오버튼 추가
+    private fun addCategoryRadioButtonViews(categoryBinding: LayoutStudentCategoryBottomSheetBinding) {
+
+        // 전체보기 라디오버튼 리스너 설정
+        categoryBinding.radioAll.id = CATEGORY_ALL
+        categoryBinding.radioAll.setOnClickListener {
+            // 전체보기 라디오버튼이 선택이 안돼서 임의로 클릭리스너를 통해 지정
+            categoryBinding.studentCategoryRadioGroup.check(R.id.radio_all)
+            binding.categoryTextView.text = "전체보기"
+
+            // 현재 선택한 수업 카테고리의 RadioId 값으로 'CATEGORY_ALL'을 전달합니다.
+            viewModel.currentSubjectCategory.value = CATEGORY_ALL
+
+            categoryDialog?.dismiss()
+        }
+
+        // 전체보기를 제외한 동적으로 추가한 라디오버튼 설정
+        hostViewModel.generalSubjectDataList.value?.forEach { generalSubjectData ->
+
+            // 동적으로 라디오버튼을 생성하여 라디오그룹에 추가합니다.
+            val subjectRadioButton =
+                ItemSubjectCategoryRadioButtonBinding.inflate(layoutInflater).run {
+                    studentRadioButton.apply {
+                        val subjectName = generalSubjectData.subjectName
+                        val subjectId = generalSubjectData.subjectId.toInt()
+
+                        text = subjectName
+                        id = subjectId
+                        setOnClickListener {
+                            binding.categoryTextView.text = subjectName
+                        }
+                    }
+                }
+
+            // RadioGroup Child Width, Height을 설정합니다.
+            val params = RadioGroup.LayoutParams(
+                RadioGroup.LayoutParams.MATCH_PARENT,
+                UnitConverter.convertDPtoPX(requireContext(), 56)
+            )
+            categoryBinding.studentCategoryRadioGroup.addView(subjectRadioButton, params)
+        }
+
+        categoryBinding.studentCategoryRadioGroup.setOnCheckedChangeListener { group, checkedId ->
+            // 현재 선택한 수업 카테고리의 RadioId 값을 전달합니다.
+            viewModel.currentSubjectCategory.value = checkedId
+            categoryDialog?.dismiss()
+        }
+    }
 
     @SuppressLint("ResourceType")
     private fun setCalendar() {
@@ -159,32 +271,44 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding, CalendarViewModel
             // 한 달 단위로 캘린더를 보여줌
             //state().edit().setCalendarDisplayMode(CalendarMode.MONTHS).commit()
 
+            // 학생 일일 수업 리스트 변경시 캘린더에 Dot을 새로 Mark합니다.
+            viewModel.dailyClassList.observe(this@CalendarFragment) { dailyEntityList ->
+                val redDate = mutableListOf<CalendarDay>()
+                val orgDate = mutableListOf<CalendarDay>()
+                val yelDate = mutableListOf<CalendarDay>()
+                val grnDate = mutableListOf<CalendarDay>()
+                val bluDate = mutableListOf<CalendarDay>()
+                val dBluDate = mutableListOf<CalendarDay>()
+                val pplDate = mutableListOf<CalendarDay>()
 
-            val temp1 = Calendar.getInstance().apply {
-                set(2022, 1, 7)
+                // 해당 유저의 수업별로 컬러를 지정한 Map을 순회하며 CalendarDay 리스트를 채워나갑니다.
+                hostViewModel.getDateColorMap().forEach { (subjectId, dateColor) ->
+                    dailyEntityList?.forEach { dailyEntity ->
+                        if (dailyEntity.subjectId == subjectId) {
+                            when (dateColor) {
+                                DateColor.RED -> redDate.add(generateCalendar(dailyEntity.startTime))
+                                DateColor.ORANGE -> orgDate.add(generateCalendar(dailyEntity.startTime))
+                                DateColor.YELLOW -> yelDate.add(generateCalendar(dailyEntity.startTime))
+                                DateColor.GREEN -> grnDate.add(generateCalendar(dailyEntity.startTime))
+                                DateColor.BLUE -> bluDate.add(generateCalendar(dailyEntity.startTime))
+                                DateColor.DARK_BLUE -> dBluDate.add(generateCalendar(dailyEntity.startTime))
+                                DateColor.PURPLE -> pplDate.add(generateCalendar(dailyEntity.startTime))
+                            }
+                        }
+                    }
+                }
+
+                colorDecorators.add(ScheduleDecorator(redDate, DateColor.RED))
+                colorDecorators.add(ScheduleDecorator(orgDate, DateColor.ORANGE))
+                colorDecorators.add(ScheduleDecorator(yelDate, DateColor.YELLOW))
+                colorDecorators.add(ScheduleDecorator(grnDate, DateColor.GREEN))
+                colorDecorators.add(ScheduleDecorator(bluDate, DateColor.BLUE))
+                colorDecorators.add(ScheduleDecorator(dBluDate, DateColor.DARK_BLUE))
+                colorDecorators.add(ScheduleDecorator(pplDate, DateColor.PURPLE))
+
+                // 수업 색상 타입에 따라 Calendar Date 적용
+                addDecorators(colorDecorators)
             }
-            val temp2 = Calendar.getInstance().apply {
-                set(2022, 1, 10)
-            }
-
-            val tempEventDate = listOf<CalendarDay>(
-                CalendarDay.from(temp1),
-                CalendarDay.from(temp2)
-            )
-
-
-
-            val temp3 = Calendar.getInstance().apply {
-                set(2022, 1, 8)
-            }
-            val temp4 = Calendar.getInstance().apply {
-                set(2022, 1, 20)
-            }
-
-            val tempEventDate2 = listOf<CalendarDay>(
-                CalendarDay.from(temp3),
-                CalendarDay.from(temp4)
-            )
 
 
             /*  캘린더 데코레이터 지정
@@ -193,9 +317,7 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding, CalendarViewModel
             *   Second Params : 수업 Model(ClassItem)로부터 해당 수업에 지정된 색상을 가져와 전달
             * */
             addDecorators(
-                MySelectorDecorator(R.drawable.bg_calendar_selected_date, viewModel),
-                ScheduleDecorator(tempEventDate, DateColor.DARK_BLUE),
-                ScheduleDecorator(tempEventDate2, DateColor.ORANGE),
+                MySelectorDecorator(R.drawable.bg_calendar_selected_date),
                 TodayDecorator(R.color.secondMainColor),
             )
 
@@ -217,6 +339,60 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding, CalendarViewModel
         }
 
     }
+
+    // 선택한 SubjectId만 보이도록 CalendarView를 필터링합니다.
+    private fun filterCalendarDot(selectedSubjectId: Int) {
+        with(binding.calendarView) {
+            // 우선적으로 기존의 Dot 데코레이터를 모두 제거합니다.
+            removeAllDotDecorators()
+
+            // 전체보기를 선택한 경우
+            if (selectedSubjectId == CATEGORY_ALL) {
+                // 모든 수업 일정 Decorator를 표시합니다.
+                addDecorators(colorDecorators)
+            } else {
+                // 현재 선택한 수업(Subject)의 Id와 색상 Map을 전달하여
+                // 선택한 수업의 DateColor를 반환합니다.
+                val dateColor: DateColor =
+                    viewModel.getDateColorOf(selectedSubjectId, hostViewModel.getDateColorMap())
+                        ?: DateColor.DARK_BLUE
+
+                // 필터링한 CalendarDay를 담을 리스트입니다.
+                val filteredCalendarDayList = mutableListOf<CalendarDay>()
+
+                // ViewModel로부터 SubjectId에 해당하는 일일 수업 리스트를 받아와 CalendarDay 객체를 생성합니다.
+                viewModel.getDailyClassesById(selectedSubjectId)?.forEach {
+                    filteredCalendarDayList.add(generateCalendar(it.startTime))
+                }
+
+                // 선택한 수업의 단일 데코레이터 추가
+                addDecorator(
+                    ScheduleDecorator(
+                        filteredCalendarDayList,
+                        dateColor
+                    )
+                )
+            }
+        }
+
+    }
+
+
+    /*
+    * @param: classDateTime -> "2022-02-22 01:01
+    * @return: Calendar (for marking dot on calendar view)
+    * */
+    private fun generateCalendar(classDateTime: String): CalendarDay {
+        val date = classDateTime.split(" ")[0].split("-") // Format : (2022, 02, 22)
+        val year = date[0].toInt()
+        val month = date[1].toInt() - 1 // (Calendar는 month 범위가 0~11입니다.)
+        val day = date[2].toInt()
+
+        return CalendarDay.from(Calendar.getInstance().apply {
+            set(year, month, day)
+        })
+    }
+
 
 
     // 해당 Fragment의 높이를 구하여 ClassHomeFragment의 ScrollView 높이로 지정
@@ -266,10 +442,14 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding, CalendarViewModel
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.schedule_add_fab -> startActivity(
+            // 수업과목 Id와 유저이름 HashMap을 함께 전달
+            R.id.schedule_add_fab -> activityResultLauncher.launch(
                 Intent(
                     requireContext(),
                     ScheduleAddActivity::class.java
+                ).putExtra(
+                    INTENT_SUBJECT_ID_TO_USER_NAME_MAP_KEY,
+                    hostViewModel.getUserNameMap()
                 )
             )
             R.id.show_category_btn -> {

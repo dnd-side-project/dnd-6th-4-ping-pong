@@ -4,6 +4,9 @@ import com.dnd.sixth.lmsservice.data.model.dailyclass.DailyClassGetModel
 import com.dnd.sixth.lmsservice.data.model.subject.SubjectModel
 import com.dnd.sixth.lmsservice.domain.entity.DailyClassEntity
 import com.dnd.sixth.lmsservice.domain.entity.SubjectEntity
+import com.dnd.sixth.lmsservice.data.model.dailyclass.DailyModel
+import com.dnd.sixth.lmsservice.domain.entity.DailyEntity
+
 
 //모델로 변환 (dto)
 fun DailyClassEntity.toModel(): DailyClassGetModel {
@@ -44,3 +47,42 @@ fun DailyClassGetModel.toEntity(): DailyClassEntity {
         difficulty = 1
     )
 }
+
+
+
+fun DailyModel.toEntity(): DailyEntity {
+    return DailyEntity(
+        this.subjectId,
+        this.classOrder,
+        this.startTime,
+        this.place,
+        this.chapter,
+        this.memo,
+        this.noty,
+        this.dailyFeedback,
+        this.dailyComment,
+        this.homework,
+        this.isChangeFeedback,
+        this.changeStartTime,
+        this.difficulty,
+    )
+}
+
+fun DailyEntity.toModel(): DailyModel {
+    return DailyModel(
+        this.subjectId.toInt(),
+        this.classOrder.toInt(),
+        this.startTime,
+        this.place,
+        this.chapter,
+        this.memo,
+        this.noty,
+        this.dailyFeedback,
+        this.dailyComment,
+        this.homework,
+        this.isChangeFeedback,
+        this.changeStartTime,
+        this.difficulty,
+    )
+}
+

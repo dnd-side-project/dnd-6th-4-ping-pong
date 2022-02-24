@@ -3,12 +3,11 @@ package com.dnd.sixth.lmsservice.presentation.main.classmanage.subject.edit
 import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
 import com.dnd.sixth.lmsservice.App
 import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.data.preference.PreferenceManager
 import com.dnd.sixth.lmsservice.domain.entity.SubjectEntity
-import com.dnd.sixth.lmsservice.domain.useCase.UpdateSubjectUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.subject.UpdateSubjectUseCase
 import com.dnd.sixth.lmsservice.presentation.base.BaseViewModel
 import com.dnd.sixth.lmsservice.presentation.extensions.convertDowBit
 import com.dnd.sixth.lmsservice.presentation.extensions.isAllFalse
@@ -18,8 +17,6 @@ import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.custom.Da
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.subject.type.DayOfWeek
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.subject.type.SalaryDay
 import com.dnd.sixth.lmsservice.presentation.utility.SAVED_UID_KEY
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class SubjectEditViewModel(
     private val updateSubjectUseCase: UpdateSubjectUseCase,
@@ -48,7 +45,7 @@ class SubjectEditViewModel(
     var salaryDay: SalaryDay = SalaryDay.FOUR
 
     // 완료 버튼을 누를 수 있는 여부
-    val _isDoneClickable = MutableLiveData<Boolean>(false)
+    private val _isDoneClickable = MutableLiveData<Boolean>(false)
     val isDoneClickable: LiveData<Boolean> = _isDoneClickable
 
     // 수업 업데이트 성공 여부
@@ -103,7 +100,7 @@ class SubjectEditViewModel(
                     ),
                     teacherId = preferenceManager.getInt(SAVED_UID_KEY),
                     color = DateColor.BLUE.ordinal,
-                    classDays = _weekOfDayList.value!!.convertDowBit()
+                    classDayBit = _weekOfDayList.value!!.convertDowBit()
                 )
             )
 
