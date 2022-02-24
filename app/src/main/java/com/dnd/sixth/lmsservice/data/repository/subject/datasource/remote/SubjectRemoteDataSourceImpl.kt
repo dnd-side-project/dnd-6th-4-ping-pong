@@ -3,12 +3,10 @@ package com.dnd.sixth.lmsservice.data.repository.subject.datasource.remote
 import android.annotation.SuppressLint
 import android.util.Log
 import com.dnd.sixth.lmsservice.BuildConfig
-import com.dnd.sixth.lmsservice.data.mapper.toModel
 import com.dnd.sixth.lmsservice.data.model.generalclass.GeneralSubjectModel
 import com.dnd.sixth.lmsservice.data.model.subject.SubjectModel
 import com.dnd.sixth.lmsservice.data.network.api.SubjectApi
 import com.dnd.sixth.lmsservice.data.repository.emitter.RemoteErrorEmitter
-import com.dnd.sixth.lmsservice.domain.entity.SubjectEntity
 import kotlinx.coroutines.suspendCancellableCoroutine
 import retrofit2.Call
 import retrofit2.Callback
@@ -18,16 +16,15 @@ import kotlin.coroutines.resumeWithException
 
 class SubjectRemoteDataSourceImpl(private val subjectApi: SubjectApi) : SubjectRemoteDataSource {
 
-    val TAG = "SubjectRemoteDataSourceImpl"
+    private val TAG = "SubjectRemoteDataSourceImpl"
 
     // 수업 생성
     override suspend fun createSubject(
         remoteErrorEmitter: RemoteErrorEmitter,
-        subjectEntity: SubjectEntity
+        subjectModel: SubjectModel
     ): SubjectModel? =
         suspendCancellableCoroutine { cont ->
-            // 서버에 전송할 Subject Entity를 Model로 변환
-            val requestCall = subjectApi.api.createSubject(subjectEntity.toModel())
+            val requestCall = subjectApi.api.createSubject(subjectModel)
 
             requestCall.enqueue(object : Callback<SubjectModel> {
                 @SuppressLint("LongLogTag")
@@ -44,8 +41,7 @@ class SubjectRemoteDataSourceImpl(private val subjectApi: SubjectApi) : SubjectR
                             Log.d(TAG, subjectModel.toString())
                         }
 
-                        // 코루틴 재게
-                        cont.resumeWith(Result.success(subjectModel))
+                        cont.resumeWith(Result.success(subjectModel)) // 코루틴 재게
                     } else { // 서버로부터 에러 반환
                         Log.e(TAG, response.code().toString())
                     }
@@ -84,8 +80,7 @@ class SubjectRemoteDataSourceImpl(private val subjectApi: SubjectApi) : SubjectR
                             Log.d(TAG, generalSubjectList.toString())
                         }
 
-                        // 코루틴 재게 (성공 데이터 반환)
-                        cont.resumeWith(Result.success(generalSubjectList))
+                        cont.resumeWith(Result.success(generalSubjectList))  // 코루틴 재게 (성공 데이터 반환)
                     } else { // 서버로부터 에러 반환
                         Timber.d(response.errorBody().toString())
                     }
@@ -116,8 +111,7 @@ class SubjectRemoteDataSourceImpl(private val subjectApi: SubjectApi) : SubjectR
                         Log.d(TAG, deletedSubjectModel.toString())
                     }
 
-                    // 삭제한 수업 Subject Model 반환
-                    cont.resumeWith(Result.success(deletedSubjectModel))
+                    cont.resumeWith(Result.success(deletedSubjectModel)) // 삭제한 수업 Subject Model 반환
                 } else { // 서버로부터 에러 반환
                     Timber.d(response.errorBody().toString())
                 }
@@ -133,12 +127,11 @@ class SubjectRemoteDataSourceImpl(private val subjectApi: SubjectApi) : SubjectR
 
     override suspend fun updateSubject(
         remoteErrorEmitter: RemoteErrorEmitter,
-        subjectEntity: SubjectEntity
+        subjectModel: SubjectModel
     ): SubjectModel? =
         suspendCancellableCoroutine { cont ->
 
-            // 서버에 전송할 Subject Entity를 Model로 변환
-            val requestCall = subjectApi.api.updateSubject(subjectEntity.toModel())
+            val requestCall = subjectApi.api.updateSubject(subjectModel)
 
             requestCall.enqueue(object : Callback<SubjectModel> {
                 @SuppressLint("LongLogTag")
@@ -156,8 +149,8 @@ class SubjectRemoteDataSourceImpl(private val subjectApi: SubjectApi) : SubjectR
                             Log.d(TAG, subjectModel.toString())
                         }
 
-                        // 코루틴 재게
-                        cont.resumeWith(Result.success(subjectModel))
+
+                        cont.resumeWith(Result.success(subjectModel)) // 코루틴 재게
                     } else { // 서버로부터 에러 반환
                         Log.d(TAG, response.errorBody().toString())
                     }

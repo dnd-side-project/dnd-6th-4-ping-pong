@@ -103,7 +103,7 @@
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/activity_profile.xml" value="0.33" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/activity_push.xml" value="0.33" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/activity_push_time_picker.xml" value="0.33" />
-        <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/activity_schedule_add.xml" value="0.18" />
+        <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/activity_schedule_add.xml" value="0.33" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/activity_schedule_detail.xml" value="0.22" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/activity_schedule_edit.xml" value="0.2677083333333333" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/activity_sign_up.xml" value="0.2677083333333333" />
@@ -145,6 +145,7 @@
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/item_feedback_student.xml" value="0.36770833333333336" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/item_homework_timeline_.xml" value="0.2677083333333333" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/item_student_category.xml" value="0.2677083333333333" />
+        <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/item_student_radio_button.xml" value="0.5" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/layout_default_pickerview.xml" value="0.203125" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/layout_edit_delete_bottom_sheet.xml" value="0.228125" />
         <entry key="..\:/temp_project/dnd-6th-4-ping-pong/app/src/main/res/layout/layout_expandable_child_class_count.xml" value="0.36770833333333336" />

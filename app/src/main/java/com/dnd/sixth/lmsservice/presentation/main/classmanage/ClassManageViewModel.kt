@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.dnd.sixth.lmsservice.data.preference.PreferenceManager
 import com.dnd.sixth.lmsservice.domain.entity.GeneralSubjectEntity
-import com.dnd.sixth.lmsservice.domain.useCase.DeleteSubjectUseCase
-import com.dnd.sixth.lmsservice.domain.useCase.GetGeneralSubjectListUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.subject.DeleteSubjectUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.subject.GetGeneralSubjectListUseCase
 import com.dnd.sixth.lmsservice.presentation.base.BaseViewModel
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.subject.SubjectFragment
 import com.dnd.sixth.lmsservice.presentation.utility.SAVED_UID_KEY
@@ -61,4 +61,20 @@ class ClassManageViewModel(
             val deletedSubjectEntity = deleteSubjectId?.let { deleteSubjectUseCase(it) }
             (deletedSubjectEntity == null)
         }
+
+
+    /* 수업(Subject) Id와 해당 수업의 User로 이루어진 Map 전달
+   *  @K Key: SubjectId
+   *  @V Value: UserName
+   */
+    fun getSubjectIdToUserNameMap(): HashMap<Int, String> {
+        val subjectIdToUserNameMap = HashMap<Int, String>()
+        _generalSubjectList.value?.forEach { generalSubjectEntity ->
+            val key = generalSubjectEntity.classId.toInt()
+            val value = generalSubjectEntity.studentName
+            subjectIdToUserNameMap[key] = value
+        }
+
+        return subjectIdToUserNameMap
+    }
 }

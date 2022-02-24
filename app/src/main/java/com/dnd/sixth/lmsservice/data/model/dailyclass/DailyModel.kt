@@ -2,7 +2,7 @@ package com.dnd.sixth.lmsservice.data.model.dailyclass
 
 import com.google.gson.annotations.SerializedName
 
-data class DailyClassCreateModel(
+data class DailyModel(
     @SerializedName("subject_id")
     val subjectId: Int,
     @SerializedName("class_order")
@@ -18,13 +18,15 @@ data class DailyClassCreateModel(
     @SerializedName("noty")
     val noty: String,
     @SerializedName("daily_feedback")
-    val dailyFeedback: String,
+    val dailyFeedback: String? = null,
     @SerializedName("daily_comment")
-    val dailyComment: String,
+    val dailyComment: String? = null,
     @SerializedName("homework")
-    val homework: String,
+    val homework: String? = null,
     @SerializedName("change_feedback")
-    val isChangeFeedback: Boolean,
+    val isChangeFeedback: Boolean? = null,
     @SerializedName("change_start_time")
-    val changeStartTime: String,
+    val changeStartTime: String? = null,
+    @SerializedName("difficulty")
+    val difficulty: Int? = null
 )

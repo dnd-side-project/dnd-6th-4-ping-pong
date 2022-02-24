@@ -46,10 +46,10 @@ val viewModelModules = module {
         CreateSubjectViewModel(get(), get())
     }
     viewModel {
-        CalendarViewModel()
+        CalendarViewModel(get(), get())
     }
     viewModel {
-        ScheduleAddViewModel()
+        ScheduleAddViewModel(get())
     }
     viewModel {
         ClassProgressViewModel()
