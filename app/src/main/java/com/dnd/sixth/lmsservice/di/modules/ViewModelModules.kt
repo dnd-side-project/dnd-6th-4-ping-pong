@@ -70,7 +70,7 @@ val viewModelModules = module {
         EditResponseViewModel()
     }
     viewModel {
-        ConfigViewModel()
+        ConfigViewModel(get(), get())
     }
     viewModel {
         ProfileViewModel()

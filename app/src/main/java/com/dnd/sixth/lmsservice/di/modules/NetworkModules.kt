@@ -2,6 +2,7 @@ package com.dnd.sixth.lmsservice.di.modules
 
 import com.dnd.sixth.lmsservice.data.network.api.DailyApi
 import com.dnd.sixth.lmsservice.data.network.api.SubjectApi
+import com.dnd.sixth.lmsservice.data.network.api.UserApi
 import com.dnd.sixth.lmsservice.data.network.base.buildOkHttpClientWithAccessToken
 import com.dnd.sixth.lmsservice.data.network.base.provideGsonConverterFactory
 import com.dnd.sixth.lmsservice.data.network.base.provideRetrofit
@@ -39,6 +40,9 @@ val networkModules = module {
     }
     single {
         DailyApi()
+    }
+    single {
+        UserApi()
     }
 
 }

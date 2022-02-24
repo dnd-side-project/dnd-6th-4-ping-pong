@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.dnd.sixth.lmsservice.data.preference.PreferenceManager
 import com.dnd.sixth.lmsservice.domain.entity.GeneralSubjectEntity
-import com.dnd.sixth.lmsservice.domain.useCase.subject.DeleteSubjectUseCase
-import com.dnd.sixth.lmsservice.domain.useCase.subject.GetGeneralSubjectListUseCase
+import com.dnd.sixth.lmsservice.domain.usecase.subject.DeleteSubjectUseCase
+import com.dnd.sixth.lmsservice.domain.usecase.subject.GetGeneralSubjectListUseCase
 import com.dnd.sixth.lmsservice.presentation.base.BaseViewModel
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.custom.DateColor
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.subject.SubjectFragment
