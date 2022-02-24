@@ -6,7 +6,7 @@ import com.dnd.sixth.lmsservice.App
 import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.data.preference.PreferenceManager
 import com.dnd.sixth.lmsservice.domain.entity.DailyEntity
-import com.dnd.sixth.lmsservice.domain.useCase.dailyclass.GetDailyClassListUseCase
+import com.dnd.sixth.lmsservice.domain.usecase.dailyclass.GetDailyClassListUseCase
 import com.dnd.sixth.lmsservice.presentation.base.BaseViewModel
 import com.dnd.sixth.lmsservice.presentation.extensions.onIO
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.custom.DateColor
