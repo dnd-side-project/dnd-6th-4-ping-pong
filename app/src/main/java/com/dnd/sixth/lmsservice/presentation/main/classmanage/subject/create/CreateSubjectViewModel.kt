@@ -7,7 +7,7 @@ import com.dnd.sixth.lmsservice.App
 import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.data.preference.PreferenceManager
 import com.dnd.sixth.lmsservice.domain.entity.SubjectEntity
-import com.dnd.sixth.lmsservice.domain.useCase.CreateSubjectUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.subject.CreateSubjectUseCase
 import com.dnd.sixth.lmsservice.presentation.base.BaseViewModel
 import com.dnd.sixth.lmsservice.presentation.extensions.convertDowBit
 import com.dnd.sixth.lmsservice.presentation.extensions.isAllFalse
@@ -96,7 +96,7 @@ class CreateSubjectViewModel(
                     ),
                     teacherId = preferenceManager.getInt(SAVED_UID_KEY),
                     color = preferenceManager.getInt(SUBJECT_COLOR),
-                    classDays = _weekOfDayList.value!!.convertDowBit()
+                    classDayBit = _weekOfDayList.value!!.convertDowBit()
                 )
             )
 

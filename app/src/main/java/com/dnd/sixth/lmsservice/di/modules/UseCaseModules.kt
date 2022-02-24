@@ -1,13 +1,18 @@
 package com.dnd.sixth.lmsservice.di.modules
 
-import com.dnd.sixth.lmsservice.domain.useCase.CreateSubjectUseCase
-import com.dnd.sixth.lmsservice.domain.useCase.DeleteSubjectUseCase
-import com.dnd.sixth.lmsservice.domain.useCase.GetGeneralSubjectListUseCase
-import com.dnd.sixth.lmsservice.domain.useCase.UpdateSubjectUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.dailyclass.CreateDailyClassUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.dailyclass.DeleteDailyClassUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.dailyclass.GetDailyClassListUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.dailyclass.UpdateDailyClassUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.subject.CreateSubjectUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.subject.DeleteSubjectUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.subject.GetGeneralSubjectListUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.subject.UpdateSubjectUseCase
 import org.koin.dsl.module
 
 val useCaseModules = module {
 
+    /* Subject / General Subject*/
     factory {
         CreateSubjectUseCase(get())
     }
@@ -20,4 +25,20 @@ val useCaseModules = module {
     factory {
         UpdateSubjectUseCase(get())
     }
+
+
+    /* Daily Class */
+    factory {
+        CreateDailyClassUseCase(get())
+    }
+    factory {
+        DeleteDailyClassUseCase(get())
+    }
+    factory {
+        GetDailyClassListUseCase(get())
+    }
+    factory {
+        UpdateDailyClassUseCase(get())
+    }
+
 }

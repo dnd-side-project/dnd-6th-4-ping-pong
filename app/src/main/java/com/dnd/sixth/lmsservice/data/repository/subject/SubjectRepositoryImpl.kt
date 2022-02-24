@@ -1,6 +1,7 @@
 package com.dnd.sixth.lmsservice.data.repository.subject
 
 import com.dnd.sixth.lmsservice.data.mapper.toEntity
+import com.dnd.sixth.lmsservice.data.mapper.toModel
 import com.dnd.sixth.lmsservice.data.repository.emitter.RemoteErrorEmitter
 import com.dnd.sixth.lmsservice.data.repository.subject.datasource.remote.SubjectRemoteDataSource
 import com.dnd.sixth.lmsservice.domain.entity.GeneralSubjectEntity
@@ -13,7 +14,7 @@ class SubjectRepositoryImpl(
 ) : SubjectRepository {
 
     override suspend fun createSubject(subjectEntity: SubjectEntity): SubjectEntity? =
-        subjectRemoteDataSource.createSubject(remoteErrorEmitter, subjectEntity)?.toEntity()
+        subjectRemoteDataSource.createSubject(remoteErrorEmitter, subjectEntity.toModel())?.toEntity()
 
 
     override suspend fun getGeneralClassList(uid: Int): List<GeneralSubjectEntity>? =
@@ -26,6 +27,6 @@ class SubjectRepositoryImpl(
 
 
     override suspend fun updateSubject(subjectEntity: SubjectEntity): SubjectEntity? =
-        subjectRemoteDataSource.updateSubject(remoteErrorEmitter, subjectEntity)?.toEntity()
+        subjectRemoteDataSource.updateSubject(remoteErrorEmitter, subjectEntity.toModel())?.toEntity()
 
 }

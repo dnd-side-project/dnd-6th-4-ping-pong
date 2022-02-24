@@ -26,7 +26,6 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="38dp"
             android:paddingBottom="16dp">
 
             <androidx.appcompat.widget.Toolbar
@@ -51,9 +50,11 @@
                     android:layout_marginRight="15dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:clickable="true"
+                    android:enabled="false"
                     android:gravity="center"
                     android:text="완료"
-                    android:textColor="@color/colorPrimary"
+                    android:onClick="@{viewModel::createDailyClass}"
+                    android:textColor="@color/color_primary_done_text"
                     android:textSize="12sp" />
 
             </androidx.appcompat.widget.Toolbar>
@@ -92,31 +93,8 @@
                         android:orientation="horizontal">
 
                         <!-- 가르치는 학생 리스트 나열 예정 -->
-                        <RadioButton
-                            android:id="@+id/first_check_box"
-                            android:layout_width="wrap_content"
-                            android:layout_height="30dp"
-                            android:background="@drawable/btn_category_check_box"
-                            android:button="@null"
-                            android:gravity="center"
-                            android:paddingHorizontal="12dp"
-                            android:textColor="@color/color_category_check_box"
-                            android:textSize="14sp"
-                            tools:checked="true"
-                            tools:text="백지성" />
 
-                        <RadioButton
-                            android:id="@+id/second_check_box"
-                            android:layout_width="wrap_content"
-                            android:layout_height="30dp"
-                            android:layout_marginStart="9dp"
-                            android:background="@drawable/btn_category_check_box"
-                            android:button="@null"
-                            android:gravity="center"
-                            android:paddingHorizontal="12dp"
-                            android:textColor="@color/color_category_check_box"
-                            android:textSize="14sp"
-                            tools:text="김철수" />
+
                     </RadioGroup>
                 </HorizontalScrollView>
 
@@ -272,9 +250,9 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:hint="수업 시간을 설정해주세요"
-                        android:textColorHint="@color/grayC4"
                         android:text="@{dateConverter.getFullDate(viewModel.pickedDate)}"
                         android:textColor="@color/richBlack"
+                        android:textColorHint="@color/grayC4"
                         android:textSize="14sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toRightOf="@+id/guide_line_1"
@@ -358,7 +336,7 @@
                         android:layout_height="match_parent"
                         android:background="@null"
                         android:hint="수업 장소를 입력해 주세요"
-                        android:text="@{viewModel.place}"
+                        android:text="@={viewModel.place}"
                         android:textColor="@color/richBlack"
                         android:textColorHint="@color/grayE1"
                         android:textSize="14sp"
@@ -407,7 +385,7 @@
                         android:layout_height="match_parent"
                         android:background="@null"
                         android:hint="교육 과정에 따른 챕터를 입력해 주세요"
-                        android:text="@{viewModel.chapter}"
+                        android:text="@={viewModel.chapter}"
                         android:textColor="@color/richBlack"
                         android:textColorHint="@color/grayE1"
                         android:textSize="14sp"

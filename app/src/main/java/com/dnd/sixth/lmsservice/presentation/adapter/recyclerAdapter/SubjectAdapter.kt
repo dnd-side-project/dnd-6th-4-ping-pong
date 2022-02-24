@@ -26,10 +26,6 @@ class SubjectAdapter(
         fun bind() {
             val classModel = modelListDaily[adapterPosition]
 
-            // 수업 듣는 요일을 Binary 형태로 표현한 String (ex. 1110111)
-            // 8bit 데이터의 공백은 0으로 채웁니다.
-            val classDayBinaryString =
-                String.format("%7s", classModel.classDayBit).replace("", "0")
 
             with(binding) {
                 setClassModel(classModel)
@@ -44,7 +40,7 @@ class SubjectAdapter(
 
                 // 수업 요일을 보여줌
                 visibleViewListIfContain(
-                    classDayBinaryString,
+                    classModel.classDayBit,
                     listOf<View>(monIcon, tueIcon, wedIcon, thurIcon, friIcon, satIcon, sunIcon)
                 )
 

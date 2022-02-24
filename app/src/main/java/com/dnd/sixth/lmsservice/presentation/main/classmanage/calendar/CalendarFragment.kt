@@ -2,16 +2,16 @@ package com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.Color
-import android.util.Log
 import android.view.View
 import android.view.ViewTreeObserver
 import android.view.ViewTreeObserver.OnGlobalLayoutListener
 import android.widget.*
 import androidx.activity.OnBackPressedCallback
-import androidx.core.content.ContextCompat
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import com.dnd.sixth.lmsservice.BuildConfig
 import com.dnd.sixth.lmsservice.R
+import com.dnd.sixth.lmsservice.data.preference.PreferenceManager
 import com.dnd.sixth.lmsservice.databinding.FragmentCalendarBinding
 import com.dnd.sixth.lmsservice.presentation.base.BaseFragment
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.ClassManageViewModel
@@ -21,6 +21,8 @@ import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.custom.de
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.custom.decorator.ScheduleDecorator
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.custom.decorator.TodayDecorator
 import com.dnd.sixth.lmsservice.presentation.utility.DateConverter
+import com.dnd.sixth.lmsservice.presentation.utility.ROLE_STUDENT
+import com.dnd.sixth.lmsservice.presentation.utility.SAVED_ROLE_KEY
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.jaredrummler.materialspinner.MaterialSpinner
 import com.prolificinteractive.materialcalendarview.CalendarDay
@@ -41,6 +43,15 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding, CalendarViewModel
 
     private var categoryDialog: BottomSheetDialog? = null
     var viewTreeObserver: ViewTreeObserver? = null
+
+    private lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
+
+    companion object {
+        const val INTENT_CREATE_DAILY_ENTITY_KEY = "createDaily"
+        const val INTENT_SUBJECT_ID_TO_USER_NAME_MAP_KEY = "subjectIdToUserNameMap"
+
+        const val INTENT_CREATE_DAILY_ACTIVITY_CODE = 3000
+    }
 
     // 최상위 ViewTreeObserver (높이를 구하기 위한 변수)
     // var viewTreeObserver: ViewTreeObserver? = null
@@ -64,7 +75,8 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding, CalendarViewModel
             makeStudentCategoryDialog() // 학생 선택 다이얼로그 생성
             setClickListener(this)
             setCalendar() // 캘린더 관련 설정
-
+            setActivityLauncher() // 액티비티 런처 설정
+            //setViewVisibility() // 유저 상태에 따라 View의 Visibillity 설정
         }
 
 
@@ -76,6 +88,33 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding, CalendarViewModel
 
                 }
             })
+    }
+
+    // 유저 상태에 따라 View의 Visibillity 설정
+    private fun setViewVisibility() {
+        // 등록된 수업(Subject)가 없고,
+        // 학생 유저이면
+        // 추가버튼(Fab)을 안보이게 한다.
+        val preferenceManager = PreferenceManager(requireContext())
+        val role = preferenceManager.getInt(SAVED_ROLE_KEY)
+
+        if (hostViewModel.generalSubjectDataList.value?.isNullOrEmpty() == true && role == ROLE_STUDENT) {
+            binding.scheduleAddFab.visibility = View.GONE
+        } else {
+            binding.scheduleAddFab.visibility = View.VISIBLE
+        }
+    }
+
+    private fun setActivityLauncher() {
+        activityResultLauncher = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) { result ->
+            val data = result.data
+            if (result.resultCode == INTENT_CREATE_DAILY_ACTIVITY_CODE) {
+                val resultData = data?.getSerializableExtra(INTENT_CREATE_DAILY_ENTITY_KEY)
+
+            }
+        }
     }
 
     private fun makeStudentCategoryDialog() {
@@ -173,7 +212,6 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding, CalendarViewModel
             )
 
 
-
             val temp3 = Calendar.getInstance().apply {
                 set(2022, 1, 8)
             }
@@ -266,10 +304,14 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding, CalendarViewModel
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.schedule_add_fab -> startActivity(
+            // 수업과목 Id와 유저이름 HashMap을 함께 전달
+            R.id.schedule_add_fab -> activityResultLauncher.launch(
                 Intent(
                     requireContext(),
                     ScheduleAddActivity::class.java
+                ).putExtra(
+                    INTENT_SUBJECT_ID_TO_USER_NAME_MAP_KEY,
+                    hostViewModel.getSubjectIdToUserNameMap()
                 )
             )
             R.id.show_category_btn -> {

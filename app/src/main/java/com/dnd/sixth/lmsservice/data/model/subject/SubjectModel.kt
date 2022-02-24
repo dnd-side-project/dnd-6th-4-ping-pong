@@ -18,5 +18,5 @@ data class SubjectModel(
     @SerializedName("color")
     val color: Number,
     @SerializedName("class_days")
-    val classDays: String
+    val classDayBit: Number
 )
