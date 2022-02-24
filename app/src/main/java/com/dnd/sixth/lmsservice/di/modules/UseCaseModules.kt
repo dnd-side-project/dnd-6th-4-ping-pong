@@ -1,5 +1,8 @@
 package com.dnd.sixth.lmsservice.di.modules
 
+
+import com.dnd.sixth.lmsservice.domain.useCase.*
+
 import com.dnd.sixth.lmsservice.domain.useCase.dailyclass.CreateDailyClassUseCase
 import com.dnd.sixth.lmsservice.domain.useCase.dailyclass.DeleteDailyClassUseCase
 import com.dnd.sixth.lmsservice.domain.useCase.dailyclass.GetDailyClassListUseCase
@@ -8,6 +11,7 @@ import com.dnd.sixth.lmsservice.domain.useCase.subject.CreateSubjectUseCase
 import com.dnd.sixth.lmsservice.domain.useCase.subject.DeleteSubjectUseCase
 import com.dnd.sixth.lmsservice.domain.useCase.subject.GetGeneralSubjectListUseCase
 import com.dnd.sixth.lmsservice.domain.useCase.subject.UpdateSubjectUseCase
+
 import org.koin.dsl.module
 
 val useCaseModules = module {
@@ -26,6 +30,11 @@ val useCaseModules = module {
         UpdateSubjectUseCase(get())
     }
 
+    factory{
+        GetDailyClassUseCase(get())
+    }
+
+
 
     /* Daily Class */
     factory {
@@ -40,5 +49,6 @@ val useCaseModules = module {
     factory {
         UpdateDailyClassUseCase(get())
     }
+
 
 }

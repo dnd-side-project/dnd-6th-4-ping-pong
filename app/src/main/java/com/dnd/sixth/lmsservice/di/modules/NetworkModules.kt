@@ -1,6 +1,10 @@
 package com.dnd.sixth.lmsservice.di.modules
 
+
+import com.dnd.sixth.lmsservice.data.network.api.DailyClassApi
+
 import com.dnd.sixth.lmsservice.data.network.api.DailyApi
+
 import com.dnd.sixth.lmsservice.data.network.api.SubjectApi
 import com.dnd.sixth.lmsservice.data.network.base.buildOkHttpClientWithAccessToken
 import com.dnd.sixth.lmsservice.data.network.base.provideGsonConverterFactory
@@ -36,6 +40,10 @@ val networkModules = module {
 
     single {
         SubjectApi()
+
+    }
+    single{
+        DailyClassApi()
     }
     single {
         DailyApi()
