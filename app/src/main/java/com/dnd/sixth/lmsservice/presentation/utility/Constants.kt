@@ -10,6 +10,9 @@ const val SAVED_PHONE_NUMBER_KEY = "savedPhoneNumber"
 const val SAVED_UID_KEY = "savedUID"
 const val SUBJECT_COLOR = "nextSubjectColor"
 
+const val AUTO_EMAIL_KEY = "autoEmail"
+const val AUTO_PASSWORD_KEY = "autoPassword"
+
 
 // 공통 상수
 const val COLOR_COUNT = 7
