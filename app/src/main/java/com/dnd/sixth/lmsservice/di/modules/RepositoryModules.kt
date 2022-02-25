@@ -9,10 +9,7 @@ import com.dnd.sixth.lmsservice.domain.repository.DailyClassRepository
 import com.dnd.sixth.lmsservice.domain.repository.PushRepository
 import com.dnd.sixth.lmsservice.data.repository.FeedBackComment.FeedBackCommentRepositoryImpl
 import com.dnd.sixth.lmsservice.data.repository.dailyclasstimelist.DailyClassTimeLineTimeLineRepositoryImpl
-import com.dnd.sixth.lmsservice.data.repository.subject.SubjectRepositoryImpl
 import com.dnd.sixth.lmsservice.domain.repository.DailyClassTimeLineRepository
-import com.dnd.sixth.lmsservice.data.repository.dailyclass.DailyClassRepositoryImpl
-import com.dnd.sixth.lmsservice.domain.repository.DailyClassRepository
 import com.dnd.sixth.lmsservice.domain.repository.FeedBackCommentRepository
 import com.dnd.sixth.lmsservice.domain.repository.SubjectRepository
 import com.dnd.sixth.lmsservice.domain.repository.UserRepository

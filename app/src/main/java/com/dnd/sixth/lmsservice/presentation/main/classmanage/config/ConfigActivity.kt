@@ -99,6 +99,7 @@ class ConfigActivity : BaseActivity<ActivityConfigBinding, ConfigViewModel>(),
         with(binding) {
             optionAccountBtn.setOnClickListener(this@ConfigActivity)
             optionNotificationBtn.setOnClickListener(this@ConfigActivity)
+            profileImageView.setOnClickListener(this@ConfigActivity)
             editIcon.setOnClickListener(this@ConfigActivity)
         }
     }
@@ -106,10 +107,16 @@ class ConfigActivity : BaseActivity<ActivityConfigBinding, ConfigViewModel>(),
     override fun onClick(view: View?) {
         when (view?.id) {
             R.id.option_account_btn -> {
+                // 계정 설정 화면을 실행합니다.
                 activityResultLauncher.launch(Intent(this, ProfileActivity::class.java))
             }
             R.id.option_notification_btn -> {
+                // 알림 설정 화면을 실행합니다.
                 startActivity(Intent(this, PushActivity::class.java))
+            }
+            R.id.profile_image_view -> {
+                // 갤러리를 실행하고 프로필을 변경합니다.
+
             }
             R.id.edit_icon -> {
                 // 닉네임 편집 아이콘을 누르면 EditText에 포커스를 준다.

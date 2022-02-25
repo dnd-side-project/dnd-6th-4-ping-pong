@@ -26,15 +26,7 @@ import com.dnd.sixth.lmsservice.domain.usecase.user.number.parent.SaveRemotePare
 import com.dnd.sixth.lmsservice.domain.usecase.user.password.ChangePasswordUseCase
 import com.dnd.sixth.lmsservice.domain.usecase.user.username.ChangeUserNameUseCase
 import com.dnd.sixth.lmsservice.domain.useCase.*
-import com.dnd.sixth.lmsservice.domain.useCase.dailyclass.CreateDailyClassUseCase
-import com.dnd.sixth.lmsservice.domain.useCase.dailyclass.DeleteDailyClassUseCase
-import com.dnd.sixth.lmsservice.domain.useCase.dailyclass.GetDailyClassListUseCase
-import com.dnd.sixth.lmsservice.domain.useCase.dailyclass.UpdateDailyClassUseCase
 import com.dnd.sixth.lmsservice.domain.useCase.feedbackComment.UpdateFeedBackUseCase
-import com.dnd.sixth.lmsservice.domain.useCase.subject.CreateSubjectUseCase
-import com.dnd.sixth.lmsservice.domain.useCase.subject.DeleteSubjectUseCase
-import com.dnd.sixth.lmsservice.domain.useCase.subject.GetGeneralSubjectListUseCase
-import com.dnd.sixth.lmsservice.domain.useCase.subject.UpdateSubjectUseCase
 import org.koin.dsl.module
 
 val useCaseModules = module {
