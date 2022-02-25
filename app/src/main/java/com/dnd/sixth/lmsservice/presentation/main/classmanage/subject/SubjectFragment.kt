@@ -130,7 +130,7 @@ class SubjectFragment : BaseFragment<FragmentClassBinding, SubjectViewModel>(),
 
                     newSubjectEntity.also {
                         showInviteDialog(it) // 초대 코드 다이얼로그를 보여준다.
-                        hostViewModel?.addSubject(it) // 수업 리스트에 추가한다.
+                        hostViewModel!!.addSubject(it) // 수업 리스트에 추가한다.
                     }
 
                 }
@@ -258,7 +258,9 @@ class SubjectFragment : BaseFragment<FragmentClassBinding, SubjectViewModel>(),
             }
             R.id.class_btn -> {
                 // 선택한 사용자의 피드백 화면으로 이동합니다.
-                startActivity(Intent(requireContext(), ClassProgressActivity::class.java))
+                startActivity(Intent(requireContext(), ClassProgressActivity::class.java).putExtra(
+                    INTENT_SUBJECT_ID_KEY, hostViewModel.getClassModel(position).subjectId
+                ))
             }
         }
     }
