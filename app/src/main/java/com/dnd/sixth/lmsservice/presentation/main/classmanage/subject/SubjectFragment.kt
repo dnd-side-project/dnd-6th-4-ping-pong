@@ -16,6 +16,8 @@ import com.dnd.sixth.lmsservice.databinding.LayoutEditDeleteBottomSheetBinding
 import com.dnd.sixth.lmsservice.domain.entity.SubjectEntity
 import com.dnd.sixth.lmsservice.presentation.adapter.recyclerAdapter.SubjectAdapter
 import com.dnd.sixth.lmsservice.presentation.base.BaseFragment
+import com.dnd.sixth.lmsservice.presentation.feedback.check.CheckFeedBackActivity
+import com.dnd.sixth.lmsservice.presentation.lesson.progress.ClassProgressActivity
 import com.dnd.sixth.lmsservice.presentation.listner.OnRecyclerItemClickListener
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.ClassManageViewModel
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.CalendarViewModel
@@ -128,7 +130,7 @@ class SubjectFragment : BaseFragment<FragmentClassBinding, SubjectViewModel>(),
 
                     newSubjectEntity.also {
                         showInviteDialog(it) // 초대 코드 다이얼로그를 보여준다.
-                        hostViewModel?.addSubject(it) // 수업 리스트에 추가한다.
+                        hostViewModel!!.addSubject(it) // 수업 리스트에 추가한다.
                     }
 
                 }
@@ -255,7 +257,10 @@ class SubjectFragment : BaseFragment<FragmentClassBinding, SubjectViewModel>(),
                 moreDialog.show()
             }
             R.id.class_btn -> {
-
+                // 선택한 사용자의 피드백 화면으로 이동합니다.
+                startActivity(Intent(requireContext(), ClassProgressActivity::class.java).putExtra(
+                    INTENT_SUBJECT_ID_KEY, hostViewModel.getClassModel(position).subjectId
+                ))
             }
         }
     }

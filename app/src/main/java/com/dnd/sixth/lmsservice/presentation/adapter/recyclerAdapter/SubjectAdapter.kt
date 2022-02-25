@@ -30,7 +30,6 @@ class SubjectAdapter(
             with(binding) {
                 setClassModel(classModel)
 
-
                 moreBtn.setOnClickListener {
                     listener.onClick(it.id, adapterPosition)
                 }
