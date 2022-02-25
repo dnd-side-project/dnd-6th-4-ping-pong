@@ -1,7 +1,7 @@
 package com.dnd.sixth.lmsservice.presentation.main.classmanage.subject
 
 import android.content.Intent
-import android.util.Log
+import android.os.Bundle
 import android.view.View
 import android.view.ViewTreeObserver
 import androidx.activity.result.ActivityResultLauncher
@@ -12,6 +12,7 @@ import com.dnd.sixth.lmsservice.BuildConfig
 import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.databinding.FragmentClassBinding
 import com.dnd.sixth.lmsservice.databinding.LayoutEditDeleteBottomSheetBinding
+import com.dnd.sixth.lmsservice.domain.entity.SubjectEntity
 import com.dnd.sixth.lmsservice.presentation.adapter.recyclerAdapter.SubjectAdapter
 import com.dnd.sixth.lmsservice.presentation.base.BaseFragment
 import com.dnd.sixth.lmsservice.presentation.listner.OnRecyclerItemClickListener
@@ -45,6 +46,7 @@ class SubjectFragment : BaseFragment<FragmentClassBinding, SubjectViewModel>(),
     companion object {
         const val INTENT_CREATE_SUBJECT_ENTITY_KEY = "createSubject"
         const val INTENT_UPDATE_SUBJECT_ENTITY_KEY = "updateSubject"
+        const val INTENT_SUBJECT_ID_KEY = "subjectId"
 
         const val INTENT_CREATE_SUBJECT_ACTIVITY_CODE = 1001
         const val INTENT_UPDATE_SUBJECT_ACTIVITY_CODE = 1002
@@ -75,7 +77,6 @@ class SubjectFragment : BaseFragment<FragmentClassBinding, SubjectViewModel>(),
             }
 
 
-
             // 수업 리스트가 변경됨에 따라 화면 크기 조절을 하기 위한 Observer
             hostViewModel?.generalSubjectDataList?.observe(this@SubjectFragment) {
                 // ClassManageFragment(ParentFragment)에 수업 개수 전달.
@@ -104,8 +105,14 @@ class SubjectFragment : BaseFragment<FragmentClassBinding, SubjectViewModel>(),
                     if (result.resultCode == INTENT_CREATE_SUBJECT_ACTIVITY_CODE) {
                         val resultIntent = result.data
                         val newSubjectEntity =
-                            resultIntent?.getSerializableExtra(INTENT_CREATE_SUBJECT_ENTITY_KEY) // 수업을 생성하고 새롭게 반환된 Subject Entity
-                        Log.d("entity", newSubjectEntity.toString())
+                            resultIntent?.getSerializableExtra(INTENT_CREATE_SUBJECT_ENTITY_KEY) as SubjectEntity // 수업을 생성하고 새롭게 반환된 Subject Entity
+                        InviteDialogFragment().apply {
+                            val bundle = Bundle().apply {
+                                putInt(INTENT_SUBJECT_ID_KEY, newSubjectEntity.id?.toInt()!!)
+                            }
+                            arguments = bundle
+                            show(parentFragmentManager, null)
+                        }
                     }
                 }
 
@@ -243,7 +250,7 @@ class SubjectFragment : BaseFragment<FragmentClassBinding, SubjectViewModel>(),
                 CoroutineScope(Dispatchers.IO).launch {
                     val isSuccess = hostViewModel.deleteSubject(position) // 수업 삭제
                     launch(Dispatchers.Main) {
-                        if(isSuccess) {
+                        if (isSuccess) {
                             showSnackBar(getString(R.string.success_delete_subject))
 
                             // viewModel의 List에서 해당 수업 삭제 로직 구현 예정

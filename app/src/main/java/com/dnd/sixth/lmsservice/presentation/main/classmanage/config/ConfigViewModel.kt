@@ -9,7 +9,6 @@ import com.dnd.sixth.lmsservice.domain.useCase.user.username.ChangeUserNameUseCa
 import com.dnd.sixth.lmsservice.domain.usecase.user.profile.GetLocalProfileUriUseCase
 import com.dnd.sixth.lmsservice.domain.usecase.user.profile.SaveLocalProfileUriUseCase
 import com.dnd.sixth.lmsservice.domain.usecase.user.profile.SaveRemoteProfileUriUseCase
-import com.dnd.sixth.lmsservice.domain.usecase.user.username.ChangeUserNameUseCase
 
 
 import com.dnd.sixth.lmsservice.presentation.base.BaseViewModel

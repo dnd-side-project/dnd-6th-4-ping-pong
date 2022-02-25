@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.dnd.sixth.lmsservice">
-    
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".App"
@@ -15,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LMSService"
         android:usesCleartextTraffic="true">
-        <activity android:name=".presentation.comment.CommentActivity"
+        <activity
+            android:name=".presentation.comment.CommentActivity"
             android:exported="true">
 
         </activity>
@@ -24,18 +25,13 @@
             android:exported="false" />
         <activity
             android:name=".presentation.feedback.check.CheckFeedBackActivity"
-            android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:exported="true">
         </activity>
         <activity
             android:name=".presentation.homework.HomeworkManageActivity"
 
             android:exported="false" />
-        
+
 
         <activity
             android:name=".presentation.main.classmanage.calendar.add.push.PushTimePickerActivity"
@@ -68,7 +64,7 @@
         </activity>
         <activity
             android:name=".presentation.feedback.WriteFeedBackActivity"
-            android:exported="true" >
+            android:exported="true">
 
         </activity>
         <activity
@@ -83,19 +79,22 @@
             android:exported="true" />
         <activity
             android:name=".presentation.login.LoginActivity"
-            android:exported="true" >
+            android:exported="true">
 
         </activity>
         <activity
             android:name=".presentation.main.classmanage.subject.create.SubjectCreateActivity"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".presentation.main.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.LMSService.EdgedBottomSheetDialog" >
-
+            android:theme="@style/Theme.LMSService.EdgedBottomSheetDialog">
 
 
         </activity>
@@ -107,18 +106,10 @@
             android:exported="false" />
         <activity
             android:name=".presentation.main.info.InfoActivity"
-            android:exported="true">
-
-
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-
-        </activity>
+            android:exported="true"/>
         <activity
             android:name="com.dnd.sixth.lmsservice.presentation.main.classmanage.config.ConfigActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name="com.dnd.sixth.lmsservice.presentation.main.classmanage.config.profile.password.ChangePWActivity"
             android:exported="false"
@@ -140,15 +131,14 @@
             android:exported="false" />
 
 
-
         <provider
-            android:authorities="com.dnd.sixth.lmsservice"
             android:name="androidx.core.content.FileProvider"
+            android:authorities="com.dnd.sixth.lmsservice"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_path"/>
+                android:resource="@xml/file_path" />
         </provider>
     </application>
 
