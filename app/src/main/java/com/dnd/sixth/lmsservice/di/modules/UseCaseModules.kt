@@ -1,5 +1,6 @@
 package com.dnd.sixth.lmsservice.di.modules
 
+
 import com.dnd.sixth.lmsservice.domain.useCase.dailyclass.CreateDailyClassUseCase
 import com.dnd.sixth.lmsservice.domain.useCase.dailyclass.DeleteDailyClassUseCase
 import com.dnd.sixth.lmsservice.domain.useCase.dailyclass.GetDailyClassListUseCase
@@ -29,6 +30,36 @@ import com.dnd.sixth.lmsservice.domain.useCase.*
 import com.dnd.sixth.lmsservice.domain.useCase.feedbackComment.GetFeedBackUseCaseFromDaily
 
 import com.dnd.sixth.lmsservice.domain.useCase.feedbackComment.UpdateFeedBackUseCase
+
+import com.dnd.sixth.lmsservice.domain.useCase.GetDailyClassUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.feedbackComment.UpdateFeedBackUseCase
+import com.dnd.sixth.lmsservice.domain.usecase.dailyclass.CreateDailyClassUseCase
+import com.dnd.sixth.lmsservice.domain.usecase.dailyclass.DeleteDailyClassUseCase
+import com.dnd.sixth.lmsservice.domain.usecase.dailyclass.GetDailyClassListUseCase
+import com.dnd.sixth.lmsservice.domain.usecase.dailyclass.UpdateDailyClassUseCase
+import com.dnd.sixth.lmsservice.domain.usecase.push.comment.ChangeCommentPushUseCase
+import com.dnd.sixth.lmsservice.domain.usecase.push.comment.GetCommentPushUseCase
+import com.dnd.sixth.lmsservice.domain.usecase.push.feedback.ChangeFeedbackPushUseCase
+import com.dnd.sixth.lmsservice.domain.usecase.push.feedback.GetFeedbackPushUseCase
+import com.dnd.sixth.lmsservice.domain.usecase.push.start.ChangeStartPushUseCase
+import com.dnd.sixth.lmsservice.domain.usecase.push.start.GetStartPushUseCase
+import com.dnd.sixth.lmsservice.domain.usecase.subject.*
+import com.dnd.sixth.lmsservice.domain.usecase.user.GetUserUseCase
+import com.dnd.sixth.lmsservice.domain.usecase.user.contact.GetLocalContactTimeUseCase
+import com.dnd.sixth.lmsservice.domain.usecase.user.contact.SaveLocalContactTimeUseCase
+import com.dnd.sixth.lmsservice.domain.usecase.user.contact.SaveRemoteContactTimeUseCase
+import com.dnd.sixth.lmsservice.domain.usecase.user.number.myself.GetLocalMyNumberUseCase
+import com.dnd.sixth.lmsservice.domain.usecase.user.number.myself.SaveLocalMyNumberUseCase
+import com.dnd.sixth.lmsservice.domain.usecase.user.number.myself.SaveRemoteMyNumberUseCase
+import com.dnd.sixth.lmsservice.domain.usecase.user.number.parent.GetLocalParentNumberUseCase
+import com.dnd.sixth.lmsservice.domain.usecase.user.number.parent.SaveLocalParentNumberUseCase
+import com.dnd.sixth.lmsservice.domain.usecase.user.number.parent.SaveRemoteParentNumberUseCase
+import com.dnd.sixth.lmsservice.domain.usecase.user.password.ChangePasswordUseCase
+import com.dnd.sixth.lmsservice.domain.usecase.user.profile.GetLocalProfileUriUseCase
+import com.dnd.sixth.lmsservice.domain.usecase.user.profile.SaveLocalProfileUriUseCase
+import com.dnd.sixth.lmsservice.domain.usecase.user.profile.SaveRemoteProfileUriUseCase
+import com.dnd.sixth.lmsservice.domain.usecase.user.username.ChangeUserNameUseCase
+
 import org.koin.dsl.module
 
 val useCaseModules = module {
@@ -46,14 +77,21 @@ val useCaseModules = module {
     factory {
         UpdateSubjectUseCase(get())
     }
+    factory {
+        GetSubjectUseCase(get())
+    }
 
     /*
     타임라인 리스트
      */
+
     factory{
         GetDailyClassTimeLineUseCase(get())
     }
+    factory {
+        GetDailyClassUseCase(get())
 
+    }
 
 
     /* Daily Class */
@@ -68,6 +106,9 @@ val useCaseModules = module {
     }
     factory {
         UpdateDailyClassUseCase(get())
+    }
+    factory {
+        com.dnd.sixth.lmsservice.domain.usecase.dailyclass.GetDailyClassUseCase(get())
     }
 
 
@@ -105,6 +146,18 @@ val useCaseModules = module {
     factory {
         SaveRemoteParentNumberUseCase(get())
     }
+    factory {
+        SaveRemoteProfileUriUseCase(get())
+    }
+    factory {
+        SaveLocalProfileUriUseCase(get())
+    }
+    factory {
+        GetLocalProfileUriUseCase(get())
+    }
+    factory {
+        GetUserUseCase(get())
+    }
 
 
     /* Push */
@@ -126,7 +179,7 @@ val useCaseModules = module {
     factory {
         GetCommentPushUseCase(get())
     }
-    
+
     /*
    피드백 코멘트
     */

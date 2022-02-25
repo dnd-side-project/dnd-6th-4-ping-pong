@@ -11,8 +11,8 @@ interface SubjectRepository {
     suspend fun createSubject(subjectEntity: SubjectEntity): SubjectEntity?
 
     /*
-    *  수업 리스트 가져오기
-    *  @return : List<ClassEntity>
+    * 데이터가 통합된 수업 리스트 가져오기
+    *  @return : List<GeneralSubjectEntity>
     * */
     suspend fun getGeneralClassList(uid: Int): List<GeneralSubjectEntity>?
 
@@ -25,4 +25,9 @@ interface SubjectRepository {
     *  수업 데이터 업데이트
     * */
     suspend fun updateSubject(subjectEntity: SubjectEntity): SubjectEntity?
+
+    /*
+    * 수업 가져오기
+    * */
+    suspend fun getSubject(subjectId: Int): SubjectEntity?
 }

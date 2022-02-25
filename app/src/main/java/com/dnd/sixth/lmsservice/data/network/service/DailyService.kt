@@ -24,4 +24,10 @@ interface DailyService {
     fun getDailyClassList(
         @Query("id") uid: Int
     ): Call<List<DailyModel>>
+
+    @GET("/dailyclass")
+    fun getDaily(
+        @Query("id") dailyId: Int,
+        @Query("number") subjectId: Int
+    ): Call<DailyModel>
 }

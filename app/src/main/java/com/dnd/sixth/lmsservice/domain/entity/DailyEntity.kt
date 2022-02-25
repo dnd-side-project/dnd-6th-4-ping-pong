@@ -3,6 +3,7 @@ package com.dnd.sixth.lmsservice.domain.entity
 import java.io.Serializable
 
 data class DailyEntity(
+    val id: Number? = null,
     val subjectId: Number,
     val classOrder: Number, // 회차
     val startTime: String, // "수업 시작 일시) ex. 2022-02-24 03:50"

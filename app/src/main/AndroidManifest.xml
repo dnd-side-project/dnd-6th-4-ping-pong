@@ -3,6 +3,7 @@
     package="com.dnd.sixth.lmsservice">
     
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:name=".App"
@@ -15,8 +16,7 @@
         android:theme="@style/Theme.LMSService"
         android:usesCleartextTraffic="true">
         <activity android:name=".presentation.comment.CommentActivity"
-            android:exported="true"
-            >
+            android:exported="true">
 
         </activity>
         <activity
@@ -107,13 +107,18 @@
             android:exported="false" />
         <activity
             android:name=".presentation.main.info.InfoActivity"
-            android:exported="false" />
-        <activity
-            android:name="com.dnd.sixth.lmsservice.presentation.main.classmanage.config.ConfigActivity"
             android:exported="true">
 
 
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+
         </activity>
+        <activity
+            android:name="com.dnd.sixth.lmsservice.presentation.main.classmanage.config.ConfigActivity"
+            android:exported="true"/>
         <activity
             android:name="com.dnd.sixth.lmsservice.presentation.main.classmanage.config.profile.password.ChangePWActivity"
             android:exported="false"
@@ -133,6 +138,18 @@
         <activity
             android:name=".presentation.main.classmanage.calendar.detail.student.request.EditRequestActivity"
             android:exported="false" />
+
+
+
+        <provider
+            android:authorities="com.dnd.sixth.lmsservice"
+            android:name="androidx.core.content.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_path"/>
+        </provider>
     </application>
 
 </manifest>

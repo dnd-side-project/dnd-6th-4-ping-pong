@@ -70,7 +70,7 @@ val viewModelModules = module {
         EditResponseViewModel()
     }
     viewModel {
-        ConfigViewModel(get(), get())
+        ConfigViewModel(get(), get(), get(), get(), get())
     }
     viewModel {
         ProfileViewModel(get(), get(), get(), get(), get(), get(), get(), get(), get(), get())
@@ -85,7 +85,7 @@ val viewModelModules = module {
         CommentViewModel()
     }
     viewModel {
-        InfoViewModel()
+        InfoViewModel(get(), get(), get(), get())
     }
     viewModel {
         PasswordViewModel(get(), get())

@@ -185,7 +185,7 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding, ProfileViewModel>()
                     // 액티비티 종료
                     val isSuccess = mySaveResult || parentSaveResult
                     val resultIntent = Intent().putExtra(ConfigActivity.INTENT_CONFIG_ACTIVITY_KEY, isSuccess)
-                    setResult(ConfigActivity.INTENT_CONFIG_ACTIVITY_CODE, resultIntent)
+                    setResult(RESULT_OK, resultIntent)
                     finish()
                 }
 
