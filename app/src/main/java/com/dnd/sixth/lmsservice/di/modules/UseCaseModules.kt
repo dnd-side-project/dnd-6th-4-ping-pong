@@ -82,9 +82,7 @@ val useCaseModules = module {
     factory {
         UpdateDailyClassUseCase(get())
     }
-    factory {
-        com.dnd.sixth.lmsservice.domain.usecase.dailyclass.GetDailyClassUseCase(get())
-    }
+
 
 
     /* User */
