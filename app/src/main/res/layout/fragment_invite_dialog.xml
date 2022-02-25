@@ -68,6 +68,7 @@
                 android:layout_width="150dp"
                 android:layout_height="36dp"
                 android:layout_marginTop="26dp"
+                android:visibility="gone"
                 android:background="@drawable/bg_invite_code"
                 android:orientation="horizontal"
                 app:layout_constraintLeft_toLeftOf="parent"

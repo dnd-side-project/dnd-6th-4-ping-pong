@@ -12,10 +12,8 @@ import com.dnd.sixth.lmsservice.domain.usecase.push.feedback.ChangeFeedbackPushU
 import com.dnd.sixth.lmsservice.domain.usecase.push.feedback.GetFeedbackPushUseCase
 import com.dnd.sixth.lmsservice.domain.usecase.push.start.ChangeStartPushUseCase
 import com.dnd.sixth.lmsservice.domain.usecase.push.start.GetStartPushUseCase
-import com.dnd.sixth.lmsservice.domain.usecase.subject.CreateSubjectUseCase
-import com.dnd.sixth.lmsservice.domain.usecase.subject.DeleteSubjectUseCase
-import com.dnd.sixth.lmsservice.domain.usecase.subject.GetGeneralSubjectListUseCase
-import com.dnd.sixth.lmsservice.domain.usecase.subject.UpdateSubjectUseCase
+import com.dnd.sixth.lmsservice.domain.usecase.subject.*
+import com.dnd.sixth.lmsservice.domain.usecase.user.GetUserUseCase
 import com.dnd.sixth.lmsservice.domain.usecase.user.contact.GetLocalContactTimeUseCase
 import com.dnd.sixth.lmsservice.domain.usecase.user.contact.SaveLocalContactTimeUseCase
 import com.dnd.sixth.lmsservice.domain.usecase.user.contact.SaveRemoteContactTimeUseCase
@@ -47,6 +45,9 @@ val useCaseModules = module {
     factory {
         UpdateSubjectUseCase(get())
     }
+    factory {
+        GetSubjectUseCase(get())
+    }
 
     /*
     타임라인 리스트
@@ -68,6 +69,9 @@ val useCaseModules = module {
     }
     factory {
         UpdateDailyClassUseCase(get())
+    }
+    factory {
+        com.dnd.sixth.lmsservice.domain.usecase.dailyclass.GetDailyClassUseCase(get())
     }
 
 
@@ -113,6 +117,9 @@ val useCaseModules = module {
     }
     factory {
         GetLocalProfileUriUseCase(get())
+    }
+    factory {
+        GetUserUseCase(get())
     }
 
 

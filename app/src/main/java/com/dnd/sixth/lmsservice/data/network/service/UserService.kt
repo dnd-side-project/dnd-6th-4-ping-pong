@@ -1,13 +1,19 @@
 package com.dnd.sixth.lmsservice.data.network.service
 
-import android.net.Uri
+import com.dnd.sixth.lmsservice.data.response.UserModel
 import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.PUT
 import retrofit2.http.Part
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface UserService {
+
+    // 유저 정보를 반환합니다.
+    @PUT("/user/{email}")
+    fun getUser(@Path("email") email: String): Call<UserModel>
+
     // 유저 이름을 변경하고, 변경한 데이터의 숫자를 반환받습니다.
     @PUT("/user/name")
     fun updateUserName(@Query("id") uid: Number, @Query("user_nm") userName: String): Call<Int>

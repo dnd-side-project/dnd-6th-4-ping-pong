@@ -16,6 +16,8 @@ data class GeneralSubjectModel(
     val classDay: String,
     @SerializedName("teacher_id")
     val teacherId: Number,
+    @SerializedName("student_id")
+    val studentId: Number? = null,
     @SerializedName("color")
     val color: Number,
     @SerializedName("class_days")

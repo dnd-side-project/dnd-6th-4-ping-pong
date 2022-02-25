@@ -45,6 +45,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:text="@{viewModel.otherUserEntity.userName}"
                     android:fontFamily="@font/spoqa_medium"
                     android:textColor="@color/richBlack"
                     android:textSize="16sp"
@@ -68,6 +69,7 @@
                     android:layout_width="56dp"
                     android:layout_height="56dp"
                     android:layout_marginTop="16dp"
+                    setProfileUrl="@{viewModel.otherUserEntity.profileUrl}"
                     android:src="@drawable/ic_anonymous"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
@@ -93,7 +95,7 @@
                         android:id="@+id/detail_tab"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="클래스 정보" />
+                        android:text="@string/class_info" />
 
                     <com.google.android.material.tabs.TabItem
                         android:id="@+id/homework_tab"

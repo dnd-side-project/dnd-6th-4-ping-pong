@@ -1,8 +1,10 @@
 package com.dnd.sixth.lmsservice.data.repository.user
 
 import android.net.Uri
+import com.dnd.sixth.lmsservice.data.mapper.toEntity
 import com.dnd.sixth.lmsservice.data.repository.user.local.UserLocalDataSource
 import com.dnd.sixth.lmsservice.data.repository.user.remote.UserRemoteDataSource
+import com.dnd.sixth.lmsservice.domain.entity.UserEntity
 import com.dnd.sixth.lmsservice.domain.repository.UserRepository
 
 class UserRepositoryImpl(
@@ -11,6 +13,9 @@ class UserRepositoryImpl(
 ) : UserRepository {
 
     /* Remote */
+    override suspend fun getUser(email: String): UserEntity =
+        userRemoteDataSource.getUser(email).toEntity()
+
     override suspend fun changeUserName(uid: Number, newName: String): Int =
         userRemoteDataSource.changeUserName(uid, newName)
 
@@ -31,7 +36,7 @@ class UserRepositoryImpl(
          userRemoteDataSource.saveParentNumber(uid, parentNumber)
 
 
-    override suspend fun saveLocalProfileUri(uid: Number, profileUri: Uri): Uri? =
+    override suspend fun saveRemoteProfileUri(uid: Number, profileUri: Uri): Uri? =
         userRemoteDataSource.saveRemoteProfileUri(uid, profileUri)
 
 
@@ -61,9 +66,10 @@ class UserRepositoryImpl(
         userLocalDataSource.getParentNumber()
 
 
-    override fun saveLocalProfileUri(profileUri: Uri) {
+    override fun saveRemoteProfileUri(profileUri: Uri) {
         userLocalDataSource.saveLocalProfileUri(profileUri)
     }
+
 
     override fun getLocalProfileUri(): Uri =
         userLocalDataSource.getLocalProfileUri()

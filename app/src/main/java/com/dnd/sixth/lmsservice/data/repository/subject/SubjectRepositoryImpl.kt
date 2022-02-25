@@ -29,4 +29,8 @@ class SubjectRepositoryImpl(
     override suspend fun updateSubject(subjectEntity: SubjectEntity): SubjectEntity? =
         subjectRemoteDataSource.updateSubject(remoteErrorEmitter, subjectEntity.toModel())?.toEntity()
 
+    override suspend fun getSubject(subjectId: Int): SubjectEntity? =
+        subjectRemoteDataSource.getSubject(remoteErrorEmitter, subjectId)?.toEntity()
+
+
 }

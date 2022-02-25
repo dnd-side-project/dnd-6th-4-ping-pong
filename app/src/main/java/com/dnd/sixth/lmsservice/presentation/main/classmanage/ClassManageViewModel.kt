@@ -41,48 +41,7 @@ class ClassManageViewModel(
 
     init {
         // ViewModel 생성시 서버 DB에서 General Subject 리스트를 가져와 갱신합니다.
-        // updateGeneralSubjectList()
-        _generalSubjectList.value = listOf<GeneralSubjectEntity>(
-            GeneralSubjectEntity(
-                "최기택",
-                1,
-                "",
-                "",
-                1,
-                DateColor.RED.ordinal,
-                "1000011",
-                "임시1",
-                "임시",
-                1,
-                1
-            ),
-            GeneralSubjectEntity(
-                "최기택",
-                1,
-                "",
-                "",
-                1,
-                DateColor.DARK_BLUE.ordinal,
-                "1001000",
-                "임시2",
-                "임시",
-                2,
-                1
-            ),
-            GeneralSubjectEntity(
-                "임시용",
-                1,
-                "",
-                "",
-                1,
-                DateColor.YELLOW.ordinal,
-                "1000011",
-                "임시3",
-                "임시",
-                3,
-                1
-            ),
-        )
+        updateGeneralSubjectList()
     }
 
     /* 서버 DB에서 General Subject 리스트를 가져옵니다.

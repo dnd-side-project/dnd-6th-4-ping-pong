@@ -11,6 +11,7 @@ data class GeneralSubjectEntity(
     val classTime: String,
     val classDay: String,
     val teacherId: Number,
+    val studentId: Number? = null,
     val color: Number,
     val classDayBit: String, // 수업 요일 비트형태 'ex) 1000011'
     val teacherName: String,

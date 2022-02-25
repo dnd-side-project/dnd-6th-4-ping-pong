@@ -17,5 +17,4 @@ data class DailyClassEntity(
     val isChangeFeedback: Boolean,
     val classDays: Number,
     val difficulty : Int
-
 ): Serializable
