@@ -10,6 +10,7 @@ import com.dnd.sixth.lmsservice.domain.usecase.dailyclass.GetDailyClassListUseCa
 import com.dnd.sixth.lmsservice.presentation.base.BaseViewModel
 import com.dnd.sixth.lmsservice.presentation.extensions.onIO
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.custom.DateColor
+import com.dnd.sixth.lmsservice.presentation.utility.SAVED_UID_KEY
 import java.util.*
 
 class CalendarViewModel(
@@ -39,48 +40,8 @@ class CalendarViewModel(
     init {
         onIO {
             // ViewModel 생성시 서버로부터 사용자의 일일 수업 리스트를 가져옵니다.
-            /*_dailyClassList.postValue(
-                getDailyClassListUseCase(preferenceManager.getInt(SAVED_UID_KEY)))*/
             _dailyClassList.postValue(
-                listOf<DailyEntity>(
-                    DailyEntity(
-                        1,
-                        1,
-                        "2022-02-24 03:50",
-                        "",
-                        "",
-                        "",
-                        "",
-                    ),
-                    DailyEntity(
-                        1,
-                        1,
-                        "2022-02-22 03:50",
-                        "",
-                        "",
-                        "",
-                        "",
-                    ),
-                    DailyEntity(
-                        2,
-                        1,
-                        "2022-02-26 03:50",
-                        "",
-                        "",
-                        "",
-                        "",
-                    ),
-                    DailyEntity(
-                        3,
-                        1,
-                        "2022-02-25 03:50",
-                        "",
-                        "",
-                        "",
-                        "",
-                    ),
-                )
-            )
+                getDailyClassListUseCase(preferenceManager.getInt(SAVED_UID_KEY)))
         }
     }
 

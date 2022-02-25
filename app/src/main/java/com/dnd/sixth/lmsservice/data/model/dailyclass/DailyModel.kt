@@ -3,6 +3,8 @@ package com.dnd.sixth.lmsservice.data.model.dailyclass
 import com.google.gson.annotations.SerializedName
 
 data class DailyModel(
+    @SerializedName("id")
+    val id: Number? = null,
     @SerializedName("subject_id")
     val subjectId: Int,
     @SerializedName("class_order")

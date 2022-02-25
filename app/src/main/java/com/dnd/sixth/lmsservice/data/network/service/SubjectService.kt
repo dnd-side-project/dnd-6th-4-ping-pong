@@ -25,4 +25,9 @@ interface SubjectService {
     fun getGeneralClassList(
         @Query("id") uid: Int
     ): Call<List<GeneralSubjectModel>>
+
+    @GET("subject")
+    fun getSubject(
+        @Query("id") subjectId: Int
+    ): Call<SubjectModel>
 }

@@ -52,6 +52,7 @@ fun DailyClassGetModel.toEntity(): DailyClassEntity {
 
 fun DailyModel.toEntity(): DailyEntity {
     return DailyEntity(
+        this.id,
         this.subjectId,
         this.classOrder,
         this.startTime,
@@ -70,6 +71,7 @@ fun DailyModel.toEntity(): DailyEntity {
 
 fun DailyEntity.toModel(): DailyModel {
     return DailyModel(
+        this.id,
         this.subjectId.toInt(),
         this.classOrder.toInt(),
         this.startTime,

@@ -5,6 +5,6 @@ import com.dnd.sixth.lmsservice.domain.repository.UserRepository
 
 class SaveLocalProfileUriUseCase(private val userRepository: UserRepository) {
     operator fun invoke(profileUri: Uri) {
-        userRepository.saveLocalProfileUri(profileUri)
+        userRepository.saveRemoteProfileUri(profileUri)
     }
 }

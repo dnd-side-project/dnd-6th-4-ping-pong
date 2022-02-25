@@ -21,7 +21,12 @@ class UserInfoFragment : BaseFragment<FragmentUserInfoBinding, InfoViewModel>(),
 
     private fun initView() {
         with(binding) {
-
+            // 역할에 따라 View의 시각화를 다르게 합니다.
+            if (viewModel?.isStudent() == true) { // 학생인 경우
+                studentContainer.visibility = View.VISIBLE
+            } else { // 선생님인 경우
+                teacherContainer.visibility = View.VISIBLE
+            }
         }
     }
 

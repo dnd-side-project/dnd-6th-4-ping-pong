@@ -85,7 +85,7 @@ val viewModelModules = module {
         CommentViewModel()
     }
     viewModel {
-        InfoViewModel()
+        InfoViewModel(get(), get(), get(), get())
     }
     viewModel {
         PasswordViewModel(get(), get())

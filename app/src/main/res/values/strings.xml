@@ -3,7 +3,7 @@
     <string name="calendar_progress_switch_tooltip">숙제 진행률을\n체크해보세요!</string>
     <string name="calendar_class_switch_tooltip">수업마다 색이 다르게\n표시되어 보여져요.</string>
 
-    <!-- 래금ㅅ -->
+    <!-- Format -->
     <string name="class_round_format">%d회차</string>
     <string name="class_round_info_format">%d회</string>
     <string name="hello_format">%s님, 안녕하세요!</string>
@@ -29,6 +29,8 @@
     <string name="hour_or_minute_format">%02d</string> <!-- 시간 형식 -->
     <string name="hour_minute_format">%02d:%02d</string> <!-- 시간 표시 형식 -->
     <string name="contact_time_format">%02d : %02d ~ %02d : %02d</string> <!-- 연락 가능 시간대 형식 -->
+    <string name="daily_class_date_format">%04d. %02d. %02d. %s&#160;&#160;&#160;%s %02d : %2d</string> <!-- 2022. 01. 22. 토   오후 03 : 30 -->
+    <string name="contact_available_format">연락 가능 시간 : %s</string>
 
     <string name="no_class_title">오늘은 수업이 없는 날이네요.</string>
     <string name="no_class">클래스 추가</string>

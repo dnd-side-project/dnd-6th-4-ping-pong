@@ -100,17 +100,16 @@
             android:exported="false" />
         <activity
             android:name=".presentation.main.info.InfoActivity"
-            android:exported="false" />
-        <activity
-            android:name="com.dnd.sixth.lmsservice.presentation.main.classmanage.config.ConfigActivity"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.dnd.sixth.lmsservice.presentation.main.classmanage.config.ConfigActivity"
+            android:exported="true"/>
         <activity
             android:name="com.dnd.sixth.lmsservice.presentation.main.classmanage.config.profile.password.ChangePWActivity"
             android:exported="false"

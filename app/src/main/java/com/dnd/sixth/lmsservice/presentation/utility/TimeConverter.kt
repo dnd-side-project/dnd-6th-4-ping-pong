@@ -15,6 +15,14 @@ class TimeConverter {
         }
     }
 
+    fun getAmPm(hour: Int): String {
+        return if(hour < 12) {
+            "오전"
+        }else {
+            "오후"
+        }
+    }
+
     /*  시간을 오후 시간대로 변환 (00시는 12시로 변환)
          *  @param hour : 시간대 (0 ~ 24)
          *  @return (hour = 13) -> 1

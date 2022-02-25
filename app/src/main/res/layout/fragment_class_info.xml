@@ -30,7 +30,8 @@
             android:scaleType="center"
             android:src="@drawable/ic_location"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="#BFC5E4" />
 
         <TextView
             android:id="@+id/class_text_view"
@@ -38,6 +39,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/richBlack"
             android:textSize="14sp"
+            android:text="@{viewModel.subjectEntity.subjectName}"
             app:layout_constraintBottom_toBottomOf="@id/class_info_icon"
             app:layout_constraintStart_toEndOf="@+id/guide_line"
             app:layout_constraintTop_toTopOf="@id/class_info_icon"
@@ -58,7 +60,8 @@
             android:scaleType="center"
             android:src="@drawable/ic_watch"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider1" />
+            app:layout_constraintTop_toBottomOf="@+id/divider1"
+            app:tint="#BFC5E4" />
 
         <TextView
             android:id="@+id/date_time_text_view"
@@ -66,6 +69,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/richBlack"
             android:textSize="14sp"
+            dailyClassDate="@{viewModel.dailyEntity.startTime}"
             app:layout_constraintBottom_toBottomOf="@id/date_info_icon"
             app:layout_constraintStart_toEndOf="@+id/guide_line"
             app:layout_constraintTop_toTopOf="@id/date_info_icon"
@@ -86,7 +90,8 @@
             android:scaleType="center"
             android:src="@drawable/ic_phone"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider2" />
+            app:layout_constraintTop_toBottomOf="@+id/divider2"
+            app:tint="#BFC5E4" />
 
         <TextView
             android:id="@+id/number_text_view"
@@ -94,6 +99,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/richBlack"
             android:textSize="14sp"
+            android:text="@{viewModel.otherUserEntity.phoneNumber.toString()}"
             app:layout_constraintBottom_toBottomOf="@id/number_info_icon"
             app:layout_constraintStart_toEndOf="@+id/guide_line"
             app:layout_constraintTop_toTopOf="@id/number_info_icon"
@@ -114,7 +120,8 @@
             android:scaleType="center"
             android:src="@drawable/ic_book"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider3" />
+            app:layout_constraintTop_toBottomOf="@+id/divider3"
+            app:tint="#BFC5E4" />
 
         <TextView
             android:id="@+id/round_text_view"
@@ -122,10 +129,11 @@
             android:layout_height="wrap_content"
             android:textColor="@color/richBlack"
             android:textSize="14sp"
+            android:text="@{@string/class_round_format(viewModel.dailyEntity.classOrder)}"
             app:layout_constraintBottom_toBottomOf="@id/round_info_icon"
             app:layout_constraintStart_toEndOf="@+id/guide_line"
             app:layout_constraintTop_toTopOf="@id/round_info_icon"
-            tools:text="8회" />
+            tools:text="8회차" />
 
         <View
             android:id="@+id/divider4"
