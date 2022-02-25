@@ -26,5 +26,12 @@ class FeedBackCommentRepositoryImpl (
         return feedbackCommentRemoteDataSource.writeComment(remoteErrorEmitter, commentModel)
     }
 
+    override suspend fun getCommentFromDailyClass(
+        subjectId: Number,
+        dailyId: Number
+    ): DailyClassEntity? {
+        return feedbackCommentRemoteDataSource.getCommentFromDailyClass(subjectId,dailyId)?.get(0)?.toEntity()
+    }
+
 
 }
