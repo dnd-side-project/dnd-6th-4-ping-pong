@@ -18,4 +18,5 @@ interface FeedBackService {
     //피드백 남기기
     @PUT("/dailyclass/feedback")
     fun updateFeedBack(@Body myFeedback : FeedBackModel) : Call<Number>
+
 }

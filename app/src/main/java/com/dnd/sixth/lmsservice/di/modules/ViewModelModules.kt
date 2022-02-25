@@ -82,7 +82,7 @@ val viewModelModules = module {
         InviteLinkViewModel()
     }
     viewModel {
-        CommentViewModel()
+        CommentViewModel(get(),get())
     }
     viewModel {
         InfoViewModel(get(), get(), get(), get())
