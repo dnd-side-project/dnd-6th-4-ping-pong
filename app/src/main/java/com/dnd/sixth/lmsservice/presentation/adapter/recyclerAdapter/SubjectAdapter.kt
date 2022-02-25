@@ -39,10 +39,12 @@ class SubjectAdapter(
                 }
 
                 // 수업 요일을 보여줌
-                visibleViewListIfContain(
-                    classModel.classDayBit,
-                    listOf<View>(monIcon, tueIcon, wedIcon, thurIcon, friIcon, satIcon, sunIcon)
-                )
+                classModel.classDayBit?.let {
+                    visibleViewListIfContain(
+                        it,
+                        listOf<View>(monIcon, tueIcon, wedIcon, thurIcon, friIcon, satIcon, sunIcon)
+                    )
+                }
 
                 // 수업 요일 색상 변경
                 applyDowColor(

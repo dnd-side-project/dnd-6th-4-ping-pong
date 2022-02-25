@@ -50,7 +50,7 @@ class ConfigActivity : BaseActivity<ActivityConfigBinding, ConfigViewModel>(),
             setClickListener() // 클릭 리스너 설정
             setResultLauncher() // ActivityResult 설정
 
-            nicknameEditText.setOnFocusChangeListener { v, hasFocus ->
+            nicknameEditText.setOnFocusChangeListener { editText, hasFocus ->
                 // 닉네임 변경 EditText가 포커스를 받았다면 텍스트 색상과 아이콘을 변경합니다.
                 if (hasFocus) {
                     editIcon.imageTintList = ColorStateList.valueOf(
@@ -65,7 +65,15 @@ class ConfigActivity : BaseActivity<ActivityConfigBinding, ConfigViewModel>(),
                             R.color.grayC4
                         )
                     )
+
+                    // EditText에 포커스가 주어지면 키보드를 띄웁니다.
+                    (getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
+                        .showSoftInput(editText, 0)
                 } else {
+                    // EditText에 포커스가 사라지면 키보드를 내립니다.
+                    (getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
+                        .hideSoftInputFromWindow(editText.windowToken, 0)
+
                     editIcon.imageTintList = ColorStateList.valueOf(
                         ContextCompat.getColor(
                             this@ConfigActivity,
@@ -154,19 +162,20 @@ class ConfigActivity : BaseActivity<ActivityConfigBinding, ConfigViewModel>(),
                         // 연필 아이콘을 누르면 닉네임을 변경합니다.
                         CoroutineScope(Dispatchers.IO).launch {
                             val isChanged = viewModel.changeUserName()
-                            if (isChanged) {
-                                showSnackBar("닉네임이 변경되었어요!")
-                            } else {
-                                showSnackBar("닉네임 변경에 실패했어요!")
+                            launch(Dispatchers.Main) {
+                                if (isChanged) {
+                                    showSnackBar("닉네임이 변경되었어요!")
+                                    it.clearFocus() // 포커스를 해제합니다.
+                                } else {
+                                    showSnackBar("닉네임 변경에 실패했어요!")
+                                }
+
                             }
                         }
                     } else { // 포커스를 가지고 있지 않다면
-                        it.isFocusableInTouchMode = true // 터치로 포커스를 가능하게 변경합니다.
-                        it.requestFocus() // EditText에 포커스를 둡니다.
+                        it.isFocusableInTouchMode = true // 포커스를 True로 변경합니다.
+                        it.requestFocus() // Focus 변경 상태를 반영합니다.
                         it.setSelection(it.text.length) // 커서를 맨 오른쪽에 배치시킵니다.
-                        val imm =
-                            getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                        imm.showSoftInput(it, 0) // 키보드를 띄웁니다.
                     }
                 }
 

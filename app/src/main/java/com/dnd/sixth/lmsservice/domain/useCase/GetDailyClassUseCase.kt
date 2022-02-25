@@ -1,4 +1,4 @@
-package com.dnd.sixth.lmsservice.domain.useCase
+package com.dnd.sixth.lmsservice.domain.usecase
 
 import com.dnd.sixth.lmsservice.domain.entity.DailyClassEntity
 import com.dnd.sixth.lmsservice.domain.repository.DailyClassTimeLineRepository

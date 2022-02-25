@@ -10,4 +10,5 @@ interface DailyClassRemoteDataSource {
     suspend fun getDailyClassList(remoteErrorEmitter: RemoteErrorEmitter, userId: Int): List<DailyModel>?
     suspend fun deleteDailyClass(remoteErrorEmitter: RemoteErrorEmitter, dailyId: Int): DailyModel?
     suspend fun updateDailyClass(remoteErrorEmitter: RemoteErrorEmitter, dailyModel: DailyModel): DailyModel?
+    suspend fun getAllDailyClass(remoteErrorEmitter: RemoteErrorEmitter): List<DailyModel>
 }

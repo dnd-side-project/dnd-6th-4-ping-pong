@@ -6,28 +6,31 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface SubjectService {
-    @POST("subject")
+    @POST("/subject")
     fun createSubject(
         @Body subjectModel: SubjectModel
     ): Call<SubjectModel>
 
-    @PUT("subject")
+    @PUT("/subject")
     fun updateSubject(
         @Body subjectModel: SubjectModel
     ): Call<SubjectModel>
 
-    @DELETE("subject")
+    @DELETE("/subject")
     fun deleteSubject(
         @Query("id") subjectId: Int
     ): Call<SubjectModel>
 
-    @GET("subject")
+    @GET("/subject/all")
     fun getGeneralClassList(
         @Query("id") uid: Int
     ): Call<List<GeneralSubjectModel>>
 
-    @GET("subject")
+    @GET("/subject")
     fun getSubject(
         @Query("id") subjectId: Int
     ): Call<SubjectModel>
+
+    @GET("/subject/all")
+    fun getAllSubjectList(): Call<List<SubjectModel>>
 }

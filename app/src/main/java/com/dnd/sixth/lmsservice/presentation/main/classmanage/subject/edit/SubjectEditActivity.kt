@@ -40,16 +40,16 @@ class SubjectEditActivity : BaseActivity<ActivityEditClassBinding, SubjectEditVi
 
 
             // 전달받은 GeneralSubjectEntity의 데이터를 ViewModel의 데이터 적용
-            (intent.getSerializableExtra("classModel") as GeneralSubjectEntity).also {
+            (intent.getSerializableExtra("classModel") as GeneralSubjectEntity).also { subject ->
                 with(viewModel!!) {
-                    subjectName.value = it.subjectName
-                    hour = it.classTime.split(":")[0].toInt()
-                    minute = it.classTime.split(":")[1].toInt()
+                    subjectName.value = subject.subjectName
+                    hour = subject.classTime.split(":")[0].toInt()
+                    minute = subject.classTime.split(":")[1].toInt()
                     setClassTime()
 
-                    updateDowMap(it.classDayBit.convertDowMap())
+                    subject.classDayBit?.let { updateDowMap(it.convertDowMap()) }
 
-                    when (it.monthlyCnt) {
+                    when (subject.monthlyCnt) {
                         SalaryDay.FOUR.countInt -> {
                             salaryDay = SalaryDay.FOUR
                             firstSalaryBtn.isChecked = true

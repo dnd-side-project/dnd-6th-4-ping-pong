@@ -8,7 +8,7 @@ import com.dnd.sixth.lmsservice.domain.entity.SubjectEntity
 import com.dnd.sixth.lmsservice.domain.entity.UserEntity
 import com.dnd.sixth.lmsservice.domain.usecase.dailyclass.GetDailyClassUseCase
 import com.dnd.sixth.lmsservice.domain.usecase.subject.GetSubjectUseCase
-import com.dnd.sixth.lmsservice.domain.usecase.user.GetUserUseCase
+import com.dnd.sixth.lmsservice.domain.usecase.user.GetUserByEmailUseCase
 import com.dnd.sixth.lmsservice.presentation.base.BaseViewModel
 import com.dnd.sixth.lmsservice.presentation.extensions.onIO
 import com.dnd.sixth.lmsservice.presentation.utility.ROLE_STUDENT
@@ -17,7 +17,7 @@ import com.dnd.sixth.lmsservice.presentation.utility.SAVED_ROLE_KEY
 class InfoViewModel(
     private val preferenceManager: PreferenceManager,
     private val getSubjectUseCase: GetSubjectUseCase,
-    private val getUserUseCase: GetUserUseCase,
+    private val getUserByEmailUseCase: GetUserByEmailUseCase,
     private val getDailyClassUseCase: GetDailyClassUseCase,
 ) : BaseViewModel() {
     private val _subjectEntity = MutableLiveData<SubjectEntity>()
@@ -51,7 +51,7 @@ class InfoViewModel(
 
     fun getOtherUserEntity(otherEmail: String) {
         onIO {
-            getUserUseCase(otherEmail)?.let { _otherUserEntity.postValue(it) }
+            getUserByEmailUseCase(otherEmail)?.let { _otherUserEntity.postValue(it) }
         }
     }
 

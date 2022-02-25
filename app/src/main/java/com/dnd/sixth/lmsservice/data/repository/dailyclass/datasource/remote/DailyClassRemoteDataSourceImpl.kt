@@ -189,5 +189,40 @@ class DailyClassRemoteDataSourceImpl(private val dailyApi: DailyApi) : DailyClas
         })
     }
 
+    override suspend fun getAllDailyClass(remoteErrorEmitter: RemoteErrorEmitter): List<DailyModel> =
+        suspendCancellableCoroutine { cont ->
+            val requestCall = dailyApi.api.getAllDailyList()
+
+            requestCall.enqueue(object : Callback<List<DailyModel>> {
+                @SuppressLint("LongLogTag")
+                override fun onResponse(
+                    call: Call<List<DailyModel>>,
+                    response: Response<List<DailyModel>>
+                ) {
+                    // Http 통신 결과 (200 코드대인 경우)
+                    if (response.isSuccessful) {
+                        // 서버 DB로부터 받은 DTO객체
+                        val dailyModelList = response.body() as List<DailyModel>
+                        if (BuildConfig.DEBUG) {
+                            Log.d(TAG, response.code().toString())
+                            Log.d(TAG, dailyModelList.toString())
+                        }
+
+                        cont.resumeWith(Result.success(dailyModelList)) // 코루틴 재게
+                    }
+                    // 서버로부터 에러 반환
+                    else {
+                        Log.e(TAG, response.code().toString())
+                    }
+                }
+
+                @SuppressLint("LongLogTag")
+                override fun onFailure(call: Call<List<DailyModel>>, cause: Throwable) {
+                    Log.e(TAG, cause.message.toString())
+                    cont.resumeWithException(cause)
+                }
+            })
+        }
+
 
 }

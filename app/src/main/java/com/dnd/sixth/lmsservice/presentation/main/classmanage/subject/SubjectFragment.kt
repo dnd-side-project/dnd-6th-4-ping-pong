@@ -251,11 +251,12 @@ class SubjectFragment : BaseFragment<FragmentClassBinding, SubjectViewModel>(),
                     val isSuccess = hostViewModel.deleteSubject(position) // 수업 삭제
                     launch(Dispatchers.Main) {
                         if (isSuccess) {
-                            showSnackBar(getString(R.string.success_delete_subject))
+                            // List와 RecyclerView에서도 삭제한 수업 데이터를 제거합니다.
+                            hostViewModel.removeSubject(position)
+                            subjectAdapter?.notifyItemRemoved(position)
 
-                            // viewModel의 List에서 해당 수업 삭제 로직 구현 예정
-                            //
-                            //
+                            // 성공 SnackBar 출력
+                            showSnackBar(getString(R.string.success_delete_subject))
                         } else {
                             showSnackBar(getString(R.string.failed_delete_subject))
                         }

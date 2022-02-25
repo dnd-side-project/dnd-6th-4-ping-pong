@@ -9,12 +9,10 @@ data class GeneralSubjectEntity(
     val subjectName: String,
     val monthlyCnt: Number,
     val classTime: String,
-    val classDay: String,
-    val teacherId: Number,
+    val teacherId: Number?,
     val studentId: Number? = null,
     val color: Number,
-    val classDayBit: String, // 수업 요일 비트형태 'ex) 1000011'
-    val teacherName: String,
+    val classDayBit: String?, // 수업 요일 비트형태 'ex) 1000011'
     val studentName: String,
     val subjectId: Number, // 수업 Uid
     val userId: Number, // 학생 Uid

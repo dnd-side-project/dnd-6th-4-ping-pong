@@ -8,6 +8,8 @@ interface UserRepository {
     *  Remote
     * */
     suspend fun getUser(email: String): UserEntity
+    suspend fun getUser(uid: Int): UserEntity
+  //  suspend fun getAllUser(): List<UserEntity>
     suspend fun changeUserName(uid: Number, newName: String): Int
     suspend fun changePassword(uid: Number, newPassword: String): Int
     suspend fun saveRemoteContactTime(uid: Number, contactTime: String): Int

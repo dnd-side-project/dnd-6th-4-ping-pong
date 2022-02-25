@@ -30,4 +30,9 @@ interface SubjectRepository {
     * 수업 가져오기
     * */
     suspend fun getSubject(subjectId: Int): SubjectEntity?
+
+    /*
+    *  DB에 저장되어 있는 모든 수업 리스트 가져오기
+    * */
+    suspend fun getAllSubjectList(): List<SubjectEntity>
 }

@@ -12,18 +12,15 @@ data class GeneralSubjectModel(
     val monthlyCnt: Number,
     @SerializedName("class_time")
     val classTime: String,
-    @SerializedName("class_day")
-    val classDay: String,
     @SerializedName("teacher_id")
-    val teacherId: Number,
+    val teacherId: Number?,
     @SerializedName("student_id")
     val studentId: Number? = null,
     @SerializedName("color")
     val color: Number,
     @SerializedName("class_days")
-    val classDays: Number, //수업 요일 비트형태 'ex) 0b1000011'
+    val classDays: String?, //수업 요일 비트형태 'ex) 0b1000011'
 
-    val teacherName: String,
     val studentName: String,
     val classId: Number, // 수업 Uid
     val userId: Number, // 학생 Uid

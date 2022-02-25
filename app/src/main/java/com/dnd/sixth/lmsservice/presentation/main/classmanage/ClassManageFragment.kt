@@ -62,9 +62,6 @@ class ClassManageFragment : BaseFragment<FragmentClassManageBinding, ClassManage
             //setMarginTabItem() // 탭 간에 margin 설정
             setOnClickListener(binding)
 
-            // 인사말 텍스트뷰에 유저 이름 설정
-            val userName = PreferenceManager(requireContext()).getString(SAVED_NAME_KEY)
-            helloNameTextView.text = getString(R.string.hello_format, userName)
 
             /* 클래스(수업) 및 캘린더 Fragment의 높이에 따라 ViewPager 스크롤을 위한 ScrollView의 높이를 업데이트해준다.  */
             ClassManageViewModel.screenHeight.observe(this@ClassManageFragment) { viewPagerHeight ->
@@ -77,6 +74,15 @@ class ClassManageFragment : BaseFragment<FragmentClassManageBinding, ClassManage
             ClassManageViewModel.classCount.observe(this@ClassManageFragment) { classCount ->
                 // 클래스 개수 텍스트 설정
                 classCountTextView.text = getString(R.string.class_count_format, classCount)
+            }
+
+
+            // 화면에 Focus가 주어지면 이름 (새롭게) 설정
+            binding.root.viewTreeObserver.addOnWindowFocusChangeListener { hasFocus ->
+                if(hasFocus) {
+                    // 인사말 텍스트뷰에 유저 이름 설정
+                    helloNameTextView.text = getString(R.string.hello_format, viewModel?.getName())
+                }
             }
 
         }
@@ -114,5 +120,6 @@ class ClassManageFragment : BaseFragment<FragmentClassManageBinding, ClassManage
             R.id.config_btn -> startActivity(Intent(requireContext(), ConfigActivity::class.java))
         }
     }
+
 
 }

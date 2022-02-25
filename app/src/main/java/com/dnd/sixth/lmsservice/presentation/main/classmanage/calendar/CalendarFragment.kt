@@ -84,7 +84,7 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding, CalendarViewModel
             setClickListener(this)
             setCalendar() // 캘린더 관련 설정
             setActivityLauncher() // 액티비티 런처 설정
-            //setViewVisibility() // 유저 상태에 따라 View의 Visibillity 설정
+            setViewVisibility() // 유저 상태에 따라 View의 Visibillity 설정
         }
 
 
@@ -106,7 +106,7 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding, CalendarViewModel
         val preferenceManager = PreferenceManager(requireContext())
         val role = preferenceManager.getInt(SAVED_ROLE_KEY)
 
-        if (hostViewModel.generalSubjectDataList.value?.isNullOrEmpty() == true || role == ROLE_STUDENT) {
+        if (hostViewModel.hasClass().not() || role == ROLE_STUDENT) {
             binding.scheduleAddFab.visibility = View.GONE
         } else {
             binding.scheduleAddFab.visibility = View.VISIBLE

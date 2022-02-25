@@ -40,7 +40,7 @@ val viewModelModules = module {
         SignUpViewModel()
     }
     viewModel {
-        ClassManageViewModel(get(), get(), get())
+        ClassManageViewModel(get(), get(), get(), get(), get(), get())
     }
     viewModel {
         CreateSubjectViewModel(get(), get())
