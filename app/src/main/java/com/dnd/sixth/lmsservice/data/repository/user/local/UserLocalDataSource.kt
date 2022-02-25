@@ -1,5 +1,7 @@
 package com.dnd.sixth.lmsservice.data.repository.user.local
 
+import android.net.Uri
+
 interface UserLocalDataSource {
     fun saveContactTime(contactTime: String)
     fun getContactTime(): String?
@@ -9,4 +11,7 @@ interface UserLocalDataSource {
 
     fun saveParentNumber(parentNumber: String)
     fun getParentNumber(): String?
+
+    fun saveLocalProfileUri(profileUri: Uri)
+    fun getLocalProfileUri(): Uri
 }

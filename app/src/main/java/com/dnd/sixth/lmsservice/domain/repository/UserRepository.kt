@@ -1,5 +1,7 @@
 package com.dnd.sixth.lmsservice.domain.repository
 
+import android.net.Uri
+
 interface UserRepository {
     /*
     *  Remote
@@ -9,6 +11,7 @@ interface UserRepository {
     suspend fun saveRemoteContactTime(uid: Number, contactTime: String): Int
     suspend fun saveRemoteMyNumber(uid: Number, myNumber: String): Int
     suspend fun saveRemoteParentNumber(uid: Number, parentNumber: String): Int
+    suspend fun saveLocalProfileUri(uid: Number, profileUri: Uri): Uri?
 
     /*
     *  Local
@@ -19,4 +22,6 @@ interface UserRepository {
     suspend fun getLocalMyNumber(): String?
     suspend fun saveLocalParentNumber(parentNumber: String)
     suspend fun getLocalParentNumber(): String?
+    fun saveLocalProfileUri(profileUri: Uri)
+    fun getLocalProfileUri(): Uri
 }

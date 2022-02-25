@@ -5,5 +5,5 @@ import com.dnd.sixth.lmsservice.data.network.service.DailyService
 import com.dnd.sixth.lmsservice.data.network.service.UserService
 
 class UserApi: BaseApi() {
-    var api = retrofit.create(UserService::class.java)
+    var api: UserService = retrofit.create(UserService::class.java)
 }
