@@ -131,51 +131,9 @@ class ClassProgressActivity : BaseActivity<ActivityClassProgressBinding, ClassPr
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.progress_invite_btn -> invite() // 수업 초대 링크 생성
+
         }
     }
 
-    private fun invite() {
-        val userId = "kim1234" // Query로 사용할 유저 아이디 (Uid로 변경 가능성)
-
-        // (Manifest에 설정한 scheme, host, path와 동일해야 함.)
-        val invitationLink = "https://pingpongservice.page.link/invite?uid=$userId" // 생성할 다이나믹 링크
-
-        val dynamicLink =
-            FirebaseDynamicLinks.getInstance().createDynamicLink()
-                .setLink(Uri.parse(invitationLink))
-                .setDomainUriPrefix("https://pingpongservice.page.link") // 파이어베이스 다이나믹 링크란에 설정한 Prefix 입력
-                .setAndroidParameters(
-                    AndroidParameters.Builder().build()
-                )
-                .buildShortDynamicLink()
-
-        dynamicLink.addOnSuccessListener { task ->
-            val inviteLink = task.shortLink!!
-            sendInviteLink(inviteLink)
-        }
-
-    }
-
-
-    private fun sendInviteLink(inviteLink: Uri) {
-        val teacherName = "최기택"
-        val inviteIntent = Intent(Intent.ACTION_SEND).apply {
-            type = "text/plain" // 고정 text
-            setPackage("com.kakao.talk") // 카카오톡 패키지 지정
-            // 초대 코드 텍스트 지정
-            putExtra(
-                Intent.EXTRA_TEXT,
-                "$teacherName 선생님이 수업에 초대하였습니다!\n[수업 링크] : $inviteLink"
-            )
-        }
-
-        try {
-            startActivity(inviteIntent) // 수업 초대를 위해 카카오톡 실행
-        } catch (e: ActivityNotFoundException) {
-            // 카카오톡이 설치되어 있지 않은 경우 예외 발생
-            showToast("카카오톡이 설치되어 있지 않습니다.")
-        }
-    }
 
 }

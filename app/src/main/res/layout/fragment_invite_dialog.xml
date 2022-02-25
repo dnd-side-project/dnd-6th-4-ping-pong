@@ -35,7 +35,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/close_btn"
             android:layout_marginTop="10dp"
-            tools:context=".presentation.main.classmanage.subject.create.InviteDialogFragment">
+            tools:context=".presentation.main.classmanage.subject.InviteDialogFragment">
 
             <TextView
                 android:id="@+id/invite_title_text_view"
