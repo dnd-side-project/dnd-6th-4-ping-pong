@@ -10,5 +10,9 @@ interface DailyClassService {
     @GET("/dailyclass/all")
     fun getAllDailyclass() : Call<List<DailyClassGetModel>>
 
+    //하나의 데일리클래스 객체만 받음.
+    @GET("/dailyclass")
+    fun getDailyclass() : Call<DailyClassGetModel>
+
 
 }

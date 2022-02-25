@@ -1,4 +1,4 @@
-package com.dnd.sixth.lmsservice.domain.usecase.user.contact
+package com.dnd.sixth.lmsservice.domain.useCase.user.contact
 
 import com.dnd.sixth.lmsservice.domain.repository.UserRepository
 

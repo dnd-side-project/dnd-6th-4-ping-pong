@@ -1,4 +1,4 @@
-package com.dnd.sixth.lmsservice.domain.usecase.push.comment
+package com.dnd.sixth.lmsservice.domain.useCase.push.comment
 
 import com.dnd.sixth.lmsservice.domain.repository.PushRepository
 

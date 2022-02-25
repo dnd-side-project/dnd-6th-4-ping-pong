@@ -1,8 +1,6 @@
 package com.dnd.sixth.lmsservice.domain.useCase.feedbackComment
 
 import com.dnd.sixth.lmsservice.data.model.feedbackComment.FeedBackModel
-import com.dnd.sixth.lmsservice.domain.entity.DailyEntity
-import com.dnd.sixth.lmsservice.domain.repository.DailyClassRepository
 import com.dnd.sixth.lmsservice.domain.repository.FeedBackCommentRepository
 
 class UpdateFeedBackUseCase (private val feedBackCommentRepository: FeedBackCommentRepository) {

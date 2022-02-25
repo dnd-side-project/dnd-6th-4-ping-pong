@@ -109,7 +109,7 @@ val viewModelModules = module {
         HomeworkManageViewModel()
     }
     viewModel{
-        CheckFeedBackViewModel()
+        CheckFeedBackViewModel(get(),get(),get())
     }
     viewModel{
         CheckCommentViewModel()

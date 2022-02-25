@@ -39,6 +39,6 @@ val dataSourceModules = module {
         PushDataSourceImpl(get())
     }
     single<FeedBackCommentRemoteDataSource>{
-        FeedBackCommentRemoteDataSourceImpl(get())
+        FeedBackCommentRemoteDataSourceImpl(get(),get())
     }
 }
