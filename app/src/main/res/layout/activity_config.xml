@@ -20,7 +20,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clipToPadding="false"
-            android:paddingTop="24dp"
             android:paddingBottom="12dp">
 
             <androidx.appcompat.widget.Toolbar
@@ -80,28 +79,37 @@
                     app:layout_constraintLeft_toLeftOf="@+id/profile_image_view"
                     app:layout_constraintRight_toRightOf="@+id/profile_image_view"/>
 
-                <TextView
-                    android:id="@+id/nickname_text_view"
+                <EditText
+                    android:id="@+id/nickname_edit_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/spoqa_medium"
                     android:textColor="@color/richBlack"
-                    android:textSize="14sp"
+                    android:textSize="16sp"
+                    android:text="@={viewModel.userName}"
                     android:layout_marginTop="16dp"
+                    android:maxLines="1"
+                    android:maxLength="20"
+                    android:imeOptions="actionDone"
                     android:textStyle="bold"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
+                    android:background="@null"
+                    app:layout_constraintLeft_toLeftOf="@+id/profile_image_view"
+                    app:layout_constraintRight_toLeftOf="@+id/edit_icon"
                     app:layout_constraintTop_toBottomOf="@+id/profile_image_view"
                     tools:text="최기택" />
 
                 <ImageView
-                    android:layout_width="13dp"
-                    android:layout_height="13dp"
+                    android:id="@+id/edit_icon"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:clickable="true"
+                    android:background="?attr/selectableItemBackground"
                     android:src="@drawable/ic_edit_name_pencil"
-                    app:layout_constraintLeft_toRightOf="@id/nickname_text_view"
-                    app:layout_constraintTop_toTopOf="@id/nickname_text_view"
-                    app:layout_constraintBottom_toBottomOf="@id/nickname_text_view"
-                    android:layout_marginLeft="6dp"/>
+                    app:layout_constraintLeft_toRightOf="@id/nickname_edit_text"
+                    app:layout_constraintRight_toRightOf="@+id/profile_image_view"
+                    app:layout_constraintTop_toTopOf="@id/nickname_edit_text"
+                    app:layout_constraintBottom_toBottomOf="@id/nickname_edit_text"
+                    android:layout_marginLeft="8dp"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

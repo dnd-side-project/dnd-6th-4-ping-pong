@@ -19,8 +19,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clipToPadding="false"
-            android:paddingTop="24dp">
+            android:clipToPadding="false">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -35,8 +34,7 @@
                     android:fontFamily="@font/spoqa_medium"
                     android:text="알림 설정"
                     android:textColor="@color/richBlack"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textSize="16sp" />
 
 
             </androidx.appcompat.widget.Toolbar>
@@ -84,6 +82,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
                                 android:layout_marginTop="20dp"
+                                android:backgroundTint="@color/grayEF"
                                 android:background="@drawable/bg_divider"
                                 app:layout_constraintTop_toBottomOf="@+id/class_start_noti_title" />
 
@@ -92,6 +91,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:thumb="@drawable/bg_switch_thumb"
+                                android:checked="@={viewModel.startPushStatus}"
+                                android:onCheckedChanged="@{viewModel::toggleStartPush}"
                                 android:track="@drawable/bg_switch_track"
                                 app:layout_constraintBottom_toBottomOf="@+id/class_start_noti_title"
                                 app:layout_constraintRight_toRightOf="parent"
@@ -128,11 +129,12 @@
 
                             <Switch
                                 android:id="@+id/feedback_notification_switch"
-                                :checked="true"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:thumb="@drawable/bg_switch_thumb"
                                 android:track="@drawable/bg_switch_track"
+                                android:checked="@={viewModel.feedbackPushStatus}"
+                                android:onCheckedChanged="@{viewModel::toggleFeedbackPush}"
                                 app:layout_constraintBottom_toBottomOf="@+id/feedback_noti_title"
                                 app:layout_constraintRight_toRightOf="parent"
                                 app:layout_constraintTop_toTopOf="@+id/feedback_noti_title"
@@ -144,7 +146,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="14dp"
                                 android:text="수업 종료 1시간 후, 피드백 작성 알림을 보냅니다."
-                                android:textColor="@color/gray85"
+                                android:textColor="#626262"
                                 android:textSize="10sp"
                                 app:layout_constraintLeft_toLeftOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/feedback_notification_switch" />
@@ -153,6 +155,7 @@
                                 android:id="@+id/feedback_noti_divider"
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
+                                android:backgroundTint="@color/grayEF"
                                 android:layout_marginTop="18dp"
                                 android:background="@drawable/bg_divider"
                                 app:layout_constraintTop_toBottomOf="@+id/feedback_noti_desc" />
@@ -192,6 +195,8 @@
                                 android:layout_height="wrap_content"
                                 android:thumb="@drawable/bg_switch_thumb"
                                 android:track="@drawable/bg_switch_track"
+                                android:checked="@={viewModel.commentPushStatus}"
+                                android:onCheckedChanged="@{viewModel::toggleCommentPush}"
                                 app:layout_constraintBottom_toBottomOf="@+id/comment_noti_title"
                                 app:layout_constraintRight_toRightOf="parent"
                                 app:layout_constraintTop_toTopOf="@+id/comment_noti_title" />
@@ -202,7 +207,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="14dp"
                                 android:text="@string/student_comment_desc"
-                                android:textColor="@color/gray85"
+                                android:textColor="#626262"
                                 android:textSize="10sp"
                                 app:layout_constraintLeft_toLeftOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/comment_notification_switch" />
@@ -212,6 +217,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
                                 android:layout_marginTop="18dp"
+                                android:backgroundTint="@color/grayEF"
                                 android:background="@drawable/bg_divider"
                                 app:layout_constraintTop_toBottomOf="@+id/comment_noti_desc" />
 

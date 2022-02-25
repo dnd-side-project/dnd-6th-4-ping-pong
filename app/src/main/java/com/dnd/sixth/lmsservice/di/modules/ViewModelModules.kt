@@ -70,13 +70,13 @@ val viewModelModules = module {
         EditResponseViewModel()
     }
     viewModel {
-        ConfigViewModel()
+        ConfigViewModel(get(), get())
     }
     viewModel {
-        ProfileViewModel()
+        ProfileViewModel(get(), get(), get(), get(), get(), get(), get(), get(), get(), get())
     }
     viewModel {
-       PushViewModel()
+       PushViewModel(get(), get(), get(), get(), get(), get())
     }
     viewModel{
         InviteLinkViewModel()
@@ -88,7 +88,7 @@ val viewModelModules = module {
         InfoViewModel()
     }
     viewModel {
-        PasswordViewModel()
+        PasswordViewModel(get(), get())
     }
     viewModel {
         SubjectEditViewModel(get(), get())

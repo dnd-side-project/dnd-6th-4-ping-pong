@@ -14,8 +14,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:paddingTop="24dp">
+        android:clipToPadding="false">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -81,6 +80,7 @@
                     android:hint="**********"
                     android:imeOptions="actionDone"
                     android:inputType="textPassword"
+                    android:text="@={viewModel.newPassword}"
                     android:maxLength="20"
                     android:maxLines="1"
                     android:paddingHorizontal="12dp"
