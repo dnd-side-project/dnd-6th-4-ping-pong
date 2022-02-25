@@ -56,12 +56,19 @@
         </activity>
         <activity
             android:name=".presentation.lesson.progress.ClassProgressActivity"
-            android:exported="false">
+            android:exported="true">
+
 
         </activity>
         <activity
             android:name=".presentation.feedback.WriteFeedBackActivity"
-            android:exported="false" />
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".presentation.feedback.StartFeedBackActivity"
             android:exported="false" />

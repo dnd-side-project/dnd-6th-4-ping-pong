@@ -1,6 +1,11 @@
 package com.dnd.sixth.lmsservice.di.modules
 
+
+import com.dnd.sixth.lmsservice.data.network.api.DailyClassApi
+
 import com.dnd.sixth.lmsservice.data.network.api.DailyApi
+import com.dnd.sixth.lmsservice.data.network.api.FeedbackCommentAPI
+
 import com.dnd.sixth.lmsservice.data.network.api.SubjectApi
 import com.dnd.sixth.lmsservice.data.network.api.UserApi
 import com.dnd.sixth.lmsservice.data.network.base.buildOkHttpClientWithAccessToken
@@ -37,12 +42,19 @@ val networkModules = module {
 
     single {
         SubjectApi()
+
+    }
+    single{
+        DailyClassApi()
     }
     single {
         DailyApi()
     }
     single {
         UserApi()
+    }
+    single {
+        FeedbackCommentAPI()
     }
 
 }

@@ -25,6 +25,16 @@ import com.dnd.sixth.lmsservice.domain.usecase.user.number.parent.SaveLocalParen
 import com.dnd.sixth.lmsservice.domain.usecase.user.number.parent.SaveRemoteParentNumberUseCase
 import com.dnd.sixth.lmsservice.domain.usecase.user.password.ChangePasswordUseCase
 import com.dnd.sixth.lmsservice.domain.usecase.user.username.ChangeUserNameUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.*
+import com.dnd.sixth.lmsservice.domain.useCase.dailyclass.CreateDailyClassUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.dailyclass.DeleteDailyClassUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.dailyclass.GetDailyClassListUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.dailyclass.UpdateDailyClassUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.feedbackComment.UpdateFeedBackUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.subject.CreateSubjectUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.subject.DeleteSubjectUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.subject.GetGeneralSubjectListUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.subject.UpdateSubjectUseCase
 import org.koin.dsl.module
 
 val useCaseModules = module {
@@ -42,6 +52,14 @@ val useCaseModules = module {
     factory {
         UpdateSubjectUseCase(get())
     }
+
+    /*
+    타임라인 리스트
+     */
+    factory{
+        GetDailyClassUseCase(get())
+    }
+
 
 
     /* Daily Class */
@@ -114,4 +132,12 @@ val useCaseModules = module {
     factory {
         GetCommentPushUseCase(get())
     }
+    
+    /*
+   피드백 코멘트
+    */
+    factory {
+        UpdateFeedBackUseCase(get())
+    }
+
 }
