@@ -1,12 +1,12 @@
 package com.dnd.sixth.lmsservice.presentation.login.signup
 
+import android.content.Context
 import android.graphics.Color
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
-import android.view.View.GONE
-import android.view.View.VISIBLE
+import android.view.View.*
 import android.widget.EditText
 import android.widget.Toast
 import androidx.lifecycle.Observer
@@ -36,8 +36,7 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding, SignUpViewModel>() {
 
     //유효성 검사를 위한 패턴
     private val emailPattern: Pattern = android.util.Patterns.EMAIL_ADDRESS
-    private val passwordPattern =
-        "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[\$@\$!%*#?&])[A-Za-z\\d\$@\$!%*#?&]{8,16}\$"
+    private val passwordPattern = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[\$@\$!%*#?&])[A-Za-z\\d\$@\$!%*#?&]{8,16}\$"
 
     var emailPass = false
     //뷰모델로 적용
@@ -98,6 +97,7 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding, SignUpViewModel>() {
             // it 는 LiveData 로 선언된 페이지가 변경되었을 때 전달되는 값
             this.passwordPass = it
             //현재 페이지를 보여주는 함수
+            edittextListen(binding.signupPasswordEdittext, "password")
 
         })
 
@@ -190,26 +190,29 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding, SignUpViewModel>() {
 
         //타입 선택 버튼 초기화
         fun initTypeCheckButton() {
-            with(binding) {
-                signupStudentCheckbox.setOnClickListener {
+
+                binding.signupStudentCheckbox.setOnClickListener {
                     //checkedType = "Student"
                     viewModel!!.userRole.postValue(0)//학생인 경우 0
-                    signupStudentCheckbox.setImageResource(R.drawable.ic_student_activated)
-                    signupTeacherCheckbox.setImageResource(R.drawable.ic_teacher_disabled)
+                    binding.signupStudentCheckbox.setImageResource(R.drawable.ic_student_activated)
+                    binding.signupTeacherCheckbox.setImageResource(R.drawable.ic_teacher_disabled)
+                    role = 0
+
                 }
-                signupTeacherCheckbox.setOnClickListener {
+                binding.signupTeacherCheckbox.setOnClickListener {
                     //checkedType = "Teacher"
                     //role = 1 //선생님인 경우 1
                     viewModel!!.userRole.postValue(1)
-                    signupStudentCheckbox.setImageResource(R.drawable.ic_student_disabled)
-                    signupTeacherCheckbox.setImageResource(R.drawable.ic_teacher_activated)
+                    binding.signupStudentCheckbox.setImageResource(R.drawable.ic_student_disabled)
+                    binding.signupTeacherCheckbox.setImageResource(R.drawable.ic_teacher_activated)
+                    role = 1
                 }
             }
-        }
+
 
         //다음 버튼 초기화
         fun initNextButton() {
-            with(binding) {
+            with(binding){
 
                 signupNextButton.setOnClickListener {
                     when (pageNumber) {
@@ -289,12 +292,12 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding, SignUpViewModel>() {
                         4 -> {//이름 입력하고 회원가입
                             //입력된 이름
                             userNm = signupNameEdittext.text.toString()
-                            //val signUpData = SignUpCall(email,user_nm,password,role,"010-0101-0101",null)
-                            val signUpData = UserCreateDto(email, "string", "string", 1, "string", null)
+                            val signUpData = UserCreateDto(email,userNm,password,role,"",null)
+                            //val signUpData = UserCreateDto(email, "string", "string", 1, "string", null)
 
-                            viewModel!!.mapUserInfo["userNm"] = userNm
-                            preMap["userNm"] = password
-                            viewModel!!.userInputInfo.value = preMap
+                            //viewModel!!.mapUserInfo["userNm"] = userNm
+                            //preMap["userNm"] = password
+                            //viewModel!!.userInputInfo.value = preMap
 
                             //회원가입 요청
 
@@ -304,11 +307,15 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding, SignUpViewModel>() {
                                     response: Response<UserResponse>
                                 ) {
                                     Log.d("signUp", "success")
+                                    finish()
                                     return
                                 }
 
                                 override fun onFailure(call: Call<UserResponse>, t: Throwable) {
                                     Log.d("signUp", "fail")
+                                    Toast.makeText(this@SignUpActivity,"입력값을 다시 확인해주세요", Toast.LENGTH_LONG).show()
+                                    viewModel?.pageNumber!!.value = 2
+
                                 }
 
                             })
@@ -325,36 +332,36 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding, SignUpViewModel>() {
 
         fun initBackButton() {
 
-            with(binding) {
-                toolbarBackBtn.setOnClickListener {
+
+                binding.toolbarBackBtn.setOnClickListener {
                     when (pageNumber) {
                         2 -> {
-                            signupCheckboxContainer.visibility = VISIBLE
-                            signupEmailContainer.visibility = GONE
-                            toolbarBackBtn.visibility = GONE
-                            toolbarQuitBtn.visibility = VISIBLE
-                            pageNumber--
+                           // signupCheckboxContainer.visibility = VISIBLE
+                           // signupEmailContainer.visibility = GONE
+                           // toolbarBackBtn.visibility = GONE
+                            //toolbarQuitBtn.visibility = VISIBLE
+                            viewModel.pageNumber.value = 1
                         }
                         3 -> {//비밀번호 입력 화면
-                            signupPasswordContainer.visibility = GONE
-                            signupEmailContainer.visibility = VISIBLE
-                            pageNumber--
+                           // signupPasswordContainer.visibility = GONE
+                           // signupEmailContainer.visibility = VISIBLE
+                            viewModel.pageNumber.value = 2
                         }
                         4 -> {//이름
-                            signupNameContainer.visibility = GONE
-                            signupPasswordContainer.visibility = VISIBLE
-                            signupNextButton.text = "다음"
-                            pageNumber--
+                            //signupNameContainer.visibility = GONE
+                            //signupPasswordContainer.visibility = VISIBLE
+                            binding.signupNextButton.text = "다음"
+                            viewModel.pageNumber.value = 3
                         }
                     }
                 }
 
-                toolbarQuitBtn.setOnClickListener {
+            binding.toolbarQuitBtn.setOnClickListener {
                     finish()
                 }
 
 
-            }
+
         }
 
         //edittext 리스너 메소드
@@ -376,17 +383,15 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding, SignUpViewModel>() {
                     p2: Int,
                     p3: Int
                 ) {
-                    if (code == "email") {
-                        checkEmail()
-                    } else if (code == "password") {
-                        checkPassWord()
-                    }
+
+
 
 
                 }
 
                 override fun afterTextChanged(p0: Editable?) {
-
+                    checkEmail()
+                    checkPassWord()
                 }
             })
 
@@ -419,11 +424,11 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding, SignUpViewModel>() {
                 val pass = Pattern.matches(passwordPattern, pw)
                 return if (pass) {
                     signupPasswordEdittext.setTextColor(Color.BLACK)
+                    descriptionWrongPassword.visibility = INVISIBLE
                     passwordPass = true
                     true
                 } else {
-                    //signupPasswordEdittext.setTextColor(Color.RED)
-                    //signupPasswordTextContainer.setBackgroundDrawable(resources.getDrawable(R.drawable.bg_wrong_edittext))
+
                     descriptionWrongPassword.visibility = VISIBLE
                     passwordPass = false
                     false
