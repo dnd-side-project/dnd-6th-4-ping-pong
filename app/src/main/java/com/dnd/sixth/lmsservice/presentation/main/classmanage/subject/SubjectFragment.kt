@@ -2,6 +2,7 @@ package com.dnd.sixth.lmsservice.presentation.main.classmanage.subject
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.ViewTreeObserver
 import androidx.activity.result.ActivityResultLauncher
@@ -47,6 +48,7 @@ class SubjectFragment : BaseFragment<FragmentClassBinding, SubjectViewModel>(),
         const val INTENT_CREATE_SUBJECT_ENTITY_KEY = "createSubject"
         const val INTENT_UPDATE_SUBJECT_ENTITY_KEY = "updateSubject"
         const val INTENT_SUBJECT_ID_KEY = "subjectId"
+        const val INTENT_TEACHER_NAME_KEY = "teacherName"
 
         const val INTENT_CREATE_SUBJECT_ACTIVITY_CODE = 1001
         const val INTENT_UPDATE_SUBJECT_ACTIVITY_CODE = 1002
@@ -100,21 +102,8 @@ class SubjectFragment : BaseFragment<FragmentClassBinding, SubjectViewModel>(),
                 setClassHomeScrollViewHeight()
             }
 
-            activityResultLauncher =
-                registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-                    if (result.resultCode == INTENT_CREATE_SUBJECT_ACTIVITY_CODE) {
-                        val resultIntent = result.data
-                        val newSubjectEntity =
-                            resultIntent?.getSerializableExtra(INTENT_CREATE_SUBJECT_ENTITY_KEY) as SubjectEntity // 수업을 생성하고 새롭게 반환된 Subject Entity
-                        InviteDialogFragment().apply {
-                            val bundle = Bundle().apply {
-                                putInt(INTENT_SUBJECT_ID_KEY, newSubjectEntity.id?.toInt()!!)
-                            }
-                            arguments = bundle
-                            show(parentFragmentManager, null)
-                        }
-                    }
-                }
+            setActivityLauncher()
+
 
         }
 
@@ -123,6 +112,27 @@ class SubjectFragment : BaseFragment<FragmentClassBinding, SubjectViewModel>(),
     private fun setBindingData() {
         binding.viewModel = viewModel
         binding.hostViewModel = hostViewModel // ViewModel 바인딩
+    }
+
+    // 액티비티 런처 설정
+    private fun setActivityLauncher() {
+        activityResultLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                if (result.resultCode == INTENT_CREATE_SUBJECT_ACTIVITY_CODE) {
+                    // 액티비티 실행 결과
+                    val resultIntent = result.data
+
+                    // 수업을 생성하고 새롭게 반환된 Subject Entity
+                    val newSubjectEntity =
+                        resultIntent?.getSerializableExtra(INTENT_CREATE_SUBJECT_ENTITY_KEY) as SubjectEntity
+
+                    newSubjectEntity.also {
+                        showInviteDialog(it) // 초대 코드 다이얼로그를 보여준다.
+                        hostViewModel?.addSubject(it) // 수업 리스트에 추가한다.
+                    }
+
+                }
+            }
     }
 
 
@@ -147,6 +157,18 @@ class SubjectFragment : BaseFragment<FragmentClassBinding, SubjectViewModel>(),
         setClassHomeScrollViewHeight()
     }
 
+    // 초대코드 다이얼로그를 보여준다.
+    private fun showInviteDialog(subjectEntity: SubjectEntity) {
+        val inviteDialog = InviteDialogFragment().apply {
+            val bundle = Bundle().apply {
+                putInt(INTENT_SUBJECT_ID_KEY, subjectEntity.id?.toInt()!!)
+                putString(INTENT_TEACHER_NAME_KEY, hostViewModel.getName()!!)
+            }
+            arguments = bundle
+        }
+
+        inviteDialog.show(childFragmentManager, null)
+    }
 
     private val viewTreeObserverCallback = object :
         ViewTreeObserver.OnGlobalLayoutListener {

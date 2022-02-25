@@ -30,7 +30,7 @@ class CreateSubjectViewModel(
     val subjectName = MutableLiveData<String>()
 
     // 수업 요일 리스트
-    private val _weekOfDayList = MutableLiveData(
+    val _weekOfDayList = MutableLiveData(
         mutableMapOf<DayOfWeek, Boolean>(
             DayOfWeek.MON to false,
             DayOfWeek.TUE to false,
@@ -43,7 +43,7 @@ class CreateSubjectViewModel(
     )
 
     // 과외비 정산하는 시점 (ex. 4회차, 8회차, 12회차)
-    private var salaryDay: SalaryDay = SalaryDay.FOUR
+    var salaryDay: SalaryDay = SalaryDay.FOUR
 
     // 완료 버튼을 누를 수 있는 여부
     private val _isDoneClickable = MutableLiveData<Boolean>(false)

@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
@@ -24,6 +25,9 @@ class InviteDialogFragment : DialogFragment(), View.OnClickListener {
     val viewModel: CreateSubjectViewModel by sharedViewModel()
     val subjectId: Int? by lazy {
         arguments?.getInt(SubjectFragment.INTENT_SUBJECT_ID_KEY)
+    }
+    val teacherName: String? by lazy {
+        arguments?.getString(SubjectFragment.INTENT_TEACHER_NAME_KEY)
     }
 
     override fun onCreateView(
@@ -102,7 +106,6 @@ class InviteDialogFragment : DialogFragment(), View.OnClickListener {
 
 
     private fun sendInviteLink(inviteLink: Uri) {
-        val teacherName = "최기택"
         val inviteIntent = Intent(Intent.ACTION_SEND).apply {
             type = "text/plain" // 고정 text
             setPackage("com.kakao.talk") // 카카오톡 패키지 지정
@@ -115,9 +118,10 @@ class InviteDialogFragment : DialogFragment(), View.OnClickListener {
 
         try {
             startActivity(inviteIntent) // 수업 초대를 위해 카카오톡 실행
+            dismiss()
         } catch (e: ActivityNotFoundException) {
             // 카카오톡이 설치되어 있지 않은 경우 예외 발생
-            Toast.makeText(requireContext(), "카카오톡이 설치되어 있지 않습니다.", Toast.LENGTH_SHORT)
+            dismiss()
         }
     }
 }

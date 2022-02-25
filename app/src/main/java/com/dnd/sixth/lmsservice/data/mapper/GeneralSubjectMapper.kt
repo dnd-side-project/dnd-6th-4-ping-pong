@@ -33,7 +33,7 @@ fun GeneralSubjectEntity.toModel(): GeneralSubjectModel {
         this.studentId,
         this.color,
         this.classDayBit,
-        this.studentName,
+        this.otherName,
         this.subjectId,
         this.userId,
         this.profileUri,

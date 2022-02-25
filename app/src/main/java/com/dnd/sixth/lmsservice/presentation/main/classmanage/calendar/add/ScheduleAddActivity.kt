@@ -15,6 +15,7 @@ import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.databinding.ActivityScheduleAddBinding
 import com.dnd.sixth.lmsservice.databinding.DialogPushTimePickerBinding
 import com.dnd.sixth.lmsservice.databinding.ItemStudentNameRadioButtonBinding
+import com.dnd.sixth.lmsservice.domain.entity.DailyEntity
 import com.dnd.sixth.lmsservice.presentation.base.BaseActivity
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.CalendarFragment
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.add.push.PushTimePickerActivity
@@ -23,6 +24,7 @@ import com.dnd.sixth.lmsservice.presentation.utility.CustomInputFilter
 import com.dnd.sixth.lmsservice.presentation.utility.DateConverter
 import com.dnd.sixth.lmsservice.presentation.utility.UnitConverter
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -31,7 +33,7 @@ class ScheduleAddActivity : BaseActivity<ActivityScheduleAddBinding, ScheduleAdd
     override val layoutResId: Int
         get() = R.layout.activity_schedule_add
     override val viewModel: ScheduleAddViewModel by viewModel()
-    private var activityResultLauncher: ActivityResultLauncher<Intent>? = null // 푸시 타임 피커 액티비티 런쳐
+    private var pushTimeActivityLauncher: ActivityResultLauncher<Intent>? = null // 푸시 타임 피커 액티비티 런쳐
 
     // 액티비티 초기화 메서드
     override fun initActivity() {
@@ -96,6 +98,21 @@ class ScheduleAddActivity : BaseActivity<ActivityScheduleAddBinding, ScheduleAdd
                 viewModel?.setDoneClickable()
             }
 
+            doneBtn.setOnClickListener {
+                val dateFormat = SimpleDateFormat(DailyEntity.DATE_FORMAT)
+
+                val resultIntent = Intent().putExtra(CalendarFragment.INTENT_CREATE_DAILY_ENTITY_KEY, DailyEntity(
+                    subjectId = viewModel!!.subjectId.value!!,
+                    classOrder = viewModel!!.classRound.value ?: 1,
+                    startTime = dateFormat.format(viewModel!!.pickedDate.value),
+                    place = viewModel!!.place.value!!,
+                    chapter = viewModel!!.chapter.value!!,
+                    memo = viewModel!!.memo.value ?: "",
+                    noty = viewModel!!._pushTime.value?.timeText!!,
+                ))
+                setResult(RESULT_OK, resultIntent)
+                finish()
+            }
 
             /* DailyEntity를 정상적으로 서버에 저장시
             * 해당 Entity를 반환하면서 Activity를 종료합니다.
@@ -109,10 +126,11 @@ class ScheduleAddActivity : BaseActivity<ActivityScheduleAddBinding, ScheduleAdd
                         resultDailyEntity
                     )
 
+                    // 초대코드 Dialog를 보여주기 위한 결과 반환
                     setResult(
                         CalendarFragment.INTENT_CREATE_DAILY_ACTIVITY_CODE,
                         resultIntent
-                    ) // 초대코드 Dialog를 보여주기 위한 결과 반환
+                    )
                     finish() //액티비티 종료
                 } else { // 수업 생성 실패
                     showToast(getString(R.string.failed_create_subject)) // 실패 Toast 출력
@@ -125,6 +143,7 @@ class ScheduleAddActivity : BaseActivity<ActivityScheduleAddBinding, ScheduleAdd
     }
 
     // Intent로부터 전달받은 과목Id와 User이름 Map 설정
+    // 학생 선택 라디오 버튼을 추가하기 위한 데이터
     private fun setUserMap() {
         viewModel.subjectIdUserNameMap =
             intent.getSerializableExtra(CalendarFragment.INTENT_SUBJECT_ID_TO_USER_NAME_MAP_KEY) as HashMap<Int, String>
@@ -142,6 +161,7 @@ class ScheduleAddActivity : BaseActivity<ActivityScheduleAddBinding, ScheduleAdd
                     setOnCheckedChangeListener { _, isChecked ->
                         if (isChecked) {
                             viewModel.subjectId.value = subjectId
+                            viewModel?.setDoneClickable() // 완료 버튼 클릭 활성화 여부 체크
                         }
                     }
                 }
@@ -159,7 +179,8 @@ class ScheduleAddActivity : BaseActivity<ActivityScheduleAddBinding, ScheduleAdd
     }
 
     private fun setActivityLauncher() {
-        activityResultLauncher =
+        //
+        pushTimeActivityLauncher =
             registerForActivityResult(
                 ActivityResultContracts.StartActivityForResult()
             ) { result ->
@@ -187,7 +208,7 @@ class ScheduleAddActivity : BaseActivity<ActivityScheduleAddBinding, ScheduleAdd
                 val intent = Intent(this, PushTimePickerActivity::class.java).putExtra(
                     INTENT_PUSH_TOKEN_KEY, viewModel.pushTime.value
                 )
-                activityResultLauncher?.launch(intent) // 런처를 통해 푸시 선택 액티비티 선택
+                pushTimeActivityLauncher?.launch(intent) // 런처를 통해 푸시 선택 액티비티 선택
             }
         }
     }

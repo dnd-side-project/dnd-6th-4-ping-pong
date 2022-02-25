@@ -40,7 +40,7 @@ class ScheduleAddViewModel(
     val resultDaily: LiveData<DailyEntity?> = _resultDaily
 
     // 푸시 타임
-    private val _pushTime =
+    val _pushTime =
         MutableLiveData<PushTime>(PushTime.NONE) // 기본 값 null -> 나중에 null인 경우에는 없음으로 처리할 예정
     val pushTime: LiveData<PushTime> = _pushTime
 

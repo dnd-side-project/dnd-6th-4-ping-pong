@@ -14,7 +14,7 @@ import com.dnd.sixth.lmsservice.presentation.extensions.visibleViewListIfContain
 import com.dnd.sixth.lmsservice.presentation.listner.OnRecyclerItemClickListener
 
 class SubjectAdapter(
-    var modelListDaily: List<GeneralSubjectEntity>,
+    var modelListDaily: MutableList<GeneralSubjectEntity>,
     val listener: OnRecyclerItemClickListener
 ) :
     RecyclerView.Adapter<SubjectAdapter.ClassViewHolder>() {
@@ -71,7 +71,9 @@ class SubjectAdapter(
         val diffUtilCallback = BaseDiffUtil(modelListDaily, newModelListDaily)
         val diffResult = DiffUtil.calculateDiff(diffUtilCallback, true)
 
-        modelListDaily = newModelListDaily
+        modelListDaily.clear()
+        modelListDaily.addAll(newModelListDaily)
+
         diffResult.dispatchUpdatesTo(this)
     }
 }

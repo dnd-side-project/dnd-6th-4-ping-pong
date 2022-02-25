@@ -1,11 +1,14 @@
 package com.dnd.sixth.lmsservice.presentation.main.classmanage
 
+import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.dnd.sixth.lmsservice.App
 import com.dnd.sixth.lmsservice.data.preference.PreferenceManager
 import com.dnd.sixth.lmsservice.domain.entity.DailyEntity
 import com.dnd.sixth.lmsservice.domain.entity.GeneralSubjectEntity
+import com.dnd.sixth.lmsservice.domain.entity.SubjectEntity
 import com.dnd.sixth.lmsservice.domain.entity.UserEntity
 import com.dnd.sixth.lmsservice.domain.usecase.dailyclass.GetAllDailyClassListUseCase
 import com.dnd.sixth.lmsservice.domain.usecase.dailyclass.GetDailyClassUseCase
@@ -39,11 +42,11 @@ class ClassManageViewModel(
 
 
     // 기본적으로는 emptyList() 를 담아둔다.
-    private val _generalSubjectList = MutableLiveData(listOf<GeneralSubjectEntity>())
-    val generalSubjectDataList: LiveData<List<GeneralSubjectEntity>> = _generalSubjectList
+    private val _generalSubjectList = MutableLiveData(mutableListOf<GeneralSubjectEntity>())
+    val generalSubjectDataList: LiveData<MutableList<GeneralSubjectEntity>> = _generalSubjectList
 
-    private val _dailyClassList = MutableLiveData(listOf<DailyEntity>())
-    val dailyClassList: LiveData<List<DailyEntity>> = _dailyClassList
+    private val _dailyClassList = MutableLiveData(mutableListOf<DailyEntity>())
+    val dailyClassList: LiveData<MutableList<DailyEntity>> = _dailyClassList
 
 
     // 수업이 있는지 확인하기 위한 메서드
@@ -73,7 +76,8 @@ class ClassManageViewModel(
             val myUid = getMyUid()
 
             val mySubjectIdList = mutableListOf<Int>() // 본인이 속한 수업 Id 리스트
-            // 본인이 속한 수업을 필터링하여 가져옵니다.
+
+            // 모든 수업 리스트를 필터링하며, 본인이 속한 수업 리스트를 생성합니다.
             val mySubjectList = allSubjectList.filter {
                 if (isStudent()) { // 학생
                     myUid == it.studentId
@@ -82,36 +86,23 @@ class ClassManageViewModel(
                 }
             }
 
-
-            // 내 수업 리스트를 순회합니다.
+            // 본인 수업 리스트를 순회하며, 수업 Id를 추가합니다.
             mySubjectList.forEach { subject ->
-                // 수업 Id를 추가합니다.
                 subject.id?.toInt()?.let { mySubjectIdList.add(it) }
             }
 
+            // 본인 수업 리스트를 순회하며,
             mySubjectList.forEach { subject ->
-                val userModel: UserEntity = if (isStudent()) { // 학생이면, 선생님 정보를 불러옵니다.
+                val userEntity: UserEntity = if (isStudent()) { // 학생이면, 선생님 정보를 불러옵니다.
                     // Uid로 선생님의 정보를 불러옵니다.
                     getUserByUidUseCase(subject.teacherId!!.toInt())
                 } else { // 선생님이면, 학생 정보를 불러옵니다.
                     getUserByUidUseCase(subject.studentId!!.toInt())
                 }
 
-                generalSubjectList.add(
-                    GeneralSubjectEntity(
-                        subject.subjectName,
-                        subject.monthlyCnt,
-                        subject.classTime,
-                        subject.teacherId,
-                        subject.studentId,
-                        subject.color,
-                        subject.classDayBit,
-                        userModel.userName,
-                        subject.id!!,
-                        userModel.id,
-                        userModel.profileUrl,
-                    )
-                )
+                // Subject와 UserEntity로 GeneralSubject 객체를 만들어 리스트에 추가합니다.
+                generalSubjectList.add(makeGeneralSubject(subject, userEntity))
+
             }
 
             /* // 본인이 속한 수업의 '일일 수업' 리스트
@@ -119,15 +110,53 @@ class ClassManageViewModel(
                  mySubjectIdList.contains(it.subjectId)
              }*/
 
+            // Dummy Data
+            generalSubjectList.add(
+                GeneralSubjectEntity(
+                    "수학",
+                    8,
+                    "13 : 00 - 15 : 00",
+                    3,
+                    null,
+                    DateColor.DARK_BLUE.ordinal,
+                    "0000011",
+                    "김철수",
+                    1,
+                    1,
+                    Uri.parse("android.resource://"+ App.instance.getPackageName()+"/drawable/ic_temp_profile").toString(),
+                    true
+                )
+            )
+
 
             _generalSubjectList.value = generalSubjectList
 
         }
     }
 
-    // 삭제 버튼 클릭시 List에서 해당 position의 수업 삭제
+    // List에서 해당 position의 수업 데이터를 삭제합니다.
     fun removeSubject(position: Int) {
-        _generalSubjectList.value = _generalSubjectList.value?.drop(position)
+        _generalSubjectList.value = _generalSubjectList.value?.drop(position)!!.toMutableList()
+    }
+
+    // 수 클릭시 List에서 해당 position의 수업 삭제
+    fun addSubject(subject: SubjectEntity) {
+        _generalSubjectList.value = generalSubjectDataList.value?.apply{
+            add(GeneralSubjectEntity(
+                subject.subjectName,
+                subject.monthlyCnt,
+                subject.classTime,
+                subject.teacherId,
+                subject.studentId,
+                subject.color,
+                subject.classDayBit,
+                "미연결 학생",
+                0,
+                0,
+                null,
+                false
+            ))
+        }
     }
 
     /*  선택한 수업 삭제
@@ -148,12 +177,33 @@ class ClassManageViewModel(
         val subjectIdToUserNameMap = HashMap<Int, String>()
         _generalSubjectList.value?.forEach { generalSubjectEntity ->
             val key = generalSubjectEntity.subjectId.toInt()
-            val value = generalSubjectEntity.studentName
+            val value = generalSubjectEntity.otherName
             subjectIdToUserNameMap[key] = value
         }
 
         return subjectIdToUserNameMap
     }
+
+    /* 
+    *  Subject, User Entity로 GeneralSubject 객체를 생성합니다.
+    *  */
+    fun makeGeneralSubject(
+        subject: SubjectEntity,
+        userEntity: UserEntity
+    ) = GeneralSubjectEntity(
+        subject.subjectName,
+        subject.monthlyCnt,
+        subject.classTime,
+        subject.teacherId,
+        subject.studentId,
+        subject.color,
+        subject.classDayBit,
+        userEntity.userName,
+        subject.id!!,
+        userEntity.id,
+        userEntity.profileUrl,
+    )
+
 
     /*
     * 수업Id와 색상 맵 반환
