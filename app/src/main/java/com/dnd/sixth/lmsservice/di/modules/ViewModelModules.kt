@@ -112,6 +112,6 @@ val viewModelModules = module {
         CheckFeedBackViewModel(get(),get(),get())
     }
     viewModel{
-        CheckCommentViewModel()
+        CheckCommentViewModel(get(),get())
     }
 }

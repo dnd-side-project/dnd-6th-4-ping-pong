@@ -6,6 +6,7 @@ import com.dnd.sixth.lmsservice.domain.useCase.dailyclass.CreateDailyClassUseCas
 import com.dnd.sixth.lmsservice.domain.useCase.dailyclass.DeleteDailyClassUseCase
 import com.dnd.sixth.lmsservice.domain.useCase.dailyclass.GetDailyClassListUseCase
 import com.dnd.sixth.lmsservice.domain.useCase.dailyclass.UpdateDailyClassUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.feedbackComment.GetCommentFromDailyUseCase
 import com.dnd.sixth.lmsservice.domain.useCase.feedbackComment.GetFeedBackUseCaseFromDaily
 import com.dnd.sixth.lmsservice.domain.useCase.feedbackComment.UpdateFeedBackUseCase
 import com.dnd.sixth.lmsservice.domain.useCase.feedbackComment.WriteCommentUseCase
@@ -167,6 +168,10 @@ val useCaseModules = module {
 
     factory{
         WriteCommentUseCase(get()) //코멘트 작성하기
+    }
+
+    factory{
+        GetCommentFromDailyUseCase(get()) //코멘트 내용 불러오기
     }
 
 }

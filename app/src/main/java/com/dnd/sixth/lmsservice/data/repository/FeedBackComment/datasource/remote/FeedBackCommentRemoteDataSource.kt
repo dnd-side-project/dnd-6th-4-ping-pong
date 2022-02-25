@@ -10,4 +10,5 @@ interface FeedBackCommentRemoteDataSource {
     suspend fun updateFeedBack (remoteErrorEmitter: RemoteErrorEmitter, FeedBackModel: FeedBackModel): Number?
     suspend fun getFeedBackFromDailyClass(subjectId : Number, dailyId : Number) : List<DailyClassGetModel>?
     suspend fun writeComment(remoteErrorEmitter: RemoteErrorEmitter, commentModel : CommentModel) : Number?
+    suspend fun getCommentFromDailyClass(subjectId : Number, dailyId : Number) : List<DailyClassGetModel>?
 }

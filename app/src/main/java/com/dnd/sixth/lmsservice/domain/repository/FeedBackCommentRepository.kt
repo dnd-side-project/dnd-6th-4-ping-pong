@@ -19,10 +19,16 @@ interface FeedBackCommentRepository {
     suspend fun getFeedBackFromDailyClass(subjectId : Number, dailyId : Number) : DailyClassEntity?
 
     /*
-   *  comment 업데이트
+   *  Comment 업데이트
    *
    * */
     suspend fun writeFeedBack(commentModel: CommentModel): Number?
+
+    /*
+   *  Comment 받아오기
+   *
+   * */
+    suspend fun getCommentFromDailyClass(subjectId : Number, dailyId : Number) : DailyClassEntity?
 
 
 }

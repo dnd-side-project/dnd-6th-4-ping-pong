@@ -174,4 +174,66 @@ class FeedBackCommentRemoteDataSourceImpl(
 
         })
     }
+
+
+
+    //피드백 받아올 때 데일리클래스를 불러옴
+    override suspend fun getCommentFromDailyClass(subjectId: Number, dailyId: Number):
+            List<DailyClassGetModel>? = suspendCancellableCoroutine { cont ->
+
+        //현재 get DailyClass api 안 됨
+        //하나만 받는 api 불가하여 전부 부르고 다시 추리기로함.
+        val requestCall = dailyClassApi.api.getAllDailyclass()
+        Log.d("timeline", "feedback get start" )
+
+        val TAG = "FeedBackCommentRemoteDataSourceImpl"
+
+        //결과로 반환될 데일리클래스 리스트
+        var resultDailyClass: MutableList<DailyClassGetModel> = mutableListOf()
+
+        requestCall.enqueue(object : Callback<List<DailyClassGetModel>> {
+
+            @SuppressLint("LongLogTag")
+            override fun onResponse(
+                call: Call<List<DailyClassGetModel>>,
+                response: Response<List<DailyClassGetModel>>
+            ) {
+                // Http 통신 결과 (200 코드대인 경우)
+                if (response.isSuccessful) {
+                    // 서버 DB로부터 받은 DTO객체
+                    var listOfDailyClass = response.body() as List<DailyClassGetModel>
+
+                    listOfDailyClass.forEach {
+                        //찾는 수업의 id와 같은 데일리클래스만 리스트에 추가
+                        if (subjectId.toString() == it.subjectId.toString()
+                            || dailyId.toString() == it.dailyClassId.toString()
+                        ) {
+                            resultDailyClass.add(it)
+                            Log.d("timeline", "comment class" + it.toString())
+                        }
+
+                    }
+                    // 코루틴 재개
+                    //성공 또는 실패한 결과를 마지막 일시 중단지점의 반환값으로 전달하는 코루틴의 실행을 다시 시작.
+                    cont.resumeWith(Result.success(resultDailyClass))
+
+                } else {
+                    Log.d("timeline", "feedback get fail")
+
+                }
+
+
+            }
+
+
+            @SuppressLint("LongLogTag")
+            override fun onFailure(call: Call<List<DailyClassGetModel>>, cause: Throwable) {
+                Log.e(TAG, cause.message.toString())
+                cont.resumeWithException(cause)
+            }
+
+        })
+
+
+    }
 }
