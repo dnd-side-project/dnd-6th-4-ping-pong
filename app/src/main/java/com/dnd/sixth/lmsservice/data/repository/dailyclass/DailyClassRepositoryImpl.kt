@@ -33,4 +33,8 @@ class DailyClassRepositoryImpl(
         return dailyClassRemoteDataSource.getDailyClass(remoteErrorEmitter, dailyId, subjectId).toEntity()
     }
 
+    override suspend fun getAllDailyClassList(): List<DailyEntity> {
+        return dailyClassRemoteDataSource.getAllDailyClass(remoteErrorEmitter).map { it.toEntity() }
+    }
+
 }

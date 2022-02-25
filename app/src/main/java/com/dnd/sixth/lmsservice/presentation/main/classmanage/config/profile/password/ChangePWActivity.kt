@@ -79,10 +79,11 @@ class ChangePWActivity : BaseActivity<ActivityChangePwBinding, PasswordViewModel
                     val isChanged = viewModel.changePassword()
                     withContext(Dispatchers.Main) {
                         if (isChanged) {
-                            showSnackBar("비밀번호를 변경했어요!")
+                            setResult(RESULT_OK)
                             finish()
                         } else {
-                            showSnackBar("비밀번호 변경에 실패했어요!")
+                            setResult(RESULT_CANCELED)
+                            finish()
                         }
                     }
                 }

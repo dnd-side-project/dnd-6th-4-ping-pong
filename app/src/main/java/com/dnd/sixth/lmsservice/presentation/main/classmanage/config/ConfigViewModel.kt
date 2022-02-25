@@ -39,17 +39,27 @@ class ConfigViewModel(
                 val changedCount =
                     changeUserNameUseCase(uid, userName.value!!) // 닉네임 변경시, 데이터를 변경한 개수를 반환합니다.
                 isChanged = changedCount > 0 // 닉네임이 변경되었는지 판단합니다.
+
+                // 변경을 성공했다면, 로컬에 저장된 유저 이름도 변경합니다.
+                if(isChanged) {
+                    changeLocalUserName(userName.value!!)
+                }
             }
         }
 
         return isChanged
     }
 
-    suspend fun updateProfileUri(newProfileUri: Uri?): Boolean = withContext(Dispatchers.IO){
+    // 로컬에 저장된 닉네임을 변경합니다.
+    fun changeLocalUserName(newName: String) {
+        preferenceManager.setString(SAVED_NAME_KEY, newName)
+    }
+
+    suspend fun updateProfileUri(newProfileUri: Uri?): Boolean = withContext(Dispatchers.IO) {
         var isUpdated = false
         val uid = preferenceManager.getInt(SAVED_UID_KEY)
         val resultUri = newProfileUri?.let { saveRemoteProfileUriUseCase(uid, it) }
-        if(resultUri != null) {
+        if (resultUri != null) {
             isUpdated = true
             saveLocalProfileUriUseCase(resultUri)
         }

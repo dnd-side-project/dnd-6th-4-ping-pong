@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.dnd.sixth.lmsservice.data.preference.PreferenceManager
 import com.dnd.sixth.lmsservice.domain.entity.DailyClassEntity
-import com.dnd.sixth.lmsservice.domain.useCase.GetDailyClassTimeLineUseCase
+import com.dnd.sixth.lmsservice.domain.usecase.GetDailyClassTimeLineUseCase
 
 import com.dnd.sixth.lmsservice.presentation.base.BaseViewModel
 import com.dnd.sixth.lmsservice.presentation.utility.SAVED_ROLE_KEY

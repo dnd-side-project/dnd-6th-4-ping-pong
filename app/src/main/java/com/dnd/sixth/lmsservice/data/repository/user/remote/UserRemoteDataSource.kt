@@ -11,4 +11,5 @@ interface UserRemoteDataSource {
     suspend fun saveParentNumber(uid: Number, parentNumber: String): Int
     suspend fun saveRemoteProfileUri(uid: Number, profileUri: Uri): Uri?
     suspend fun getUser(email: String): UserModel
+    suspend fun getUser(uid: Int): UserModel
 }

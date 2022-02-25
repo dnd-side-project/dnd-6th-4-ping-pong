@@ -98,7 +98,7 @@ class SubjectRemoteDataSourceImpl(private val subjectApi: SubjectApi) : SubjectR
     override suspend fun deleteSubject(
         remoteErrorEmitter: RemoteErrorEmitter,
         subjectId: Int
-    ) : SubjectModel? = suspendCancellableCoroutine { cont ->
+    ): SubjectModel? = suspendCancellableCoroutine { cont ->
         subjectApi.api.deleteSubject(subjectId).enqueue(object : Callback<SubjectModel> {
             @SuppressLint("LongLogTag")
             override fun onResponse(call: Call<SubjectModel>, response: Response<SubjectModel>) {
@@ -189,6 +189,7 @@ class SubjectRemoteDataSourceImpl(private val subjectApi: SubjectApi) : SubjectR
                     Log.d(TAG, response.errorBody().toString())
                 }
             }
+
             @SuppressLint("LongLogTag")
             override fun onFailure(call: Call<SubjectModel>, cause: Throwable) {
                 Log.e(TAG, cause.message.toString())
@@ -196,4 +197,36 @@ class SubjectRemoteDataSourceImpl(private val subjectApi: SubjectApi) : SubjectR
             }
         })
     }
+
+    override suspend fun getAllSubjectList(remoteErrorEmitter: RemoteErrorEmitter): List<SubjectModel> =
+        suspendCancellableCoroutine { cont ->
+            val requestCall = subjectApi.api.getAllSubjectList()
+            requestCall.enqueue(object : Callback<List<SubjectModel>> {
+                @SuppressLint("LongLogTag")
+                override fun onResponse(
+                    call: Call<List<SubjectModel>>,
+                    response: Response<List<SubjectModel>>
+                ) {
+
+                    // Http 통신 결과 (200 코드대인 경우)
+                    if (response.isSuccessful) {
+                        // 서버 DB로부터 받은 DTO객체
+                        val allSubjectList = response.body() as List<SubjectModel>
+                        if (BuildConfig.DEBUG) {
+                            Log.d(TAG, response.code().toString())
+                            Log.d(TAG, allSubjectList.toString())
+                        }
+                        cont.resumeWith(Result.success(allSubjectList)) // 코루틴 재게
+                    } else { // 서버로부터 에러 반환
+                        Log.d(TAG, response.errorBody().toString())
+                    }
+                }
+
+                @SuppressLint("LongLogTag")
+                override fun onFailure(call: Call<List<SubjectModel>>, cause: Throwable) {
+                    Log.e(TAG, cause.message.toString())
+                    cont.resumeWithException(cause)
+                }
+            })
+        }
 }

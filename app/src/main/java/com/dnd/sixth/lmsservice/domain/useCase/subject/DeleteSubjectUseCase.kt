@@ -1,4 +1,4 @@
-package com.dnd.sixth.lmsservice.domain.useCase.subject
+package com.dnd.sixth.lmsservice.domain.usecase.subject
 
 import com.dnd.sixth.lmsservice.domain.entity.SubjectEntity
 import com.dnd.sixth.lmsservice.domain.repository.SubjectRepository

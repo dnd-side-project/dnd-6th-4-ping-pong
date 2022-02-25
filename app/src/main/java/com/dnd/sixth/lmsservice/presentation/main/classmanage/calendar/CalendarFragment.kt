@@ -1,6 +1,7 @@
 package com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar
 
 import android.annotation.SuppressLint
+import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.util.Log
 import android.view.View
@@ -18,6 +19,7 @@ import com.dnd.sixth.lmsservice.data.preference.PreferenceManager
 import com.dnd.sixth.lmsservice.databinding.FragmentCalendarBinding
 import com.dnd.sixth.lmsservice.databinding.ItemSubjectCategoryRadioButtonBinding
 import com.dnd.sixth.lmsservice.databinding.LayoutStudentCategoryBottomSheetBinding
+import com.dnd.sixth.lmsservice.domain.entity.DailyEntity
 import com.dnd.sixth.lmsservice.presentation.base.BaseFragment
 import com.dnd.sixth.lmsservice.presentation.extensions.removeAllDotDecorators
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.ClassManageViewModel
@@ -49,7 +51,7 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding, CalendarViewModel
     private var categoryDialog: BottomSheetDialog? = null
     var viewTreeObserver: ViewTreeObserver? = null
 
-    private lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
+    private lateinit var scheduleAddActivityLauncher: ActivityResultLauncher<Intent>
     private var colorDecorators = mutableListOf<ScheduleDecorator>()
 
     companion object {
@@ -84,7 +86,7 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding, CalendarViewModel
             setClickListener(this)
             setCalendar() // 캘린더 관련 설정
             setActivityLauncher() // 액티비티 런처 설정
-            //setViewVisibility() // 유저 상태에 따라 View의 Visibillity 설정
+            setViewVisibility() // 유저 상태에 따라 View의 Visibillity 설정
         }
 
 
@@ -106,7 +108,7 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding, CalendarViewModel
         val preferenceManager = PreferenceManager(requireContext())
         val role = preferenceManager.getInt(SAVED_ROLE_KEY)
 
-        if (hostViewModel.generalSubjectDataList.value?.isNullOrEmpty() == true || role == ROLE_STUDENT) {
+        if (hostViewModel.hasClass().not() || role == ROLE_STUDENT) {
             binding.scheduleAddFab.visibility = View.GONE
         } else {
             binding.scheduleAddFab.visibility = View.VISIBLE
@@ -114,13 +116,14 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding, CalendarViewModel
     }
 
     private fun setActivityLauncher() {
-        activityResultLauncher = registerForActivityResult(
+
+        scheduleAddActivityLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ) { result ->
             val data = result.data
-            if (result.resultCode == INTENT_CREATE_DAILY_ACTIVITY_CODE) {
-                val resultData = data?.getSerializableExtra(INTENT_CREATE_DAILY_ENTITY_KEY)
-
+            if (result.resultCode == RESULT_OK) {
+                val resultData = data?.getSerializableExtra(INTENT_CREATE_DAILY_ENTITY_KEY) as DailyEntity
+                viewModel.addDailyEntity(resultData)
             }
         }
     }
@@ -132,12 +135,12 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding, CalendarViewModel
             addCategoryRadioButtonViews(sheetView)
         }
 
-        viewModel.currentSubjectCategory.observe(this) { selectedSubjectId ->
+        viewModel.selectedSubjectCategory.observe(this) { selectedSubjectId ->
             // 선택한 SubjectId만 보이도록 CalendarView를 필터링합니다.
             filterCalendarDot(selectedSubjectId)
 
             // Radio Button Group을 순회하면서 선택된 Radio Button에 Check아이콘 설정
-            categoryDialog?.student_category_radio_group?.children?.iterator()?.forEach {
+            sheetView.studentCategoryRadioGroup.children.iterator().forEach {
                 val checkIcon = getDrawable(requireContext(), R.drawable.ic_checked)
                 if (it.id == selectedSubjectId){ // 선택된 RadioButton
                     (it as RadioButton).setCompoundDrawablesWithIntrinsicBounds(null, null, checkIcon, null)
@@ -193,7 +196,7 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding, CalendarViewModel
             binding.categoryTextView.text = "전체보기"
 
             // 현재 선택한 수업 카테고리의 RadioId 값으로 'CATEGORY_ALL'을 전달합니다.
-            viewModel.currentSubjectCategory.value = CATEGORY_ALL
+            viewModel.selectedSubjectCategory.value = CATEGORY_ALL
 
             categoryDialog?.dismiss()
         }
@@ -205,13 +208,17 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding, CalendarViewModel
             val subjectRadioButton =
                 ItemSubjectCategoryRadioButtonBinding.inflate(layoutInflater).run {
                     studentRadioButton.apply {
-                        val subjectName = generalSubjectData.subjectName
+                        // 카테고리별 버튼 타이틀 지정
+                        val radioTitle = getString(R.string.category_title_format,
+                            generalSubjectData.otherName,
+                            generalSubjectData.subjectName
+                        )
                         val subjectId = generalSubjectData.subjectId.toInt()
 
-                        text = subjectName
+                        text = radioTitle
                         id = subjectId
                         setOnClickListener {
-                            binding.categoryTextView.text = subjectName
+                            binding.categoryTextView.text = radioTitle
                         }
                     }
                 }
@@ -226,7 +233,7 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding, CalendarViewModel
 
         categoryBinding.studentCategoryRadioGroup.setOnCheckedChangeListener { group, checkedId ->
             // 현재 선택한 수업 카테고리의 RadioId 값을 전달합니다.
-            viewModel.currentSubjectCategory.value = checkedId
+            viewModel.selectedSubjectCategory.value = checkedId
             categoryDialog?.dismiss()
         }
     }
@@ -306,8 +313,8 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding, CalendarViewModel
                 colorDecorators.add(ScheduleDecorator(dBluDate, DateColor.DARK_BLUE))
                 colorDecorators.add(ScheduleDecorator(pplDate, DateColor.PURPLE))
 
-                // 수업 색상 타입에 따라 Calendar Date 적용
-                addDecorators(colorDecorators)
+                // 선택 학생 카테고리에 따른 색상 필터링
+                filterCalendarDot(viewModel.selectedSubjectCategory.value!!)
             }
 
 
@@ -443,7 +450,7 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding, CalendarViewModel
     override fun onClick(v: View?) {
         when (v?.id) {
             // 수업과목 Id와 유저이름 HashMap을 함께 전달
-            R.id.schedule_add_fab -> activityResultLauncher.launch(
+            R.id.schedule_add_fab -> scheduleAddActivityLauncher.launch(
                 Intent(
                     requireContext(),
                     ScheduleAddActivity::class.java

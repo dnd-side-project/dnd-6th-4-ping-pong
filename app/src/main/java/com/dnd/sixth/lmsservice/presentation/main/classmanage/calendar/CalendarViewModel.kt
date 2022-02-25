@@ -6,7 +6,7 @@ import com.dnd.sixth.lmsservice.App
 import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.data.preference.PreferenceManager
 import com.dnd.sixth.lmsservice.domain.entity.DailyEntity
-import com.dnd.sixth.lmsservice.domain.useCase.dailyclass.GetDailyClassListUseCase
+import com.dnd.sixth.lmsservice.domain.usecase.dailyclass.GetDailyClassListUseCase
 import com.dnd.sixth.lmsservice.presentation.base.BaseViewModel
 import com.dnd.sixth.lmsservice.presentation.extensions.onIO
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.custom.DateColor
@@ -28,20 +28,95 @@ class CalendarViewModel(
     val selectedDailyEntityList: LiveData<List<DailyEntity>> = _selectedDailyClassList
 
     // 캘린더에 보여줄 유저의 일일 수업 리스트
-    private val _dailyClassList = MutableLiveData<List<DailyEntity>?>(
+    private val _dailyClassList = MutableLiveData<MutableList<DailyEntity>?>(
     )
-    val dailyClassList: LiveData<List<DailyEntity>?> = _dailyClassList
+    val dailyClassList: LiveData<MutableList<DailyEntity>?> = _dailyClassList
 
     // 유저가 선택한 카테고리
     // (Subject Id 값을 전달받습니다.)
     // 카테고리에 따라 CalendarView의 Dot을 필터링해서 보여줍니다.
-    val currentSubjectCategory = MutableLiveData<Int>(CalendarFragment.CATEGORY_ALL)
+    val selectedSubjectCategory = MutableLiveData<Int>(CalendarFragment.CATEGORY_ALL)
 
     init {
         onIO {
             // ViewModel 생성시 서버로부터 사용자의 일일 수업 리스트를 가져옵니다.
+            /*_dailyClassList.postValue(
+                getDailyClassListUseCase(preferenceManager.getInt(SAVED_UID_KEY))?.toMutableList())*/
+            // 더미값(나중에 삭제)
             _dailyClassList.postValue(
-                getDailyClassListUseCase(preferenceManager.getInt(SAVED_UID_KEY)))
+                mutableListOf<DailyEntity>(
+                    DailyEntity(
+                        0,
+                        1,
+                        0,
+                        "2022-02-11 03:50",
+                        "",
+                        "",
+                        "",
+                        "",
+                    ),
+                    DailyEntity(
+                        0,
+                        1,
+                        0,
+                        "2022-02-2 03:50",
+                        "",
+                        "",
+                        "",
+                        "",
+                    ),
+                    DailyEntity(
+                        0,
+                        1,
+                        0,
+                        "2022-02-9 03:50",
+                        "",
+                        "",
+                        "",
+                        "",
+                    ),
+                    DailyEntity(
+                        0,
+                        1,
+                        0,
+                        "2022-02-16 03:50",
+                        "",
+                        "",
+                        "",
+                        "",
+                    ),
+                    DailyEntity(
+                        0,
+                        1,
+                        0,
+                        "2022-02-23 03:50",
+                        "",
+                        "",
+                        "",
+                        "",
+                    ),
+                    DailyEntity(
+                        0,
+                        1,
+                        0,
+                        "2022-02-04 03:50",
+                        "",
+                        "",
+                        "",
+                        "",
+                    ),
+                    DailyEntity(
+                        0,
+                        1,
+                        0,
+                        "2022-02-18 03:50",
+                        "",
+                        "",
+                        "",
+                        "",
+                    ),
+                )
+            )
         }
     }
 
@@ -116,4 +191,9 @@ class CalendarViewModel(
             it.subjectId == subjectId
         }
 
+    fun addDailyEntity(dailyEntity: DailyEntity) {
+        _dailyClassList.value = _dailyClassList.value.apply {
+            this!!.add(dailyEntity)
+        }
+    }
 }

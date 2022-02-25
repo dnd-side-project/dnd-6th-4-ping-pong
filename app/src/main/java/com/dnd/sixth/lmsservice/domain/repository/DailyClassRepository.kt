@@ -30,4 +30,9 @@ interface DailyClassRepository {
     *  수업 데이터 가져오기
     * */
     suspend fun getDailyClass(dailyId: Int, subjectId: Int): DailyEntity
+
+    /*
+   *  수업 일정 리스트 가져오기
+   * */
+    suspend fun getAllDailyClassList(): List<DailyEntity>
 }

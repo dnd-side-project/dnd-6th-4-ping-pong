@@ -32,5 +32,8 @@ class SubjectRepositoryImpl(
     override suspend fun getSubject(subjectId: Int): SubjectEntity? =
         subjectRemoteDataSource.getSubject(remoteErrorEmitter, subjectId)?.toEntity()
 
+    override suspend fun getAllSubjectList(): List<SubjectEntity> =
+        subjectRemoteDataSource.getAllSubjectList(remoteErrorEmitter).map { it.toEntity() }
+
 
 }

@@ -348,10 +348,24 @@
                 android:foreground="?attr/selectableItemBackground"
                 android:gravity="center"
                 android:text="완료"
-                android:onClick="@{viewModel::createSubject}"
                 android:textColor="@color/color_done_text"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent" />
+
+            <!--<TextView
+                android:id="@+id/done_btn"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/bg_done_btn"
+                android:enabled="false"
+                android:foreground="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:text="완료"
+                android:onClick="@{viewModel::createSubject}"
+                android:textColor="@color/color_done_text"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent" />-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

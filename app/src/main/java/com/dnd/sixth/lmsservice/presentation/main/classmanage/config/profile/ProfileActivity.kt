@@ -5,6 +5,8 @@ import android.content.Intent
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.databinding.ActivityProfileBinding
 import com.dnd.sixth.lmsservice.presentation.base.BaseActivity
@@ -22,6 +24,8 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding, ProfileViewModel>()
     override val layoutResId: Int
         get() = R.layout.activity_profile
     override val viewModel: ProfileViewModel by viewModel()
+    private lateinit var changePWActivityLauncher: ActivityResultLauncher<Intent>
+
 
     // 액티비티 초기화 메서드
     override fun initActivity() {
@@ -43,6 +47,17 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding, ProfileViewModel>()
             setOnClickListener(this) // 클릭 리스너를 설정합니다.
             applyViewAsRole() // 선생님 / 학생에 따른 View 차이를 적용합니다.
 
+            setActivityLauncher() // 액티비티 런처를 설정합니다.
+        }
+    }
+
+    private fun setActivityLauncher() {
+        changePWActivityLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if(result.resultCode == RESULT_OK) {
+                showSnackBar("비밀번호를 변경했어요!")
+            }else if(result.resultCode == RESULT_CANCELED) {
+                showSnackBar("비밀번호 변경에 실패했어요!")
+            }
         }
     }
 
@@ -76,7 +91,7 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding, ProfileViewModel>()
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.password_change_btn, R.id.password_title -> {
-                startActivity(Intent(this, ChangePWActivity::class.java))
+                changePWActivityLauncher.launch(Intent(this, ChangePWActivity::class.java))
             }
             R.id.contact_time_change_btn, R.id.contact_time_change_container -> {
                 showStartTimePicker() // 연락가능 시간대를 설정할 수 있는 타임피커를 보여줍니다.
@@ -123,9 +138,9 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding, ProfileViewModel>()
                         withContext(Dispatchers.Main) {
                             if (isSaved) {
                                 saveLocalContactTime() // Local에도 시간대를 저장합니다.
-                                showSnackBar("변경되었어요!")
+                                showSnackBar("연락 가능한 시간을 변경했어요!")
                             } else {
-                                showSnackBar("변경에 실패했어요!")
+                                showSnackBar("연락 가능한 시간 변경에 실패했어요!")
                             }
                         }
                     }
@@ -168,12 +183,14 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding, ProfileViewModel>()
 
         with(viewModel) {
             CoroutineScope(Dispatchers.Default).launch {
-                val parentSaveResult = withContext(Dispatchers.Default) {
-                    saveLocalParentNumber()
-                    saveRemoteParentNumber()
+                val parentSaveResult = withContext(Dispatchers.IO) {
+                    saveLocalParentNumber() // 서버에 본인 전화번호 변경 요청
+                    Log.d("dddd","ddd1")
+                    saveRemoteParentNumber() // 서버에 학부모 전화번호 변경 요청
                 }
-                val mySaveResult = withContext(Dispatchers.Default) {
+                val mySaveResult = withContext(Dispatchers.IO) {
                     saveLocalMyNumber()
+                    Log.d("dddd","ddd2")
                     saveRemoteMyNumber()
                 }
 

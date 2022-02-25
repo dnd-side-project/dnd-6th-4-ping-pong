@@ -7,7 +7,11 @@ import android.view.View
 import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.data.preference.PreferenceManager
 import com.dnd.sixth.lmsservice.databinding.ActivityCreateSubjectBinding
+import com.dnd.sixth.lmsservice.domain.entity.SubjectEntity
 import com.dnd.sixth.lmsservice.presentation.base.BaseActivity
+import com.dnd.sixth.lmsservice.presentation.extensions.convertDowBit
+import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.CalendarFragment
+import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.custom.DateColor
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.subject.SubjectFragment
 import com.dnd.sixth.lmsservice.presentation.utility.COLOR_COUNT
 import com.dnd.sixth.lmsservice.presentation.utility.SUBJECT_COLOR
@@ -72,6 +76,25 @@ class SubjectCreateActivity : BaseActivity<ActivityCreateSubjectBinding, CreateS
                 doneBtn.isEnabled = isClickable // 완료버튼 활성화
             }
 
+            doneBtn.setOnClickListener {
+                val resultIntent = Intent().putExtra(
+                    SubjectFragment.INTENT_CREATE_SUBJECT_ENTITY_KEY,
+                    SubjectEntity(
+                        2,
+                        viewModel!!.subjectName.value!!,
+                        viewModel!!.salaryDay.countInt,
+                        "15 : 00 - 16 : 30",
+                        0,
+                        0,
+                        DateColor.ORANGE.ordinal,
+                        viewModel!!._weekOfDayList.value!!.convertDowBit()
+                    )
+                )
+
+                setResult(SubjectFragment.INTENT_CREATE_SUBJECT_ACTIVITY_CODE, resultIntent) // 초대코드 Dialog를 보여주기 위한 결과 반환
+                finish() //액티비티 종료
+            }
+
             /* SubjectEntity를 정상적으로 서버에 저장시
             * 해당 Entity를 반환하면서 Activity를 종료합니다.
             *  */
@@ -79,6 +102,7 @@ class SubjectCreateActivity : BaseActivity<ActivityCreateSubjectBinding, CreateS
                 if (resultSubjectEntity != null) { // 수업 생성 성공
 
                     // 생성한 수업의 SubjectEntity를 담는다.
+                    // + 초대코드 Dialog를 보여주기 위한 결과 반환
                     val resultIntent = Intent().putExtra(
                         SubjectFragment.INTENT_CREATE_SUBJECT_ENTITY_KEY,
                         resultSubjectEntity

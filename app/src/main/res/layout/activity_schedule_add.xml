@@ -53,9 +53,23 @@
                     android:enabled="false"
                     android:gravity="center"
                     android:text="완료"
-                    android:onClick="@{viewModel::createDailyClass}"
                     android:textColor="@color/color_primary_done_text"
                     android:textSize="12sp" />
+
+               <!-- <TextView
+                    android:id="@+id/done_btn"
+                    android:layout_width="23dp"
+                    android:layout_height="23dp"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="15dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:enabled="false"
+                    android:gravity="center"
+                    android:text="완료"
+                    android:onClick="@{viewModel::createDailyClass}"
+                    android:textColor="@color/color_primary_done_text"
+                    android:textSize="12sp" />-->
 
             </androidx.appcompat.widget.Toolbar>
 

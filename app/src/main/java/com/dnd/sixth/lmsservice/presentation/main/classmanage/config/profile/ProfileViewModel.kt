@@ -1,5 +1,6 @@
 package com.dnd.sixth.lmsservice.presentation.main.classmanage.config.profile
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.dnd.sixth.lmsservice.App
 import com.dnd.sixth.lmsservice.R
@@ -179,12 +180,12 @@ class ProfileViewModel(
 
     // 본인 전화번호의 변경 유무를 반환합니다.
     private fun isNumberChanged(): Boolean {
-        return ((originMyNumber != null) && originMyNumber != myNumber.value)
+        return ((myNumber.value != null) && originMyNumber != myNumber.value)
     }
 
     // 학부모 전화번호의 변경 유무를 반환합니다.
     private fun isParentNumberChanged(): Boolean {
-        return ((originParentNumber != null) && originParentNumber != parentNumber.value)
+        return ((parentNumber.value != null) && originParentNumber != parentNumber.value)
     }
 
 }

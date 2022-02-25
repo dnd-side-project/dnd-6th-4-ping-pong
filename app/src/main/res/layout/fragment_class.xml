@@ -102,7 +102,7 @@
                 android:background="@color/white"
                 android:outlineAmbientShadowColor="#40000000"
                 android:outlineSpotShadowColor="#40000000"
-                app:cardCornerRadius="3dp"
+                app:cardCornerRadius="16dp"
                 app:cardElevation="8dp"
                 app:layout_constraintTop_toBottomOf="@+id/class_recycler_view"
                 tools:visibility="gone">
@@ -126,7 +126,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:gravity="center"
-                        android:text="@string/no_class"
+                        android:text="@string/add_class"
                         android:textColor="#A6A6A6"
                         android:textSize="12sp" />
 

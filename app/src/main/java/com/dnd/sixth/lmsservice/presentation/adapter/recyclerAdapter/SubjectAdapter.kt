@@ -14,7 +14,7 @@ import com.dnd.sixth.lmsservice.presentation.extensions.visibleViewListIfContain
 import com.dnd.sixth.lmsservice.presentation.listner.OnRecyclerItemClickListener
 
 class SubjectAdapter(
-    var modelListDaily: List<GeneralSubjectEntity>,
+    var modelListDaily: MutableList<GeneralSubjectEntity>,
     val listener: OnRecyclerItemClickListener
 ) :
     RecyclerView.Adapter<SubjectAdapter.ClassViewHolder>() {
@@ -39,10 +39,12 @@ class SubjectAdapter(
                 }
 
                 // 수업 요일을 보여줌
-                visibleViewListIfContain(
-                    classModel.classDayBit,
-                    listOf<View>(monIcon, tueIcon, wedIcon, thurIcon, friIcon, satIcon, sunIcon)
-                )
+                classModel.classDayBit?.let {
+                    visibleViewListIfContain(
+                        it,
+                        listOf<View>(monIcon, tueIcon, wedIcon, thurIcon, friIcon, satIcon, sunIcon)
+                    )
+                }
 
                 // 수업 요일 색상 변경
                 applyDowColor(
@@ -69,7 +71,9 @@ class SubjectAdapter(
         val diffUtilCallback = BaseDiffUtil(modelListDaily, newModelListDaily)
         val diffResult = DiffUtil.calculateDiff(diffUtilCallback, true)
 
-        modelListDaily = newModelListDaily
+        modelListDaily.clear()
+        modelListDaily.addAll(newModelListDaily)
+
         diffResult.dispatchUpdatesTo(this)
     }
 }

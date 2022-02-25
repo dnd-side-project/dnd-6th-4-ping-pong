@@ -16,6 +16,9 @@ class UserRepositoryImpl(
     override suspend fun getUser(email: String): UserEntity =
         userRemoteDataSource.getUser(email).toEntity()
 
+    override suspend fun getUser(uid: Int): UserEntity =
+        userRemoteDataSource.getUser(uid).toEntity()
+
     override suspend fun changeUserName(uid: Number, newName: String): Int =
         userRemoteDataSource.changeUserName(uid, newName)
 
