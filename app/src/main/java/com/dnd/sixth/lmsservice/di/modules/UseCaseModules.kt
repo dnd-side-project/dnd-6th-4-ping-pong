@@ -7,6 +7,7 @@ import com.dnd.sixth.lmsservice.domain.useCase.dailyclass.CreateDailyClassUseCas
 import com.dnd.sixth.lmsservice.domain.useCase.dailyclass.DeleteDailyClassUseCase
 import com.dnd.sixth.lmsservice.domain.useCase.dailyclass.GetDailyClassListUseCase
 import com.dnd.sixth.lmsservice.domain.useCase.dailyclass.UpdateDailyClassUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.feedbackComment.UpdateFeedBackUseCase
 import com.dnd.sixth.lmsservice.domain.useCase.subject.CreateSubjectUseCase
 import com.dnd.sixth.lmsservice.domain.useCase.subject.DeleteSubjectUseCase
 import com.dnd.sixth.lmsservice.domain.useCase.subject.GetGeneralSubjectListUseCase
@@ -30,6 +31,9 @@ val useCaseModules = module {
         UpdateSubjectUseCase(get())
     }
 
+    /*
+    타임라인 리스트
+     */
     factory{
         GetDailyClassUseCase(get())
     }
@@ -50,5 +54,11 @@ val useCaseModules = module {
         UpdateDailyClassUseCase(get())
     }
 
+    /*
+   피드백 코멘트
+    */
+    factory {
+        UpdateFeedBackUseCase(get())
+    }
 
 }

@@ -1,6 +1,8 @@
 package com.dnd.sixth.lmsservice.di.modules
 
 
+import com.dnd.sixth.lmsservice.data.repository.FeedBackComment.datasource.remote.FeedBackCommentRemoteDataSource
+import com.dnd.sixth.lmsservice.data.repository.FeedBackComment.datasource.remote.FeedBackCommentRemoteDataSourceImpl
 import com.dnd.sixth.lmsservice.data.repository.dailyclasstimelist.datasource.remote.DailyClassTimeLineRemoteDataSource
 import com.dnd.sixth.lmsservice.data.repository.dailyclasstimelist.datasource.remote.DailyClassTimeLineTimeLineRemoteDataSourceImpl
 
@@ -24,5 +26,9 @@ val dataSourceModules = module {
 
     single<DailyClassRemoteDataSource> {
         DailyClassRemoteDataSourceImpl(get())
+    }
+    single<FeedBackCommentRemoteDataSource>{
+        FeedBackCommentRemoteDataSourceImpl(get())
+
     }
 }
