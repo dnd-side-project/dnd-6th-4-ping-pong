@@ -57,8 +57,6 @@ class ClassProgressActivity : BaseActivity<ActivityClassProgressBinding, ClassPr
 
 
             recyclerviewForTimeLine.adapter = adapter
-
-
             recyclerviewForTimeLine.layoutManager = LinearLayoutManager(this@ClassProgressActivity)
             binding.recyclerviewForTimeLine.visibility = VISIBLE
             binding.emptyClassStatusImg.visibility = GONE

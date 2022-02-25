@@ -1,5 +1,36 @@
 package com.dnd.sixth.lmsservice.di.modules
 
+
+import com.dnd.sixth.lmsservice.domain.useCase.dailyclass.CreateDailyClassUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.dailyclass.DeleteDailyClassUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.dailyclass.GetDailyClassListUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.dailyclass.UpdateDailyClassUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.push.comment.ChangeCommentPushUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.push.comment.GetCommentPushUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.push.feedback.ChangeFeedbackPushUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.push.feedback.GetFeedbackPushUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.push.start.ChangeStartPushUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.push.start.GetStartPushUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.subject.CreateSubjectUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.subject.DeleteSubjectUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.subject.GetGeneralSubjectListUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.subject.UpdateSubjectUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.user.contact.GetLocalContactTimeUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.user.contact.SaveLocalContactTimeUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.user.contact.SaveRemoteContactTimeUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.user.number.myself.GetLocalMyNumberUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.user.number.myself.SaveLocalMyNumberUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.user.number.myself.SaveRemoteMyNumberUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.user.number.parent.GetLocalParentNumberUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.user.number.parent.SaveLocalParentNumberUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.user.number.parent.SaveRemoteParentNumberUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.user.password.ChangePasswordUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.user.username.ChangeUserNameUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.*
+import com.dnd.sixth.lmsservice.domain.useCase.feedbackComment.GetFeedBackUseCaseFromDaily
+
+import com.dnd.sixth.lmsservice.domain.useCase.feedbackComment.UpdateFeedBackUseCase
+
 import com.dnd.sixth.lmsservice.domain.useCase.GetDailyClassUseCase
 import com.dnd.sixth.lmsservice.domain.useCase.feedbackComment.UpdateFeedBackUseCase
 import com.dnd.sixth.lmsservice.domain.usecase.dailyclass.CreateDailyClassUseCase
@@ -28,6 +59,7 @@ import com.dnd.sixth.lmsservice.domain.usecase.user.profile.GetLocalProfileUriUs
 import com.dnd.sixth.lmsservice.domain.usecase.user.profile.SaveLocalProfileUriUseCase
 import com.dnd.sixth.lmsservice.domain.usecase.user.profile.SaveRemoteProfileUriUseCase
 import com.dnd.sixth.lmsservice.domain.usecase.user.username.ChangeUserNameUseCase
+
 import org.koin.dsl.module
 
 val useCaseModules = module {
@@ -52,8 +84,13 @@ val useCaseModules = module {
     /*
     타임라인 리스트
      */
+
+    factory{
+        GetDailyClassTimeLineUseCase(get())
+    }
     factory {
         GetDailyClassUseCase(get())
+
     }
 
 
@@ -148,6 +185,10 @@ val useCaseModules = module {
     */
     factory {
         UpdateFeedBackUseCase(get())
+    }
+
+    factory{
+        GetFeedBackUseCaseFromDaily(get()) //피드백 내용 불러오기
     }
 
 }

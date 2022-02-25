@@ -1,4 +1,4 @@
-package com.dnd.sixth.lmsservice.domain.usecase.user.password
+package com.dnd.sixth.lmsservice.domain.useCase.user.password
 
 import com.dnd.sixth.lmsservice.domain.repository.UserRepository
 

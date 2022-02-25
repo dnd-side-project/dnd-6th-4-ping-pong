@@ -2,12 +2,12 @@ package com.dnd.sixth.lmsservice.presentation.main.classmanage.config.push
 
 import android.widget.CompoundButton
 import androidx.lifecycle.MutableLiveData
-import com.dnd.sixth.lmsservice.domain.usecase.push.comment.ChangeCommentPushUseCase
-import com.dnd.sixth.lmsservice.domain.usecase.push.comment.GetCommentPushUseCase
-import com.dnd.sixth.lmsservice.domain.usecase.push.feedback.ChangeFeedbackPushUseCase
-import com.dnd.sixth.lmsservice.domain.usecase.push.feedback.GetFeedbackPushUseCase
-import com.dnd.sixth.lmsservice.domain.usecase.push.start.ChangeStartPushUseCase
-import com.dnd.sixth.lmsservice.domain.usecase.push.start.GetStartPushUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.push.comment.ChangeCommentPushUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.push.comment.GetCommentPushUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.push.feedback.ChangeFeedbackPushUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.push.feedback.GetFeedbackPushUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.push.start.ChangeStartPushUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.push.start.GetStartPushUseCase
 import com.dnd.sixth.lmsservice.presentation.base.BaseViewModel
 import com.dnd.sixth.lmsservice.presentation.extensions.onIO
 

@@ -44,7 +44,7 @@ val networkModules = module {
         SubjectApi()
 
     }
-    single{
+    single {
         DailyClassApi()
     }
     single {

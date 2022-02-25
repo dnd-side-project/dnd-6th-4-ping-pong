@@ -1,22 +1,19 @@
 package com.dnd.sixth.lmsservice.presentation.lesson.progress
 
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.dnd.sixth.lmsservice.data.model.dailyclass.DailyClassGetModel
 import com.dnd.sixth.lmsservice.data.preference.PreferenceManager
 import com.dnd.sixth.lmsservice.domain.entity.DailyClassEntity
-import com.dnd.sixth.lmsservice.domain.entity.GeneralSubjectEntity
-import com.dnd.sixth.lmsservice.domain.useCase.GetDailyClassUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.GetDailyClassTimeLineUseCase
+
 import com.dnd.sixth.lmsservice.presentation.base.BaseViewModel
 import com.dnd.sixth.lmsservice.presentation.utility.SAVED_ROLE_KEY
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class ClassProgressViewModel(
     var preferenceManager: PreferenceManager,
-    var getDailyClassUseCase: GetDailyClassUseCase
+    var getDailyClassUseCase: GetDailyClassTimeLineUseCase
 ) : BaseViewModel() {
 
     //유저 타입 변수
