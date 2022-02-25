@@ -82,7 +82,7 @@ val viewModelModules = module {
         InviteLinkViewModel()
     }
     viewModel {
-        CommentViewModel()
+        CommentViewModel(get(),get())
     }
     viewModel {
         InfoViewModel(get(), get(), get(), get())
@@ -112,6 +112,6 @@ val viewModelModules = module {
         CheckFeedBackViewModel(get(),get(),get())
     }
     viewModel{
-        CheckCommentViewModel()
+        CheckCommentViewModel(get(),get())
     }
 }

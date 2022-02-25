@@ -133,6 +133,7 @@
                 >
 
                 <CheckBox
+                    android:clickable="false"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:id="@+id/complete_check_box"
@@ -168,6 +169,7 @@
                 >
 
                 <CheckBox
+                    android:clickable="false"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:id="@+id/almost_check_box"
@@ -203,6 +205,7 @@
                 >
 
                 <CheckBox
+                    android:clickable="false"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:id="@+id/okay_check_box"
@@ -237,6 +240,7 @@
                 >
 
                 <CheckBox
+                    android:clickable="false"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:id="@+id/difficult_check_box"
@@ -271,6 +275,7 @@
                 >
 
                 <CheckBox
+                    android:clickable="false"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:id="@+id/hell_check_box"
@@ -313,11 +318,11 @@
             android:layout_marginTop="20dp"
             android:layout_marginStart="16dp"/>
 
-        <EditText
+        <TextView
             android:id="@+id/comment_question_edittext"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:hint="선생님에게 수업에 대해 전달하고 싶은 부분이나 오늘 수업에서 어떤 내용을\n 배웠는지 자유롭게 작성해주세"
+            android:text="선생님에게 수업에 대해 전달하고 싶은 부분이나 오늘 수업에서 어떤 내용을\n 배웠는지 자유롭게 작성해주세"
             app:layout_constraintTop_toBottomOf="@id/comment_title_question"
             app:layout_constraintStart_toStartOf="parent"
 
