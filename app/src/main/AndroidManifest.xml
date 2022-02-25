@@ -24,10 +24,7 @@
         <activity
             android:name=".presentation.comment.check.CheckCommentActivity"
             android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
         <activity
             android:name=".presentation.feedback.check.CheckFeedBackActivity"
@@ -83,10 +80,17 @@
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".presentation.login.signup.SignUpActivity"
-            android:exported="true" />
+            android:exported="true" >
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".presentation.login.LoginActivity"
             android:exported="true">
+
 
 
         </activity>
