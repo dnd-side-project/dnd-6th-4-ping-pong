@@ -1,5 +1,7 @@
 package com.dnd.sixth.lmsservice.di.modules
 
+import com.dnd.sixth.lmsservice.domain.useCase.GetDailyClassUseCase
+import com.dnd.sixth.lmsservice.domain.useCase.feedbackComment.UpdateFeedBackUseCase
 import com.dnd.sixth.lmsservice.domain.usecase.dailyclass.CreateDailyClassUseCase
 import com.dnd.sixth.lmsservice.domain.usecase.dailyclass.DeleteDailyClassUseCase
 import com.dnd.sixth.lmsservice.domain.usecase.dailyclass.GetDailyClassListUseCase
@@ -24,9 +26,10 @@ import com.dnd.sixth.lmsservice.domain.usecase.user.number.parent.GetLocalParent
 import com.dnd.sixth.lmsservice.domain.usecase.user.number.parent.SaveLocalParentNumberUseCase
 import com.dnd.sixth.lmsservice.domain.usecase.user.number.parent.SaveRemoteParentNumberUseCase
 import com.dnd.sixth.lmsservice.domain.usecase.user.password.ChangePasswordUseCase
+import com.dnd.sixth.lmsservice.domain.usecase.user.profile.GetLocalProfileUriUseCase
+import com.dnd.sixth.lmsservice.domain.usecase.user.profile.SaveLocalProfileUriUseCase
+import com.dnd.sixth.lmsservice.domain.usecase.user.profile.SaveRemoteProfileUriUseCase
 import com.dnd.sixth.lmsservice.domain.usecase.user.username.ChangeUserNameUseCase
-import com.dnd.sixth.lmsservice.domain.useCase.*
-import com.dnd.sixth.lmsservice.domain.useCase.feedbackComment.UpdateFeedBackUseCase
 import org.koin.dsl.module
 
 val useCaseModules = module {
@@ -48,10 +51,9 @@ val useCaseModules = module {
     /*
     타임라인 리스트
      */
-    factory{
+    factory {
         GetDailyClassUseCase(get())
     }
-
 
 
     /* Daily Class */
@@ -103,6 +105,15 @@ val useCaseModules = module {
     factory {
         SaveRemoteParentNumberUseCase(get())
     }
+    factory {
+        SaveRemoteProfileUriUseCase(get())
+    }
+    factory {
+        SaveLocalProfileUriUseCase(get())
+    }
+    factory {
+        GetLocalProfileUriUseCase(get())
+    }
 
 
     /* Push */
@@ -124,7 +135,7 @@ val useCaseModules = module {
     factory {
         GetCommentPushUseCase(get())
     }
-    
+
     /*
    피드백 코멘트
     */
