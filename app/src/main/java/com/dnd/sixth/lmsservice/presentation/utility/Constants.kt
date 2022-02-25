@@ -13,6 +13,9 @@ const val SAVED_CONTACT_TIME_KEY = "savedContactTime"
 const val SUBJECT_COLOR = "nextSubjectColor"
 const val AUTO_EMAIL_KEY = "autoEmail"
 const val AUTO_PASSWORD_KEY = "autoPassword"
+const val PUSH_CLASS_START_KEY = "pushClassStartKey"
+const val PUSH_FEEDBACK_KEY = "pushFeedbackKey"
+const val PUSH_COMMENT_KEY = "pushCommentKey"
 
 // User Role
 const val ROLE_STUDENT = 0

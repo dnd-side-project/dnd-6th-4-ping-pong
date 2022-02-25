@@ -4,6 +4,12 @@ import com.dnd.sixth.lmsservice.domain.usecase.dailyclass.CreateDailyClassUseCas
 import com.dnd.sixth.lmsservice.domain.usecase.dailyclass.DeleteDailyClassUseCase
 import com.dnd.sixth.lmsservice.domain.usecase.dailyclass.GetDailyClassListUseCase
 import com.dnd.sixth.lmsservice.domain.usecase.dailyclass.UpdateDailyClassUseCase
+import com.dnd.sixth.lmsservice.domain.usecase.push.comment.ChangeCommentPushUseCase
+import com.dnd.sixth.lmsservice.domain.usecase.push.comment.GetCommentPushUseCase
+import com.dnd.sixth.lmsservice.domain.usecase.push.feedback.ChangeFeedbackPushUseCase
+import com.dnd.sixth.lmsservice.domain.usecase.push.feedback.GetFeedbackPushUseCase
+import com.dnd.sixth.lmsservice.domain.usecase.push.start.ChangeStartPushUseCase
+import com.dnd.sixth.lmsservice.domain.usecase.push.start.GetStartPushUseCase
 import com.dnd.sixth.lmsservice.domain.usecase.subject.CreateSubjectUseCase
 import com.dnd.sixth.lmsservice.domain.usecase.subject.DeleteSubjectUseCase
 import com.dnd.sixth.lmsservice.domain.usecase.subject.GetGeneralSubjectListUseCase
@@ -86,5 +92,26 @@ val useCaseModules = module {
     }
     factory {
         SaveRemoteParentNumberUseCase(get())
+    }
+
+
+    /* Push */
+    factory {
+        ChangeStartPushUseCase(get())
+    }
+    factory {
+        GetStartPushUseCase(get())
+    }
+    factory {
+        ChangeFeedbackPushUseCase(get())
+    }
+    factory {
+        GetFeedbackPushUseCase(get())
+    }
+    factory {
+        ChangeCommentPushUseCase(get())
+    }
+    factory {
+        GetCommentPushUseCase(get())
     }
 }

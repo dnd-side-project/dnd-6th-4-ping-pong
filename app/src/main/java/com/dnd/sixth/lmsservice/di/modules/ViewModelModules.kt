@@ -76,7 +76,7 @@ val viewModelModules = module {
         ProfileViewModel(get(), get(), get(), get(), get(), get(), get(), get(), get(), get())
     }
     viewModel {
-       PushViewModel()
+       PushViewModel(get(), get(), get(), get(), get(), get())
     }
     viewModel{
         InviteLinkViewModel()
