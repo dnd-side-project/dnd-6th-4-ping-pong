@@ -9,6 +9,7 @@ import com.dnd.sixth.lmsservice.databinding.ActivityStartFeedBackBinding
 import com.dnd.sixth.lmsservice.presentation.base.BaseActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
+//없어진 피드백 디자인??
 class StartFeedBackActivity : BaseActivity<ActivityStartFeedBackBinding,StartFeedBackViewModel>() {
     override val layoutResId: Int
         get() = R.layout.activity_start_feed_back

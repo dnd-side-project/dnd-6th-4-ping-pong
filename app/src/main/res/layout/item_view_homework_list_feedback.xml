@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <CheckBox
+        android:id="@+id/first_check_box"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_checkbox_outline_blank"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:button="@null" />
+    <EditText
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="숙제를 입력해주세요."
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@id/first_check_box"
+        app:layout_constraintTop_toTopOf="@id/first_check_box"
+        app:layout_constraintBottom_toBottomOf="@id/first_check_box"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginRight="16dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -58,7 +58,7 @@ val viewModelModules = module {
         StartFeedBackViewModel()
     }
     viewModel {
-        WriteFeedBackViewModel()
+        WriteFeedBackViewModel(get(),get())
     }
     viewModel {
         MainViewModel()
