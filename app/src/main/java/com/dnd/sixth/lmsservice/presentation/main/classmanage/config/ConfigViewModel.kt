@@ -1,11 +1,9 @@
 package com.dnd.sixth.lmsservice.presentation.main.classmanage.config
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.dnd.sixth.lmsservice.data.preference.PreferenceManager
-import com.dnd.sixth.lmsservice.domain.usecase.user.ChangeUserNameUseCase
+import com.dnd.sixth.lmsservice.domain.usecase.user.username.ChangeUserNameUseCase
 import com.dnd.sixth.lmsservice.presentation.base.BaseViewModel
-import com.dnd.sixth.lmsservice.presentation.extensions.onIO
 import com.dnd.sixth.lmsservice.presentation.utility.SAVED_NAME_KEY
 import com.dnd.sixth.lmsservice.presentation.utility.SAVED_UID_KEY
 import kotlinx.coroutines.Dispatchers

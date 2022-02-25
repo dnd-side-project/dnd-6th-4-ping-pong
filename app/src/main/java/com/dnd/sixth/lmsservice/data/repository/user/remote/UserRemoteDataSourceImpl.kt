@@ -65,4 +65,42 @@ class UserRemoteDataSourceImpl(private val userApi: UserApi) : UserRemoteDataSou
                 }
             })
         }
+
+    override suspend fun saveMyNumber(uid: Number, myNumber: String): Int =
+        suspendCancellableCoroutine { cont ->
+            val requestCall = userApi.api.saveMyNumber(uid, myNumber)
+            requestCall.enqueue(object: Callback<Int> {
+                override fun onResponse(call: Call<Int>, response: Response<Int>) {
+                    if(response.isSuccessful) {
+                        val changeCount = response.body() as Int
+                        cont.resumeWith(Result.success(changeCount))
+                    } else {
+                        cont.resumeWith(Result.failure(Exception("SaveFailException")))
+                    }
+                }
+
+                override fun onFailure(call: Call<Int>, t: Throwable) {
+                    cont.resumeWith(Result.failure(Exception("SaveFailException")))
+                }
+            })
+        }
+
+    override suspend fun saveParentNumber(uid: Number, parentNumber: String): Int =
+        suspendCancellableCoroutine { cont ->
+            val requestCall = userApi.api.saveParentNumber(uid, parentNumber)
+            requestCall.enqueue(object: Callback<Int> {
+                override fun onResponse(call: Call<Int>, response: Response<Int>) {
+                    if(response.isSuccessful) {
+                        val changeCount = response.body() as Int
+                        cont.resumeWith(Result.success(changeCount))
+                    } else {
+                        cont.resumeWith(Result.failure(Exception("SaveFailException")))
+                    }
+                }
+
+                override fun onFailure(call: Call<Int>, t: Throwable) {
+                    cont.resumeWith(Result.failure(Exception("SaveFailException")))
+                }
+            })
+        }
 }

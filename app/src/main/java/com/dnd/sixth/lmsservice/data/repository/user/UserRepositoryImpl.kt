@@ -8,6 +8,8 @@ class UserRepositoryImpl(
     private val userRemoteDataSource: UserRemoteDataSource,
     private val userLocalDataSource: UserLocalDataSource
 ) : UserRepository {
+
+    /* Remote */
     override suspend fun changeUserName(uid: Number, newName: String): Int {
         return userRemoteDataSource.changeUserName(uid, newName)
     }
@@ -20,11 +22,38 @@ class UserRepositoryImpl(
         return userRemoteDataSource.saveContactTime(uid, contactTime)
     }
 
+    override suspend fun saveRemoteMyNumber(uid: Number, myNumber: String): Int {
+        return userRemoteDataSource.saveMyNumber(uid, myNumber)
+    }
+
+    override suspend fun saveRemoteParentNumber(uid: Number, parentNumber: String): Int {
+        return userRemoteDataSource.saveParentNumber(uid, parentNumber)
+    }
+
+
+
+    /* Local */
     override suspend fun saveLocalContactTime(contactTime: String) {
         userLocalDataSource.saveContactTime(contactTime)
     }
 
     override suspend fun getLocalContactTime(): String? {
         return userLocalDataSource.getContactTime()
+    }
+
+    override suspend fun saveLocalMyNumber(myNumber: String) {
+        userLocalDataSource.saveMyNumber(myNumber)
+    }
+
+    override suspend fun getLocalMyNumber(): String? {
+        return userLocalDataSource.getMyNumber()
+    }
+
+    override suspend fun saveLocalParentNumber(parentNumber: String) {
+        userLocalDataSource.saveParentNumber(parentNumber)
+    }
+
+    override suspend fun getLocalParentNumber(): String? {
+        return userLocalDataSource.getParentNumber()
     }
 }

@@ -6,6 +6,8 @@ import android.content.res.ColorStateList
 import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.databinding.ActivityConfigBinding
@@ -22,7 +24,12 @@ class ConfigActivity : BaseActivity<ActivityConfigBinding, ConfigViewModel>(),
     override val layoutResId: Int
         get() = R.layout.activity_config
     override val viewModel: ConfigViewModel by viewModel()
+    lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
 
+    companion object {
+        const val INTENT_CONFIG_ACTIVITY_KEY = "INTENT_CONFIG_ACTIVITY_KEY"
+        const val INTENT_CONFIG_ACTIVITY_CODE = 4000
+    }
 
     // 액티비티 초기화 메서드
     override fun initActivity() {
@@ -37,6 +44,7 @@ class ConfigActivity : BaseActivity<ActivityConfigBinding, ConfigViewModel>(),
             supportActionBar?.setDisplayShowTitleEnabled(false) // 타이틀 보이지 않도록 설정
 
             setClickListener() // 클릭 리스너 설정
+            setResultLauncher() // ActivityResult 설정
 
             nicknameEditText.setOnFocusChangeListener { v, hasFocus ->
                 // 닉네임 변경 EditText가 포커스를 받았다면 텍스트 색상과 아이콘을 변경합니다.
@@ -71,6 +79,18 @@ class ConfigActivity : BaseActivity<ActivityConfigBinding, ConfigViewModel>(),
         }
     }
 
+    private fun setResultLauncher() {
+        activityResultLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                val resultData = result.data
+                if (result.resultCode == INTENT_CONFIG_ACTIVITY_CODE) {
+                    if (resultData?.getBooleanExtra(INTENT_CONFIG_ACTIVITY_KEY, false)!!) {
+                        showSnackBar("변경사항이 저장됐어요!")
+                    }
+                }
+            }
+    }
+
     private fun setBindingData() {
         binding.viewModel = viewModel // ViewModel 바인딩
     }
@@ -86,7 +106,7 @@ class ConfigActivity : BaseActivity<ActivityConfigBinding, ConfigViewModel>(),
     override fun onClick(view: View?) {
         when (view?.id) {
             R.id.option_account_btn -> {
-                startActivity(Intent(this, ProfileActivity::class.java))
+                activityResultLauncher.launch(Intent(this, ProfileActivity::class.java))
             }
             R.id.option_notification_btn -> {
                 startActivity(Intent(this, PushActivity::class.java))
@@ -98,7 +118,7 @@ class ConfigActivity : BaseActivity<ActivityConfigBinding, ConfigViewModel>(),
                         // 연필 아이콘을 누르면 닉네임을 변경합니다.
                         CoroutineScope(Dispatchers.IO).launch {
                             val isChanged = viewModel.changeUserName()
-                            if(isChanged) {
+                            if (isChanged) {
                                 showSnackBar("닉네임이 변경되었어요!")
                             } else {
                                 showSnackBar("닉네임 변경에 실패했어요!")

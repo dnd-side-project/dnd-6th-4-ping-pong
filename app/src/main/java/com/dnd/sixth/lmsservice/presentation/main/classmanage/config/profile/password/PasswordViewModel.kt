@@ -2,7 +2,7 @@ package com.dnd.sixth.lmsservice.presentation.main.classmanage.config.profile.pa
 
 import androidx.lifecycle.MutableLiveData
 import com.dnd.sixth.lmsservice.data.preference.PreferenceManager
-import com.dnd.sixth.lmsservice.domain.usecase.user.ChangePasswordUseCase
+import com.dnd.sixth.lmsservice.domain.usecase.user.password.ChangePasswordUseCase
 import com.dnd.sixth.lmsservice.presentation.base.BaseViewModel
 import com.dnd.sixth.lmsservice.presentation.utility.SAVED_UID_KEY
 import kotlinx.coroutines.Dispatchers

@@ -22,6 +22,17 @@
             android:clipToPadding="false"
             android:paddingBottom="12dp">
 
+            <ProgressBar
+                android:id="@+id/save_loading_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:visibility="gone"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:indeterminateTint="@color/colorOnPrimary"
+                app:layout_constraintRight_toRightOf="parent"/>
+
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
@@ -154,6 +165,7 @@
                     android:hint="연락처를 등록해주세요"
                     android:paddingRight="16dp"
                     android:maxLength="12"
+                    android:text="@={viewModel.myNumber}"
                     android:textColor="@color/richBlack"
                     android:textColorHint="@color/gray9F"
                     android:inputType="numberDecimal"
@@ -205,6 +217,7 @@
                         android:hint="연락처를 등록해주세요"
                         android:paddingRight="16dp"
                         android:maxLength="12"
+                        android:text="@={viewModel.parentNumber}"
                         android:textColor="@color/richBlack"
                         android:textColorHint="@color/gray9F"
                         android:inputType="numberDecimal"
@@ -236,7 +249,7 @@
                     android:clickable="true"
                     android:background="?attr/selectableItemBackground"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/divider4">
+                    app:layout_constraintTop_toBottomOf="@id/parent_number_container">
 
                     <TextView
                         android:id="@+id/contact_time_title"
@@ -261,6 +274,7 @@
                         app:layout_constraintRight_toLeftOf="@+id/contact_time_change_btn"
                         android:background="@null"
                         android:gravity="right|center"
+                        android:text="@={viewModel.contactTime}"
                         android:paddingRight="16dp"
                         tools:text="10 : 00 ~ 18 : 00"
                         android:textColor="#626262"
