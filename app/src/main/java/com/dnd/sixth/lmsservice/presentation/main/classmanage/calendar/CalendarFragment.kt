@@ -5,6 +5,8 @@ import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.util.Log
 import android.view.View
+import android.view.View.GONE
+import android.view.View.INVISIBLE
 import android.view.ViewTreeObserver
 import android.view.ViewTreeObserver.OnGlobalLayoutListener
 import android.widget.*
@@ -13,15 +15,19 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat.getDrawable
 import androidx.core.view.children
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.dnd.sixth.lmsservice.BuildConfig
 import com.dnd.sixth.lmsservice.R
 import com.dnd.sixth.lmsservice.data.preference.PreferenceManager
 import com.dnd.sixth.lmsservice.databinding.FragmentCalendarBinding
 import com.dnd.sixth.lmsservice.databinding.ItemSubjectCategoryRadioButtonBinding
 import com.dnd.sixth.lmsservice.databinding.LayoutStudentCategoryBottomSheetBinding
+import com.dnd.sixth.lmsservice.domain.entity.DailyClassEntity
 import com.dnd.sixth.lmsservice.domain.entity.DailyEntity
+import com.dnd.sixth.lmsservice.presentation.adapter.recyclerAdapter.TimeLineAdapter
 import com.dnd.sixth.lmsservice.presentation.base.BaseFragment
 import com.dnd.sixth.lmsservice.presentation.extensions.removeAllDotDecorators
+import com.dnd.sixth.lmsservice.presentation.feedback.WriteFeedBackActivity
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.ClassManageViewModel
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.add.ScheduleAddActivity
 import com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.custom.DateColor
@@ -88,6 +94,8 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding, CalendarViewModel
             setActivityLauncher() // 액티비티 런처 설정
             setViewVisibility() // 유저 상태에 따라 View의 Visibillity 설정
         }
+
+        initRecyclerView()
 
 
         // 뒤로가기 버튼 클릭시 콜백 (HomeActivity 와 연결되어 있음)
@@ -463,6 +471,32 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding, CalendarViewModel
                 categoryDialog?.show()
             }
         }
+    }
+    fun initRecyclerView(){
+        var adapter = TimeLineAdapter() { feedbackBtn ->
+
+        }
+        binding.timelineRecyclerView.adapter = adapter
+        binding.timelineRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.timelineRecyclerView.visibility = View.VISIBLE
+
+
+        adapter.timeLineList =
+            //더미데이터
+            mutableListOf(
+            DailyClassEntity(
+                1, 3, "10:30", "강남역 투썸플레이스", "수학",
+                "", "", "", "", "", false, 02.30, 0, 3
+            ), DailyClassEntity(
+                1, 2, "10:30", "강남역 투썸플레이스", "수학",
+                "", "", "", "", "", false, 02.23, 0, 2
+            ),
+            DailyClassEntity(
+                1, 1, "10:30", "강남역 투썸플레이스", "수학",
+                "", "", "", "", "", false, 02.16, 0, 1
+            )
+        )
+
     }
 
 

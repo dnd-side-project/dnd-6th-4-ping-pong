@@ -3,7 +3,7 @@ package com.dnd.sixth.lmsservice.domain.entity
 import java.io.Serializable
 
 data class DailyClassEntity(
-    val dailyClassId : Number,
+
     val subjectId: Number,
     val classOrder: Number,
     val startTime: String,
@@ -16,5 +16,6 @@ data class DailyClassEntity(
     val homework: String,
     val isChangeFeedback: Boolean,
     val classDays: Number,
-    val difficulty : Int
+    val difficulty : Int,
+    val dailyClassId : Number
 ): Serializable
