@@ -5,8 +5,7 @@ import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.view.View
-import android.view.View.GONE
-import android.view.View.VISIBLE
+import android.view.View.*
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dnd.sixth.lmsservice.R
@@ -46,6 +45,8 @@ class ClassProgressActivity : BaseActivity<ActivityClassProgressBinding, ClassPr
         //유저 타입 확인
         viewModel.checkRoleModel()
 
+        checkRole(1)
+
         //어답터 추가
         var adapter = TimeLineAdapter() { feedbackBtn ->
             val intent = Intent(this@ClassProgressActivity, WriteFeedBackActivity::class.java)
@@ -60,12 +61,15 @@ class ClassProgressActivity : BaseActivity<ActivityClassProgressBinding, ClassPr
             recyclerviewForTimeLine.layoutManager = LinearLayoutManager(this@ClassProgressActivity)
             binding.recyclerviewForTimeLine.visibility = VISIBLE
             binding.emptyClassStatusImg.visibility = GONE
+            adapter.contextAdd(this@ClassProgressActivity)
 
 //            progressStartFeedbackBtn.setOnClickListener {
 //                var intent = Intent(this@ClassProgressActivity, StartFeedBackActivity::class.java)
 //                startActivityForResult(intent, REQUEST_CODE)
 //            }
         }
+
+
 
         //역할 변수 확인
         viewModel.role.observe(this , Observer {
@@ -79,7 +83,8 @@ class ClassProgressActivity : BaseActivity<ActivityClassProgressBinding, ClassPr
             adapter.timeLineList = it
             if(it.size>0) {
                 //order에 00월 00회차로 입력되어야 할 것 같음
-                binding.classListStatus.text = "${it.get(it.size-1).classOrder} 수업까지 진행 했어요 (${it.size}회차)"
+                binding.classListStatus.text = "${it.get(it.size-1).classOrder} 수업까지 진행 했어요 (${it.size+1}회차)"
+                binding.progressInviteBtn.visibility = INVISIBLE
             }
 
             adapter.notifyDataSetChanged()

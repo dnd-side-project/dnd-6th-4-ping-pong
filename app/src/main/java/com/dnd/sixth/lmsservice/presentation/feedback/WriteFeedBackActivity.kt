@@ -50,7 +50,13 @@ class WriteFeedBackActivity : BaseActivity<ActivityWriteFeedBackBinding, WriteFe
             var model = assembleFeedBackModel()
             //요청
             viewModel.writingComplete(model)
+            finish()
         }
+
+        binding.toolbarBtn.setOnClickListener {
+            finish()
+        }
+
     }
 
     //해당 데일리클래스 id확인

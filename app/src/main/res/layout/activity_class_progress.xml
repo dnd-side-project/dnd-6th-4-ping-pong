@@ -43,7 +43,7 @@
                     android:id="@+id/timeline_title_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="백지성/고3/영어"
+                    android:text="김철수/고3/영어"
                     android:textSize="16sp"
                     android:textColor="@color/richBlack"
                     android:layout_gravity="center"/>

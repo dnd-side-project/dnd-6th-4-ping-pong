@@ -120,7 +120,7 @@
             android:layout_marginTop="16dp"
             android:background="@drawable/bg_round_btn"
             android:gravity="center"
-            android:text="코멘트 확인"
+            android:text="코멘트 작성"
             android:textColor="@color/white"
             android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@id/open_feedback_btn"

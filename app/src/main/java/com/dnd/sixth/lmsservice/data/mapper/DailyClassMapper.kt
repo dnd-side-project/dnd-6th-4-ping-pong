@@ -31,7 +31,7 @@ fun DailyClassEntity.toModel(): DailyClassGetModel {
 //엔티티로 변환
 fun DailyClassGetModel.toEntity(): DailyClassEntity {
     return DailyClassEntity(
-        dailyClassId = this.dailyClassId,
+
         subjectId = this.subjectId,
         classOrder = this.classOrder,
         startTime = this.startTime,
@@ -44,7 +44,8 @@ fun DailyClassGetModel.toEntity(): DailyClassEntity {
         isChangeFeedback = this.isChangeFeedback,
         noty = "what is noty",
         classDays = 2020-10-22,
-        difficulty = 1
+        difficulty = 1,
+        dailyClassId = this.dailyClassId,
     )
 }
 
