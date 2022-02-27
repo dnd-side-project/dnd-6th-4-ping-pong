@@ -105,7 +105,7 @@
   ![image](https://user-images.githubusercontent.com/68258365/155885322-3a96ac8f-fb9a-4e89-a1a4-0fdc10b342e5.png)
 </p><br><br>
 
-## 📱 InApp 소개 
+## 📱시연 영상 
 
 ![SHANA DND시연영상](https://user-images.githubusercontent.com/68258365/155885827-7e9e56ab-1ee8-4a1d-8432-55e1cb30bf3b.gif)
 
