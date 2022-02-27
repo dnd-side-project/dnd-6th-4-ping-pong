@@ -34,7 +34,11 @@
 ## 주제 선정 백그라운드
   <p align="center">
   
-  설문조사 결과 선생님, 학생, 학부모가 공통적으로 학생의 학업 방향성에 대한 피드백, 소통을 나누는 것에대한 니즈를 확인.
+  | 이해관계 | 선생님,   학생,  학부모 |
+| -------- | ---------------------- |
+| 니즈  |학업 방향성에 대한 피드백, 소통을 나누는 것에 대한 니즈가 강함    |
+
+  
   Pre단계에서 발생하는 User Problem을 해결해주는 서비스(과외 매칭 서비스)는 많이 존재하지만 During-After 단계의 User Problem을 해결을 위한 서비스 시장은 아직 블루오션.
  
   <img style="display=inline" src="https://user-images.githubusercontent.com/56534241/155872372-6e6fbab4-6e2d-4535-a7b3-e5470b39310d.png" width="610" height="110" />
@@ -99,9 +103,14 @@
   ![image](https://user-images.githubusercontent.com/68258365/155885291-0dc3c7b6-55cf-4bfe-9ef3-ed54db789905.png)
   ![image](https://user-images.githubusercontent.com/68258365/155885308-a4530349-5e9c-4b8d-81f9-af9b4e8aa944.png)
   ![image](https://user-images.githubusercontent.com/68258365/155885322-3a96ac8f-fb9a-4e89-a1a4-0fdc10b342e5.png)
-
- 
 </p><br><br>
+
+## 📱 InApp 소개 
+
+![SHANA DND시연영상](https://user-images.githubusercontent.com/68258365/155885827-7e9e56ab-1ee8-4a1d-8432-55e1cb30bf3b.gif)
+
+
+
 
 
 Copyright © 2022 DND 6th-4. MIT licensed.
