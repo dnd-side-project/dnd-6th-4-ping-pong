@@ -32,7 +32,7 @@
 
 
 ## 주제 선정 백그라운드
-  <p align="center">
+  
   
   | 이해관계 | 선생님,   학생,  학부모 |
 | -------- | ---------------------- |
@@ -40,7 +40,9 @@
 
   
   Pre단계에서 발생하는 User Problem을 해결해주는 서비스(과외 매칭 서비스)는 많이 존재하지만 During-After 단계의 User Problem을 해결을 위한 서비스 시장은 아직 블루오션.
- 
+  <br>
+  
+ <p align="center">
   <img style="display=inline" src="https://user-images.githubusercontent.com/56534241/155872372-6e6fbab4-6e2d-4535-a7b3-e5470b39310d.png" width="610" height="110" />
   </p>
   <br>
