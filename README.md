@@ -97,7 +97,7 @@ https://github.com/dnd-side-project/dnd-6th-4-ping-pong/wiki/Convention
 + Github
 + Slack
 + Notion
-+ Figma
++ <a href="https://www.figma.com/file/7pPgKVTq6dfOM4Clw2rH2U/DND6_Team4-team-library?node-id=432%3A3803#157189657">Figma (링크 이동)</a>
 <br>
 
 ## # CI / (CD 예정)
