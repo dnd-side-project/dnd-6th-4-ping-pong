@@ -15,10 +15,6 @@
 
 ## 🏅 프로젝트 구성원
 
-안드로이드 개발 2명 <br> 
-백엔드 개발 2명 <br>
-디자이너 2명  <br>
-
 |포지션|이름|깃허브|
 |----|-----|---|
 |안드로이드|최승호|https://github.com/tmdgh1592|
@@ -31,7 +27,7 @@
 <br><br>
 
 
-## 주제 선정 백그라운드
+## 🤔 주제 선정 백그라운드
   
   
   | 이해관계 | 선생님,   학생,  학부모 |
@@ -50,10 +46,11 @@
  
   <br><br>
   
-## 브랜치 관리 전략
+## # 브랜치 관리 전략 및 Conventions
 ### ⚙️ git-flow
 <br>
 <img style="display=inline" src="https://user-images.githubusercontent.com/56534241/155872673-50e038a2-f3d5-421e-9431-d5f8b997ebbb.png" />
+
 
 <br>
 
@@ -64,9 +61,14 @@
 | feature      | 하나의 기능을 개발하기 위한 브랜치                           |
 | hotfix       | 운영중인 버전에서 발생한 버그를 수정 하는 브랜치             |
 
+<br>
+
+### 🤞 개발 Conventions
+https://github.com/dnd-side-project/dnd-6th-4-ping-pong/wiki/Convention
+
 <br><br>
 
-## 핵심 기능 <br>
+## # 핵심 기능 <br>
   + <strong>[구현 완료]</strong><br>
   💡 로그인/회원가입 기능<br>
   💡 피드백/코멘트 기능<br>
@@ -83,13 +85,25 @@
   💡 수업 추가 기능<br>
   💡 수업 초대 기능<br>
 
+<br><br>
 
-## 기술 스택
+## # 기술 스택
   + Language : <img src="https://img.shields.io/badge/java-E34F26?style=for-the-badge&logo=java&logoColor=white">
   <img src="https://img.shields.io/badge/kotlin-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white"><br>
   + Android, Coroutine, Clean + MVVM Architecture, Retrofit, Room, Koin</strong>
-<br><br><br>
+<br><br>
 
+## # 협업 커뮤니케이션
++ Github
++ Slack
++ Notion
++ Figma
+<br>
+
+## # CI / (CD 예정)
++ Github Actions
+
+<br>
 
 ## 📱 InApp 소개
 <br>
@@ -107,7 +121,7 @@
   ![image](https://user-images.githubusercontent.com/68258365/155885322-3a96ac8f-fb9a-4e89-a1a4-0fdc10b342e5.png)
 </p><br><br>
 
-## 📱시연 영상 
+## 📹 시연 영상 
 
 ![SHANA DND시연영상](https://user-images.githubusercontent.com/68258365/155885827-7e9e56ab-1ee8-4a1d-8432-55e1cb30bf3b.gif)
 
