@@ -10,12 +10,23 @@
         <item name="colorSecondaryVariant">@color/colorSecondaryVariant</item>
         <item name="colorOnSecondary">@color/colorOnSecondary</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/white</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+        <item name="colorControlHighlight">@color/highlightColor</item>
         <!-- Customize your theme here. -->
 
         <!-- 앱 디폴트 폰트 -->
-        <item name="android:fontFamily">@font/roboto_regular</item>
-        <item name="fontFamily">@font/roboto_regular</item>
+        <item name="android:fontFamily">@font/spoqa_regular</item>
+        <item name="fontFamily">@font/spoqa_regular</item>
+
+        <!-- 둥근 BottomSheetDialog -->
+        <item name="bottomSheetDialogTheme">@style/RoundBottomSheetDialogTheme</item>
     </style>
+
+    <style name="Theme.LMSService.EdgedBottomSheetDialog" parent="Theme.LMSService">
+        <!-- 각진 BottomSheetDialog -->
+        <item name="bottomSheetDialogTheme">@style/EdgedBottomSheetDialogTheme</item>
+    </style>
+
 
 </resources>

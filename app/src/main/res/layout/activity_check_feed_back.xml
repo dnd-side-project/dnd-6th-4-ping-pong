@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.dnd.sixth.lmsservice.presentation.feedback.check.CheckFeedBackViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.feedback.check.CheckFeedBackActivity">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_marginTop="24dp"
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+
+
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/toolbar_btn"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="left"
+                android:layout_marginEnd="16dp"
+                android:clickable="true"
+                android:backgroundTint="@color/richBlack"
+                android:src="@drawable/ic_arrow_back_btn" />
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="7회차 수업 피드백"
+                android:textSize="16sp"
+                android:textColor="@color/richBlack"
+                android:layout_gravity="center"/>
+
+
+
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <ImageView
+            android:id="@+id/feedback_access_time_img"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_mdi_clock_time_four"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="16dp"
+            />
+        <TextView
+            android:id="@+id/feedback_class_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2021.02.02(토) | 오후 10:30 "
+            app:layout_constraintTop_toTopOf="@id/feedback_access_time_img"
+            app:layout_constraintStart_toEndOf="@id/feedback_access_time_img"
+            android:layout_marginLeft="8dp"
+            android:textColor="@color/toolTipColor"
+            />
+
+        <View
+            android:id="@+id/feedback_view_line1"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/feedback_access_time_img"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="16dp"
+            />
+
+        <TextView
+            android:id="@+id/feedback_content_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="오늘 수업은 어땠나요?"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/feedback_view_line1"
+            android:layout_marginTop="20dp"
+            android:textSize="14sp"
+            android:textColor="@color/richBlack"
+            android:layout_marginLeft="16dp"
+            />
+
+        <TextView
+            android:id="@+id/output_feedback_content"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/feedback_content_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="20dp"
+            android:text="지성이가, 시제에 대하나 개념이 정확하게 잡혀있어서, 과거 완료까지 수업을 차질없이 진행할 수 있었어~"
+            />
+
+        <View
+            android:id="@+id/feedback_view_line2"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/output_feedback_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="16dp"
+            />
+
+        <TextView
+            android:id="@+id/feedback_today_comment_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="오늘의 한마디"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/output_feedback_content"
+            android:layout_marginTop="40dp"
+            android:textSize="14sp"
+            android:textColor="@color/richBlack"
+            android:layout_marginLeft="16dp"/>
+
+        <TextView
+            android:id="@+id/feedback_today_comment_output"
+            android:textColor="@color/black"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/feedback_today_comment_title"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="16dp"
+            android:text="다 아는 내용이라 그런지. 수업에 조금 집중을 못하는 모습이 보였어. 다음수업땐 조금 더 집중해서 아는 내용이라도 한 번 더 꼼꼼하게짚고 넘어가자!"
+            android:textSize="12sp"
+            />
+
+        <TextView
+            android:id="@+id/feedback_assign_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="다음 시간 숙제"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/feedback_today_comment_output"
+            android:layout_marginTop="32dp"
+            android:textSize="14sp"
+            android:textColor="@color/richBlack"
+            android:layout_marginLeft="16dp"/>
+
+        <CheckBox
+            android:id="@+id/first_check_box"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/bg_checkbox_outline_blank"
+            app:layout_constraintTop_toBottomOf="@+id/feedback_assign_title"
+            app:layout_constraintStart_toStartOf="parent"
+            android:button="@null" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="영단어 DAY 102 ~ 107"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@id/first_check_box"
+            app:layout_constraintTop_toTopOf="@id/first_check_box"
+            app:layout_constraintBottom_toBottomOf="@id/first_check_box"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginLeft="16dp"/>
+
+
+
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>
+
+

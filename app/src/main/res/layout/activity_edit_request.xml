@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.detail.student.request.EditRequestViewModel" />
+
+        <variable
+            name="dateConverter"
+            type="com.dnd.sixth.lmsservice.presentation.utility.DateConverter" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_round_dialog"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".presentation.main.classmanage.calendar.detail.student.request.EditRequestActivity">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="일정 변경 요청"
+                    android:textColor="@color/richBlack"
+                    android:textSize="16sp" />
+
+            </androidx.appcompat.widget.Toolbar>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:paddingHorizontal="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/done_btn"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+                <ImageView
+                    android:id="@+id/round_icon"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginTop="20dp"
+                    android:src="@drawable/ic_book"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/iconBlue" />
+
+                <TextView
+                    android:id="@+id/round_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="14dp"
+                    android:text="@{@string/class_round_format(viewModel.classRound)}"
+                    android:textColor="@color/richBlack"
+                    app:layout_constraintBottom_toBottomOf="@id/round_icon"
+                    app:layout_constraintLeft_toRightOf="@+id/round_icon"
+                    app:layout_constraintTop_toTopOf="@+id/round_icon"
+                    tools:text="1회차" />
+
+
+                <View
+                    android:id="@+id/divider1"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/bg_divider"
+                    app:layout_constraintTop_toBottomOf="@+id/round_icon"
+                    app:tint="@color/grayEF" />
+
+
+                <TextView
+                    android:id="@+id/request_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="요청 사유 선택"
+                    android:textColor="@color/richBlack"
+                    android:textSize="16sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/divider1" />
+
+                <HorizontalScrollView
+                    android:id="@+id/request_scroll_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/request_title">
+
+                    <RadioGroup
+                        android:id="@+id/request_radio_group"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/radio_type_school"
+                            android:layout_width="108dp"
+                            android:layout_height="30dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginRight="8dp"
+                            android:background="@drawable/btn_salary_radio"
+                            android:button="@null"
+                            android:checked="true"
+                            android:gravity="center"
+                            android:text="학교 관련 일정"
+                            android:textColor="@color/color_salary_radio_text"
+                            android:textSize="14sp" />
+
+                        <RadioButton
+                            android:id="@+id/radio_type_private"
+                            android:layout_width="79dp"
+                            android:layout_height="30dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginRight="8dp"
+                            android:background="@drawable/btn_salary_radio"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:text="개인 일정"
+                            android:textColor="@color/color_salary_radio_text"
+                            android:textSize="14sp" />
+
+                        <RadioButton
+                            android:id="@+id/radio_type_hospital"
+                            android:layout_width="79dp"
+                            android:layout_height="30dp"
+                            android:layout_marginTop="20dp"
+                            android:background="@drawable/btn_salary_radio"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:text="병원 방문"
+                            android:textColor="@color/color_salary_radio_text"
+                            android:textSize="14sp" />
+
+                    </RadioGroup>
+                </HorizontalScrollView>
+
+
+                <View
+                    android:id="@+id/divider2"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/bg_divider"
+                    app:layout_constraintTop_toBottomOf="@+id/request_scroll_view"
+                    app:tint="@color/grayEF" />
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/date_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/divider2">
+
+                    <TextView
+                        android:id="@+id/date_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="원하는 일정"
+                        android:textColor="@color/richBlack"
+                        android:textSize="16sp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <ImageView
+                        android:id="@+id/date_icon"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_marginTop="20dp"
+                        android:src="@drawable/ic_watch"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/date_title"
+                        app:tint="@color/iconBlue" />
+
+                    <TextView
+                        android:id="@+id/date_time_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="14dp"
+                        android:text="@{dateConverter.getFullDate(viewModel.pickedDate)}"
+                        android:textColor="@color/richBlack"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/date_icon"
+                        app:layout_constraintLeft_toRightOf="@+id/date_icon"
+                        app:layout_constraintTop_toTopOf="@+id/date_icon"
+                        tools:text="2022. 01. 22. 토   오후 03 : 30" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/scroll_date_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="true"
+                    android:orientation="vertical"
+                    android:paddingVertical="8dp"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@+id/date_container"
+                    tools:visibility="visible">
+
+                    <datepicker.defaults.view.DateTimePickerView
+                        android:id="@+id/date_time_picker"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="true"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:minutesInterval="one"
+                        app:preferredMaxOffsetItemCount="2"
+                        app:type="dateHourMinute" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="16dp"
+                        android:background="@drawable/bg_shadow_down_white"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="16dp"
+                        android:background="@drawable/bg_shadow_up_white"
+                        app:layout_constraintBottom_toBottomOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <View
+                    android:id="@+id/divider3"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/bg_divider"
+                    app:layout_constraintTop_toBottomOf="@+id/scroll_date_container"
+                    app:tint="@color/grayEF" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/done_btn"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:background="@drawable/bg_done_btn"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="완료"
+                android:textColor="@color/color_done_text"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

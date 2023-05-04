@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.dnd.sixth.lmsservice.presentation.main.MainViewModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_round_dialog">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/fluctuated_dialog_content_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingHorizontal="24dp"
+                android:paddingTop="24dp"
+                android:paddingBottom="40dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:context=".presentation.main.classmanage.subject.InviteDialogFragment">
+
+                <ImageView
+                    android:id="@+id/fluctuated_schedule_image_view"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/img_temp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="#C4C4C4" />
+
+                <TextView
+                    android:id="@+id/fluctuated_schedule_title_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:text="수업 일정이 변경되었어요!"
+                    android:textColor="@color/richBlack"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fluctuated_schedule_image_view" />
+
+                <TextView
+                    android:id="@+id/invite_desc_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:lineHeight="16sp"
+                    android:text="수정된 수업 일정을 공유하고 싶으시다면\n공유하기를 눌러,\n변경된 일정을 학생에게 알려주세요."
+                    android:textColor="#C4C4C4"
+                    android:textSize="11sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fluctuated_schedule_title_text_view" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/button_container"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                app:layout_constraintTop_toBottomOf="@+id/fluctuated_dialog_content_container">
+
+                <View
+                    android:id="@+id/content_btn_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@drawable/bg_divider"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/grayEF" />
+
+                <TextView
+                    android:id="@+id/go_home_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="홈으로 이동"
+                    android:textColor="#C4C4C4"
+                    android:textSize="14sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@+id/btn_divider" />
+
+                <View
+                    android:id="@+id/btn_divider"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_divider"
+                    app:layout_constraintLeft_toRightOf="@+id/go_home_btn"
+                    app:layout_constraintRight_toLeftOf="@+id/share_btn"
+                    app:tint="@color/grayEF" />
+
+                <TextView
+                    android:id="@+id/share_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="공유하기"
+                    android:textColor="@color/richBlack"
+                    android:textSize="14sp"
+                    app:layout_constraintLeft_toRightOf="@+id/btn_divider"
+                    app:layout_constraintRight_toRightOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+</layout>

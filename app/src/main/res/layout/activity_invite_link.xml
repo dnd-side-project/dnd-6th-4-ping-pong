@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.dnd.sixth.lmsservice.presentation.inviteLink.InviteLinkViewModel" />
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.inviteLink.InviteLinkActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_marginTop="24dp"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/toolbar_btn"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="left"
+            android:layout_marginEnd="16dp"
+            android:clickable="true"
+            android:backgroundTint="@color/richBlack"
+            android:src="@drawable/bg_unchecked_box" />
+        <View
+
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:background="@drawable/bg_round_gray_rectangle"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="96dp"
+            android:layout_gravity="center"/>
+
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="right"
+            android:layout_marginEnd="56dp"
+            android:clickable="true"
+            android:src="@drawable/bg_unchecked_box" />
+
+
+    </androidx.appcompat.widget.Toolbar>
+
+
+    <ImageView
+        android:id="@+id/invite_teacher_profile"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        android:layout_marginTop="121dp"
+        android:src="@drawable/ic_profile_img"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/invite_teacher_profile"
+        android:text="최기택 선생님이 초대합니다."
+        android:layout_marginTop="16dp"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="핑퐁의 회원이 되어 \n 최기택 선생님과 수업을 시작해보세요."
+        android:gravity="center"
+        android:textSize="10sp"
+        android:textColor="#C4C4C4"
+        app:layout_constraintTop_toBottomOf="@id/invite_teacher_profile"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="48dp"
+        />
+    <Button
+        android:id="@+id/invite_link_signup_btn"
+        android:layout_width="258dp"
+        android:layout_height="48dp"
+        android:text="핑퐁 회원가입하기"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:background="#707070"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="207dp"/>
+
+    <TextView
+        android:id="@+id/invite_aleady_member_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:text="이미 회원이신가요?"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/invite_link_signup_btn"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="95dp"
+        />
+
+    <TextView
+        android:id="@+id/invite_link_login_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="로그인하기"
+        android:textSize="12sp"
+        android:textColor="@color/richBlack"
+        app:layout_constraintStart_toEndOf="@+id/invite_aleady_member_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/invite_aleady_member_text"
+        android:layout_marginRight="95dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:paddingLeft="16dp">
+
+        <com.github.vipulasri.timelineview.TimelineView
+            android:id="@+id/timeline"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:endLineColor="@color/colorPrimary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lineWidth="2dp"
+            app:marker="@drawable/bg_round_btn"
+            app:markerPaddingBottom="30dp"
+            app:markerSize="7dp"
+            app:startLineColor="@color/colorPrimary"
+            tools:ignore="MissingConstraints"
+
+
+            />
+
+        <TextView
+            android:textColor="@color/black"
+            android:id="@+id/timeline_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="13.63dp"
+            android:layout_marginTop="18dp"
+            android:textStyle="bold"
+            android:text="2021.02.02(토)"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@id/timeline"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:background="@drawable/bg_round_class_numbering"
+            android:id="@+id/timeline_class_number"
+            android:layout_width="60dp"
+            android:layout_height="21dp"
+            android:layout_marginLeft="13.37dp"
+            android:text="2월 1회차"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:textSize="10sp"
+            app:layout_constraintStart_toEndOf="@id/timeline_date"
+            app:layout_constraintTop_toTopOf="@id/timeline_date" />
+
+        <ImageView
+            android:id="@+id/timeline_title_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_mdi_clock_time_four"
+            android:layout_marginTop="11dp"
+
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@id/timeline_date"
+            app:layout_constraintTop_toBottomOf="@id/timeline_date" />
+
+        <TextView
+            android:id="@+id/timeline_class_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="17:30 pm"
+            android:textSize="12sp"
+            android:layout_marginLeft="12dp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@id/timeline_title_time"
+            app:layout_constraintTop_toTopOf="@id/timeline_title_time"
+            app:layout_constraintBottom_toBottomOf="@id/timeline_title_time"/>
+
+        <ImageView
+            android:id="@+id/timeline_title_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="11dp"
+            android:src="@drawable/ic_heroicons_solid_location_marker"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@id/timeline_title_time"
+            app:layout_constraintTop_toBottomOf="@id/timeline_title_time" />
+
+        <TextView
+            android:layout_marginLeft="16dp"
+            android:id="@+id/timeline_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="강남역 투썸플레이스"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@id/timeline_title_address"
+            app:layout_constraintTop_toTopOf="@id/timeline_title_address"
+            app:layout_constraintBottom_toBottomOf="@id/timeline_title_address"/>
+
+        <TextView
+            android:id="@+id/open_feedback_btn"
+            android:layout_width="84dp"
+            android:layout_height="28dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_round_btn"
+            android:gravity="center"
+            android:text="피드백 작성"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@id/timeline_title_address"
+            app:layout_constraintTop_toBottomOf="@id/timeline_title_address" />
+
+        <TextView
+            android:id="@+id/open_comment_btn"
+            android:layout_width="98dp"
+            android:layout_height="28dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_round_btn"
+            android:gravity="center"
+            android:text="코멘트 작성"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@id/open_feedback_btn"
+            app:layout_constraintTop_toBottomOf="@id/timeline_title_address" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

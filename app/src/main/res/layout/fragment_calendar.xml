@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.dnd.sixth.lmsservice.presentation.main.classmanage.calendar.CalendarViewModel" />
+
+        <variable
+            name="hostViewModel"
+            type="com.dnd.sixth.lmsservice.presentation.main.classmanage.ClassManageViewModel" />
+    </data>
+
+
+    <RelativeLayout
+        android:id="@+id/main_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:overScrollMode="never"
+            android:scrollbars="none">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false">
+
+
+                <com.jaredrummler.materialspinner.MaterialSpinner
+                    android:id="@+id/month_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:dropDownWidth="120dp"
+                    android:entries="@array/month_string_list"
+                    android:paddingHorizontal="16dp"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <LinearLayout
+                    android:id="@+id/show_category_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:paddingHorizontal="16dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/month_spinner"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/month_spinner">
+
+                    <TextView
+                        android:id="@+id/category_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="전체보기"
+                        android:textColor="#626262"
+                        android:textSize="14sp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:src="@drawable/ic_arrow_drop_down" />
+
+                </LinearLayout>
+
+
+                <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+                    android:id="@+id/calendar_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:paddingHorizontal="16dp"
+                    android:paddingBottom="12dp"
+                    app:layout_constraintTop_toBottomOf="@+id/month_spinner"
+                    app:mcv_calendarMode="month"
+                    app:mcv_dateTextAppearance="@style/calendarDateTextStyle"
+                    app:mcv_headerTextAppearance="@style/calendarHeaderTextStyle"
+                    app:mcv_selectionColor="@color/dateSelectColor"
+                    app:mcv_showOtherDates="decorated_disabled" />
+
+                <LinearLayout
+                    android:id="@+id/no_schedule_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:background="@color/grayFA"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/calendar_view">
+
+                    <ScrollView
+                        android:id="@+id/no_schedule_scroll_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false"
+                        android:orientation="vertical"
+                        android:padding="16dp"
+                        android:scrollbars="none"
+                        tools:visibility="visible">
+
+                        <LinearLayout
+                            android:id="@+id/no_schedule_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/calendar_view">
+
+                            <TextView
+                                android:id="@+id/selected_date_text_view"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="left"
+                                android:fontFamily="@font/spoqa_medium"
+                                android:textColor="@color/richBlack"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                tools:text="2022.01.05. 수" />
+
+
+                            <!-- 여기에 타임라인 추가해주시면 됩니다 :D -->
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/timeline_recycler_view"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:background="@color/grayFA"
+                                android:minHeight="150dp" />
+
+                        </LinearLayout>
+                    </ScrollView>
+                </LinearLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/schedule_add_fab"
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="12dp"
+            android:background="?attr/selectableItemBackground"
+            android:src="@drawable/ic_add"
+            app:backgroundTint="@color/colorPrimary"
+            app:fabCustomSize="46dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:maxImageSize="24dp"
+            app:tint="@color/white" />
+
+    </RelativeLayout>
+
+</layout>

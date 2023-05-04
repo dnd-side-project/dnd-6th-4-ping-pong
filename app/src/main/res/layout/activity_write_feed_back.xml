@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.dnd.sixth.lmsservice.presentation.feedback.WriteFeedBackViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.feedback.WriteFeedBackActivity">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_marginTop="24dp"
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+
+
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/toolbar_btn"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="left"
+                android:layout_marginEnd="16dp"
+                android:clickable="true"
+                android:backgroundTint="@color/richBlack"
+                android:src="@drawable/ic_arrow_back_btn" />
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="피드백 작성"
+                android:textSize="16sp"
+                android:textColor="@color/richBlack"
+                android:layout_gravity="center"/>
+            <TextView
+                android:id="@+id/feedback_complete_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="저장"
+                android:textSize="16sp"
+                android:textColor="@color/richBlack"
+                android:layout_marginRight="16dp"
+                android:layout_gravity="right"/>
+
+
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <ImageView
+            android:id="@+id/feedback_access_time_img"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_mdi_clock_time_four"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="16dp"
+            />
+        <TextView
+            android:id="@+id/feedback_write_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2021.02.25() | 10:30 am | 1회차"
+            app:layout_constraintTop_toTopOf="@id/feedback_access_time_img"
+            app:layout_constraintStart_toEndOf="@id/feedback_access_time_img"
+            android:layout_marginLeft="8dp"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            />
+
+
+
+        <TextView
+            android:id="@+id/feedback_content_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="오늘 수업은 어땠나요?"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/feedback_write_time"
+            android:layout_marginTop="34.5dp"
+            android:textSize="14sp"
+            android:textColor="@color/richBlack"
+            android:layout_marginLeft="16dp"
+            />
+
+        <EditText
+            android:id="@+id/today_how_class"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="계획한 진도를 완료하셨나요? \n 오늘 수업 진도를 상세하게 기록해주세요."
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/feedback_content_title"
+            android:layout_marginTop="20dp"
+            android:textSize="14sp"
+            android:textColor="#A6A6A6"
+            android:layout_marginLeft="16dp"
+            />
+        <View
+            android:id="@+id/input_feedback_content"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/gray9F"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/today_how_class"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginHorizontal="16dp"
+            />
+
+        <TextView
+            android:id="@+id/feedback_today_comment_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="오늘의 한마디"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/input_feedback_content"
+            android:layout_marginTop="32dp"
+            android:textSize="14sp"
+            android:textColor="@color/richBlack"
+            android:layout_marginLeft="16dp"/>
+
+        <EditText
+            android:id="@+id/feedback_today_comment_input"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/feedback_today_comment_title"
+            android:layout_marginTop="16dp"
+            android:layout_marginHorizontal="16dp"
+            android:hint="오늘 수업에 대해 학생에게 코멘트 한마디를 남겨주세요."
+            android:textSize="12sp"
+            />
+
+        <TextView
+            android:id="@+id/feedback_assign_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="다음 시간 숙제"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/feedback_today_comment_input"
+            android:layout_marginTop="32dp"
+            android:textSize="14sp"
+            android:textColor="@color/richBlack"
+            android:layout_marginLeft="16dp"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/feedback_assign_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            >
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/feedback_homework_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:itemCount="3"
+                tools:listitem="@layout/item_view_homework_list_feedback"
+            />
+
+            <LinearLayout
+                android:id="@+id/feedback_add_homework_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="16dp"
+                    android:src="@drawable/ic_big_plus"
+                    />
+                <TextView
+                    android:layout_marginTop="4dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="새로 추가"
+                    android:textSize="12sp"
+                    />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+
+
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

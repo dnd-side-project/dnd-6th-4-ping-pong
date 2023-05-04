@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.dnd.sixth.lmsservice.presentation.login.signup.SignUpViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.login.signup.SignUpActivity">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:layout_marginTop="24dp"
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:visibility="visible"
+                android:id="@+id/toolbar_quit_btn"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="left"
+                android:layout_marginEnd="16dp"
+                android:clickable="true"
+                android:backgroundTint="@color/richBlack"
+                android:src="@drawable/ic_baseline_close_24" />
+
+            <ImageView
+                android:visibility="gone"
+                android:id="@+id/toolbar_back_btn"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="left"
+                android:layout_marginEnd="16dp"
+                android:clickable="true"
+                android:backgroundTint="@color/richBlack"
+                android:src="@drawable/ic_arrow_back_btn" />
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="회원가입"
+                android:textSize="16sp"
+                android:textColor="@color/richBlack"
+                android:layout_gravity="center"/>
+
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+
+        <LinearLayout
+
+            tools:visibility="visible"
+            android:id="@+id/signup_checkbox_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+
+
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:text="가입 유형을 선택해주세요"
+                android:textColor="@color/richBlack" />
+
+            <LinearLayout
+                android:layout_gravity="center"
+                android:id="@+id/signup_teacher_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="24dp"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+
+                <ImageView
+                    android:layout_marginRight="16dp"
+                    android:id="@+id/signup_teacher_checkbox"
+                    android:layout_width="328dp"
+                    android:layout_height="152dp"
+                    android:src="@drawable/ic_teacher_disabled"
+                    />
+                <ImageView
+                    android:layout_marginTop="16dp"
+                    android:id="@+id/signup_student_checkbox"
+                    android:layout_width="328dp"
+                    android:layout_height="152dp"
+                    android:src="@drawable/ic_student_disabled"
+                    />
+
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+
+            android:id="@+id/signup_email_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+
+
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:text="이메일을 입력해주세요"
+                android:textColor="@color/richBlack" />
+
+            <LinearLayout
+                android:id="@+id/signup_email_text_container"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_make_class_edit_text"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <EditText
+
+                    android:id="@+id/signup_email_edittext"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="16dp"
+                    android:background="@null"
+                    android:hint="id@pingpong.com"
+                    android:textColor="@color/richBlack"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+
+
+            android:visibility="gone"
+            android:id="@+id/signup_password_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:text="비밀번호 입력해주세요"
+                android:textColor="@color/richBlack" />
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/signup_password_text_container"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                app:boxBackgroundColor="@android:color/transparent"
+                android:background="@android:color/transparent"
+                android:gravity="center_vertical"
+                app:passwordToggleEnabled="true">
+
+                <EditText
+                    android:background="@drawable/bg_round_white_line_btn"
+                    android:id="@+id/signup_password_edittext"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:hint="비밀번호를 입력해주세요"
+                    android:textColorHint="@color/gray85"
+                    android:textSize="14sp"
+                    android:inputType="textPassword"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+
+                android:id="@+id/description_wrong_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="10sp"
+                android:text="영문, 숫자, 특수문자 중 2가지 이상을 조합해 최소 8자리를 입력해주세"
+                android:textColor="@color/firstMainColor"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:visibility="invisible"/>
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/signup_name_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+
+
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:text="학생이 알아볼 수 있도록"
+                android:textColor="@color/richBlack" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:text="이름을 입력해주세요"
+                android:textColor="@color/richBlack" />
+
+            <LinearLayout
+                android:id="@+id/signup_name_text_container"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_make_class_edit_text"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/signup_name_edittext"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="16dp"
+                    android:background="@null"
+                    android:hint="이름(실명)을 입력해주세요."
+                    android:textColor="@color/richBlack"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+        <TextView
+            android:id="@+id/signup_next_button"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="다음"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="@color/richBlack"
+            android:background="@color/signUpBtn"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

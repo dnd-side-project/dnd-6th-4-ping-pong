@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.dnd.sixth.lmsservice.presentation.main.info.InfoViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.main.info.details.ClassInfoFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/student_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/student_guide_line"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="32dp" />
+
+            <ImageView
+                android:id="@+id/grade_info_icon"
+                android:layout_width="15dp"
+                android:layout_height="60dp"
+                android:scaleType="center"
+                android:src="@drawable/ic_location"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="#BFC5E4" />
+
+            <TextView
+                android:id="@+id/grade_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.otherUserEntity.email}"
+                android:textColor="@color/richBlack"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/grade_info_icon"
+                app:layout_constraintStart_toEndOf="@+id/student_guide_line"
+                app:layout_constraintTop_toTopOf="@id/grade_info_icon"
+                tools:text="강남고등학교 3학년" />
+
+            <View
+                android:id="@+id/divider1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@drawable/bg_divider"
+                app:layout_constraintTop_toBottomOf="@+id/grade_info_icon" />
+
+
+            <ImageView
+                android:id="@+id/student_phone_icon"
+                android:layout_width="15dp"
+                android:layout_height="60dp"
+                android:scaleType="center"
+                android:src="@drawable/ic_phone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider1"
+                app:tint="#BFC5E4" />
+
+            <TextView
+                android:id="@+id/student_phone_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{@string/my_phone_number_format(viewModel.otherUserEntity.phoneNumber.toString())}"
+                android:textColor="@color/richBlack"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/student_phone_icon"
+                app:layout_constraintStart_toEndOf="@+id/student_guide_line"
+                app:layout_constraintTop_toTopOf="@id/student_phone_icon"
+                tools:text="(본인) 010-1234-5678" />
+
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@drawable/bg_divider"
+                app:layout_constraintTop_toBottomOf="@+id/student_phone_icon" />
+
+
+            <ImageView
+                android:id="@+id/parent_phone_icon"
+                android:layout_width="15dp"
+                android:layout_height="60dp"
+                android:scaleType="center"
+                android:src="@drawable/ic_phone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider2"
+                app:tint="#BFC5E4" />
+
+            <TextView
+                android:id="@+id/number_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{@string/parent_phone_number_format(viewModel.otherUserEntity.parentPhoneNum.toString())}"
+                android:textColor="@color/richBlack"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/parent_phone_icon"
+                app:layout_constraintStart_toEndOf="@+id/student_guide_line"
+                app:layout_constraintTop_toTopOf="@id/parent_phone_icon"
+                tools:text="(학부모) 010-1234-5678" />
+
+            <View
+                android:id="@+id/divider3"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@drawable/bg_divider"
+                app:layout_constraintTop_toBottomOf="@+id/parent_phone_icon" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/teacher_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/teacher_guide_line"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="32dp" />
+
+
+            <ImageView
+                android:id="@+id/teacher_phone_icon"
+                android:layout_width="15dp"
+                android:layout_height="60dp"
+                android:scaleType="center"
+                android:src="@drawable/ic_phone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="#BFC5E4" />
+
+            <TextView
+                android:id="@+id/teacher_phone_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{@string/my_phone_number_format(viewModel.otherUserEntity.phoneNumber.toString())}"
+                android:textColor="@color/richBlack"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/teacher_phone_icon"
+                app:layout_constraintStart_toEndOf="@+id/teacher_guide_line"
+                app:layout_constraintTop_toTopOf="@id/teacher_phone_icon"
+                tools:text="(본인) 010-1234-5678" />
+
+            <View
+                android:id="@+id/teacher_divider1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@drawable/bg_divider"
+                app:layout_constraintTop_toBottomOf="@+id/teacher_phone_icon" />
+
+
+            <ImageView
+                android:id="@+id/location_icon"
+                android:layout_width="15dp"
+                android:layout_height="60dp"
+                android:scaleType="center"
+                android:src="@drawable/ic_location"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/teacher_divider1"
+                app:tint="#BFC5E4" />
+
+            <TextView
+                android:id="@+id/available_contact_time_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/richBlack"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/location_icon"
+                app:layout_constraintStart_toEndOf="@+id/teacher_guide_line"
+                app:layout_constraintTop_toTopOf="@id/location_icon"
+                tools:text="연락 가능 시간 : 03 : 00 ~ 05 : 00"
+                android:text="@{@string/contact_available_format(viewModel.otherUserEntity.contactTime)}" />
+
+            <View
+                android:id="@+id/teacher_divider2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@drawable/bg_divider"
+                app:layout_constraintTop_toBottomOf="@+id/location_icon" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

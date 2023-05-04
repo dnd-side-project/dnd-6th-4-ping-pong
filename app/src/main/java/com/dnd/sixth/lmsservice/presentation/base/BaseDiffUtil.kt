@@ -2,7 +2,7 @@ package com.dnd.sixth.lmsservice.presentation.base
 
 import androidx.recyclerview.widget.DiffUtil
 
-class BaseDiffUtil<T>(private val newList: ArrayList<T>, private val oldList: List<T>) : DiffUtil.Callback() {
+class BaseDiffUtil<T>(private val oldList: List<T>, private val newList: List<T>) : DiffUtil.Callback() {
     override fun getOldListSize(): Int {
         return oldList.size
     }
@@ -12,7 +12,7 @@ class BaseDiffUtil<T>(private val newList: ArrayList<T>, private val oldList: Li
     }
 
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return oldList[oldItemPosition] == newList[newItemPosition]
+        return oldList[oldItemPosition] === newList[newItemPosition]
     }
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {

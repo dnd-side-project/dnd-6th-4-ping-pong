@@ -3,9 +3,7 @@ package com.dnd.sixth.lmsservice
 import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
-import com.dnd.sixth.lmsservice.di.modules.homeViewModelModule
-import com.dnd.sixth.lmsservice.di.modules.mainViewModelModule
-import com.dnd.sixth.lmsservice.di.modules.makeClassModelModule
+import com.dnd.sixth.lmsservice.di.modules.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -14,9 +12,12 @@ import timber.log.Timber
 
 class App : Application() {
 
+    val context: Context
+        get() = this
+
     override fun onCreate() {
         super.onCreate()
-        context = this
+        instance = this
         Timber.plant(Timber.DebugTree())
 
         startKoin {
@@ -24,23 +25,22 @@ class App : Application() {
             androidContext(this@App)
             modules(
                 listOf(
-                    homeViewModelModule,
-                    makeClassModelModule,
-                    mainViewModelModule
+                    viewModelModules,
+                    repositoryModules,
+                    networkModules,
+                    useCaseModules,
+                    dataSourceModules,
                 )
             )
 
         }
     }
 
-    override fun onTerminate() {
-        super.onTerminate()
-        context = null
-    }
 
     companion object {
+
         @SuppressLint("StaticFieldLeak")
-        var context: Context? = null
+        lateinit var instance: App
             private set
     }
 

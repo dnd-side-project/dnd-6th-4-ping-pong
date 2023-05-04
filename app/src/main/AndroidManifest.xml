@@ -2,33 +2,144 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.dnd.sixth.lmsservice">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:name=".App"
         android:allowBackup="true"
+        android:fitsSystemWindows="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
-        android:theme="@style/Theme.LMSService">
+        android:theme="@style/Theme.LMSService"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".presentation.comment.CommentActivity"
+            android:exported="true">
 
+        </activity>
+        <activity
+            android:name=".presentation.comment.check.CheckCommentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.feedback.check.CheckFeedBackActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".presentation.homework.HomeworkManageActivity"
+
+            android:exported="false" />
+
+
+        <activity
+            android:name=".presentation.main.classmanage.calendar.add.push.PushTimePickerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.inviteLink.InviteLinkActivity"
+            android:exported="true">
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <!-- setLink()에 전달하는 링크와 동일한 host, path, scheme -->
+                <data
+                    android:host="pingpongservice.page.link"
+                    android:path="/invite"
+                    android:scheme="https" />
+                <data
+                    android:host="pingpongservice.page.link"
+                    android:path="/invite"
+                    android:scheme="http" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".presentation.lesson.progress.ClassProgressActivity"
+            android:exported="true">
+
+
+        </activity>
+        <activity
+            android:name=".presentation.feedback.WriteFeedBackActivity"
+            android:exported="true">
+
+        </activity>
+        <activity
+            android:name=".presentation.feedback.StartFeedBackActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.main.classmanage.calendar.add.ScheduleAddActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".presentation.login.signup.SignUpActivity"
+            android:exported="true" />
         <activity
             android:name=".presentation.login.LoginActivity"
-            android:exported="true" />
-
-        <activity
-            android:name=".presentation.main.MainActivity"
             android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
+                <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
-            android:name=".presentation.main.home.making.MakeClassActivity"
+            android:name=".presentation.main.classmanage.subject.create.SubjectCreateActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".presentation.main.MainActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.LMSService.EdgedBottomSheetDialog">
+
+
+
+        </activity>
+        <activity
+            android:name="com.dnd.sixth.lmsservice.presentation.main.classmanage.config.profile.ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.dnd.sixth.lmsservice.presentation.main.classmanage.config.push.PushActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.main.info.InfoActivity"
+            android:exported="true"/>
+        <activity
+            android:name="com.dnd.sixth.lmsservice.presentation.main.classmanage.config.ConfigActivity"
+            android:exported="true" />
+        <activity
+            android:name="com.dnd.sixth.lmsservice.presentation.main.classmanage.config.profile.password.ChangePWActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".presentation.main.classmanage.subject.edit.SubjectEditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.main.classmanage.calendar.detail.teacher.edit.TeacherScheduleEditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.main.classmanage.calendar.detail.teacher.response.EditResponseActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.main.classmanage.calendar.detail.student.edit.StudentScheduleEditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.main.classmanage.calendar.detail.student.request.EditRequestActivity"
             android:exported="false" />
 
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.dnd.sixth.lmsservice"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_path" />
+        </provider>
     </application>
 
 </manifest>

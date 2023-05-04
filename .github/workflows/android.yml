@@ -1,0 +1,40 @@
+#Components : Workflow, Event, Job, Step, Action, Runner
+
+# Repository의 Actions 탭에 나타날 Workflow 이름
+name: Android CI
+
+# Workflow를 실행시키기 위한 Event 목록
+on:
+  # develop 브랜치에 Push 또는 Pull Request를 할 경우 Workflow가 실행
+  # 브랜치 구분없이 실행시키고 싶은 경우에는 아래와 같이 작성
+  # on: [push, pull_request]
+  push:
+    branches: [ develop ]
+  pull_request:
+    branches: [ develop ]
+
+# Workflow의 Job 목록
+jobs:
+  # Job 이름으로, build라는 이름으로, Job이 표시됨
+  build:
+    # Runner가 실행되는 환경 정의
+    runs-on: ubuntu-latest
+
+    # build Job 내의 step 목록
+    steps:
+      # uses 키워드를 통해 Action을 불러올 수 있음
+      # 여기에서는 해당 레포지토리로 checkout하여 레포지토리로 접근할 수 있는 Action을 불러옴
+    - uses: actions/checkout@v2
+    
+    # 실행되는 커맨드에 대한 설명들, Workflow에 표시
+    - name: set up JDK 11
+      uses: actions/setup-java@v2
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+        cache: gradle
+
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+    - name: Build with Gradle
+      run: ./gradlew build

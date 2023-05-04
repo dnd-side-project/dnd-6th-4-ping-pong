@@ -22,39 +22,30 @@
             android:id="@+id/login_type_container"
             android:gravity="center"
             android:layout_width="0dp"
-            android:layout_height="32dp"
+            android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:orientation="horizontal"
-            android:layout_marginTop="98dp"
-            android:layout_marginHorizontal="16.54dp"
+            android:orientation="vertical"
+            android:layout_marginTop="33dp"
 
             >
 
-            <TextView
-                android:id="@+id/login_teacher_btn"
-                android:gravity="center"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="과외 선생님"
-                android:textSize="16sp"
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_pingpong_logo"
                 />
-            <View
-                android:layout_width="0.5dp"
-                android:layout_height="match_parent"
-                android:background="@color/black"
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_pingpong_logo_text"
+                android:layout_marginTop="16dp"
                 />
-            <TextView
-                android:id="@+id/login_student_btn"
-                android:gravity="center"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="학생·학부모"
-                android:textSize="16sp"
-                />
+
+
+
+
 
         </LinearLayout>
 
@@ -65,11 +56,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/login_type_container"
-            android:layout_marginTop="15.54dp"
+            android:layout_marginTop="41.91dp"
             android:layout_marginHorizontal="16dp"
+            android:background="@drawable/bg_round_white_line_btn"
             >
 
             <EditText
+                android:layout_marginLeft="16dp"
                 android:id="@+id/login_id_edittext"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
@@ -81,7 +74,8 @@
         </LinearLayout>
 
 
-        <LinearLayout
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/login_pw_container"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -91,27 +85,32 @@
             android:layout_marginTop="15.54dp"
             android:layout_marginHorizontal="16dp"
             android:textSize="14sp"
-            >
+            app:boxBackgroundColor="@android:color/transparent"
+            android:background="@android:color/transparent"
+
+            app:passwordToggleEnabled="true">
 
             <EditText
+                android:background="@drawable/bg_round_white_line_btn"
                 android:id="@+id/login_pw_edittext"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
+                android:textColorHint="@color/gray85"
                 android:hint="비밀번호"
-                android:background="@null"
                 android:textSize="14sp"
+                android:inputType="textPassword"
                 />
-
-        </LinearLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <CheckBox
             android:id="@+id/login_auto_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@+id/login_pw_container"
-            app:layout_constraintBottom_toTopOf="@id/login_btn"
+
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="16dp"
+            android:layout_marginTop="108dp"
 
             android:text="로그인 상태 유지할래요"
             android:textSize="14sp"
@@ -125,12 +124,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/login_pw_container"
-            android:layout_marginTop="68.5dp"
+            android:layout_marginTop="36dp"
             android:layout_marginHorizontal="16dp"
             android:textSize="16sp"
             android:text="로그인"
             android:textColor="@color/white"
-            android:background="#707070"/>
+            android:background="@color/firstMainColor"/>
 
         <TextView
             android:id="@+id/login_find_id_btn"
@@ -144,7 +143,7 @@
             android:textSize="12sp"
             />
         <View
-            android:background="@color/black"
+            android:background="@color/richBlack"
             android:layout_width="0.5dp"
             android:layout_height="20dp"
             app:layout_constraintStart_toEndOf="@id/login_find_id_btn"
@@ -165,7 +164,7 @@
             />
 
         <View
-            android:background="@color/black"
+            android:background="@color/richBlack"
             android:layout_width="1dp"
             android:layout_height="20dp"
             app:layout_constraintStart_toEndOf="@id/login_find_pw_btn"
@@ -185,6 +184,7 @@
             android:layout_marginRight="58.5dp"
             android:textSize="12sp"
             />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

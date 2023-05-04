@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.dnd.sixth.lmsservice.presentation.main.classmanage.subject.create.CreateSubjectViewModel" />
+
+        <import type="com.dnd.sixth.lmsservice.presentation.main.classmanage.subject.type.DayOfWeek" />
+
+        <import type="com.dnd.sixth.lmsservice.presentation.main.classmanage.subject.type.SalaryDay" />
+    </data>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".presentation.main.classmanage.subject.create.SubjectCreateActivity">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                style="@style/ToolbarStyle"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:layout_marginTop="24dp"
+                android:background="@color/white"
+                app:layout_constraintTop_toTopOf="parent"
+                app:title="클래스 만들기"
+                app:titleCentered="true" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:clipToPadding="false"
+                android:paddingHorizontal="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/done_btn"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+                <TextView
+                    android:id="@+id/class_board_name_subtitle"
+                    style="@style/makeClassSubTitleTextView"
+                    android:text="클래스 이름"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/class_board_name_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/bg_make_class_edit_text"
+                    android:hint="Ex. 김학생, 강남고, 고3"
+                    android:maxLines="1"
+                    android:imeOptions="actionDone"
+                    android:paddingHorizontal="16dp"
+                    android:text="@={viewModel.subjectName}"
+                    android:textColor="@color/richBlack"
+                    android:textSize="14sp"
+                    app:layout_constraintTop_toBottomOf="@+id/class_board_name_subtitle" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/time_subtitle"
+                    style="@style/makeClassSubTitleTextView"
+                    android:layout_marginTop="36dp"
+                    android:text="수업 시간"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/class_board_name_edit_text" />
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/time_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintTop_toBottomOf="@+id/time_subtitle">
+
+                    <RadioGroup
+                        android:id="@+id/am_pm_radio_group"
+                        android:layout_width="128dp"
+                        android:layout_height="36dp"
+                        android:background="@drawable/bg_make_class_time_radio_group"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintHorizontal_chainStyle="spread_inside"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toLeftOf="@+id/time_select_container"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <RadioButton
+                            android:id="@+id/am_radio_btn"
+                            android:layout_width="62dp"
+                            android:layout_height="32dp"
+                            android:background="@drawable/bg_make_class_am_pm"
+                            android:button="@null"
+                            android:checked="true"
+                            android:gravity="center"
+                            android:text="오전"
+                            android:textColor="@color/color_am_pm_text" />
+
+                        <RadioButton
+                            android:id="@+id/pm_radio_btn"
+                            android:layout_width="62dp"
+                            android:layout_height="32dp"
+                            android:background="@drawable/bg_make_class_am_pm"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:text="오후"
+                            android:textColor="@color/color_am_pm_text" />
+
+                    </RadioGroup>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/time_select_container"
+                        android:layout_width="170dp"
+                        android:layout_height="36dp"
+                        android:background="@drawable/bg_make_class_edit_text"
+                        android:clickable="true"
+                        android:foreground="?attr/selectableItemBackground"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toRightOf="@+id/am_pm_radio_group"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/hour_text_view"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="00"
+                            android:textColor="@color/richBlack"
+                            android:textSize="14dp"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toLeftOf="@+id/hour_min_colon" />
+
+                        <ImageView
+                            android:id="@+id/hour_min_colon"
+                            android:layout_width="2dp"
+                            android:layout_height="8dp"
+                            android:src="@drawable/ic_colon"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintLeft_toRightOf="@+id/hour_text_view"
+                            app:layout_constraintRight_toLeftOf="@+id/min_text_view"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/min_text_view"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="00"
+                            android:textColor="@color/richBlack"
+                            android:textSize="14dp"
+                            app:layout_constraintLeft_toRightOf="@id/hour_min_colon"
+                            app:layout_constraintRight_toRightOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/day_subtitle"
+                    style="@style/makeClassSubTitleTextView"
+                    android:layout_marginTop="36dp"
+                    android:text="수업 요일"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/time_container" />
+
+                <LinearLayout
+                    android:id="@+id/day_check_box_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:orientation="horizontal"
+                    android:weightSum="7"
+                    app:layout_constraintTop_toBottomOf="@id/day_subtitle">
+
+                    <CheckBox
+                        android:id="@+id/mon_check_box"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="8dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_class_day"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:onClick="@{() -> viewModel.onClickClassDow(DayOfWeek.SUN)}"
+                        android:text="일"
+                        android:textColor="@color/color_week_of_day" />
+
+                    <CheckBox
+                        android:id="@+id/tue_check_box"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="8dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_class_day"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:onClick="@{() -> viewModel.onClickClassDow(DayOfWeek.MON)}"
+                        android:text="월"
+                        android:textColor="@color/color_week_of_day" />
+
+                    <CheckBox
+                        android:id="@+id/wed_check_box"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="8dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_class_day"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:onClick="@{() -> viewModel.onClickClassDow(DayOfWeek.TUE)}"
+                        android:text="화"
+                        android:textColor="@color/color_week_of_day" />
+
+                    <CheckBox
+                        android:id="@+id/thu_check_box"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="8dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_class_day"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:onClick="@{() -> viewModel.onClickClassDow(DayOfWeek.WED)}"
+                        android:text="수"
+                        android:textColor="@color/color_week_of_day" />
+
+                    <CheckBox
+                        android:id="@+id/fri_check_box"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="8dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_class_day"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:onClick="@{() -> viewModel.onClickClassDow(DayOfWeek.THU)}"
+                        android:text="목"
+                        android:textColor="@color/color_week_of_day" />
+
+                    <CheckBox
+                        android:id="@+id/sat_check_box"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="8dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_class_day"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:onClick="@{() -> viewModel.onClickClassDow(DayOfWeek.FRI)}"
+                        android:text="금"
+                        android:textColor="@color/color_week_of_day"
+                        tools:checked="true" />
+
+                    <CheckBox
+                        android:id="@+id/sun_check_box"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_class_day"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:onClick="@{() -> viewModel.onClickClassDow(DayOfWeek.SAT)}"
+                        android:text="토"
+                        android:textColor="@color/color_week_of_day" />
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/salary_date_subtitle"
+                    style="@style/makeClassSubTitleTextView"
+                    android:layout_marginTop="36dp"
+                    android:text="정산일 설정"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/day_check_box_container" />
+
+                <RadioGroup
+                    android:id="@+id/salary_date_radio_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/salary_date_subtitle">
+
+                    <RadioButton
+                        android:id="@+id/first_salary_btn"
+                        android:layout_width="0dp"
+                        android:layout_height="36dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_salary_radio"
+                        android:button="@null"
+                        android:checked="true"
+                        android:gravity="center"
+                        android:onCheckedChanged="@{(cb, isChecked) -> viewModel.onSelectSalaryDay(SalaryDay.FOUR, isChecked)}"
+                        android:text="4회"
+                        android:textColor="@color/color_salary_radio_text" />
+
+                    <RadioButton
+                        android:id="@+id/second_salary_btn"
+                        android:layout_width="0dp"
+                        android:layout_height="36dp"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_salary_radio"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:onCheckedChanged="@{(cb, isChecked) -> viewModel.onSelectSalaryDay(SalaryDay.EIGHT, isChecked)}"
+                        android:text="8회"
+                        android:textColor="@color/color_salary_radio_text" />
+
+                    <RadioButton
+                        android:id="@+id/third_salary_btn"
+                        android:layout_width="0dp"
+                        android:layout_height="36dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_salary_radio"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:onCheckedChanged="@{(cb, isChecked) -> viewModel.onSelectSalaryDay(SalaryDay.TWENTY, isChecked)}"
+                        android:text="10회"
+                        android:textColor="@color/color_salary_radio_text" />
+
+                </RadioGroup>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <TextView
+                android:id="@+id/done_btn"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/bg_done_btn"
+                android:enabled="false"
+                android:foreground="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:text="완료"
+                android:textColor="@color/color_done_text"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <!--<TextView
+                android:id="@+id/done_btn"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/bg_done_btn"
+                android:enabled="false"
+                android:foreground="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:text="완료"
+                android:onClick="@{viewModel::createSubject}"
+                android:textColor="@color/color_done_text"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent" />-->
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

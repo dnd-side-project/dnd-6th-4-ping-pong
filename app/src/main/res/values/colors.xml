@@ -1,12 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#9F9F9F</color>
+    <color name="colorPrimary">@color/firstMainColor</color>
     <color name="colorPrimaryVariant">#717171</color>
-    <color name="colorOnPrimary">#656565</color>
+    <color name="colorOnPrimary">@color/firstMainColor</color>
     <color name="colorSecondary">#9F9F9F</color>
     <color name="colorSecondaryVariant">#717171</color>
     <color name="colorOnSecondary">#656565</color>
 
+    <color name="toolTipColor">#707070</color>
+
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="backgroundGray">@color/grayEF</color>
+    <color name="signUpBtn">#C4C4C4</color>
+
+    <color name="todayClassStudent">#0029FF</color>
+    <color name="feedbackClassStudent">#FF0000</color>
+
+    <color name="highlightColor">#E6EBFF</color>
+
+    <color name="firstMainColor">#455CD6</color>
+    <color name="secondMainColor">#FF785F</color>
+    <color name="colorPrimaryPressed">#1C2978</color>
+    <color name="richBlack">#222222</color>
+    <color name="gray85">#858585</color>
+    <color name="grayEE">@color/grayEF</color>
+    <color name="grayE1">#E1E1E1</color>
+    <color name="grayEF">#EFEFEF</color>
+    <color name="grayC4">#C4C4C4</color>
+    <color name="grayDD">#DDDDDD</color>
+    <color name="grayAA">#AAAAAA</color>
+    <color name="grayF5">#F5F5F5</color>
+    <color name="grayF3">#F3F3F3</color>
+    <color name="gray9F">#9F9F9F</color>
+    <color name="gray63">#636363</color>
+    <color name="grayFA">#FAFAFA</color>
+    <color name="blue02">#2A3A99</color>
+    <color name="iconBlue">#BFC5E4</color>
+    <color name="dateSelectColor">@color/white</color>
+
+
+    <color name="calendarTextRed">#E57373</color>
+    <color name="calendarTextOrange">@color/secondMainColor</color>
+    <color name="calendarTextYellow">#FDD835</color>
+    <color name="calendarTextGreen">#A5D6A7</color>
+    <color name="calendarTextBlue">#90CAF9</color>
+    <color name="calendarTextDarkBlue">@color/colorPrimary</color>
+    <color name="calendarTextPurple">#B39DDB</color>
+
+    <color name="calendarRed">#4DE57373</color>
+    <color name="calendarOrange">#4DFF785F</color>
+    <color name="calendarYellow">#4DFFF59D</color>
+    <color name="calendarGreen">#4DA5D6A7</color>
+    <color name="calendarBlue">#4D90CAF9</color>
+    <color name="calendarDarkBlue">#4D455CD6</color>
+    <color name="calendarPurple">#4DB39DDB</color>
 </resources>
